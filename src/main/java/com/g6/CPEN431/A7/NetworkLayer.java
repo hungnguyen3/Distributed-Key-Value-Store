@@ -3,15 +3,19 @@ package com.g6.CPEN431.A7;
 import ca.NetSysLab.ProtocolBuffers.KeyValueRequest.KVRequest;
 import ca.NetSysLab.ProtocolBuffers.Message.Msg;
 import com.google.protobuf.ByteString;
+
+import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.zip.CRC32;
 
 public class NetworkLayer implements Runnable {
     private int port;
+    private String address;
     private RequestHandlingLayer requestHandlingLayer;
     private HashRing hashRing;
 
@@ -21,7 +25,8 @@ public class NetworkLayer implements Runnable {
      * @param requestHandlingLayer the request handling layer to use
      * @param hashRing the hash ring to use for node lookups
      */
-    public NetworkLayer(int port, RequestHandlingLayer requestHandlingLayer, HashRing hashRing) {
+    public NetworkLayer(String address, int port, RequestHandlingLayer requestHandlingLayer, HashRing hashRing) {
+        this.address = address;
         this.port = port;
         this.requestHandlingLayer = requestHandlingLayer;
         this.hashRing = hashRing;
@@ -63,6 +68,16 @@ public class NetworkLayer implements Runnable {
                 Msg reqMsg = Msg.parseFrom(Arrays.copyOfRange(requestMessagePacket.getData(), 0, requestMessagePacket.getLength()));
                 ByteString reqMsgId = reqMsg.getMessageID();
                 KVRequest request = KVRequest.parseFrom(reqMsg.getPayload());
+
+                //Routes the request to the correct handler. Based on UDP Protocol current node will not make sure forwarding succeeds. It will
+                //let the client send retries and forward retries for the client.
+                Node node = hashRing.getNodeForKey(request.getKey().toString());
+                if(node.getPort() != port || node.getHost() != address) {
+                    InetAddress forwardedMessageAddress = InetAddress.getByName(address);
+                    DatagramPacket forwardedMessagePacket = new DatagramPacket(requestMessageBuffer, requestMessagePacket.getLength(), forwardedMessageAddress, port);
+                    datagramSocket.send(forwardedMessagePacket);
+                    continue;
+                }
 
                 // Process the incoming request and get the response
                 byte[] responseBytes = requestHandlingLayer.processRequest(request, reqMsgId).toByteArray();

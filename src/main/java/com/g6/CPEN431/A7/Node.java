@@ -4,8 +4,8 @@ package com.g6.CPEN431.A7;
 public class Node {
     private final String host;      // Host name or IP address of the node
     private final int port;         // Port number of the node
-    private final int startRange;   // Starting range of hash values that the node is responsible for
-    private final int endRange;     // Ending range of hash values that the node is responsible for
+    private int startRange;   // Starting range of hash values that the node is responsible for
+    private int endRange;     // Ending range of hash values that the node is responsible for
 
     // Constructor to create a new Node with the specified host, port, and range
     public Node(String host, int port, int startRange, int endRange) {
@@ -44,5 +44,13 @@ public class Node {
     // Getter method to retrieve the ending range of hash values that the node is responsible for
     public int getEndRange() {
         return endRange;
+    }
+
+    public void setStartRange(int startRange) {
+        startRange = startRange;
+    };
+
+    public void setEndRange(int endRange) {
+        endRange = endRange;
     }
 }

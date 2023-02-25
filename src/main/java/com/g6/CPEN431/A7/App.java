@@ -1,5 +1,7 @@
 package com.g6.CPEN431.A7;
 
+import java.util.concurrent.ConcurrentHashMap;
+
 public class App {
     public static void main(String[] args) {
         // Check if the correct number of command line arguments was provided
@@ -9,17 +11,19 @@ public class App {
         }
 
         // Parse the command line arguments
-        int port = Integer.parseInt(args[0]);
-        int cacheSize = Integer.parseInt(args[1]);
+        String address = args[0];
+        int port = Integer.parseInt(args[1]);
+        int cacheSize = Integer.parseInt(args[2]);
 
-        // Create a new storage layer, cache, and hash ring
+        // Create a new storage layer, cache, isAlive map, and hash ring
         StorageLayer storage = new StorageLayer();
         Cache cache = new Cache(cacheSize);
-        HashRing hashRing = new HashRing("servers.txt");
+        ConcurrentHashMap<String, Boolean> isNodeAlive = new ConcurrentHashMap<>();
+        HashRing hashRing = new HashRing("servers.txt", isNodeAlive);
 
         // Create a new request handling layer and network layer using the above objects
         RequestHandlingLayer requestHandler = new RequestHandlingLayer(storage, cache);
-        NetworkLayer network = new NetworkLayer(port, requestHandler, hashRing);
+        NetworkLayer network = new NetworkLayer(address, port, requestHandler, hashRing);
 
         // Start the network layer
         network.run();
