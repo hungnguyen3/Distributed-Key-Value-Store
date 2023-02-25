@@ -12,8 +12,7 @@ The current implementation supports bootstrapping the cluster by reading a confi
 TODO: on bootstrapping, each node sends requests to all nodes and initialize a local List of isAlive nodes
 
 ### Forwarding: 
-The current implementation of hash ring can
-- Hash the key (hash(key) = hashedValue)
+- Hash ring can hash the key (hash(key) = hashedValue)
 - Use this hashedValue to find the node (node contains host and route)
 
 TODO: forward the message to the right node, aka making the request. Handle logic to update isAlive list, forward to the next available node, etc.
