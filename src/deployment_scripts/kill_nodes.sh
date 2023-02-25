@@ -1,0 +1,1 @@
+pkill -f 'java -Xmx64m -jar'
