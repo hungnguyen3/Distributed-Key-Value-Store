@@ -34,8 +34,10 @@ public class HashRing {
                 int startRange = i * (Integer.MAX_VALUE / 25);
                 int endRange = (i + 1) * (Integer.MAX_VALUE / 25) - 1;
 
+                int epidemicPort = 20000 + i;
+
                 // Add a new node with the host, port, and range to the list of nodes in the ring
-                nodes.add(new Node(host, port, startRange, endRange));
+                nodes.add(new Node(host, port, startRange, endRange, epidemicPort, i));
                 //Initialize all nodes as alive at the beginning
                 isAlive.put(host + port, true);
                 i++;
