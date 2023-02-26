@@ -65,7 +65,9 @@ class Epidemic {
                     } catch (UnknownHostException e) {
                         throw new RuntimeException(e);
                     }
+
                     DatagramPacket timestampPush = new DatagramPacket(timestampByteBuffer, timestampByteBuffer.length, address, sendNode.getEpidemicPort());
+
                     try {
                         datagramSocket.send(timestampPush);
                     } catch (IOException e) {
