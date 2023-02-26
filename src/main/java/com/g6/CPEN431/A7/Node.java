@@ -16,8 +16,8 @@ public class Node {
         this.port = port;
         this.startRange = startRange;
         this.endRange = endRange;
-        this.epidemicPort;
-        this.nodeID;
+        this.epidemicPort = epidemicPort;
+        this.nodeID = nodeID;
     }
 
     // Method to check whether a given hashed value is in the range of hash values that the node is responsible for
