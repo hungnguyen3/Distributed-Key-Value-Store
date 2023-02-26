@@ -38,7 +38,13 @@ public class Client {
     private static final int GET_MEMBERSHIP_COUNT_COMMAND = 0x08;
 
     // IGNORE THIS FILE. THIS IS A FILE FOR TESTING
+    private static String server_ip = SERVER_IP;
+    private static int server_port = SERVER_PORT;
     public static void main(String[] args) {
+        if (args.length >= 2) {
+            server_ip = args[0];
+            server_port = Integer.parseInt(args[1]);
+        }
         while (true) {
             KVRequest is_alive_requestPayloadBytes = KVRequest.newBuilder().setCommand(IS_ALIVE).build();
             System.out.println("isAlive request:");
@@ -90,7 +96,7 @@ public class Client {
                     .build();
 
             byte[] requestPacketBytes = requestMessage.toByteArray();
-            DatagramPacket requestPacket = new DatagramPacket(requestPacketBytes, requestPacketBytes.length, InetAddress.getByName(SERVER_IP), SERVER_PORT);
+            DatagramPacket requestPacket = new DatagramPacket(requestPacketBytes, requestPacketBytes.length, InetAddress.getByName(server_ip), server_port);
 
             int retries = 0;
             int timeout = INITIAL_TIMEOUT;
