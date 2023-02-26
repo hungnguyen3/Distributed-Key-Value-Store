@@ -7,12 +7,17 @@ public class Node {
     private int startRange;   // Starting range of hash values that the node is responsible for
     private int endRange;     // Ending range of hash values that the node is responsible for
 
+    private int epidemicPort; // Port to be used for the epidemic protocol, so traffic does not get confused
+    private int nodeID; // id of the node, this should also be the order of the node in the nodeList created in hashRing
+
     // Constructor to create a new Node with the specified host, port, and range
-    public Node(String host, int port, int startRange, int endRange) {
+    public Node(String host, int port, int startRange, int endRange, int epidemicPort, int nodeID) {
         this.host = host;
         this.port = port;
         this.startRange = startRange;
         this.endRange = endRange;
+        this.epidemicPort;
+        this.nodeID;
     }
 
     // Method to check whether a given hashed value is in the range of hash values that the node is responsible for
