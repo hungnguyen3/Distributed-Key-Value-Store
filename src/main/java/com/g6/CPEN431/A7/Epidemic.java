@@ -45,8 +45,10 @@ class Epidemic {
             @Override
             public void run() {
                 // continually update time and send to a random node
+
                 int k = 0;
                 while(true){
+                    //debugging prints
                     System.out.println("Starting another epidemic round");
                     k++;
                     if(k > 10){
@@ -109,6 +111,7 @@ class Epidemic {
                     }
 
                     System.out.println("Receiving epidemic packet");
+
                     byte[] byteBuf = packet.getData();
 
                     //parse byte array into longs and compare timestamps to find which is most recent
