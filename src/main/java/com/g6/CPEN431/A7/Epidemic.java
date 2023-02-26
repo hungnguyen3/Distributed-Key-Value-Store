@@ -80,6 +80,7 @@ class Epidemic {
                         throw new RuntimeException(e);
                     }
 
+
                     DatagramPacket timestampPush = new DatagramPacket(timestampByteBuffer, timestampByteBuffer.length, address, sendNode.getEpidemicPort());
 
                     try {
