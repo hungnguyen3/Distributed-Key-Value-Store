@@ -14,7 +14,9 @@ public class HashRing {
     //Assumes there is at least 1 node after initialization.
     private ArrayList<Node> nodes;
 
+
     private LinkedHashMap<Integer, Node> nodeCache;
+
     private Epidemic epidemic;
 
     // Constructor to create a new HashRing given a configuration file path.
