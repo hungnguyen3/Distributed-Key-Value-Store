@@ -5,6 +5,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class App {
     public static void main(String[] args) {
         // Check if the correct number of command line arguments was provided
+        System.out.println("startup");
         if (args.length < 2) {
             System.err.println("Usage: java -jar A7.jar <address> <port> <cacheSize>");
             System.exit(1);
@@ -18,6 +19,7 @@ public class App {
         // Create a new storage layer, cache, isAlive map, and hash ring
         StorageLayer storage = new StorageLayer();
         Cache cache = new Cache(cacheSize);
+
         HashRing hashRing = new HashRing("servers.txt", address, port);
 
         // Create a new request handling layer and network layer using the above objects
