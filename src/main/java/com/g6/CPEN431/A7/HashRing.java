@@ -24,15 +24,15 @@ public class HashRing {
             String line;
             int i = 0;
             while ((line = br.readLine()) != null) {
-                String[] parts = line.split(" ");
+                String[] parts = line.split(":");
 
                 // Parse the hostname and port number from the line
                 String host = parts[0];
                 int port = Integer.parseInt(parts[1]);
 
                 // Divide the range of hash values evenly between the nodes in the ring
-                int startRange = i * (Integer.MAX_VALUE / 25);
-                int endRange = (i + 1) * (Integer.MAX_VALUE / 25) - 1;
+                int startRange = i * (Integer.MAX_VALUE / 5);
+                int endRange = (i + 1) * (Integer.MAX_VALUE / 5) - 1;
 
                 // Add a new node with the host, port, and range to the list of nodes in the ring
                 nodes.add(new Node(host, port, startRange, endRange));
@@ -74,6 +74,7 @@ public class HashRing {
                     if(isAlive.get(address)) {
                         return nextAvailableNode;
                     } else {
+                        System.out.println("Entered node dead");
                         //If node isn't alive, update the hash-range of its successor to include its range then delete the node from list.
                         nodes.get((j + 1) % nodes.size()).setStartRange(nextAvailableNode.getStartRange());
                         nodes.remove(j);
