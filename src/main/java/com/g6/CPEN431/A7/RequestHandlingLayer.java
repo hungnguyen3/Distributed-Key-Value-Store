@@ -11,7 +11,7 @@ public class RequestHandlingLayer {
     private Cache cache;
     private final int MAX_KEY_LENGTH = 32;
     private final int MAX_VALUE_LENGTH = 10000; //(1 << 20);
-    private final long MAX_MEMORY_USAGE = 60;
+    private final long MAX_MEMORY_USAGE = 63;
     private final KVResponse ERROR_KEY_TOO_LONG = KVResponse.newBuilder().setErrCode(0x06).build();
     private final KVResponse ERROR_VALUE_TOO_LONG = KVResponse.newBuilder().setErrCode(0x07).build();
     private final KVResponse ERROR_OUT_OF_MEMORY = KVResponse.newBuilder().setErrCode(0x02).build();
@@ -44,6 +44,7 @@ public class RequestHandlingLayer {
                     response = ERROR_OUT_OF_MEMORY;
                 } else {
                     storageLayer.put(request.getKey(), request.getValue(), request.getVersion());
+                    System.out.println("PUT: request's value length: " + request.getValue().size() + " bytes");
                     System.out.println("Put " + byteArrayToHexString(request.getKey().toByteArray()) + "into this node");
                     response = ZERO_ERR_CODE;
                 }
@@ -53,6 +54,7 @@ public class RequestHandlingLayer {
                 if (valueVersionPair == null) {
                     response = ERROR_NON_EXISTENT;
                 } else {
+                    System.out.println("GET: request's value length: " + request.getValue().size() + " bytes");
                     System.out.println("Get " + byteArrayToHexString(request.getKey().toByteArray()) + "from this node");
                     response = KVResponse.newBuilder().setErrCode(0x00).setValue(valueVersionPair.value).setVersion(valueVersionPair.version).build();
                 }

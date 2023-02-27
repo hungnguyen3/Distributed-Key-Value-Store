@@ -76,6 +76,8 @@ public class NetworkLayer implements Runnable {
                 if (reqCommand == 0x01 || reqCommand == 0x02 || reqCommand == 0x03) {
                     Node node = hashRing.getNodeForKey(request.getKey().toByteArray());
 
+
+                    System.out.println("--------------------------------- Command " + reqCommand);
                     if(node.getPort() != port || !node.getHost().equals(address)) {
                         System.out.println("Command " + reqCommand + " ,Forward " + port + " to " + node.getPort());
                         System.out.println("Key is " + byteArrayToHexString(request.getKey().toByteArray()) + "Hash is " + HashUtils.hash(request.getKey().toByteArray()));
