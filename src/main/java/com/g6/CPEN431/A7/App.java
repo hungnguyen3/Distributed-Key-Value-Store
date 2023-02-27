@@ -6,7 +6,7 @@ public class App {
     public static void main(String[] args) {
         // Check if the correct number of command line arguments was provided
         if (args.length < 2) {
-            System.err.println("Usage: java -jar A7.jar <port> <cacheSize>");
+            System.err.println("Usage: java -jar A7.jar <address> <port> <cacheSize>");
             System.exit(1);
         }
 

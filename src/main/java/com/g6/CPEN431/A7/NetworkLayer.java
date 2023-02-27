@@ -5,6 +5,7 @@ import ca.NetSysLab.ProtocolBuffers.Message.Msg;
 import com.google.protobuf.ByteString;
 
 import javax.xml.crypto.Data;
+import java.awt.*;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -71,13 +72,24 @@ public class NetworkLayer implements Runnable {
 
                 //Routes the request to the correct handler. Based on UDP Protocol current node will not make sure forwarding succeeds. It will
                 //let the client send retries and forward retries for the client.
-                Node node = hashRing.getNodeForKey(request.getKey().toString());
-                if(node.getPort() != port || node.getHost() != address) {
-                    InetAddress forwardedMessageAddress = InetAddress.getByName(address);
-                    DatagramPacket forwardedMessagePacket = new DatagramPacket(requestMessageBuffer, requestMessagePacket.getLength(), forwardedMessageAddress, port);
-                    datagramSocket.send(forwardedMessagePacket);
-                    continue;
+                int reqCommand = request.getCommand();
+                if (reqCommand == 0x01 || reqCommand == 0x02 || reqCommand == 0x03) {
+                    Node node = hashRing.getNodeForKey(request.getKey().toString());
+
+                    System.out.println("-----------------------");
+                    System.out.println("Current node: " + address + " " + port);
+                    System.out.println("Forward node: " + node.getHost() + " " + node.getPort());
+
+                    if(node.getPort() != port || !node.getHost().equals(address)) {
+                        InetAddress forwardedMessageAddress = InetAddress.getByName(node.getHost());
+                        int forwardedPort = node.getPort();
+                        DatagramPacket forwardedMessagePacket = new DatagramPacket(requestMessageBuffer, requestMessagePacket.getLength(), forwardedMessageAddress, forwardedPort);
+                        datagramSocket.send(forwardedMessagePacket);
+                        continue;
+                    }
                 }
+
+                System.out.println("Start processing the requests");
 
                 // Process the incoming request and get the response
                 byte[] responseBytes = requestHandlingLayer.processRequest(request, reqMsgId).toByteArray();
