@@ -9,6 +9,6 @@ public class HashUtils {
      * @return the 32-bit hash value as an integer
      */
     public static int hash(byte[] data) {
-        return Math.abs(Hashing.murmur3_32_fixed().hashBytes(data).asInt());
+        return Math.abs(Hashing.murmur3_32_fixed(5).hashBytes(data).asInt());
     }
 }

@@ -53,6 +53,7 @@ public class RequestHandlingLayer {
                 if (valueVersionPair == null) {
                     response = ERROR_NON_EXISTENT;
                 } else {
+                    System.out.println("Get " + byteArrayToHexString(request.getKey().toByteArray()) + "from this node");
                     response = KVResponse.newBuilder().setErrCode(0x00).setValue(valueVersionPair.value).setVersion(valueVersionPair.version).build();
                 }
                 break;

@@ -74,7 +74,7 @@ public class NetworkLayer implements Runnable {
                 //let the client send retries and forward retries for the client.
                 int reqCommand = request.getCommand();
                 if (reqCommand == 0x01 || reqCommand == 0x02 || reqCommand == 0x03) {
-                    Node node = hashRing.getNodeForKey(request.getKey().toString());
+                    Node node = hashRing.getNodeForKey(request.getKey().toByteArray());
 
                     if(node.getPort() != port || !node.getHost().equals(address)) {
                         System.out.println("Command " + reqCommand + " ,Forward " + port + " to " + node.getPort());

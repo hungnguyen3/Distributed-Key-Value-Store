@@ -20,10 +20,10 @@ public class Node {
     public boolean inRange(int hashedValue) {
         if (startRange <= endRange) {
             // Normal range (i.e., the node range does not wrap around the maximum hash value)
-            System.out.println("Node Range " + startRange + " to " + endRange);
+            System.out.println("Node Range " + startRange + " to " + endRange + " on hashedValue: " + hashedValue );
             System.out.println(hashedValue >=startRange);
             System.out.println(hashedValue <= endRange);
-            return hashedValue >= startRange && hashedValue <= endRange;
+            return hashedValue >= startRange && hashedValue < endRange;
         } else {
             // Wrap-around range (i.e., the node range spans the maximum hash value)
             return hashedValue >= startRange || hashedValue <= endRange;

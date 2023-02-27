@@ -61,9 +61,9 @@ public class HashRing {
     }
 
     // Method to get the node responsible for a given key
-    public Node getNodeForKey(String key) {
+    public Node getNodeForKey(byte[] key_byte_array) {
         // Calculate the hash value of the key using the Murmur3 hash function
-        int hash = HashUtils.hash(key.getBytes());
+        int hash = HashUtils.hash(key_byte_array);
 
         for (int i = 0; i < nodes.size(); i++) {
             //Node i contains the hash value, now find the next node that is alive (including node i) to handle the request.
