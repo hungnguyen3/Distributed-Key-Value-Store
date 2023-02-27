@@ -10,5 +10,8 @@
         <module name="CPEN431_2023_PROJECT_G6" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="cpen431_2023_project_g6" target="1.7" />
+    </bytecodeTargetLevel>
   </component>
 </project>
