@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.g6.CPEN431.A7.AppTest" time="0.029" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.g6.CPEN431.A7.AppTest" time="0.028" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="CA"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-17.0.5\bin"/>
-    <property name="sun.java.command" value="C:\Users\Charles\AppData\Local\Temp\surefire8470729329579714820\surefirebooter4661551236529260967.jar C:\Users\Charles\AppData\Local\Temp\surefire8470729329579714820 2023-02-27T07-25-40_297-jvmRun1 surefire9324628098116213859tmp surefire_06682094933235091817tmp"/>
+    <property name="sun.java.command" value="C:\Users\Charles\AppData\Local\Temp\surefire5064150043312854280\surefirebooter9489144317887480441.jar C:\Users\Charles\AppData\Local\Temp\surefire5064150043312854280 2023-02-27T07-33-02_357-jvmRun1 surefire2817285440408790563tmp surefire_01047129234134442257tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\Charles\Documents\cpen431_2023_project_g6\target\test-classes;C:\Users\Charles\Documents\cpen431_2023_project_g6\target\classes;C:\Users\Charles\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\Charles\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\Charles\.m2\repository\com\google\protobuf\protobuf-java\3.21.12\protobuf-java-3.21.12.jar;C:\Users\Charles\.m2\repository\com\google\guava\guava\31.0.1-jre\guava-31.0.1-jre.jar;C:\Users\Charles\.m2\repository\com\google\guava\failureaccess\1.0.1\failureaccess-1.0.1.jar;C:\Users\Charles\.m2\repository\com\google\guava\listenablefuture\9999.0-empty-to-avoid-conflict-with-guava\listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar;C:\Users\Charles\.m2\repository\com\google\code\findbugs\jsr305\3.0.2\jsr305-3.0.2.jar;C:\Users\Charles\.m2\repository\org\checkerframework\checker-qual\3.12.0\checker-qual-3.12.0.jar;C:\Users\Charles\.m2\repository\com\google\errorprone\error_prone_annotations\2.7.1\error_prone_annotations-2.7.1.jar;C:\Users\Charles\.m2\repository\com\google\j2objc\j2objc-annotations\1.3\j2objc-annotations-1.3.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\Charles\AppData\Local\Temp\surefire8470729329579714820\surefirebooter4661551236529260967.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Charles\AppData\Local\Temp\surefire5064150043312854280\surefirebooter9489144317887480441.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="17.0.5+9-LTS-191"/>
