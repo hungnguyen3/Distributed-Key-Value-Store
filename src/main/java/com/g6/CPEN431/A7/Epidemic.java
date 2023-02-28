@@ -45,7 +45,19 @@ class Epidemic {
             @Override
             public void run() {
                 // continually update time and send to a random node
+                int k = 0;
                 while(true){
+                    System.out.println("Starting another epidemic round");
+                    k++;
+                    if(k > 10){
+                        k = 0;
+                        for(int j = 0; j < nodeList.size(); j++){
+                            if(!isAlive(j)){
+                                System.out.println("Node " + j + " is Dead");
+                            }
+                        }
+                    }
+
                     timestampVectorWriteLock.lock();
                     timestampVector.set(myID, System.currentTimeMillis());
                     timestampVectorWriteLock.unlock();
@@ -95,6 +107,8 @@ class Epidemic {
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
+
+                    System.out.println("Receiving epidemic packet");
                     byte[] byteBuf = packet.getData();
 
                     //parse byte array into longs and compare timestamps to find which is most recent
