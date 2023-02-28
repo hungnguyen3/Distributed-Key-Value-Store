@@ -95,7 +95,6 @@ public class HashRing {
                 break;
             }
         }
-
         return nodes.get(0);
     }
 }
