@@ -89,6 +89,7 @@ public class HashRing {
         // Calculate the hash value of the key using the Murmur3 hash function
         int hash = HashUtils.hash(key_byte_array);
 
+
         // Check the cache for the node responsible for the key
         Node cachedNode = nodeCache.get(hash);
         if (cachedNode != null) {
