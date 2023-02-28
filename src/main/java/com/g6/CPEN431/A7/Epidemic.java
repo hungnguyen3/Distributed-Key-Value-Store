@@ -57,7 +57,6 @@ class Epidemic {
                             }
                         }
                     }
-
                     timestampVectorWriteLock.lock();
                     timestampVector.set(myID, System.currentTimeMillis());
                     timestampVectorWriteLock.unlock();
