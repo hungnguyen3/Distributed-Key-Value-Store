@@ -64,6 +64,7 @@ public class RequestHandlingLayer {
                 response = ZERO_ERR_CODE;
                 break;
             case 0x05:
+                System.out.println("Performing wipeout");
                 storageLayer.clear();
                 cache.clear();
                 response = ZERO_ERR_CODE;

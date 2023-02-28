@@ -36,7 +36,7 @@ public class HashRing {
             String line;
             int i = 0;
             while ((line = br.readLine()) != null) {
-                String[] parts = line.split(" ");
+                String[] parts = line.split(":");
 
                 // Parse the hostname and port number from the line
                 String host = parts[0];
@@ -46,8 +46,8 @@ public class HashRing {
                 }
 
                 // Divide the range of hash values evenly between the nodes in the ring
-                int startRange = i * (Integer.MAX_VALUE / 25);
-                int endRange = (i + 1) * (Integer.MAX_VALUE / 25) - 1;
+                int startRange = i * (Integer.MAX_VALUE / 20);
+                int endRange = (i + 1) * (Integer.MAX_VALUE / 20) - 1;
 
                 int epidemicPort = 20000 + i;
 
@@ -74,23 +74,10 @@ public class HashRing {
         }
     }
 
-    // Method to get the list of nodes in the ring
-    public List<Node> getNodes() {
-        for(int i = 0; i < nodes.size(); i++) {
-            if (!epidemic.isAlive(nodes.get(i).getNodeID())) {
-                nodes.remove(i);
-                i -= 1;
-            }
-        }
-        return nodes;
-    }
-
     // Method to get the node responsible for a given key
     public Node getNodeForKey(byte[] key_byte_array) {
         // Calculate the hash value of the key using the Murmur3 hash function
         int hash = HashUtils.hash(key_byte_array);
-
-
 
         // Check the cache for the node responsible for the key
         Node cachedNode = nodeCache.get(hash);
@@ -108,7 +95,6 @@ public class HashRing {
                 return node;
             }
         }
-
 
         // If no node was found for the hash value, wrap around to the first node
         Node firstNode = nodes.get(0);

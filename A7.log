@@ -1,0 +1,17 @@
+CPEN 431 EVALUATION test Client
+Time: Mon Feb 27 21:35:07 PST 2023
+Build Date: Mon Feb 27 21:26:37 PST 2023
+Java process ID: 23512
+Client Version: 1
+
+[Info] A7 client running in TEST mode.
+
+[Info] Starting A7 Tests
+
+
+[Info] Done building nodes' list.
+[Info] The deployment has 20 server nodes.
+
+[Info] Skipping tests of local deployment since not running in submit mode.
+
+Sending WIPE-OUT to all servers...

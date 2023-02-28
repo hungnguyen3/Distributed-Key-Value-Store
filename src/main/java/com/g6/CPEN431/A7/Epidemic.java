@@ -47,7 +47,7 @@ class Epidemic {
                 // continually update time and send to a random node
                 int k = 0;
                 while(true){
-                    //debugging prints
+                    /*
                     System.out.println("Starting another epidemic round");
                     k++;
                     if(k > 10){
@@ -58,6 +58,7 @@ class Epidemic {
                             }
                         }
                     }
+                    */
 
                     timestampVectorWriteLock.lock();
                     timestampVector.set(myID, System.currentTimeMillis());
@@ -110,7 +111,7 @@ class Epidemic {
                         throw new RuntimeException(e);
                     }
 
-                    System.out.println("Receiving epidemic packet");
+                    //System.out.println("Receiving epidemic packet");
 
                     byte[] byteBuf = packet.getData();
 

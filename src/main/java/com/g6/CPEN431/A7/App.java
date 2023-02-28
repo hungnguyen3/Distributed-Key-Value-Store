@@ -14,6 +14,7 @@ public class App {
         // Parse the command line arguments
         String address = args[0];
         int port = Integer.parseInt(args[1]);
+        System.out.println("Opening on port: " + port);
         int cacheSize = Integer.parseInt(args[2]);
 
         // Create a new storage layer, cache, isAlive map, and hash ring
