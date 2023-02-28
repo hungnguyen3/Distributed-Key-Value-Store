@@ -74,18 +74,24 @@ public class NetworkLayer implements Runnable {
                 //let the client send retries and forward retries for the client.
                 int reqCommand = request.getCommand();
                 if (reqCommand == 0x01 || reqCommand == 0x02 || reqCommand == 0x03) {
-                    Node node = hashRing.getNodeForKey(request.getKey().toByteArray());
+                    Node forwardNode = hashRing.getNodeForKey(request.getKey().toByteArray());
 
+                    if(forwardNode.getPort() != port || !forwardNode.getHost().equals(address)) {
+                        System.out.println("Command " + reqCommand + " ,Forward " + port + " to " + forwardNode.getPort());
 
-                    System.out.println("--------------------------------- Command " + reqCommand);
-                    if(node.getPort() != port || !node.getHost().equals(address)) {
-                        System.out.println("Command " + reqCommand + " ,Forward " + port + " to " + node.getPort());
-                        System.out.println("Key is " + byteArrayToHexString(request.getKey().toByteArray()) + "Hash is " + HashUtils.hash(request.getKey().toByteArray()));
-                        System.out.println("_____________________________________________________________");
-                        InetAddress forwardedMessageAddress = InetAddress.getByName(node.getHost());
-                        int forwardedPort = node.getPort();
-                        DatagramPacket forwardedMessagePacket = new DatagramPacket(requestMessageBuffer, requestMessagePacket.getLength(), forwardedMessageAddress, forwardedPort);
+                        Msg forwardMsg = Msg.newBuilder()
+                                .setMessageID(reqMsgId)
+                                .setPayload(reqMsg.getPayload())
+                                .setCheckSum(reqMsg.getCheckSum())
+                                .setOriginalSenderHost(requestMessagePacket.getAddress().toString()) // to change
+                                .setOriginalSenderPort(requestMessagePacket.getPort()) // to change
+                                .build();
+
+                        byte[] forwardMessageBytes = forwardMsg.toByteArray();
+                        // Create forwarded message packet with original sender's address and port
+                        DatagramPacket forwardedMessagePacket = new DatagramPacket(forwardMessageBytes, forwardMessageBytes.length, InetAddress.getByName(forwardNode.getHost()), forwardNode.getPort());
                         datagramSocket.send(forwardedMessagePacket);
+
                         continue;
                     }
                 }
@@ -102,30 +108,24 @@ public class NetworkLayer implements Runnable {
 
                 // Send the response message back to the client
                 byte[] responseMessageBytes = resMsg.toByteArray();
-                DatagramPacket responseMessagePacket = new DatagramPacket(responseMessageBytes, responseMessageBytes.length, requestMessagePacket.getAddress(), requestMessagePacket.getPort());
+
+                InetAddress clientHost = reqMsg.getOriginalSenderHost().equals("")? requestMessagePacket.getAddress() : InetAddress.getByName(reqMsg.getOriginalSenderHost().substring(1));
+                int clientPort = reqMsg.getOriginalSenderPort() == 0? requestMessagePacket.getPort() : reqMsg.getOriginalSenderPort();
+                DatagramPacket responseMessagePacket = new DatagramPacket(responseMessageBytes, responseMessageBytes.length, clientHost, clientPort);
                 datagramSocket.send(responseMessagePacket);
+
+                if(reqCommand == 0x01) {
+                    System.out.println("Sent PUT response to client!!!!" + clientHost + clientPort);
+                }
+                if(reqCommand == 0x02) {
+                    System.out.println("Sent GET response to client!!!!" + clientHost + clientPort);
+                }
+                if(reqCommand == 0x03) {
+                    System.out.println("Sent REM response to client!!!!" + clientHost + clientPort);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-    public static int ubyte2int(byte x) {
-        return ((int)x) & 0x000000FF;
-    }
-    public static String byteArrayToHexString(byte[] bytes) {
-        StringBuffer buf=new StringBuffer();
-        String str;
-        int val;
-
-        for (int i=0; i< bytes.length; i++) {
-            val = ubyte2int(bytes[i]);
-            str = Integer.toHexString(val);
-            while ( str.length() < 2 )
-                str = "0" + str;
-            buf.append( " " + str );
-        }
-        return buf.toString().toUpperCase();
-    }
-
 }

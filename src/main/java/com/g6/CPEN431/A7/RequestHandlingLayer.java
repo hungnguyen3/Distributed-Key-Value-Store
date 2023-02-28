@@ -44,8 +44,6 @@ public class RequestHandlingLayer {
                     response = ERROR_OUT_OF_MEMORY;
                 } else {
                     storageLayer.put(request.getKey(), request.getValue(), request.getVersion());
-                    System.out.println("PUT: request's value length: " + request.getValue().size() + " bytes");
-                    System.out.println("Put " + byteArrayToHexString(request.getKey().toByteArray()) + "into this node");
                     response = ZERO_ERR_CODE;
                 }
                 break;
@@ -54,8 +52,6 @@ public class RequestHandlingLayer {
                 if (valueVersionPair == null) {
                     response = ERROR_NON_EXISTENT;
                 } else {
-                    System.out.println("GET: request's value length: " + request.getValue().size() + " bytes");
-                    System.out.println("Get " + byteArrayToHexString(request.getKey().toByteArray()) + "from this node");
                     response = KVResponse.newBuilder().setErrCode(0x00).setValue(valueVersionPair.value).setVersion(valueVersionPair.version).build();
                 }
                 break;
@@ -98,23 +94,4 @@ public class RequestHandlingLayer {
 
         return usedMemory;
     }
-
-    public static int ubyte2int(byte x) {
-        return ((int)x) & 0x000000FF;
-    }
-    public static String byteArrayToHexString(byte[] bytes) {
-        StringBuffer buf=new StringBuffer();
-        String str;
-        int val;
-
-        for (int i=0; i< bytes.length; i++) {
-            val = ubyte2int(bytes[i]);
-            str = Integer.toHexString(val);
-            while ( str.length() < 2 )
-                str = "0" + str;
-            buf.append( " " + str );
-        }
-        return buf.toString().toUpperCase();
-    }
-
 }

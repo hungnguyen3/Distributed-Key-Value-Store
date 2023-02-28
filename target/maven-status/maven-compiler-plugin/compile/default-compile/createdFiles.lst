@@ -8,6 +8,7 @@ com/g6/CPEN431/A7/HashRing.class
 com/g6/CPEN431/A7/Node.class
 ca/NetSysLab/ProtocolBuffers/Message$Msg$Builder.class
 ca/NetSysLab/ProtocolBuffers/KeyValueRequest$KVRequest$Builder.class
+com/g6/CPEN431/A7/HashRing$1.class
 ca/NetSysLab/ProtocolBuffers/KeyValueResponse$KVResponse$Builder.class
 com/g6/CPEN431/A7/CacheItem.class
 com/g6/CPEN431/A7/RequestHandlingLayer.class

@@ -5,7 +5,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class HashRing {
@@ -13,11 +15,17 @@ public class HashRing {
     private List<Node> nodes;
     //HashRing only mutates isAlive map on initialization, after that Read-Only.
     private ConcurrentHashMap<String, Boolean> isAlive;
+    private LinkedHashMap<Integer, Node> nodeCache;
 
     // Constructor to create a new HashRing given a configuration file path.
     public HashRing(String configFilePath, ConcurrentHashMap<String, Boolean> isNodeAlive) {
         nodes = new ArrayList<>();
         isAlive = isNodeAlive;
+        nodeCache = new LinkedHashMap<Integer, Node>(500, 0.75f, true) {
+            protected boolean removeEldestEntry(Map.Entry<Integer, Node> eldest) {
+                return size() > 500;
+            }
+        };
 
         // Try to read the configuration file and create a Node object for each line
         try (BufferedReader br = new BufferedReader(new FileReader(configFilePath))) {
@@ -49,43 +57,32 @@ public class HashRing {
         }
     }
 
-    // Method to get the list of nodes in the ring
-    public List<Node> getNodes() {
-        for(int i = 0; i < nodes.size(); i++) {
-            if (!isAlive.get(nodes.get(i).getHost() + nodes.get(i).getPort())) {
-                nodes.remove(i);
-                i -= 1;
-            }
-        }
-        return nodes;
-    }
-
     // Method to get the node responsible for a given key
     public Node getNodeForKey(byte[] key_byte_array) {
         // Calculate the hash value of the key using the Murmur3 hash function
         int hash = HashUtils.hash(key_byte_array);
 
-        for (int i = 0; i < nodes.size(); i++) {
-            //Node i contains the hash value, now find the next node that is alive (including node i) to handle the request.
-            if(nodes.get(i).inRange(hash)) {
-                for(int j = i; j < nodes.size(); j++) {
-                    Node nextAvailableNode = nodes.get(j);
-                    String address = nextAvailableNode.getHost() + nextAvailableNode.getPort();
-                    if(isAlive.get(address)) {
-                        return nextAvailableNode;
-                    } else {
-                        System.out.println("Entered node dead");
-                        //If node isn't alive, update the hash-range of its successor to include its range then delete the node from list.
-                        nodes.get((j + 1) % nodes.size()).setStartRange(nextAvailableNode.getStartRange());
-                        nodes.remove(j);
-                        j -= 1;
-                    }
-                }
+        // Check the cache for the node responsible for the key
+        Node cachedNode = nodeCache.get(hash);
+        if (cachedNode != null) {
+            System.out.println("cache hit: " + cachedNode.getHost() + ":" + cachedNode.getPort());
+            return cachedNode;
+        }
 
-                break;
+        // Iterate through all nodes in the ring to find the one responsible for the hash value
+        for (Node node : nodes) {
+            if (node.inRange(hash)) {
+                // Found the correct node, add to cache and return
+                nodeCache.put(hash, node);
+                System.out.println("Found the correct node: " + node.getHost() + ":" + node.getPort());
+                return node;
             }
         }
 
-        return nodes.get(0);
+        // If no node was found for the hash value, wrap around to the first node
+        Node firstNode = nodes.get(0);
+        nodeCache.put(hash, firstNode);
+        System.out.println("No node found for hash, using first node: " + firstNode.getHost() + ":" + firstNode.getPort());
+        return firstNode;
     }
 }
