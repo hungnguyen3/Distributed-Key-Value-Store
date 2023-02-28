@@ -72,18 +72,19 @@ public class HashRing {
     }
 
     // Method to get the node responsible for a given key
-    public Node getNodeForKey(String key) {
+    public Node getNodeForKey(byte[] key_byte_array) {
         // Calculate the hash value of the key using the Murmur3 hash function
-        int hash = HashUtils.hash(key.getBytes());
+        int hash = HashUtils.hash(key_byte_array);
 
         for (int i = 0; i < nodes.size(); i++) {
             //Node i contains the hash value, now find the next node that is alive (including node i) to handle the request.
             if(nodes.get(i).inRange(hash)) {
                 for(int j = i; j < nodes.size(); j++) {
                     Node nextAvailableNode = nodes.get(j);
-                    if(epidemic.isAlive(nodes.get(i).getNodeID())) {
+                    if(epidemic.isAlive(nextAvailableNode.getNodeID())) {
                         return nextAvailableNode;
                     } else {
+                        System.out.println("Entered node dead");
                         //If node isn't alive, update the hash-range of its successor to include its range then delete the node from list.
                         nodes.get((j + 1) % nodes.size()).setStartRange(nextAvailableNode.getStartRange());
                         nodes.remove(j);
@@ -94,7 +95,6 @@ public class HashRing {
                 break;
             }
         }
-
         return nodes.get(0);
     }
 }

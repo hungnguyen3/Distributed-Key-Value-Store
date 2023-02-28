@@ -5,6 +5,7 @@ import ca.NetSysLab.ProtocolBuffers.Message.Msg;
 import com.google.protobuf.ByteString;
 
 import javax.xml.crypto.Data;
+import java.awt.*;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -71,12 +72,22 @@ public class NetworkLayer implements Runnable {
 
                 //Routes the request to the correct handler. Based on UDP Protocol current node will not make sure forwarding succeeds. It will
                 //let the client send retries and forward retries for the client.
-                Node node = hashRing.getNodeForKey(request.getKey().toString());
-                if(node.getPort() != port || node.getHost() != address) {
-                    InetAddress forwardedMessageAddress = InetAddress.getByName(address);
-                    DatagramPacket forwardedMessagePacket = new DatagramPacket(requestMessageBuffer, requestMessagePacket.getLength(), forwardedMessageAddress, port);
-                    datagramSocket.send(forwardedMessagePacket);
-                    continue;
+                int reqCommand = request.getCommand();
+                if (reqCommand == 0x01 || reqCommand == 0x02 || reqCommand == 0x03) {
+                    Node node = hashRing.getNodeForKey(request.getKey().toByteArray());
+
+
+                    System.out.println("--------------------------------- Command " + reqCommand);
+                    if(node.getPort() != port || !node.getHost().equals(address)) {
+                        System.out.println("Command " + reqCommand + " ,Forward " + port + " to " + node.getPort());
+                        System.out.println("Key is " + byteArrayToHexString(request.getKey().toByteArray()) + "Hash is " + HashUtils.hash(request.getKey().toByteArray()));
+                        System.out.println("_____________________________________________________________");
+                        InetAddress forwardedMessageAddress = InetAddress.getByName(node.getHost());
+                        int forwardedPort = node.getPort();
+                        DatagramPacket forwardedMessagePacket = new DatagramPacket(requestMessageBuffer, requestMessagePacket.getLength(), forwardedMessageAddress, forwardedPort);
+                        datagramSocket.send(forwardedMessagePacket);
+                        continue;
+                    }
                 }
 
                 // Process the incoming request and get the response
@@ -98,4 +109,23 @@ public class NetworkLayer implements Runnable {
             e.printStackTrace();
         }
     }
+
+    public static int ubyte2int(byte x) {
+        return ((int)x) & 0x000000FF;
+    }
+    public static String byteArrayToHexString(byte[] bytes) {
+        StringBuffer buf=new StringBuffer();
+        String str;
+        int val;
+
+        for (int i=0; i< bytes.length; i++) {
+            val = ubyte2int(bytes[i]);
+            str = Integer.toHexString(val);
+            while ( str.length() < 2 )
+                str = "0" + str;
+            buf.append( " " + str );
+        }
+        return buf.toString().toUpperCase();
+    }
+
 }
