@@ -52,7 +52,7 @@ public class HashRing {
         }
 
         //try to start the epidemic protocol and print error message if it fails
-        epidemic = new Epidemic((ArrayList<Node>)nodes.clone(), myID, 100, 20000 + myID, 5);
+        epidemic = new Epidemic((ArrayList<Node>)nodes.clone(), myID, 200, 20000 + myID, 5);
         try {
             epidemic.startEpidemic();
         } catch (Exception e){
