@@ -10,36 +10,37 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class HashRing {
     //Assumes there is at least 1 node after initialization.
-    private List<Node> nodes;
+    private ArrayList<Node> nodes;
     //HashRing only mutates isAlive map on initialization, after that Read-Only.
-    private ConcurrentHashMap<String, Boolean> isAlive;
+    private Epidemic epidemic;
 
     // Constructor to create a new HashRing given a configuration file path.
-    public HashRing(String configFilePath, ConcurrentHashMap<String, Boolean> isNodeAlive) {
+    public HashRing(String configFilePath, String myAddress, int myPort) {
         nodes = new ArrayList<>();
-        isAlive = isNodeAlive;
-
+        int myID = 0;
         // Try to read the configuration file and create a Node object for each line
         try (BufferedReader br = new BufferedReader(new FileReader(configFilePath))) {
             String line;
             int i = 0;
             while ((line = br.readLine()) != null) {
-                String[] parts = line.split(":");
+                String[] parts = line.split(" ");
 
                 // Parse the hostname and port number from the line
                 String host = parts[0];
                 int port = Integer.parseInt(parts[1]);
+                if(host.equals(myAddress) && port == myPort){
+                    myID = i;
+                }
 
                 // Divide the range of hash values evenly between the nodes in the ring
-                int startRange = i * (Integer.MAX_VALUE / 5);
-                int endRange = (i + 1) * (Integer.MAX_VALUE / 5) - 1;
+                int startRange = i * (Integer.MAX_VALUE / 25);
+                int endRange = (i + 1) * (Integer.MAX_VALUE / 25) - 1;
 
                 int epidemicPort = 20000 + i;
 
                 // Add a new node with the host, port, and range to the list of nodes in the ring
                 nodes.add(new Node(host, port, startRange, endRange, epidemicPort, i));
                 //Initialize all nodes as alive at the beginning
-                isAlive.put(host + port, true);
                 i++;
             }
         } catch (FileNotFoundException e) {
@@ -49,12 +50,20 @@ public class HashRing {
             // If there is an error reading the file, throw a RuntimeException with the file path and cause
             throw new RuntimeException("Error reading servers.txt file: " + configFilePath, e);
         }
+
+        //try to start the epidemic protocol and print error message if it fails
+        epidemic = new Epidemic((ArrayList<Node>)nodes.clone(), myID, 100, 20000 + myID, 5);
+        try {
+            epidemic.startEpidemic();
+        } catch (Exception e){
+            System.out.println("Could not start epidemic protocol on this node");
+        }
     }
 
     // Method to get the list of nodes in the ring
     public List<Node> getNodes() {
         for(int i = 0; i < nodes.size(); i++) {
-            if (!isAlive.get(nodes.get(i).getHost() + nodes.get(i).getPort())) {
+            if (!epidemic.isAlive(nodes.get(i).getNodeID())) {
                 nodes.remove(i);
                 i -= 1;
             }
@@ -72,8 +81,7 @@ public class HashRing {
             if(nodes.get(i).inRange(hash)) {
                 for(int j = i; j < nodes.size(); j++) {
                     Node nextAvailableNode = nodes.get(j);
-                    String address = nextAvailableNode.getHost() + nextAvailableNode.getPort();
-                    if(isAlive.get(address)) {
+                    if(epidemic.isAlive(nextAvailableNode.getNodeID())) {
                         return nextAvailableNode;
                     } else {
                         System.out.println("Entered node dead");

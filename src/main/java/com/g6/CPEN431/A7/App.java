@@ -18,8 +18,7 @@ public class App {
         // Create a new storage layer, cache, isAlive map, and hash ring
         StorageLayer storage = new StorageLayer();
         Cache cache = new Cache(cacheSize);
-        ConcurrentHashMap<String, Boolean> isNodeAlive = new ConcurrentHashMap<>();
-        HashRing hashRing = new HashRing("servers.txt", isNodeAlive);
+        HashRing hashRing = new HashRing("servers.txt", address, port);
 
         // Create a new request handling layer and network layer using the above objects
         RequestHandlingLayer requestHandler = new RequestHandlingLayer(storage, cache);
