@@ -104,6 +104,7 @@ public class HashRing {
             }
         }
 
+
         // If no node was found for the hash value, wrap around to the first node
         Node firstNode = nodes.get(0);
         nodeCache.put(hash, firstNode);
