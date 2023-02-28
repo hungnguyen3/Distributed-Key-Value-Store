@@ -7,12 +7,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="cpen431_2023_project_g6" />
-        <module name="CPEN431_2023_PROJECT_G6" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="cpen431_2023_project_g6" target="1.7" />
-      <module name="CPEN431_2023_PROJECT_G6" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>

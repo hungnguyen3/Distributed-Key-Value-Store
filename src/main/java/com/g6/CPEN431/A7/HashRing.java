@@ -36,7 +36,7 @@ public class HashRing {
             String line;
             int i = 0;
             while ((line = br.readLine()) != null) {
-                String[] parts = line.split(":");
+                String[] parts = line.split(" ");
 
                 // Parse the hostname and port number from the line
                 String host = parts[0];
@@ -66,6 +66,7 @@ public class HashRing {
 
         //try to start the epidemic protocol and print error message if it fails
         epidemic = new Epidemic((ArrayList<Node>)nodes.clone(), myID, 200, 20000 + myID, 5);
+
         try {
             epidemic.startEpidemic();
         } catch (Exception e){
@@ -88,6 +89,7 @@ public class HashRing {
     public Node getNodeForKey(byte[] key_byte_array) {
         // Calculate the hash value of the key using the Murmur3 hash function
         int hash = HashUtils.hash(key_byte_array);
+
 
 
         // Check the cache for the node responsible for the key

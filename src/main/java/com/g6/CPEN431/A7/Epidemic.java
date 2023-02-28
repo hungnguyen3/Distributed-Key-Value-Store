@@ -45,7 +45,6 @@ class Epidemic {
             @Override
             public void run() {
                 // continually update time and send to a random node
-
                 int k = 0;
                 while(true){
                     //debugging prints
