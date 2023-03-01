@@ -81,7 +81,7 @@ public class HashRing {
     // Method to get the node responsible for a given key
     public Node getNodeForKey(byte[] key_byte_array) {
         // Calculate the hash value of the key using the Murmur3 hash function
-        System.out.println("I am Node: " + myAddress + myPort + " ID:" + myID);
+        // System.out.println("I am Node: " + myAddress + myPort + " ID:" + myID);
         int hash = HashUtils.hash(key_byte_array);
         // Check the cache for the node responsible for the key
         Node cachedNode = nodeCache.get(hash);
@@ -101,7 +101,7 @@ public class HashRing {
                 } else {
                     // Node is not alive, update the hash ring and try again
                     updateHashRingUponDeadNode(node);
-                    System.out.println("DEAD NODE#########################################################");
+                    // System.out.println("DEAD NODE#########################################################");
                     return getNodeForKey(key_byte_array);
                 }
             }
@@ -110,23 +110,22 @@ public class HashRing {
         // If no node was found for the hash value, wrap around to the first node
         Node firstNode = nodes.get(0);
         nodeCache.put(hash, firstNode);
-        System.out.println("No node found for hash, using first node: " + firstNode.getHost() + ":" + firstNode.getPort());
+        // System.out.println("No node found for hash, using first node: " + firstNode.getHost() + ":" + firstNode.getPort());
 
         if(!epidemic.isAlive(firstNode.getNodeID())) {
-            System.out.println("SENDING MESSAGE TO BAD NODE: " + firstNode.getHost() + ":" + firstNode.getPort());
+            // System.out.println("SENDING MESSAGE TO BAD NODE: " + firstNode.getHost() + ":" + firstNode.getPort());
         }
         return firstNode;
     }
 
     public void updateHashRingUponDeadNode(Node deadNode) {
-        System.out.println("updating hash ring upon dead node");
+        // System.out.println("updating hash ring upon dead node");
         // Find the index of the dead node in the list of nodes
         int deadNodeIndex = nodes.indexOf(deadNode);
 
         // Remove the dead node from the list of nodes
         nodes.remove(deadNode);
 
-        // 1s - 1e - 2s - 2e - 3s - 3e - 4s - 4e
         // Reassign the range
         if(deadNodeIndex >= 1) {
             Node leftOfDeadNode = nodes.get(deadNodeIndex - 1);
