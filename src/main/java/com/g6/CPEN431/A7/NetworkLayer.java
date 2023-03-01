@@ -83,7 +83,7 @@ public class NetworkLayer implements Runnable {
 
                     // If the forwardNode is not the current node, forward the request to the forwardNode
                     if(forwardNode.getPort() != port || !forwardNode.getHost().equals(address)) {
-                        System.out.println("Command " + reqCommand + " ,Forward " + port + " to " + forwardNode.getPort());
+                        // System.out.println("Command " + reqCommand + " ,Forward " + port + " to " + forwardNode.getPort());
 
                         // Create a new forward message based on the original message
                         Msg forwardMsg = Msg.newBuilder()
@@ -129,15 +129,17 @@ public class NetworkLayer implements Runnable {
                 DatagramPacket responseMessagePacket = new DatagramPacket(responseMessageBytes, responseMessageBytes.length, clientHost, clientPort);
                 datagramSocket.send(responseMessagePacket);
 
+                /*
                 if(reqCommand == 0x01) {
-                    System.out.println("Sent PUT response to client!!!!" + clientHost + clientPort);
+                    System.out.println("Sent PUT response to client!!! " + clientHost + ":" + clientPort);
                 }
                 if(reqCommand == 0x02) {
-                    System.out.println("Sent GET response to client!!!!" + clientHost + clientPort);
+                    System.out.println("Sent GET response to client!!! " + clientHost + ":" + clientPort);
                 }
                 if(reqCommand == 0x03) {
-                    System.out.println("Sent REM response to client!!!!" + clientHost + clientPort);
+                    System.out.println("Sent REM response to client!!! " + clientHost + ":" + clientPort);
                 }
+                 */
             }
         } catch (IOException e) {
             e.printStackTrace();
