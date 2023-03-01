@@ -53,11 +53,11 @@ public class Node {
     }
 
     public void setStartRange(int startRange) {
-        startRange = startRange;
+        this.startRange = startRange;
     };
 
     public void setEndRange(int endRange) {
-        endRange = endRange;
+        this.endRange = endRange;
     }
 
     public int getEpidemicPort() {return epidemicPort;}

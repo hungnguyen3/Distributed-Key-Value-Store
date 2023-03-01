@@ -53,7 +53,7 @@ class Epidemic {
                         k = 0;
                         for (int j = 0; j < nodeList.size(); j++) {
                             if (!isAlive(j)) {
-                                System.out.println("Node " + j + " is Dead");
+                                System.out.println("Node " + (j+1) + " is Dead");
                             }
                         }
                     }

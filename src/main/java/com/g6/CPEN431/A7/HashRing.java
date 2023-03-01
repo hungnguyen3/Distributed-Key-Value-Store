@@ -1,5 +1,6 @@
 package com.g6.CPEN431.A7;
 
+import javax.sound.midi.SysexMessage;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -16,9 +17,14 @@ public class HashRing {
     private LinkedHashMap<Integer, Node> nodeCache;
 
     private Epidemic epidemic;
+    private String myAddress;
+    private int myPort;
+    private int myID;
 
     // Constructor to create a new HashRing given a configuration file path.
     public HashRing(String configFilePath, String myAddress, int myPort) {
+        this.myAddress = myAddress;
+        this.myPort = myPort;
         nodes = new ArrayList<>();
 
         nodeCache = new LinkedHashMap<Integer, Node>(200, 0.75f, true) {
@@ -64,7 +70,7 @@ public class HashRing {
 
         //try to start the epidemic protocol and print error message if it fails
         epidemic = new Epidemic((ArrayList<Node>)nodes.clone(), myID, 500, 20000 + myID, 20);
-
+        this.myID = myID;
         try {
             epidemic.startEpidemic();
         } catch (Exception e){
@@ -75,8 +81,8 @@ public class HashRing {
     // Method to get the node responsible for a given key
     public Node getNodeForKey(byte[] key_byte_array) {
         // Calculate the hash value of the key using the Murmur3 hash function
+        System.out.println("I am Node: " + myAddress + myPort + " ID:" + myID);
         int hash = HashUtils.hash(key_byte_array);
-
         // Check the cache for the node responsible for the key
         Node cachedNode = nodeCache.get(hash);
         if (cachedNode != null && epidemic.isAlive(cachedNode.getNodeID())) {
@@ -105,6 +111,10 @@ public class HashRing {
         Node firstNode = nodes.get(0);
         nodeCache.put(hash, firstNode);
         System.out.println("No node found for hash, using first node: " + firstNode.getHost() + ":" + firstNode.getPort());
+
+        if(!epidemic.isAlive(firstNode.getNodeID())) {
+            System.out.println("SENDING MESSAGE TO BAD NODE: " + firstNode.getHost() + ":" + firstNode.getPort());
+        }
         return firstNode;
     }
 
