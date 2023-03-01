@@ -5,6 +5,6 @@
 
 # Using Windows:
 - cd window
-- call bootstrap_nodes.bat (to start up 20 nodes)
-- call kill_nodes.bat (to kill all 20 nodes started earlier)
+- call bootstrap_nodes.bat (to start up 20 nodes, edit number as necessary)
+- call kill_nodes.bat (to kill all nodes started earlier)
 
