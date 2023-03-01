@@ -75,12 +75,10 @@ public class RequestHandlingLayer {
                 response = ZERO_ERR_CODE;
                 break;
             case 0x07:
-                response = KVResponse.newBuilder().setErrCode(0x00).setValue(ByteString.copyFromUtf8(
-                    String.valueOf(ManagementFactory.getRuntimeMXBean().getName().split("@")[0])
-                    )).build();
+                response = KVResponse.newBuilder().setErrCode(0x00).setPid(Integer.parseInt(ManagementFactory.getRuntimeMXBean().getName().split("@")[0])).build();
                 break;
             case 0x08:
-                response = KVResponse.newBuilder().setErrCode(0x00).setValue(ByteString.copyFromUtf8("1")).build();
+                response = KVResponse.newBuilder().setErrCode(0x00).setMembershipCount(this.hashRing.getMembershipCount()).build();
                 break;
             default:
                 response = ERROR_INVALID_COMMAND;

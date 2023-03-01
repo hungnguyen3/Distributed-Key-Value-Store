@@ -13,7 +13,6 @@ public class HashRing {
     //Assumes there is at least 1 node after initialization.
     private ArrayList<Node> nodes;
 
-
     private LinkedHashMap<Integer, Node> nodeCache;
 
     private Epidemic epidemic;
@@ -50,6 +49,7 @@ public class HashRing {
                 }
 
                 // Divide the range of hash values evenly between the nodes in the ring
+                // TODO: change 20 to dynamic size for number of nodes
                 int startRange = i * (Integer.MAX_VALUE / 20);
                 int endRange = (i + 1) * (Integer.MAX_VALUE / 20) - 1;
 
@@ -144,5 +144,9 @@ public class HashRing {
 
     public void clearNodeCache() {
         nodeCache.clear();
+    }
+
+    public int getMembershipCount() {
+        return nodes.size();
     }
 }

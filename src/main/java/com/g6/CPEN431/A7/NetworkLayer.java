@@ -77,34 +77,36 @@ public class NetworkLayer implements Runnable {
                 Boolean isRequestForwardedFromAnotherNode = !reqMsg.getOriginalSenderHost().equals("") && reqMsg.getOriginalSenderPort() != 0;
                 int reqCommand = request.getCommand();
 
-                // If this is not a forwarded request and is a PUT, GET or REM command, forward the request to the correct node
-                if (!isRequestForwardedFromAnotherNode && (reqCommand == 0x01 || reqCommand == 0x02 || reqCommand == 0x03)) {
-                    Node forwardNode = hashRing.getNodeForKey(request.getKey().toByteArray());
+                if(this.hashRing.getMembershipCount() > 1) {
+                    // If this is not a forwarded request and is a PUT, GET or REM command, forward the request to the correct node
+                    if (!isRequestForwardedFromAnotherNode && (reqCommand == 0x01 || reqCommand == 0x02 || reqCommand == 0x03)) {
+                        Node forwardNode = hashRing.getNodeForKey(request.getKey().toByteArray());
 
-                    // If the forwardNode is not the current node, forward the request to the forwardNode
-                    if(forwardNode.getPort() != port || !forwardNode.getHost().equals(address)) {
-                        // System.out.println("Command " + reqCommand + " ,Forward " + port + " to " + forwardNode.getPort());
+                        // If the forwardNode is not the current node, forward the request to the forwardNode
+                        if (forwardNode.getPort() != port || !forwardNode.getHost().equals(address)) {
+                            // System.out.println("Command " + reqCommand + " ,Forward " + port + " to " + forwardNode.getPort());
 
-                        // Create a new forward message based on the original message
-                        Msg forwardMsg = Msg.newBuilder()
-                                .setMessageID(reqMsgId)
-                                .setPayload(reqMsg.getPayload())
-                                .setCheckSum(reqMsg.getCheckSum())
-                                .setOriginalSenderHost(requestMessagePacket.getAddress().toString())
-                                .setOriginalSenderPort(requestMessagePacket.getPort())
-                                .build();
+                            // Create a new forward message based on the original message
+                            Msg forwardMsg = Msg.newBuilder()
+                                    .setMessageID(reqMsgId)
+                                    .setPayload(reqMsg.getPayload())
+                                    .setCheckSum(reqMsg.getCheckSum())
+                                    .setOriginalSenderHost(requestMessagePacket.getAddress().toString())
+                                    .setOriginalSenderPort(requestMessagePacket.getPort())
+                                    .build();
 
-                        // Serialize the forward message to a byte array
-                        byte[] forwardMessageBytes = forwardMsg.toByteArray();
+                            // Serialize the forward message to a byte array
+                            byte[] forwardMessageBytes = forwardMsg.toByteArray();
 
-                        // Create forwarded message packet with forwardNode address and port
-                        DatagramPacket forwardedMessagePacket = new DatagramPacket(forwardMessageBytes, forwardMessageBytes.length, InetAddress.getByName(forwardNode.getHost()), forwardNode.getPort());
+                            // Create forwarded message packet with forwardNode address and port
+                            DatagramPacket forwardedMessagePacket = new DatagramPacket(forwardMessageBytes, forwardMessageBytes.length, InetAddress.getByName(forwardNode.getHost()), forwardNode.getPort());
 
-                        // Send the forwarded message packet to the forwardNode
-                        datagramSocket.send(forwardedMessagePacket);
+                            // Send the forwarded message packet to the forwardNode
+                            datagramSocket.send(forwardedMessagePacket);
 
-                        // Continue to listen for incoming requests
-                        continue;
+                            // Continue to listen for incoming requests
+                            continue;
+                        }
                     }
                 }
 
