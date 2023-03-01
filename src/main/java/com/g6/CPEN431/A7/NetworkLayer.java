@@ -129,6 +129,7 @@ public class NetworkLayer implements Runnable {
                 DatagramPacket responseMessagePacket = new DatagramPacket(responseMessageBytes, responseMessageBytes.length, clientHost, clientPort);
                 datagramSocket.send(responseMessagePacket);
 
+                /*
                 if(reqCommand == 0x01) {
                     System.out.println("Sent PUT response to client!!! " + clientHost + ":" + clientPort);
                 }
@@ -138,6 +139,7 @@ public class NetworkLayer implements Runnable {
                 if(reqCommand == 0x03) {
                     System.out.println("Sent REM response to client!!! " + clientHost + ":" + clientPort);
                 }
+                 */
             }
         } catch (IOException e) {
             e.printStackTrace();
