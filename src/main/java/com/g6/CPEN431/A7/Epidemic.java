@@ -38,7 +38,7 @@ class Epidemic {
     }
     public void startEpidemic() throws SocketException {
         final DatagramSocket datagramSocket = new DatagramSocket(port);
-        final byte[] recieveBuffer = new byte[8 * N];
+        final byte[] receiveBuffer = new byte[8 * N];
         final Lock timestampVectorWriteLock = new ReentrantLock();
 
         Thread sendThread = new Thread(new Runnable() {
@@ -99,12 +99,12 @@ class Epidemic {
             }
         });
 
-        Thread recieveThread = new Thread(new Runnable() {
+        Thread receiveThread = new Thread(new Runnable() {
             @Override
             public void run() {
-                //continually recieve messages and update timestamp vector
+                //continually receive messages and update timestamp vector
                 while(true){
-                    DatagramPacket packet = new DatagramPacket(recieveBuffer, recieveBuffer.length);
+                    DatagramPacket packet = new DatagramPacket(receiveBuffer, receiveBuffer.length);
                     try {
                         datagramSocket.receive(packet);
                     } catch (IOException e) {
@@ -127,7 +127,7 @@ class Epidemic {
             }
         });
         sendThread.start();
-        recieveThread.start();
+        receiveThread.start();
     }
     public boolean isAlive(int nodeID) {
         if (System.currentTimeMillis() - timestampVector.get(nodeID) < delayMs * ((Math.log(N) / Math.log(2)) + safetyRounds)) {

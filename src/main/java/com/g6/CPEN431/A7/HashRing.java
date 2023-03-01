@@ -6,9 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class HashRing {
     //Assumes there is at least 1 node after initialization.
@@ -23,9 +21,9 @@ public class HashRing {
     public HashRing(String configFilePath, String myAddress, int myPort) {
         nodes = new ArrayList<>();
 
-        nodeCache = new LinkedHashMap<Integer, Node>(500, 0.75f, true) {
+        nodeCache = new LinkedHashMap<Integer, Node>(200, 0.75f, true) {
             protected boolean removeEldestEntry(Map.Entry<Integer, Node> eldest) {
-                return size() > 500;
+                return size() > 200;
             }
         };
 
@@ -65,7 +63,7 @@ public class HashRing {
         }
 
         //try to start the epidemic protocol and print error message if it fails
-        epidemic = new Epidemic((ArrayList<Node>)nodes.clone(), myID, 200, 20000 + myID, 5);
+        epidemic = new Epidemic((ArrayList<Node>)nodes.clone(), myID, 1000, 20000 + myID, 5);
 
         try {
             epidemic.startEpidemic();
@@ -81,7 +79,7 @@ public class HashRing {
 
         // Check the cache for the node responsible for the key
         Node cachedNode = nodeCache.get(hash);
-        if (cachedNode != null) {
+        if (cachedNode != null && epidemic.isAlive(cachedNode.getNodeID())) {
             System.out.println("cache hit: " + cachedNode.getHost() + ":" + cachedNode.getPort());
             return cachedNode;
         }
@@ -89,10 +87,17 @@ public class HashRing {
         // Iterate through all nodes in the ring to find the one responsible for the hash value
         for (Node node : nodes) {
             if (node.inRange(hash)) {
-                // Found the correct node, add to cache and return
-                nodeCache.put(hash, node);
-                System.out.println("Found the correct node: " + node.getHost() + ":" + node.getPort());
-                return node;
+                if (epidemic.isAlive(node.getNodeID())) {
+                    // Found the correct node, add to cache and return
+                    nodeCache.put(hash, node);
+                    System.out.println("Found the correct node: " + node.getHost() + ":" + node.getPort());
+                    return node;
+                } else {
+                    // Node is not alive, update the hash ring and try again
+                    updateHashRingUponDeadNode(node);
+                    System.out.println("DEAD NODE#########################################################");
+                    return getNodeForKey(key_byte_array);
+                }
             }
         }
 
@@ -101,5 +106,34 @@ public class HashRing {
         nodeCache.put(hash, firstNode);
         System.out.println("No node found for hash, using first node: " + firstNode.getHost() + ":" + firstNode.getPort());
         return firstNode;
+    }
+
+    public void updateHashRingUponDeadNode(Node deadNode) {
+        // Find the index of the dead node in the list of nodes
+        int deadNodeIndex = nodes.indexOf(deadNode);
+
+        // Remove the dead node from the list of nodes
+        nodes.remove(deadNode);
+
+        // Get the size of the list of nodes
+        int numNodes = nodes.size();
+
+        // If the dead node was the last node in the list, update the range of the first node to cover the entire range
+        if (deadNodeIndex == numNodes) {
+            Node firstNode = nodes.get(0);
+            firstNode.setStartRange(deadNode.getStartRange());
+            firstNode.setEndRange(Integer.MAX_VALUE);
+        } else {
+            // If the dead node was not the last node, assign its range to the next node in the list
+            Node nextNode = nodes.get(deadNodeIndex);
+            nextNode.setStartRange(deadNode.getStartRange());
+        }
+
+        // Clear the node cache
+        nodeCache.clear();
+    }
+
+    public void clearNodeCache() {
+        nodeCache.clear();
     }
 }

@@ -24,7 +24,7 @@ public class App {
         HashRing hashRing = new HashRing("servers.txt", address, port);
 
         // Create a new request handling layer and network layer using the above objects
-        RequestHandlingLayer requestHandler = new RequestHandlingLayer(storage, cache);
+        RequestHandlingLayer requestHandler = new RequestHandlingLayer(storage, cache, hashRing);
         NetworkLayer network = new NetworkLayer(address, port, requestHandler, hashRing);
 
         // Start the network layer

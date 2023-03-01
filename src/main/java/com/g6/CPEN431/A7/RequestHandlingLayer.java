@@ -9,9 +9,10 @@ import java.lang.management.ManagementFactory;
 public class RequestHandlingLayer {
     private StorageLayer storageLayer;
     private Cache cache;
+    private HashRing hashRing;
     private final int MAX_KEY_LENGTH = 32;
     private final int MAX_VALUE_LENGTH = 10000; //(1 << 20);
-    private final long MAX_MEMORY_USAGE = 63;
+    private final long MAX_MEMORY_USAGE = 60;
     private final KVResponse ERROR_KEY_TOO_LONG = KVResponse.newBuilder().setErrCode(0x06).build();
     private final KVResponse ERROR_VALUE_TOO_LONG = KVResponse.newBuilder().setErrCode(0x07).build();
     private final KVResponse ERROR_OUT_OF_MEMORY = KVResponse.newBuilder().setErrCode(0x02).build();
@@ -19,9 +20,10 @@ public class RequestHandlingLayer {
     private final KVResponse ERROR_NON_EXISTENT = KVResponse.newBuilder().setErrCode(0x01).build();
     private final KVResponse ZERO_ERR_CODE= KVResponse.newBuilder().setErrCode(0x00).build();
 
-    public RequestHandlingLayer(StorageLayer storageLayer, Cache cache) {
+    public RequestHandlingLayer(StorageLayer storageLayer, Cache cache, HashRing hashRing) {
         this.storageLayer = storageLayer;
         this.cache = cache;
+        this.hashRing = hashRing;
     }
 
     public KVResponse processRequest(KVRequest request, ByteString reqMsgId) {
@@ -67,6 +69,7 @@ public class RequestHandlingLayer {
                 System.out.println("Performing wipeout");
                 storageLayer.clear();
                 cache.clear();
+                hashRing.clearNodeCache();
                 response = ZERO_ERR_CODE;
                 break;
             case 0x06:
