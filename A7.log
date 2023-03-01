@@ -1,7 +1,7 @@
 CPEN 431 EVALUATION test Client
-Time: Tue Feb 28 02:24:53 PST 2023
+Time: Tue Feb 28 17:48:21 PST 2023
 Build Date: Tue Feb 28 00:00:28 PST 2023
-Java process ID: 2431
+Java process ID: 1063
 Client Version: 1
 
 [Info] A7 client running in TEST mode.
@@ -15,7 +15,7 @@ Client Version: 1
 [Info] Skipping tests of local deployment since not running in submit mode.
 
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.229 seconds ]
+[ ... Completed in 0.226 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 [Test isAlive] for 127.0.0.1:10001
@@ -32,7 +32,7 @@ TEST_PASSED
 [ TEST Basic PUT/GET (PUT -> GET). Value Length = 1024 Bytes ]
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.004 seconds ]
+[ ... Completed in 0.007 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
@@ -52,42 +52,42 @@ TEST_PASSED
 [ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 1024 Bytes ]
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.007 seconds ]
+[ ... Completed in 0.005 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
 [ TEST Basic REMOVE (PUT -> GET -> REM -> GET). Value Length = 32 Bytes. ]
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.005 seconds ]
+[ ... Completed in 0.006 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
 [ TEST Double remove (PUT -> REM -> REM). Value Length = 32 Bytes. ]
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.008 seconds ]
+[ ... Completed in 0.009 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
 [ TEST Invalid Command. ]
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.01 seconds ]
+[ ... Completed in 0.013 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
 [ TEST At-Most-Once Client Policy (PUT -> REM -> REM). Value length =  32 Bytes ]
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.007 seconds ]
+[ ... Completed in 0.008 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
 [ TEST At-Most-Once Client Policy Empty REMs (EMPTY -> REM -> REM) ]
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.007 seconds ]
+[ ... Completed in 0.008 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
@@ -112,14 +112,14 @@ Waiting for 5 seconds for the cache to be cleared!
 [TEST Invalid Key ]
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.009 seconds ]
+[ ... Completed in 0.008 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
 [TEST Invalid Value ]
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.005 seconds ]
+[ ... Completed in 0.008 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
 
@@ -128,25 +128,25 @@ Waiting for 5 seconds for the cache to be cleared!
 [ ... Completed in 0.002 seconds ]
 Stage 1 Single Front-End: Test Status: TEST_PASSED
 Clients: 1
-Total Requests (without replies): 133519
-Total Requests (including replies): 133544
-Successful Responses: 133513
-Timeout Responses: 6
+Total Requests (without replies): 120793
+Total Requests (including replies): 120889
+Successful Responses: 120769
+Timeout Responses: 24
 Total Failed Responses: 0
-% Success: 99.99550625753638
-% Timeout: 0.00449374246361941
+% Success: 99.98013129899911
+% Timeout: 0.01986870100088581
 % Failed: 0.0
 Response Time (Successful requests):
-[max] 84ms, [min] 0ms
-[avg] 0.34934425861152096 ms, [stdev] 1.2147985777382417ms
-Throughput: 2225.0941572509414 requests per second
-Goodput: 2224.9941672499417 requests per second
-Retry Rate (Successful requests): 1.0001872392693174
+[max] 17ms, [min] 0ms
+[avg] 0.2670470070961919 ms, [stdev] 0.476166185507637ms
+Throughput: 2013.183113614773 requests per second
+Goodput: 2012.7831202813286 requests per second
+Retry Rate (Successful requests): 1.0007947480400354
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.004 seconds ]
+[ ... Completed in 0.005 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
-[ ... TEST Completed in 65.183 seconds ]
+[ ... TEST Completed in 65.106 seconds ]
 [Info] Pausing for 6 seconds to wait for the cache to be cleared!
 
 [ TEST Single Front-End Performance (2 clients, 60.0 seconds): PUT -> GET (closed loop) ]
@@ -154,51 +154,51 @@ Waiting for 5 seconds for the cache to be cleared!
 [ ... Completed in 0.002 seconds ]
 Stage 1 Single Front-End: Test Status: TEST_PASSED
 Clients: 2
-Total Requests (without replies): 196347
-Total Requests (including replies): 196389
-Successful Responses: 196337
-Timeout Responses: 10
+Total Requests (without replies): 194899
+Total Requests (including replies): 195020
+Successful Responses: 194869
+Timeout Responses: 30
 Total Failed Responses: 0
-% Success: 99.99490697591509
-% Timeout: 0.005093024084910898
+% Success: 99.98460741204418
+% Timeout: 0.015392587955813011
 % Failed: 0.0
 Response Time (Successful requests):
-[max] 47ms, [min] 0ms
-[avg] 0.49157316247064997 ms, [stdev] 1.4634989373667202ms
-Throughput: 3272.3954600756656 requests per second
-Goodput: 3272.22879618673 requests per second
-Retry Rate (Successful requests): 1.0002139070115663
+[max] 140ms, [min] 0ms
+[avg] 0.3866084395157773 ms, [stdev] 0.8441382800201978ms
+Throughput: 3199.471403243811 requests per second
+Goodput: 3198.9789217939456 requests per second
+Retry Rate (Successful requests): 1.0006208343808844
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.008 seconds ]
+[ ... Completed in 0.007 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
-[ ... TEST Completed in 65.098 seconds ]
+[ ... TEST Completed in 66.047 seconds ]
 [Info] Pausing for 6 seconds to wait for the cache to be cleared!
 
 [ TEST Single Front-End Performance (8 clients, 60.0 seconds): PUT -> GET (closed loop) ]
 [Test isAlive] for 127.0.0.1:10001
-[ ... Completed in 0.002 seconds ]
+[ ... Completed in 0.001 seconds ]
 Stage 1 Single Front-End: Test Status: TEST_PASSED
 Clients: 8
-Total Requests (without replies): 238810
-Total Requests (including replies): 238910
-Successful Responses: 238798
-Timeout Responses: 12
+Total Requests (without replies): 347321
+Total Requests (including replies): 347540
+Successful Responses: 347272
+Timeout Responses: 49
 Total Failed Responses: 0
-% Success: 99.99497508479544
-% Timeout: 0.005024915204555923
+% Success: 99.98589201344002
+% Timeout: 0.014107986559983417
 % Failed: 0.0
 Response Time (Successful requests):
-[max] 103ms, [min] 0ms
-[avg] 1.8289349157028116 ms, [stdev] 3.432606457069694ms
-Throughput: 3980.100331661139 requests per second
-Goodput: 3979.900334994417 requests per second
-Retry Rate (Successful requests): 1.000418742933713
+[max] 70ms, [min] 0ms
+[avg] 1.164669193024488 ms, [stdev] 1.3522412017479941ms
+Throughput: 5788.490383653878 requests per second
+Goodput: 5787.673744208526 requests per second
+Retry Rate (Successful requests): 1.0006305406238034
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.005 seconds ]
+[ ... Completed in 0.004 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
-[ ... TEST Completed in 65.095 seconds ]
+[ ... TEST Completed in 65.12 seconds ]
 [Info] Pausing for 6 seconds to wait for the cache to be cleared!
 
 [ TEST Single Front-End Performance (32 clients, 60.0 seconds): PUT -> GET (closed loop) ]
@@ -206,51 +206,51 @@ Waiting for 5 seconds for the cache to be cleared!
 [ ... Completed in 0.001 seconds ]
 Stage 1 Single Front-End: Test Status: TEST_PASSED
 Clients: 32
-Total Requests (without replies): 231541
-Total Requests (including replies): 232794
-Successful Responses: 231523
-Timeout Responses: 18
+Total Requests (without replies): 295557
+Total Requests (including replies): 297405
+Successful Responses: 295511
+Timeout Responses: 46
 Total Failed Responses: 0
-% Success: 99.99222599885117
-% Timeout: 0.007774001148824614
+% Success: 99.98443616628941
+% Timeout: 0.015563833710587128
 % Failed: 0.0
 Response Time (Successful requests):
-[max] 277ms, [min] 1ms
-[avg] 8.064952510117786 ms, [stdev] 8.737247649152728ms
-Throughput: 3858.8237254803926 requests per second
-Goodput: 3858.5237404796426 requests per second
-Retry Rate (Successful requests): 1.0054115685774874
+[max] 310ms, [min] 1ms
+[avg] 6.251269834287049 ms, [stdev] 7.925339971957054ms
+Throughput: 4925.703714814259 requests per second
+Goodput: 4924.937086479009 requests per second
+Retry Rate (Successful requests): 1.0062526010211228
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.003 seconds ]
+[ ... Completed in 0.013 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
-[ ... TEST Completed in 65.096 seconds ]
+[ ... TEST Completed in 65.126 seconds ]
 [Info] Pausing for 6 seconds to wait for the cache to be cleared!
 
 [ TEST Single Front-End Performance (128 clients, 60.0 seconds): PUT -> GET (closed loop) ]
 [Test isAlive] for 127.0.0.1:10001
-[ ... Completed in 7.622 seconds ]
+[ ... Completed in 0.001 seconds ]
 Stage 1 Single Front-End: Test Status: TEST_PASSED
 Clients: 128
-Total Requests (without replies): 126213
-Total Requests (including replies): 216283
-Successful Responses: 124543
-Timeout Responses: 1670
+Total Requests (without replies): 276570
+Total Requests (including replies): 290851
+Successful Responses: 276526
+Timeout Responses: 44
 Total Failed Responses: 0
-% Success: 98.67683994517205
-% Timeout: 1.3231600548279496
+% Success: 99.98409082691543
+% Timeout: 0.015909173084571716
 % Failed: 0.0
 Response Time (Successful requests):
-[max] 642ms, [min] 2ms
-[avg] 49.237026569136766 ms, [stdev] 35.373455874887604ms
-Throughput: 2074.4046151570437 requests per second
-Goodput: 2046.9569219137782 requests per second
-Retry Rate (Successful requests): 1.7136348870560085
+[max] 811ms, [min] 2ms
+[avg] 27.53886072195743 ms, [stdev] 34.57635637972268ms
+Throughput: 4604.665101643274 requests per second
+Goodput: 4603.932537502289 requests per second
+Retry Rate (Successful requests): 1.051636113822902
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.008 seconds ]
+[ ... Completed in 0.016 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
-[ ... TEST Completed in 73.532 seconds ]
+[ ... TEST Completed in 65.187 seconds ]
 [Info] Pausing for 6 seconds to wait for the cache to be cleared!
 
 [ TEST Multi Client Crash: PUT -> GET (closed loop) + REM -> WIPEOUT (closed loop) ]
@@ -258,16 +258,47 @@ Waiting for 5 seconds for the cache to be cleared!
 Test Passed. Server is ok.
 TEST_PASSED
 Sending WIPE-OUT to all servers...
-[ ... Completed in 0.027 seconds ]
+[ ... Completed in 0.923 seconds ]
 [OK]
 Waiting for 5 seconds for the cache to be cleared!
-[ ... TEST Completed in 95.299 seconds ]
+[ ... TEST Completed in 82.188 seconds ]
 
 [ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 8 Bytes ]
 TEST_PASSED
 
 [ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 32 Bytes ]
-REM1 failed!
-TEST_FAILED
-[Error] Failed in first basic distributed tests. Potentially buggy implementation. Aborting!
-Testing completed in 451.129s
+TEST_PASSED
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 512 Bytes ]
+TEST_PASSED
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 1024 Bytes ]
+TEST_PASSED
+[ ... TEST Completed in 1.066 seconds ]
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.044 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (1 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 127.0.0.1:10001
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10007
+[Test isAlive] for 127.0.0.1:10008
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10011
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10013
+[Test isAlive] for 127.0.0.1:10014
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10020

@@ -63,7 +63,7 @@ public class HashRing {
         }
 
         //try to start the epidemic protocol and print error message if it fails
-        epidemic = new Epidemic((ArrayList<Node>)nodes.clone(), myID, 1000, 20000 + myID, 5);
+        epidemic = new Epidemic((ArrayList<Node>)nodes.clone(), myID, 500, 20000 + myID, 20);
 
         try {
             epidemic.startEpidemic();
@@ -80,7 +80,7 @@ public class HashRing {
         // Check the cache for the node responsible for the key
         Node cachedNode = nodeCache.get(hash);
         if (cachedNode != null && epidemic.isAlive(cachedNode.getNodeID())) {
-            System.out.println("cache hit: " + cachedNode.getHost() + ":" + cachedNode.getPort());
+            // System.out.println("cache hit: " + cachedNode.getHost() + ":" + cachedNode.getPort());
             return cachedNode;
         }
 
@@ -90,7 +90,7 @@ public class HashRing {
                 if (epidemic.isAlive(node.getNodeID())) {
                     // Found the correct node, add to cache and return
                     nodeCache.put(hash, node);
-                    System.out.println("Found the correct node: " + node.getHost() + ":" + node.getPort());
+                    // System.out.println("Found the correct node: " + node.getHost() + ":" + node.getPort());
                     return node;
                 } else {
                     // Node is not alive, update the hash ring and try again
@@ -109,25 +109,25 @@ public class HashRing {
     }
 
     public void updateHashRingUponDeadNode(Node deadNode) {
+        System.out.println("updating hash ring upon dead node");
         // Find the index of the dead node in the list of nodes
         int deadNodeIndex = nodes.indexOf(deadNode);
 
         // Remove the dead node from the list of nodes
         nodes.remove(deadNode);
 
-        // Get the size of the list of nodes
-        int numNodes = nodes.size();
-
-        // If the dead node was the last node in the list, update the range of the first node to cover the entire range
-        if (deadNodeIndex == numNodes) {
-            Node firstNode = nodes.get(0);
-            firstNode.setStartRange(deadNode.getStartRange());
-            firstNode.setEndRange(Integer.MAX_VALUE);
-        } else {
-            // If the dead node was not the last node, assign its range to the next node in the list
-            Node nextNode = nodes.get(deadNodeIndex);
-            nextNode.setStartRange(deadNode.getStartRange());
+        // 1s - 1e - 2s - 2e - 3s - 3e - 4s - 4e
+        // Reassign the range
+        if(deadNodeIndex >= 1) {
+            Node leftOfDeadNode = nodes.get(deadNodeIndex - 1);
+            leftOfDeadNode.setEndRange(nodes.get(deadNodeIndex).getEndRange());
+        } else if (deadNodeIndex == 0) {
+            Node leftOfDeadNode = nodes.get(nodes.size() - 1);
+            leftOfDeadNode.setEndRange(nodes.get(deadNodeIndex).getEndRange());
         }
+
+        // Remove the dead node
+        nodes.remove(deadNode);
 
         // Clear the node cache
         nodeCache.clear();

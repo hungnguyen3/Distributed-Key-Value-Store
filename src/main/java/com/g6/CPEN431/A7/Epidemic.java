@@ -47,18 +47,16 @@ class Epidemic {
                 // continually update time and send to a random node
                 int k = 0;
                 while(true){
-                    /*
-                    System.out.println("Starting another epidemic round");
+                    // System.out.println("Starting another epidemic round");
                     k++;
-                    if(k > 10){
+                    if(k > 5) {
                         k = 0;
-                        for(int j = 0; j < nodeList.size(); j++){
-                            if(!isAlive(j)){
+                        for (int j = 0; j < nodeList.size(); j++) {
+                            if (!isAlive(j)) {
                                 System.out.println("Node " + j + " is Dead");
                             }
                         }
                     }
-                    */
 
                     timestampVectorWriteLock.lock();
                     timestampVector.set(myID, System.currentTimeMillis());
