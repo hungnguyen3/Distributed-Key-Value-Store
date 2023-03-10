@@ -1,35 +1,38 @@
 package com.g6.CPEN431.A7;
 
+import java.util.ArrayList;
+
 // Class representing a node in the hash ring
 public class Node {
     private final String host;      // Host name or IP address of the node
     private final int port;         // Port number of the node
-    private int startRange;   // Starting range of hash values that the node is responsible for
-    private int endRange;     // Ending range of hash values that the node is responsible for
+    private ArrayList<Integer> moduloList; // List of modulo's this node is responsible for.
 
     private int epidemicPort; // Port to be used for the epidemic protocol, so traffic does not get confused
 
     private int nodeID; // id of the node, this should also be the order of the node in the nodeList created in hashRing
 
+    private Boolean isAwake;
+
     // Constructor to create a new Node with the specified host, port, and range
-    public Node(String host, int port, int startRange, int endRange, int epidemicPort, int nodeID) {
+    public Node(String host, int port, int modulo, int epidemicPort, int nodeID) {
         this.host = host;
         this.port = port;
-        this.startRange = startRange;
-        this.endRange = endRange;
+        ArrayList<Integer> newList = new ArrayList<>();
+        newList.add(modulo);
+        this.moduloList = newList;
         this.epidemicPort = epidemicPort;
         this.nodeID = nodeID;
     }
 
     // Method to check whether a given hashed value is in the range of hash values that the node is responsible for
     public boolean inRange(int hashedValue) {
-        if (startRange <= endRange) {
-            // Normal range (i.e., the node range does not wrap around the maximum hash value)
-            return hashedValue >= startRange && hashedValue <= endRange;
-        } else {
-            // Wrap-around range (i.e., the node range spans the maximum hash value)
-            return hashedValue >= startRange || hashedValue <= endRange;
+        for(int i = 0; i < moduloList.size(); i++) {
+            if(hashedValue % 20  == moduloList.get(i)) {
+                return true;
+            }
         }
+        return false;
     }
 
     // Getter method to retrieve the host name or IP address of the node
@@ -42,22 +45,33 @@ public class Node {
         return port;
     }
 
-    // Getter method to retrieve the starting range of hash values that the node is responsible for
-    public int getStartRange() {
-        return startRange;
+    // Getter method to retrieve the list of modulos for this node.
+    public ArrayList<Integer> getModuloList() {return moduloList;}
+
+    // Replace the node's modulo list with the new list.
+    public void replaceModuloList(ArrayList<Integer> moduloList) {
+        for(int i = 0; i < moduloList.size(); i++) {
+            this.moduloList.add(moduloList.get(i));
+        }
     }
 
-    // Getter method to retrieve the ending range of hash values that the node is responsible for
-    public int getEndRange() {
-        return endRange;
+    // Add a single entry to the node's modulo list.
+    public void addModulo(int modulo) {
+        this.moduloList.add(modulo);
     }
 
-    public void setStartRange(int startRange) {
-        this.startRange = startRange;
-    };
+    // Remove a single entry from the node's modulo list.
+    public void removeModulo(int modulo) {
+        for(int i = 0; i < moduloList.size(); i++) {
+            if(moduloList.get(i) == modulo) {
+                moduloList.remove(i);
+            }
+        }
+    }
 
-    public void setEndRange(int endRange) {
-        this.endRange = endRange;
+    // Clear all entries from the node's modulo list.
+    public void clearModuloList() {
+        moduloList.clear();
     }
 
     public int getEpidemicPort() {return epidemicPort;}

@@ -11,5 +11,5 @@ cd ../..
 mvn clean compile assembly:single
 
 for i in {1..20}; do
-    java -Xmx64m -jar A7.jar "$ip" $((10000+i)) 310 &
+    java -Xmx64m -jar target\CPEN431_2023_PROJECT_G6-1.0-SNAPSHOT-jar-with-dependencies.jar "$ip" $((10000+i)) 310 &
 done

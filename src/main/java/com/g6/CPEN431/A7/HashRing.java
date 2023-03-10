@@ -48,15 +48,10 @@ public class HashRing {
                     myID = i;
                 }
 
-                // Divide the range of hash values evenly between the nodes in the ring
-                // TODO: change 20 to dynamic size for number of nodes
-                int startRange = i * (Integer.MAX_VALUE / 20);
-                int endRange = (i + 1) * (Integer.MAX_VALUE / 20) - 1;
-
                 int epidemicPort = 20000 + i;
 
                 // Add a new node with the host, port, and range to the list of nodes in the ring
-                nodes.add(new Node(host, port, startRange, endRange, epidemicPort, i));
+                nodes.add(new Node(host, port, i, epidemicPort, i));
                 //Initialize all nodes as alive at the beginning
                 i++;
             }
@@ -124,22 +119,47 @@ public class HashRing {
         int deadNodeIndex = nodes.indexOf(deadNode);
 
         // Remove the dead node from the list of nodes
-        nodes.remove(deadNode);
+        nodes.get(deadNodeIndex).clearModuloList();
 
         // Reassign the range
         if(deadNodeIndex >= 1) {
             Node leftOfDeadNode = nodes.get(deadNodeIndex - 1);
-            leftOfDeadNode.setEndRange(nodes.get(deadNodeIndex).getEndRange());
+            leftOfDeadNode.replaceModuloList(deadNode.getModuloList());
         } else if (deadNodeIndex == 0) {
             Node leftOfDeadNode = nodes.get(nodes.size() - 1);
-            leftOfDeadNode.setEndRange(nodes.get(deadNodeIndex).getEndRange());
+            leftOfDeadNode.replaceModuloList(deadNode.getModuloList());
         }
-
-        // Remove the dead node
-        nodes.remove(deadNode);
 
         // Clear the node cache
         nodeCache.clear();
+    }
+
+    public void checkForRejoinNodes() {
+        for (int i = 0; i < nodes.size(); i++) {
+            //An empty modulo list indicates the node has died before.
+            if (nodes.get(i).getModuloList().isEmpty()) {
+                if (epidemic.isAlive(nodes.get(i).getNodeID())) {
+                    //find the first non-empty modulo list node to the left of the dead node
+                    int leftOfDeadNodeIndex = i;
+                    while (nodes.get(leftOfDeadNodeIndex).getModuloList().isEmpty()) {
+                        if (leftOfDeadNodeIndex == 0) {
+                            leftOfDeadNodeIndex = nodes.size() - 1;
+                        } else {
+                            leftOfDeadNodeIndex--;
+                        }
+                    }
+                    Node leftOfDeadNode = nodes.get(leftOfDeadNodeIndex);
+                    //transfer any modulo that's greater than deadNode's id from leftOfDeadNode to deadNode
+                    for (int j = 0; j < leftOfDeadNode.getModuloList().size(); j++) {
+                        int modulo = leftOfDeadNode.getModuloList().get(j);
+                        if (modulo >= nodes.get(i).getNodeID()) {
+                            nodes.get(i).addModulo(modulo);
+                            leftOfDeadNode.removeModulo(modulo);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public void clearNodeCache() {

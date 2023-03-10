@@ -80,8 +80,9 @@ public class NetworkLayer implements Runnable {
                 if(this.hashRing.getMembershipCount() > 1) {
                     // If this is not a forwarded request and is a PUT, GET or REM command, forward the request to the correct node
                     if (!isRequestForwardedFromAnotherNode && (reqCommand == 0x01 || reqCommand == 0x02 || reqCommand == 0x03)) {
+                        //Check to see if any of the dead nodes has rejoined and update hashring.
+                        //hashRing.checkForRejoinNodes();
                         Node forwardNode = hashRing.getNodeForKey(request.getKey().toByteArray());
-
                         // If the forwardNode is not the current node, forward the request to the forwardNode
                         if (forwardNode.getPort() != port || !forwardNode.getHost().equals(address)) {
                             // System.out.println("Command " + reqCommand + " ,Forward " + port + " to " + forwardNode.getPort());
