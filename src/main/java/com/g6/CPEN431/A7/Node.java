@@ -6,16 +6,13 @@ import java.util.ArrayList;
 public class Node {
     private final String host;      // Host name or IP address of the node
     private final int port;         // Port number of the node
+    private final int nodeID; // id of the node, this should also be the order of the node in the nodeList created in hashRing
+    private final int hashRingSize; // Number of nodes in the hashRing
     private ArrayList<Integer> moduloList; // List of modulo's this node is responsible for.
-
     private int epidemicPort; // Port to be used for the epidemic protocol, so traffic does not get confused
 
-    private int nodeID; // id of the node, this should also be the order of the node in the nodeList created in hashRing
-
-    private Boolean isAwake;
-
     // Constructor to create a new Node with the specified host, port, and range
-    public Node(String host, int port, int modulo, int epidemicPort, int nodeID) {
+    public Node(String host, int port, int modulo, int epidemicPort, int nodeID, int hashRingSize) {
         this.host = host;
         this.port = port;
         ArrayList<Integer> newList = new ArrayList<>();
@@ -23,12 +20,13 @@ public class Node {
         this.moduloList = newList;
         this.epidemicPort = epidemicPort;
         this.nodeID = nodeID;
+        this.hashRingSize = hashRingSize;
     }
 
     // Method to check whether a given hashed value is in the range of hash values that the node is responsible for
     public boolean inRange(int hashedValue) {
         for(int i = 0; i < moduloList.size(); i++) {
-            if(hashedValue % 20  == moduloList.get(i)) {
+            if(hashedValue % hashRingSize  == moduloList.get(i)) {
                 return true;
             }
         }
@@ -48,10 +46,10 @@ public class Node {
     // Getter method to retrieve the list of modulos for this node.
     public ArrayList<Integer> getModuloList() {return moduloList;}
 
-    // Replace the node's modulo list with the new list.
-    public void replaceModuloList(ArrayList<Integer> moduloList) {
-        for(int i = 0; i < moduloList.size(); i++) {
-            this.moduloList.add(moduloList.get(i));
+    // Add all the modulos into this node's moduloList
+    public void addModulos(ArrayList<Integer> modulos) {
+        for(int i = 0; i < modulos.size(); i++) {
+            this.moduloList.add(modulos.get(i));
         }
     }
 
@@ -76,5 +74,4 @@ public class Node {
 
     public int getEpidemicPort() {return epidemicPort;}
     public int getNodeID() {return nodeID;}
-
 }

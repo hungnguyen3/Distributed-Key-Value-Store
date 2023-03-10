@@ -72,16 +72,17 @@ public class NetworkLayer implements Runnable {
 
                 //Routes the request to the correct handler. Based on UDP Protocol current node will not make sure forwarding succeeds. It will
                 //let the client send retries and forward retries for the client.
-
-                // If the reqMsg contains 2 extra fields originalSenderHost and OriginalSenderPort, this is a forwarded Request
-                Boolean isRequestForwardedFromAnotherNode = !reqMsg.getOriginalSenderHost().equals("") && reqMsg.getOriginalSenderPort() != 0;
-                int reqCommand = request.getCommand();
-
                 if(this.hashRing.getMembershipCount() > 1) {
+                    // If the reqMsg contains 2 extra fields originalSenderHost and OriginalSenderPort, this is a forwarded Request
+                    Boolean isRequestForwardedFromAnotherNode = !reqMsg.getOriginalSenderHost().equals("") && reqMsg.getOriginalSenderPort() != 0;
+                    int reqCommand = request.getCommand();
+
                     // If this is not a forwarded request and is a PUT, GET or REM command, forward the request to the correct node
                     if (!isRequestForwardedFromAnotherNode && (reqCommand == 0x01 || reqCommand == 0x02 || reqCommand == 0x03)) {
-                        //Check to see if any of the dead nodes has rejoined and update hashring.
-                        //hashRing.checkForRejoinNodes();
+                        //Check to see if any of the dead nodes has rejoined and update HashRing.
+                        hashRing.checkAndHandleRejoins();
+
+                        // Get the node to redirect to
                         Node forwardNode = hashRing.getNodeForKey(request.getKey().toByteArray());
                         // If the forwardNode is not the current node, forward the request to the forwardNode
                         if (forwardNode.getPort() != port || !forwardNode.getHost().equals(address)) {
@@ -132,6 +133,7 @@ public class NetworkLayer implements Runnable {
                 DatagramPacket responseMessagePacket = new DatagramPacket(responseMessageBytes, responseMessageBytes.length, clientHost, clientPort);
                 datagramSocket.send(responseMessagePacket);
 
+                // Debugging statement
                 /*
                 if(reqCommand == 0x01) {
                     System.out.println("Sent PUT response to client!!! " + clientHost + ":" + clientPort);

@@ -5,13 +5,19 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class HashRing {
-    //Assumes there is at least 1 node after initialization.
-    private ArrayList<Node> nodes;
+    // Assumes there is at least 1 node after initialization.
+    // DO NOT ADD OR REMOVE FROM nodes
+    private final ArrayList<Node> nodes;
+
+    // DO NOT USE THIS TO DETERMINE IF A NODE IS ALIVE
+    private ArrayList<Node> deadNodes;
 
     private LinkedHashMap<Integer, Node> nodeCache;
 
@@ -20,20 +26,39 @@ public class HashRing {
     private int myPort;
     private int myID;
 
-    // Constructor to create a new HashRing given a configuration file path.
+    /**
+     * Constructor to create a new HashRing.
+     * @param configFilePath path to servers.txt that contains all the nodes addresses and ports
+     * @param myAddress address of this node (mainly for debugging purposes)
+     * @param myPort port of this node (mainly for debugging purposes)
+     */
     public HashRing(String configFilePath, String myAddress, int myPort) {
         this.myAddress = myAddress;
         this.myPort = myPort;
-        nodes = new ArrayList<>();
+        this.nodes = new ArrayList<>();
+        this.deadNodes = new ArrayList<>();
 
-        nodeCache = new LinkedHashMap<Integer, Node>(200, 0.75f, true) {
+        this.nodeCache = new LinkedHashMap<Integer, Node>(200, 0.75f, true) {
             protected boolean removeEldestEntry(Map.Entry<Integer, Node> eldest) {
                 return size() > 200;
             }
         };
 
-        int myID = 0;
+        // Get how many nodes are running
+        int hashRingSize = 0;
+        try (BufferedReader br = new BufferedReader(new FileReader(configFilePath))) {
+            while ((br.readLine()) != null) {
+                hashRingSize++;
+            }
+        } catch (FileNotFoundException e) {
+            System.err.println("Error: file not found: " + configFilePath);
+        } catch (IOException e) {
+            throw new RuntimeException("Error reading servers.txt file: " + configFilePath, e);
+        }
 
+        System.out.println("Number of nodes in the HashRing: " + hashRingSize);
+
+        int myID = 0;
         // Try to read the configuration file and create a Node object for each line
         try (BufferedReader br = new BufferedReader(new FileReader(configFilePath))) {
             String line;
@@ -50,8 +75,8 @@ public class HashRing {
 
                 int epidemicPort = 20000 + i;
 
-                // Add a new node with the host, port, and range to the list of nodes in the ring
-                nodes.add(new Node(host, port, i, epidemicPort, i));
+                // Add a new node to the list of nodes in the ring
+                nodes.add(new Node(host, port, i, epidemicPort, i, hashRingSize));
                 //Initialize all nodes as alive at the beginning
                 i++;
             }
@@ -64,16 +89,18 @@ public class HashRing {
         }
 
         //try to start the epidemic protocol and print error message if it fails
-        epidemic = new Epidemic((ArrayList<Node>)nodes.clone(), myID, 500, 20000 + myID, 20);
+        this.epidemic = new Epidemic((ArrayList<Node>)nodes.clone(), myID, 500, 20000 + myID, 20);
         this.myID = myID;
         try {
-            epidemic.startEpidemic();
+            this.epidemic.startEpidemic();
         } catch (Exception e){
             System.out.println("Could not start epidemic protocol on this node");
         }
     }
 
-    // Method to get the node responsible for a given key
+    /**
+     * Method to get the node responsible for a given key
+     */
     public Node getNodeForKey(byte[] key_byte_array) {
         // Calculate the hash value of the key using the Murmur3 hash function
         // System.out.println("I am Node: " + myAddress + myPort + " ID:" + myID);
@@ -113,53 +140,106 @@ public class HashRing {
         return firstNode;
     }
 
+    /**
+     * Upon encountering a deadNode (call it Node B), add it to deadNodes list
+     * Walk to ring to find an alive node to the left of the deadNode (call it Node A)
+     * Transfer the moduloList of node B to node A
+     */
     public void updateHashRingUponDeadNode(Node deadNode) {
         // System.out.println("updating hash ring upon dead node");
         // Find the index of the dead node in the list of nodes
         int deadNodeIndex = nodes.indexOf(deadNode);
 
-        // Remove the dead node from the list of nodes
-        nodes.get(deadNodeIndex).clearModuloList();
+        // Clear the modulo list of the dead node = node not responsible for any modulo
+        deadNode.clearModuloList();
 
-        // Reassign the range
-        if(deadNodeIndex >= 1) {
-            Node leftOfDeadNode = nodes.get(deadNodeIndex - 1);
-            leftOfDeadNode.replaceModuloList(deadNode.getModuloList());
-        } else if (deadNodeIndex == 0) {
-            Node leftOfDeadNode = nodes.get(nodes.size() - 1);
-            leftOfDeadNode.replaceModuloList(deadNode.getModuloList());
+        // Add the deadNode to deadNodes array
+        deadNodes.add(deadNode);
+        System.out.println("Node with ID " + deadNode.getNodeID() + " just dropped");
+
+        // Walk the ring to find a node that is not dead to the left of the dead node
+        int counter = 0;
+        int index = deadNodeIndex;
+        while(true) {
+            counter++;
+
+            if (index >= 1) {
+                index = index - 1; // move to the left by 1
+            } else if (index == 0) {
+                index = nodes.size() - 1; // move to the end of the list if reaches index 0
+            }
+
+            Node takeOverNode = nodes.get(index);
+            // Reassign the moduloList
+            if(!takeOverNode.getModuloList().isEmpty()) { // Only transfer the modulos to node that is alive
+                takeOverNode.addModulos(deadNode.getModuloList());
+                break;
+            }
+
+            if (counter >= nodes.size()) {
+                System.out.println("Walked the entire ring and ended up not finding any alive nodes!!");
+            }
         }
 
         // Clear the node cache
         nodeCache.clear();
     }
 
-    public void checkForRejoinNodes() {
-        for (int i = 0; i < nodes.size(); i++) {
-            //An empty modulo list indicates the node has died before.
-            if (nodes.get(i).getModuloList().isEmpty()) {
-                if (epidemic.isAlive(nodes.get(i).getNodeID())) {
-                    //find the first non-empty modulo list node to the left of the dead node
-                    int leftOfDeadNodeIndex = i;
-                    while (nodes.get(leftOfDeadNodeIndex).getModuloList().isEmpty()) {
-                        if (leftOfDeadNodeIndex == 0) {
-                            leftOfDeadNodeIndex = nodes.size() - 1;
-                        } else {
-                            leftOfDeadNodeIndex--;
+    /**
+     * Check all the nodes that are previously dead for rejoins
+     * Upon rejoins, perform corresponding redistribution for modulo lists
+     * After redistribution, remove the newly rejoined nodes from 'deadNodes'
+     */
+    public void checkAndHandleRejoins() {
+        List<Node> rejoinedNodes = new ArrayList<>();
+
+        for (Node deadNode : deadNodes) {
+            if (epidemic.isAlive(deadNode.getNodeID())) { // Check if the dead node has rejoined
+                int deadNodeIndex = nodes.indexOf(deadNode);
+                Node nodeTookOverModulos = null;
+
+                // Walk the ring to find a node that is not dead to the left of the dead node
+                // The node that we find should have taken over the dead node's moduloList
+                int counter = 0;
+                int index = deadNodeIndex;
+                while(true) {
+                    counter++;
+
+                    if (index >= 1) {
+                        index = index - 1; // move to the left by 1
+                    } else if (index == 0) {
+                        index = nodes.size() - 1; // move to the end of the list if reaches index 0
+                    }
+
+                    Node node = nodes.get(index);
+                    // Found the node that took over the deadNode's moduloList
+                    if (!nodes.get(index).getModuloList().isEmpty()) {
+                        nodeTookOverModulos = node;
+                        break;
+                    }
+
+                    if (counter >= nodes.size()) {
+                        System.out.println("Walked the entire ring and ended up not finding the node that took over the deadNode's moduloList!!");
+                    }
+                }
+
+                if (nodeTookOverModulos != null) {
+                    // Transfer any modulos that the rejoined node is responsible for from nodeToTakeOverModulos to the rejoined node
+                    for (int modulo : nodeTookOverModulos.getModuloList()) {
+                        if (deadNode.inRange(modulo)) {
+                            deadNode.addModulo(modulo);
+                            nodeTookOverModulos.removeModulo(modulo);
                         }
                     }
-                    Node leftOfDeadNode = nodes.get(leftOfDeadNodeIndex);
-                    //transfer any modulo that's greater than deadNode's id from leftOfDeadNode to deadNode
-                    for (int j = 0; j < leftOfDeadNode.getModuloList().size(); j++) {
-                        int modulo = leftOfDeadNode.getModuloList().get(j);
-                        if (modulo >= nodes.get(i).getNodeID()) {
-                            nodes.get(i).addModulo(modulo);
-                            leftOfDeadNode.removeModulo(modulo);
-                        }
-                    }
+
+                    rejoinedNodes.add(deadNode);
+                    System.out.println("Node with ID " + deadNode.getNodeID() + " just rejoined");
                 }
             }
         }
+
+        // Remove the newly rejoined nodes from the deadNodes list
+        deadNodes.removeAll(rejoinedNodes);
     }
 
     public void clearNodeCache() {
@@ -167,6 +247,6 @@ public class HashRing {
     }
 
     public int getMembershipCount() {
-        return nodes.size();
+        return nodes.size() - deadNodes.size();
     }
 }

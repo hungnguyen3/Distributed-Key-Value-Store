@@ -23,6 +23,7 @@ class Epidemic {
     private int port; //port to use for epidemic protocol
     private int safetyRounds; //number of buffer rounds for checking if remote node isAlive
     private Random rng = new Random();
+
     public Epidemic(List<Node> nodeList, int myID, int delayMs, int port, int safetyRounds){
         this.nodeList = nodeList;
         this.myID = myID;
@@ -36,6 +37,7 @@ class Epidemic {
             timestampVector.add(currentTime);
         }
     }
+
     public void startEpidemic() throws SocketException {
         final DatagramSocket datagramSocket = new DatagramSocket(port);
         final byte[] receiveBuffer = new byte[8 * N];
@@ -129,6 +131,7 @@ class Epidemic {
         sendThread.start();
         receiveThread.start();
     }
+
     public boolean isAlive(int nodeID) {
         if (System.currentTimeMillis() - timestampVector.get(nodeID) < delayMs * ((Math.log(N) / Math.log(2)) + safetyRounds)) {
             return true;
