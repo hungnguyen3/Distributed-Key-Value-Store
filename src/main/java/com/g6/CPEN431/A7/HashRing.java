@@ -247,6 +247,16 @@ public class HashRing {
     }
 
     public int getMembershipCount() {
-        return nodes.size() - deadNodes.size();
+        int count = 0;
+        for (Node node : nodes) {
+            if (epidemic.isAlive(node.getNodeID())) {
+                count++;
+            } else {
+                if (!deadNodes.contains(node)) {
+                    updateHashRingUponDeadNode(node);
+                }
+            }
+        }
+        return count;
     }
 }
