@@ -1,11 +1,9 @@
 package com.g6.CPEN431.A7;
 
-import javax.sound.midi.SysexMessage;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -22,8 +20,6 @@ public class HashRing {
     private LinkedHashMap<Integer, Node> nodeCache;
 
     private Epidemic epidemic;
-    private String myAddress;
-    private int myPort;
     private int myID;
     private  int initialNumNodes;
 
@@ -34,8 +30,6 @@ public class HashRing {
      * @param myPort port of this node (mainly for debugging purposes)
      */
     public HashRing(String configFilePath, String myAddress, int myPort) {
-        this.myAddress = myAddress;
-        this.myPort = myPort;
         this.nodes = new ArrayList<>();
         this.deadNodes = new ArrayList<>();
 
@@ -171,11 +165,11 @@ public class HashRing {
 
             Node takeOverNode = nodes.get(index);
             // Reassign the rangeList
-            if(!takeOverNode.getRangeList().isEmpty()) { // Only transfer the ranges to node that is alive
-                takeOverNode.addRanges(deadNode.getRangeList());
+            if(!takeOverNode.getRangeSet().isEmpty()) { // Only transfer the ranges to node that is alive
+                takeOverNode.addRanges(deadNode.getRangeSet());
 
                 // Clear the rangeList of the dead node => node not responsible for any range
-                deadNode.clearRangeList();
+                deadNode.clearRangeSet();
                 break;
             }
 
@@ -218,7 +212,7 @@ public class HashRing {
 
                     Node node = nodes.get(index);
                     // Found the node that took over the deadNode's rangeList
-                    if (!nodes.get(index).getRangeList().isEmpty()) {
+                    if (!nodes.get(index).getRangeSet().isEmpty()) {
                         nodeTookOverRanges = node;
                         break;
                     }
@@ -232,7 +226,7 @@ public class HashRing {
                 if (nodeTookOverRanges != null) {
                     // Transfer any ranges that the rejoined node is responsible for from nodeToTakeOverRanges to the rejoined node
                     ArrayList<Integer> rangesToRemove = new ArrayList<>();
-                    for (int range : nodeTookOverRanges.getRangeList()) {
+                    for (int range : nodeTookOverRanges.getRangeSet()) {
                         if (range >= deadNode.getNodeID() && range < getNextLivingSuccessorID(deadNode)) {
                             System.out.println("Transferring Range " + range + " to node with id " + deadNode.getNodeID());
                             deadNode.addRange(range);
@@ -258,7 +252,7 @@ public class HashRing {
         return transferRequests;
     }
 
-    //gets the next living succesor by checking the next nodeID until
+    //gets the next living successor by checking the next nodeID until
     //the end of the initial number of nodes, if no living successor is found returns INTEGER_MAX_VALUE
     private int getNextLivingSuccessorID(Node node){
         for(int i = node.getNodeID() + 1; i < initialNumNodes; i++) {

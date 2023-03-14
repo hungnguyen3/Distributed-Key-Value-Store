@@ -1,9 +1,6 @@
 package com.g6.CPEN431.A7;
 
 import ca.NetSysLab.ProtocolBuffers.KeyValueRequest;
-import ca.NetSysLab.ProtocolBuffers.KeyValueResponse;
-import ca.NetSysLab.ProtocolBuffers.Message;
-import com.google.common.primitives.Longs;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
@@ -34,6 +31,7 @@ public class StorageLayer {
                         byte[] incomingPacketData = Arrays.copyOf(packet.getData(), packet.getLength());
                         try {
                             KeyValueRequest.KVRequest incomingRequest = KeyValueRequest.KVRequest.parseFrom(incomingPacketData);
+                            System.out.println("STORING KEY " + incomingRequest.getKey() + ",VALUE " + incomingRequest.getValue() + ",VERSION " + incomingRequest.getVersion());
                             store.put(incomingRequest.getKey(), new ValueVersionPair(incomingRequest.getValue(), incomingRequest.getVersion()));
                         } catch (InvalidProtocolBufferException e) {
                             throw new RuntimeException(e);
@@ -81,14 +79,14 @@ public class StorageLayer {
     }
 
     public void performTransfer(TransferRequest transferRequest) {
-        Node destinationNode = transferRequest.destinationNode;
-        int modulo = transferRequest.modulo;
+        Node destinationNode = transferRequest.getDestinationNode();
+        int range = transferRequest.getRange();
         Set<ByteString> keySet = store.keySet();
         Set<ByteString> toRemove = new HashSet<>();
         for(ByteString b : keySet){
             byte[] key_byte_array = b.toByteArray();
             int hash = HashUtils.hash(key_byte_array);
-            if(hash % destinationNode.getHashRingSize() == modulo){
+            if(hash % destinationNode.getHashRingSize() == range){
                 ValueVersionPair pair = store.get(b);
                 KeyValueRequest.KVRequest outgoingReq = KeyValueRequest.KVRequest.newBuilder()
                         .setKey(b)
@@ -108,6 +106,5 @@ public class StorageLayer {
         for(ByteString b : toRemove){
             store.remove(b);
         }
-
     }
 }

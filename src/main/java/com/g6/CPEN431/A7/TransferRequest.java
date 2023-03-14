@@ -1,15 +1,19 @@
 package com.g6.CPEN431.A7;
 
-import java.net.DatagramPacket;
-
 public class TransferRequest {
-    public Node destinationNode;
-    public int modulo;
+    private Node destinationNode;
+    private int range;
 
-    public TransferRequest(Node destinationNode, int modulo) {
+    public TransferRequest(Node destinationNode, int range) {
         this.destinationNode = destinationNode;
-        this.modulo = modulo;
+        this.range = range;
+    }
+
+    public Node getDestinationNode() {
+        return destinationNode;
+    }
+
+    public int getRange() {
+        return range;
     }
 }
-
-

@@ -83,9 +83,9 @@ public class NetworkLayer implements Runnable {
                     if (!isRequestForwardedFromAnotherNode && (reqCommand == 0x01 || reqCommand == 0x02 || reqCommand == 0x03)) {
                         //Check to see if any of the dead nodes has rejoined and update HashRing.
                         ArrayList<TransferRequest> transferRequests =  hashRing.checkAndHandleRejoins();
-                        for(int i = 0; i < transferRequests.size(); i++){
-                            System.out.println("Transfer request detected range: " + transferRequests.get(i).modulo + " to node with ID: " + transferRequests.get(i).destinationNode.getNodeID());
-                            requestHandlingLayer.performTransfer(transferRequests.get(i));
+                        for (TransferRequest transferRequest : transferRequests) {
+                            System.out.println("Transfer request detected range: " + transferRequest.getRange() + "from node with ID: " + (port - 10000) + " to node with ID: " + transferRequest.getDestinationNode().getNodeID());
+                            requestHandlingLayer.performTransfer(transferRequest);
                         }
 
                         // Get the node to redirect to
@@ -137,19 +137,6 @@ public class NetworkLayer implements Runnable {
                 // Send the response back to the client
                 DatagramPacket responseMessagePacket = new DatagramPacket(responseMessageBytes, responseMessageBytes.length, clientHost, clientPort);
                 datagramSocket.send(responseMessagePacket);
-
-                // Debugging statement
-                /*
-                if(reqCommand == 0x01) {
-                    System.out.println("Sent PUT response to client!!! " + clientHost + ":" + clientPort);
-                }
-                if(reqCommand == 0x02) {
-                    System.out.println("Sent GET response to client!!! " + clientHost + ":" + clientPort);
-                }
-                if(reqCommand == 0x03) {
-                    System.out.println("Sent REM response to client!!! " + clientHost + ":" + clientPort);
-                }
-                 */
             }
         } catch (IOException e) {
             e.printStackTrace();
