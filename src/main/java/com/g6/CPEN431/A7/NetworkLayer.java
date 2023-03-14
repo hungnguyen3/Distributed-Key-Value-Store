@@ -84,6 +84,7 @@ public class NetworkLayer implements Runnable {
                         //Check to see if any of the dead nodes has rejoined and update HashRing.
                         ArrayList<TransferRequest> transferRequests =  hashRing.checkAndHandleRejoins();
                         for(int i = 0; i < transferRequests.size(); i++){
+                            System.out.println("Transfer request detected range: " + transferRequests.get(i).modulo + " to node with ID: " + transferRequests.get(i).destinationNode.getNodeID());
                             requestHandlingLayer.performTransfer(transferRequests.get(i));
                         }
 

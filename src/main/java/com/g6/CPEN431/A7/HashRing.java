@@ -25,6 +25,7 @@ public class HashRing {
     private String myAddress;
     private int myPort;
     private int myID;
+    private  int initialNumNodes;
 
     /**
      * Constructor to create a new HashRing.
@@ -91,6 +92,7 @@ public class HashRing {
         //try to start the epidemic protocol and print error message if it fails
         this.epidemic = new Epidemic((ArrayList<Node>)nodes.clone(), myID, 500, 20000 + myID, 20);
         this.myID = myID;
+        this.initialNumNodes = hashRingSize;
 
         try {
             this.epidemic.startEpidemic();
@@ -229,14 +231,20 @@ public class HashRing {
 
                 if (nodeTookOverRanges != null) {
                     // Transfer any ranges that the rejoined node is responsible for from nodeToTakeOverRanges to the rejoined node
+                    ArrayList<Integer> rangesToRemove = new ArrayList<>();
                     for (int range : nodeTookOverRanges.getRangeList()) {
-                        if (deadNode.inRange(range)) {
+                        if (range >= deadNode.getNodeID() && range < getNextLivingSuccessorID(deadNode)) {
+                            System.out.println("Transferring Range " + range + " to node with id " + deadNode.getNodeID());
                             deadNode.addRange(range);
-                            nodeTookOverRanges.removeRange(range);
+                            rangesToRemove.add(range);
+
                             if(myID == nodeTookOverRanges.getNodeID()){
                                 transferRequests.add(new TransferRequest(deadNode, range));
                             }
                         }
+                    }
+                    for(int range : rangesToRemove){
+                        nodeTookOverRanges.removeRange(range);
                     }
 
                     rejoinedNodes.add(deadNode);
@@ -249,6 +257,18 @@ public class HashRing {
         deadNodes.removeAll(rejoinedNodes);
         return transferRequests;
     }
+
+    //gets the next living succesor by checking the next nodeID until
+    //the end of the initial number of nodes, if no living successor is found returns INTEGER_MAX_VALUE
+    private int getNextLivingSuccessorID(Node node){
+        for(int i = node.getNodeID() + 1; i < initialNumNodes; i++) {
+            if(epidemic.isAlive(i)){
+                return i;
+            }
+        }
+        return Integer.MAX_VALUE;
+    }
+
 
     public void clearNodeCache() {
         nodeCache.clear();

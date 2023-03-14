@@ -62,7 +62,7 @@ public class StorageLayer {
         }
     }
 
-    private Map<ByteString, ValueVersionPair> store = new HashMap<>();
+    private Map<ByteString, ValueVersionPair> store = new HashMap<ByteString, ValueVersionPair>();
     public ValueVersionPair get(ByteString key) {
         if (!store.containsKey(key)) {
             return null;
@@ -86,24 +86,22 @@ public class StorageLayer {
     public void performTransfer(TransferRequest transferRequest) {
         Node destinationNode = transferRequest.destinationNode;
         int modulo = transferRequest.modulo;
-        Set keySet = store.keySet();
-        ByteString[] keyList = (ByteString[]) keySet.toArray();
+        Set<ByteString> keySet = store.keySet();
 
-
-        for(int i = 0; i < keyList.length; i++){
-            byte[] key_byte_array = keyList[i].toByteArray();
+        for(ByteString b : keySet){
+            byte[] key_byte_array = b.toByteArray();
             int hash = HashUtils.hash(key_byte_array);
             if(hash % destinationNode.getHashRingSize() == modulo){
-                ValueVersionPair pair = store.get(keyList[i]);
+                ValueVersionPair pair = store.get(b);
                 KeyValueRequest.KVRequest outgoingReq = KeyValueRequest.KVRequest.newBuilder()
-                        .setKey(keyList[i])
+                        .setKey(b)
                         .setValue(pair.value)
                         .setVersion(pair.version)
                         .build();
                 try {
                     DatagramPacket outgoingPacket = new DatagramPacket(outgoingReq.toByteArray(), outgoingReq.toByteArray().length, InetAddress.getByName(destinationNode.getHost()), destinationNode.getPort() + 20000);
                     this.transferSocket.send(outgoingPacket);
-                    store.remove(keyList[i]);
+                    store.remove(b);
                 } catch (Exception e){
                     System.out.println("ERROR ON SENDING INTERNAL KEY TRANSFER");
                 }
