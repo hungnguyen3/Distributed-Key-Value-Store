@@ -13,6 +13,7 @@ public class RequestHandlingLayer {
     private final int MAX_KEY_LENGTH = 32;
     private final int MAX_VALUE_LENGTH = 10000; //(1 << 20);
     private final long MAX_MEMORY_USAGE = 60;
+    private final int NODE_PID = Integer.parseInt(ManagementFactory.getRuntimeMXBean().getName().split("@")[0]);
     private final KVResponse ERROR_KEY_TOO_LONG = KVResponse.newBuilder().setErrCode(0x06).build();
     private final KVResponse ERROR_VALUE_TOO_LONG = KVResponse.newBuilder().setErrCode(0x07).build();
     private final KVResponse ERROR_OUT_OF_MEMORY = KVResponse.newBuilder().setErrCode(0x02).build();
@@ -75,7 +76,7 @@ public class RequestHandlingLayer {
                 response = ZERO_ERR_CODE;
                 break;
             case 0x07:
-                response = KVResponse.newBuilder().setErrCode(0x00).setPid(Integer.parseInt(ManagementFactory.getRuntimeMXBean().getName().split("@")[0])).build();
+                response = KVResponse.newBuilder().setErrCode(0x00).setPid(NODE_PID).build();
                 break;
             case 0x08:
                 response = KVResponse.newBuilder().setErrCode(0x00).setMembershipCount(this.hashRing.getMembershipCount()).build();

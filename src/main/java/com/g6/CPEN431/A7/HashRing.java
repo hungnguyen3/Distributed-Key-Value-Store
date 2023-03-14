@@ -143,15 +143,12 @@ public class HashRing {
     /**
      * Upon encountering a deadNode (call it Node B), add it to deadNodes list
      * Walk to ring to find an alive node to the left of the deadNode (call it Node A)
-     * Transfer the moduloList of node B to node A
+     * Transfer the rangeList of node B to node A
      */
     public void updateHashRingUponDeadNode(Node deadNode) {
         // System.out.println("updating hash ring upon dead node");
         // Find the index of the dead node in the list of nodes
         int deadNodeIndex = nodes.indexOf(deadNode);
-
-        // Clear the modulo list of the dead node = node not responsible for any modulo
-        deadNode.clearModuloList();
 
         // Add the deadNode to deadNodes array
         deadNodes.add(deadNode);
@@ -170,9 +167,12 @@ public class HashRing {
             }
 
             Node takeOverNode = nodes.get(index);
-            // Reassign the moduloList
-            if(!takeOverNode.getModuloList().isEmpty()) { // Only transfer the modulos to node that is alive
-                takeOverNode.addModulos(deadNode.getModuloList());
+            // Reassign the rangeList
+            if(!takeOverNode.getRangeList().isEmpty()) { // Only transfer the ranges to node that is alive
+                takeOverNode.addRanges(deadNode.getRangeList());
+
+                // Clear the rangeList of the dead node => node not responsible for any range
+                deadNode.clearRangeList();
                 break;
             }
 
@@ -187,7 +187,7 @@ public class HashRing {
 
     /**
      * Check all the nodes that are previously dead for rejoins
-     * Upon rejoins, perform corresponding redistribution for modulo lists
+     * Upon rejoins, perform corresponding redistribution for range lists
      * After redistribution, remove the newly rejoined nodes from 'deadNodes'
      */
     public void checkAndHandleRejoins() {
@@ -196,10 +196,10 @@ public class HashRing {
         for (Node deadNode : deadNodes) {
             if (epidemic.isAlive(deadNode.getNodeID())) { // Check if the dead node has rejoined
                 int deadNodeIndex = nodes.indexOf(deadNode);
-                Node nodeTookOverModulos = null;
+                Node nodeTookOverRanges = null;
 
                 // Walk the ring to find a node that is not dead to the left of the dead node
-                // The node that we find should have taken over the dead node's moduloList
+                // The node that we find should have taken over the dead node's rangeList
                 int counter = 0;
                 int index = deadNodeIndex;
                 while(true) {
@@ -212,23 +212,23 @@ public class HashRing {
                     }
 
                     Node node = nodes.get(index);
-                    // Found the node that took over the deadNode's moduloList
-                    if (!nodes.get(index).getModuloList().isEmpty()) {
-                        nodeTookOverModulos = node;
+                    // Found the node that took over the deadNode's rangeList
+                    if (!nodes.get(index).getRangeList().isEmpty()) {
+                        nodeTookOverRanges = node;
                         break;
                     }
 
                     if (counter >= nodes.size()) {
-                        System.out.println("Walked the entire ring and ended up not finding the node that took over the deadNode's moduloList!!");
+                        System.out.println("Walked the entire ring and ended up not finding the node that took over the deadNode's rangeList!!");
                     }
                 }
 
-                if (nodeTookOverModulos != null) {
-                    // Transfer any modulos that the rejoined node is responsible for from nodeToTakeOverModulos to the rejoined node
-                    for (int modulo : nodeTookOverModulos.getModuloList()) {
-                        if (deadNode.inRange(modulo)) {
-                            deadNode.addModulo(modulo);
-                            nodeTookOverModulos.removeModulo(modulo);
+                if (nodeTookOverRanges != null) {
+                    // Transfer any ranges that the rejoined node is responsible for from nodeToTakeOverRanges to the rejoined node
+                    for (int range : nodeTookOverRanges.getRangeList()) {
+                        if (deadNode.inRange(range)) {
+                            deadNode.addRange(range);
+                            nodeTookOverRanges.removeRange(range);
                         }
                     }
 
