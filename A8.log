@@ -1,0 +1,897 @@
+CPEN 431 EVALUATION test Client
+Time: Tue Mar 14 05:22:02 PDT 2023
+Build Date: Sun Mar 12 03:36:36 PDT 2023
+Java process ID: 21613
+Assignment ID: 8
+Client Version: 1
+
+[Info] A8 client running in TEST mode.
+
+[Info] Starting A8 Tests
+
+
+[Info] Done building nodes' list.
+[Info] The deployment has 20 server nodes.
+
+[Info] Skipping tests of local deployment since not running in submit mode.
+
+[Info] The deployment has 20 server nodes.
+Sending GETPID to all servers... 
+[Info] Server node 127.0.0.110001 has process ID 21173.
+[Info] Server node 127.0.0.110002 has process ID 21174.
+[Info] Server node 127.0.0.110003 has process ID 21175.
+[Info] Server node 127.0.0.110004 has process ID 21176.
+[Info] Server node 127.0.0.110005 has process ID 21177.
+[Info] Server node 127.0.0.110006 has process ID 21178.
+[Info] Server node 127.0.0.110007 has process ID 21179.
+[Info] Server node 127.0.0.110008 has process ID 21180.
+[Info] Server node 127.0.0.110009 has process ID 21181.
+[Info] Server node 127.0.0.110010 has process ID 21182.
+[Info] Server node 127.0.0.110011 has process ID 21183.
+[Info] Server node 127.0.0.110012 has process ID 21184.
+[Info] Server node 127.0.0.110013 has process ID 21185.
+[Info] Server node 127.0.0.110014 has process ID 21186.
+[Info] Server node 127.0.0.110015 has process ID 21187.
+[Info] Server node 127.0.0.110016 has process ID 21188.
+[Info] Server node 127.0.0.110017 has process ID 21189.
+[Info] Server node 127.0.0.110018 has process ID 21190.
+[Info] Server node 127.0.0.110019 has process ID 21191.
+[Info] Server node 127.0.0.110020 has process ID 21192.
+[ ... Completed in 0.3 seconds ]
+[OK]
+
+Sending GetMembershipCount to all servers... 
+[Info] Server 127.0.0.1:10008 replied with membership count = 20 (expected count = 20)
+[Info] Server 127.0.0.1:10014 replied with membership count = 20 (expected count = 20)
+[Info] Server 127.0.0.1:10017 replied with membership count = 20 (expected count = 20)
+[Info] Server 127.0.0.1:10018 replied with membership count = 20 (expected count = 20)
+[Info] Server 127.0.0.1:10005 replied with membership count = 20 (expected count = 20)
+[Info] Server 127.0.0.1:10015 replied with membership count = 20 (expected count = 20)
+[Info] Server 127.0.0.1:10002 replied with membership count = 20 (expected count = 20)
+[Info] Server 127.0.0.1:10009 replied with membership count = 20 (expected count = 20)
+[Info] Server 127.0.0.1:10019 replied with membership count = 20 (expected count = 20)
+[Info] Server 127.0.0.1:10010 replied with membership count = 20 (expected count = 20)
+[Info] Server 127.0.0.1:10004 replied with membership count = 20 (expected count = 20)
+[Info] Server 127.0.0.1:10011 replied with membership count = 20 (expected count = 20)
+[Info] Server 127.0.0.1:10007 replied with membership count = 20 (expected count = 20)
+[Info] Server 127.0.0.1:10006 replied with membership count = 20 (expected count = 20)
+[Info] Server 127.0.0.1:10016 replied with membership count = 20 (expected count = 20)
+[Info] Server 127.0.0.1:10012 replied with membership count = 20 (expected count = 20)
+[Info] Server 127.0.0.1:10001 replied with membership count = 20 (expected count = 20)
+[Info] Server 127.0.0.1:10003 replied with membership count = 20 (expected count = 20)
+[Info] Server 127.0.0.1:10013 replied with membership count = 20 (expected count = 20)
+[Info] Server 127.0.0.1:10020 replied with membership count = 20 (expected count = 20)
+[ ... Completed in 0.029 seconds ]
+[Ok] All servers returned the expected membership count (20)
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.006 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[Test isAlive] for 127.0.0.1:10001
+
+[ TEST Basic PUT/GET (PUT -> GET). Value Length = 8 Bytes ]
+TEST_PASSED
+
+[ TEST Basic PUT/GET (PUT -> GET). Value Length = 32 Bytes ]
+TEST_PASSED
+
+[ TEST Basic PUT/GET (PUT -> GET). Value Length = 512 Bytes ]
+TEST_PASSED
+
+[ TEST Basic PUT/GET (PUT -> GET). Value Length = 1024 Bytes ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.005 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+
+[ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 8 Bytes ]
+TEST_PASSED
+
+
+[ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 32 Bytes ]
+TEST_PASSED
+
+
+[ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 512 Bytes ]
+TEST_PASSED
+
+
+[ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 1024 Bytes ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.005 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST Basic REMOVE (PUT -> GET -> REM -> GET). Value Length = 32 Bytes. ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST Double remove (PUT -> REM -> REM). Value Length = 32 Bytes. ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.006 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST Invalid Command. ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.012 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST At-Most-Once Client Policy (PUT -> REM -> REM). Value length =  32 Bytes ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.006 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST At-Most-Once Client Policy Empty REMs (EMPTY -> REM -> REM) ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.007 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST At-Most-Once Client Policy (PUT -> REM -> many PUT -> REM). Value length =  32 Bytes ]
+Pausing for 10 seconds to wait for the cache to be cleared!
+TEST_PASSED
+
+[ TEST At-Most-Once Client Policy Error Return Code (REM -> PUT -> REM) ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST At-Most-Once Client Policy For PUTs (PUT1 -> PUT2 -> PUT1 -> GET2) ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.007 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[TEST Invalid Key ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[TEST Invalid Value ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST Single Front-End Performance (1 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 127.0.0.1:10001
+[ ... Completed in 0.002 seconds ]
+Stage 1 Single Front-End: Test Status: TEST_PASSED
+Clients: 1
+Total Requests (without replies): 265606
+Total Requests (including replies): 265606
+Successful Responses: 265606
+Timeout Responses: 0
+Total Failed Responses: 0
+% Success: 100.0
+% Timeout: 0.0
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 20ms, [min] 0ms
+[avg] 0.19911071286040224 ms, [stdev] 0.43729505780006006ms
+Throughput: 4426.692888451859 requests per second
+Goodput: 4426.692888451859 requests per second
+Retry Rate (Successful requests): 1.0
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.007 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.367 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Single Front-End Performance (16 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 127.0.0.1:10001
+[ ... Completed in 0.018 seconds ]
+Stage 1 Single Front-End: Test Status: TEST_PASSED
+Clients: 16
+Total Requests (without replies): 1280202
+Total Requests (including replies): 1280222
+Successful Responses: 1280202
+Timeout Responses: 0
+Total Failed Responses: 0
+% Success: 100.0
+% Timeout: 0.0
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 129ms, [min] 0ms
+[avg] 0.7190841757785099 ms, [stdev] 1.3238401490177458ms
+Throughput: 21335.633218339084 requests per second
+Goodput: 21335.633218339084 requests per second
+Retry Rate (Successful requests): 1.0000156225345687
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.011 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.708 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Single Front-End Performance (32 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 127.0.0.1:10001
+[ ... Completed in 0.004 seconds ]
+Stage 1 Single Front-End: Test Status: TEST_PASSED
+Clients: 32
+Total Requests (without replies): 1353503
+Total Requests (including replies): 1353544
+Successful Responses: 1353503
+Timeout Responses: 0
+Total Failed Responses: 0
+% Success: 100.0
+% Timeout: 0.0
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 175ms, [min] 0ms
+[avg] 1.3860774597470416 ms, [stdev] 1.5407635351217044ms
+Throughput: 22556.12772056128 requests per second
+Goodput: 22556.12772056128 requests per second
+Retry Rate (Successful requests): 1.0000302917688397
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.013 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.451 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Single Front-End Performance (64 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 127.0.0.1:10001
+[ ... Completed in 0.002 seconds ]
+Stage 1 Single Front-End: Test Status: TEST_PASSED
+Clients: 64
+Total Requests (without replies): 1459945
+Total Requests (including replies): 1459945
+Successful Responses: 1459945
+Timeout Responses: 0
+Total Failed Responses: 0
+% Success: 100.0
+% Timeout: 0.0
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 45ms, [min] 0ms
+[avg] 2.5953032477250857 ms, [stdev] 1.8938836788839166ms
+Throughput: 24329.983668299836 requests per second
+Goodput: 24329.983668299836 requests per second
+Retry Rate (Successful requests): 1.0
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.007 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.548 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Single Front-End Performance (128 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 127.0.0.1:10001
+[ ... Completed in 0.002 seconds ]
+Stage 1 Single Front-End: Test Status: TEST_PASSED
+Clients: 128
+Total Requests (without replies): 1440143
+Total Requests (including replies): 1442934
+Successful Responses: 1440143
+Timeout Responses: 0
+Total Failed Responses: 0
+% Success: 100.0
+% Timeout: 0.0
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 257ms, [min] 0ms
+[avg] 5.28985316041532 ms, [stdev] 3.9176293016559405ms
+Throughput: 23997.58381657002 requests per second
+Goodput: 23997.58381657002 requests per second
+Retry Rate (Successful requests): 1.00193800199008
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.003 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.542 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Single Front-End Performance (256 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 127.0.0.1:10001
+[ ... Completed in 0.004 seconds ]
+Stage 1 Single Front-End: Test Status: TEST_PASSED
+Clients: 256
+Total Requests (without replies): 1391494
+Total Requests (including replies): 1522884
+Successful Responses: 1391460
+Timeout Responses: 34
+Total Failed Responses: 0
+% Success: 99.99755658306827
+% Timeout: 0.002443416931729494
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 561ms, [min] 0ms
+[avg] 10.933875928880456 ms, [stdev] 20.803320586074264ms
+Throughput: 23122.96852670411 requests per second
+Goodput: 23122.40353617601 requests per second
+Retry Rate (Successful requests): 1.09442369137057
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.003 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.979 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Multi Client Crash: PUT -> GET (closed loop) + REM -> WIPEOUT (closed loop) ]
+[Test isAlive]
+Test Passed. Server is ok.
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.004 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 82.033 seconds ]
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 8 Bytes ]
+TEST_PASSED
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 32 Bytes ]
+TEST_PASSED
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 512 Bytes ]
+TEST_PASSED
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 1024 Bytes ]
+TEST_PASSED
+[ ... TEST Completed in 0.287 seconds ]
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.003 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (1 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 127.0.0.1:10001
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10007
+[Test isAlive] for 127.0.0.1:10008
+[Test isAlive] for 127.0.0.1:10011
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10013
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10020
+[Test isAlive] for 127.0.0.1:10014
+[ ... Completed in 0.006 seconds ]
+TEST_PASSED
+Stage 1 Random Front-End Performance: Test Status: TEST_PASSED
+Clients: 1
+Total Requests (without replies): 299725
+Total Requests (including replies): 299725
+Successful Responses: 299725
+Timeout Responses: 0
+Total Failed Responses: 0
+% Success: 100.0
+% Timeout: 0.0
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 52ms, [min] 0ms
+[avg] 0.17800316957210777 ms, [stdev] 0.43378536003881485ms
+Throughput: 4995.333411109815 requests per second
+Goodput: 4995.333411109815 requests per second
+Retry Rate (Successful requests): 1.0
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.175 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (16 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 127.0.0.1:10001
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10007
+[Test isAlive] for 127.0.0.1:10013
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10008
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10011
+[Test isAlive] for 127.0.0.1:10014
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10020
+[ ... Completed in 0.011 seconds ]
+TEST_PASSED
+Stage 1 Random Front-End Performance: Test Status: TEST_PASSED
+Clients: 16
+Total Requests (without replies): 1718149
+Total Requests (including replies): 1718149
+Successful Responses: 1718149
+Timeout Responses: 0
+Total Failed Responses: 0
+% Success: 100.0
+% Timeout: 0.0
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 41ms, [min] 0ms
+[avg] 0.516878338258207 ms, [stdev] 1.184877697209202ms
+Throughput: 28632.476211108704 requests per second
+Goodput: 28632.476211108704 requests per second
+Retry Rate (Successful requests): 1.0
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.004 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.581 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (32 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 127.0.0.1:10001
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10008
+[Test isAlive] for 127.0.0.1:10007
+[Test isAlive] for 127.0.0.1:10011
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10013
+[Test isAlive] for 127.0.0.1:10014
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10020
+[ ... Completed in 0.006 seconds ]
+TEST_PASSED
+[ CPU load (loadavg, last one minute) 15.66 ]
+Stage 1 Random Front-End Performance: Test Status: TEST_PASSED
+Clients: 32
+Total Requests (without replies): 1770742
+Total Requests (including replies): 1770754
+Successful Responses: 1770742
+Timeout Responses: 0
+Total Failed Responses: 0
+% Success: 100.0
+% Timeout: 0.0
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 61ms, [min] 0ms
+[avg] 1.040880037859835 ms, [stdev] 2.1034746232514885ms
+Throughput: 29510.891122110563 requests per second
+Goodput: 29510.891122110563 requests per second
+Retry Rate (Successful requests): 1.0000067768201126
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.004 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.791 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (64 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 127.0.0.1:10001
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10007
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10008
+[Test isAlive] for 127.0.0.1:10011
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10013
+[Test isAlive] for 127.0.0.1:10014
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10020
+[ ... Completed in 0.005 seconds ]
+TEST_PASSED
+[ CPU load (loadavg, last one minute) 19.45 ]
+Stage 1 Random Front-End Performance: Test Status: TEST_PASSED
+Clients: 64
+Total Requests (without replies): 2266480
+Total Requests (including replies): 2266604
+Successful Responses: 2266480
+Timeout Responses: 0
+Total Failed Responses: 0
+% Success: 100.0
+% Timeout: 0.0
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 80ms, [min] 0ms
+[avg] 1.6483123610179662 ms, [stdev] 2.8046588016650054ms
+Throughput: 37758.304734615 requests per second
+Goodput: 37758.304734615 requests per second
+Retry Rate (Successful requests): 1.0000547103879143
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.005 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.667 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (128 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 127.0.0.1:10001
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10008
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10007
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10014
+[Test isAlive] for 127.0.0.1:10013
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10011
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10020
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10016
+[ ... Completed in 0.005 seconds ]
+TEST_PASSED
+[ CPU load (loadavg, last one minute) 32.61 ]
+Stage 1 Random Front-End Performance: Test Status: TEST_PASSED
+Clients: 128
+Total Requests (without replies): 2854661
+Total Requests (including replies): 2857538
+Successful Responses: 2854661
+Timeout Responses: 0
+Total Failed Responses: 0
+% Success: 100.0
+% Timeout: 0.0
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 173ms, [min] 0ms
+[avg] 2.647418379975766 ms, [stdev] 4.237593439325505ms
+Throughput: 47561.036970393696 requests per second
+Goodput: 47561.036970393696 requests per second
+Retry Rate (Successful requests): 1.001007825447575
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.004 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.892 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (256 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 127.0.0.1:10001
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10007
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10011
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10013
+[Test isAlive] for 127.0.0.1:10008
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10014
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10020
+[ ... Completed in 0.005 seconds ]
+TEST_PASSED
+[ CPU load (loadavg, last one minute) 41.27 ]
+Stage 1 Random Front-End Performance: Test Status: TEST_PASSED
+Clients: 256
+Total Requests (without replies): 2436329
+Total Requests (including replies): 2448976
+Successful Responses: 2436329
+Timeout Responses: 0
+Total Failed Responses: 0
+% Success: 100.0
+% Timeout: 0.0
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 340ms, [min] 0ms
+[avg] 6.083363125423537 ms, [stdev] 8.86570177896525ms
+Throughput: 40601.42319101423 requests per second
+Goodput: 40601.42319101423 requests per second
+Retry Rate (Successful requests): 1.0051910066333405
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.004 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.682 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Concurrent Store/Load v2; Stage 0; (Clients = 32, Limit = 40000 PUTs) ]
+Issuing PUTS ... 
+[DONE in 1.247s]
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; Of 40000 stored keys: 40000 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.0%
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; Total Value Size (MiB): 19.072741508483887 MiB.
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; SUCCESS Response Count: 40000.0.
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; % SUCCESS: 100.0%.
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; % FAILED (Not SUCCESS): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; % TIMEOUT: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; % ERROR-UID: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; % ERROR-OTHER: 0.0%.
+[Info] PUTs % SUCCESS Ok: 100.0% Success.(90.0% minimum required).
+Confirming keys were stored correctly.
+Issuing GETs ... 
+[DONE in 1.098s]
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; Of 40000 stored keys: 40000 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.0%
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; Total Value Size (MiB): 19.072741508483887 MiB.
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; SUCCESS Response Count: 40000.0.
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; % SUCCESS: 100.0%.
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; % FAILED (Not SUCCESS): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; % TIMEOUT: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; % ERROR-UID: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; % ERROR-OTHER: 0.0%.
+[Info] GETs % SUCCESS Ok: 100.0% Success.(90.0% minimum required).
+Checking that 20 nodes are alive
+[Test isAlive] for 127.0.0.1:10001
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10007
+[Test isAlive] for 127.0.0.1:10008
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10011
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10013
+[Test isAlive] for 127.0.0.1:10014
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10020
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10016
+[ ... Completed in 0.005 seconds ]
+TEST_PASSED
+[ ... TEST Completed in 2.384 seconds ]
+
+[Info] Preparing for Stage 1 of the Suspend Test
+[Info] To suspend 10 node(s) in Stage 1.
+[Info] Will suspend 127.0.0.1:10002
+[Info] Will suspend 127.0.0.1:10017
+[Info] Will suspend 127.0.0.1:10008
+[Info] Will suspend 127.0.0.1:10012
+[Info] Will suspend 127.0.0.1:10018
+[Info] Will suspend 127.0.0.1:10010
+[Info] Will suspend 127.0.0.1:10011
+[Info] Will suspend 127.0.0.1:10003
+[Info] Will suspend 127.0.0.1:10009
+[Info] Will suspend 127.0.0.1:10014
+[Info] Will keep alive 127.0.0.1:10020
+[Info] Will keep alive 127.0.0.1:10007
+[Info] Will keep alive 127.0.0.1:10019
+[Info] Will keep alive 127.0.0.1:10005
+[Info] Will keep alive 127.0.0.1:10006
+[Info] Will keep alive 127.0.0.1:10004
+[Info] Will keep alive 127.0.0.1:10015
+[Info] Will keep alive 127.0.0.1:10001
+[Info] Will keep alive 127.0.0.1:10013
+[Info] Will keep alive 127.0.0.1:10016
+Waiting 10 seconds before suspending nodes
+[Info] Suspending 10 servers.
+[ ... Completed in 0.028 seconds ]
+Waiting 60 seconds after suspending nodes
+[Info] Stage 1 Scenario: Alive Nodes: 10. Dead Nodes: 10
+
+
+[ TEST Suspend Verify v2; Stage 1; Key Recovery; ]
+Checking that 10 nodes are suspended
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10008
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10011
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10014
+[ ... Completed in 10.012 seconds ]
+Checking that 10 nodes are alive
+[Test isAlive] for 127.0.0.1:10020
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10007
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10001
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10013
+[ ... Completed in 0.019 seconds ]
+Sending GetMembershipCount to all servers... 
+[Info] Server 127.0.0.1:10020 replied with membership count = 10 (expected count = 10)
+[Info] Server 127.0.0.1:10005 replied with membership count = 10 (expected count = 10)
+[Info] Server 127.0.0.1:10007 replied with membership count = 10 (expected count = 10)
+[Info] Server 127.0.0.1:10004 replied with membership count = 10 (expected count = 10)
+[Info] Server 127.0.0.1:10019 replied with membership count = 10 (expected count = 10)
+[Info] Server 127.0.0.1:10015 replied with membership count = 10 (expected count = 10)
+[Info] Server 127.0.0.1:10001 replied with membership count = 10 (expected count = 10)
+[Info] Server 127.0.0.1:10006 replied with membership count = 10 (expected count = 10)
+[Info] Server 127.0.0.1:10013 replied with membership count = 10 (expected count = 10)
+[Info] Server 127.0.0.1:10016 replied with membership count = 10 (expected count = 10)
+[ ... Completed in 0.003 seconds ]
+[Ok] All servers returned the expected membership count (10)
+Attempting retrieval of keys... 
+Issuing GETs ... 
+[DONE in 0.907s]
+[Info] Suspend Verify v2; Stage 1; Key Recovery; Of 40000 stored keys: 20161 SUCCESS, 0 TIMEOUT, 19839 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Suspend Verify v2; Stage 1; Key Recovery; Expected Key Loss: 50.0%. Actual Key Loss: 49.5975%
+[Info] Suspend Verify v2; Stage 1; Key Recovery; Total Value Size (MiB): 9.58380126953125 MiB.
+[Info] Suspend Verify v2; Stage 1; Key Recovery; SUCCESS Response Count: 20161.0.
+[Info] Suspend Verify v2; Stage 1; Key Recovery; % SUCCESS: 50.4025%.
+[Info] Suspend Verify v2; Stage 1; Key Recovery; % FAILED (Not SUCCESS): 49.5975%.
+[Info] Suspend Verify v2; Stage 1; Key Recovery; % TIMEOUT: 0.0%.
+[Info] Suspend Verify v2; Stage 1; Key Recovery; % KEY-NOT-FOUND: 49.5975%.
+[Info] Suspend Verify v2; Stage 1; Key Recovery; % ERROR-UID: 0.0%.
+[Info] Suspend Verify v2; Stage 1; Key Recovery; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Suspend Verify v2; Stage 1; Key Recovery; % ERROR-OTHER: 0.0%.
+[Info] Minimum GET SUCCESS % Ok: 50.4025% Success.(50.0% SUCCESS expected, 10.0% minimum required).
+TEST_PASSED
+[ ... TEST Completed in 10.948 seconds ]
+
+[Info] Preparing for Stage 2 of the Suspend/Resume Test
+[Info] To resume 6 node(s) in Stage 2.
+[Info] Will resume 127.0.0.1:10012
+[Info] Will resume 127.0.0.1:10011
+[Info] Will resume 127.0.0.1:10009
+[Info] Will resume 127.0.0.1:10017
+[Info] Will resume 127.0.0.1:10002
+[Info] Will resume 127.0.0.1:10010
+[Info] Will keep suspended 127.0.0.1:10003
+[Info] Will keep suspended 127.0.0.1:10008
+[Info] Will keep suspended 127.0.0.1:10018
+[Info] Will keep suspended 127.0.0.1:10014
+Waiting 10 seconds before resuming nodes
+[Info] Resuming 6 servers.
+[ ... Completed in 0.014 seconds ]
+Waiting 60 seconds after resuming nodes
+[Info] Stage 2 Scenario: Alive Nodes: 16. Dead Nodes: 4
+
+
+[ TEST Suspend Verify v2; Stage 2; Key Recovery; ]
+Checking that 4 nodes are suspended
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10008
+[Test isAlive] for 127.0.0.1:10014
+[ ... Completed in 10.004 seconds ]
+Checking that 16 nodes are alive
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10011
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10001
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10020
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10013
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10007
+[ ... Completed in 0.004 seconds ]
+Sending GetMembershipCount to all servers... 
+[Info] Server 127.0.0.1:10011 replied with membership count = 16 (expected count = 16)
+[Info] Server 127.0.0.1:10012 replied with membership count = 16 (expected count = 16)
+[Info] Server 127.0.0.1:10009 replied with membership count = 16 (expected count = 16)
+[Info] Server 127.0.0.1:10017 replied with membership count = 16 (expected count = 16)
+[Info] Server 127.0.0.1:10002 replied with membership count = 16 (expected count = 16)
+[Info] Server 127.0.0.1:10010 replied with membership count = 16 (expected count = 16)
+[Info] Server 127.0.0.1:10015 replied with membership count = 16 (expected count = 16)
+[Info] Server 127.0.0.1:10006 replied with membership count = 16 (expected count = 16)
+[Info] Server 127.0.0.1:10004 replied with membership count = 16 (expected count = 16)
+[Info] Server 127.0.0.1:10001 replied with membership count = 16 (expected count = 16)
+[Info] Server 127.0.0.1:10020 replied with membership count = 16 (expected count = 16)
+[Info] Server 127.0.0.1:10016 replied with membership count = 16 (expected count = 16)
+[Info] Server 127.0.0.1:10013 replied with membership count = 16 (expected count = 16)
+[Info] Server 127.0.0.1:10007 replied with membership count = 16 (expected count = 16)
+[Info] Server 127.0.0.1:10005 replied with membership count = 16 (expected count = 16)
+[Info] Server 127.0.0.1:10019 replied with membership count = 16 (expected count = 16)
+[ ... Completed in 0.005 seconds ]
+[Ok] All servers returned the expected membership count (16)
+Attempting retrieval of keys... 
+Issuing GETs ... 
+[DONE in 0.732s]
+[Info] Suspend Verify v2; Stage 2; Key Recovery; Of 40000 stored keys: 20418 SUCCESS, 0 TIMEOUT, 19582 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Suspend Verify v2; Stage 2; Key Recovery; Expected Key Loss: 20.0%. Actual Key Loss: 48.955%
+[Info] Suspend Verify v2; Stage 2; Key Recovery; Total Value Size (MiB): 9.70823860168457 MiB.
+[Info] Suspend Verify v2; Stage 2; Key Recovery; SUCCESS Response Count: 20418.0.
+[Info] Suspend Verify v2; Stage 2; Key Recovery; % SUCCESS: 51.045%.
+[Info] Suspend Verify v2; Stage 2; Key Recovery; % FAILED (Not SUCCESS): 48.955%.
+[Info] Suspend Verify v2; Stage 2; Key Recovery; % TIMEOUT: 0.0%.
+[Info] Suspend Verify v2; Stage 2; Key Recovery; % KEY-NOT-FOUND: 48.955%.
+[Info] Suspend Verify v2; Stage 2; Key Recovery; % ERROR-UID: 0.0%.
+[Info] Suspend Verify v2; Stage 2; Key Recovery; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Suspend Verify v2; Stage 2; Key Recovery; % ERROR-OTHER: 0.0%.
+[Info] Minimum GET SUCCESS % Ok: 51.045% Success.(80.0% SUCCESS expected, 10.0% minimum required).
+TEST_PASSED
+[ ... TEST Completed in 10.75 seconds ]
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.002 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 5.003 seconds ]
+Pausing for 6 seconds to wait for the cache to be cleared!
+
+Sending GetMembershipCount to all servers... 
+[Info] Server 127.0.0.1:10012 replied with membership count = 16 (expected count = 16)
+[Info] Server 127.0.0.1:10011 replied with membership count = 16 (expected count = 16)
+[Info] Server 127.0.0.1:10002 replied with membership count = 16 (expected count = 16)
+[Info] Server 127.0.0.1:10017 replied with membership count = 16 (expected count = 16)
+[Info] Server 127.0.0.1:10009 replied with membership count = 16 (expected count = 16)
+[Info] Server 127.0.0.1:10006 replied with membership count = 16 (expected count = 16)
+[Info] Server 127.0.0.1:10016 replied with membership count = 16 (expected count = 16)
+[Info] Server 127.0.0.1:10013 replied with membership count = 16 (expected count = 16)
+[Info] Server 127.0.0.1:10015 replied with membership count = 16 (expected count = 16)
+[Info] Server 127.0.0.1:10004 replied with membership count = 16 (expected count = 16)
+[Info] Server 127.0.0.1:10019 replied with membership count = 16 (expected count = 16)
+[Info] Server 127.0.0.1:10010 replied with membership count = 16 (expected count = 16)
+[Info] Server 127.0.0.1:10005 replied with membership count = 16 (expected count = 16)
+[Info] Server 127.0.0.1:10007 replied with membership count = 16 (expected count = 16)
+[Info] Server 127.0.0.1:10020 replied with membership count = 16 (expected count = 16)
+[Info] Server 127.0.0.1:10001 replied with membership count = 16 (expected count = 16)
+[ ... Completed in 0.004 seconds ]
+[Ok] All servers returned the expected membership count (16)
+[ ... TEST Completed in 0.005 seconds ]
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 8 Bytes ]
+TEST_PASSED
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 32 Bytes ]
+TEST_PASSED
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 512 Bytes ]
+GET failed!
+TEST_FAILED
+[Error] Failed in second basic distributed tests. Potentially buggy implementation. Aborting!
+Testing completed in 1127.419s
