@@ -11,10 +11,7 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class StorageLayer {
     DatagramSocket transferSocket;
@@ -87,7 +84,7 @@ public class StorageLayer {
         Node destinationNode = transferRequest.destinationNode;
         int modulo = transferRequest.modulo;
         Set<ByteString> keySet = store.keySet();
-
+        Set<ByteString> toRemove = new HashSet<>();
         for(ByteString b : keySet){
             byte[] key_byte_array = b.toByteArray();
             int hash = HashUtils.hash(key_byte_array);
@@ -101,12 +98,15 @@ public class StorageLayer {
                 try {
                     DatagramPacket outgoingPacket = new DatagramPacket(outgoingReq.toByteArray(), outgoingReq.toByteArray().length, InetAddress.getByName(destinationNode.getHost()), destinationNode.getPort() + 20000);
                     this.transferSocket.send(outgoingPacket);
-                    store.remove(b);
+                    toRemove.add(b);
                 } catch (Exception e){
                     System.out.println("ERROR ON SENDING INTERNAL KEY TRANSFER");
                 }
 
             }
+        }
+        for(ByteString b : toRemove){
+            store.remove(b);
         }
 
     }

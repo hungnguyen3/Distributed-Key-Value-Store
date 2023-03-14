@@ -43,28 +43,20 @@ class Epidemic {
         final byte[] receiveBuffer = new byte[8 * N];
         final Lock timestampVectorWriteLock = new ReentrantLock();
 
+        //this thread will continually update its own timestamp in the timestamp vector and then
         Thread sendThread = new Thread(new Runnable() {
             @Override
             public void run() {
                 // continually update time and send to a random node
                 int k = 0;
                 while(true){
-                    /*
-                    // System.out.println("Starting another epidemic round");
-                    k++;
-                    if(k > 5) {
-                        k = 0;
-                        for (int j = 0; j < nodeList.size(); j++) {
-                            if (!isAlive(j)) {
-                                System.out.println("Node " + (j+1) + " is Dead");
-                            }
-                        }
-                    }
-                    */
 
                     timestampVectorWriteLock.lock();
+                    //set the timestamp for this node to updated to the current time
                     timestampVector.set(myID, System.currentTimeMillis());
                     timestampVectorWriteLock.unlock();
+
+                    //find a random other node to send the timestamp vector to
                     do {
                         ID = rng.nextInt(N);
                     } while(ID == myID);
@@ -82,7 +74,7 @@ class Epidemic {
                         throw new RuntimeException(e);
                     }
 
-
+                    //create the packet holding the timestamp vector and send to random node
                     DatagramPacket timestampPush = new DatagramPacket(timestampByteBuffer, timestampByteBuffer.length, address, sendNode.getEpidemicPort());
 
                     try {
@@ -101,19 +93,18 @@ class Epidemic {
             }
         });
 
+        //continually receive epidemic messages from other nodes and update timestamp vector accordingly
         Thread receiveThread = new Thread(new Runnable() {
             @Override
             public void run() {
-                //continually receive messages and update timestamp vector
                 while(true){
+                    //create a packet to hold incoming data
                     DatagramPacket packet = new DatagramPacket(receiveBuffer, receiveBuffer.length);
                     try {
                         datagramSocket.receive(packet);
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
-
-                    //System.out.println("Receiving epidemic packet");
 
                     byte[] byteBuf = packet.getData();
 
@@ -122,16 +113,21 @@ class Epidemic {
                         byte[] currLong = Arrays.copyOfRange(byteBuf, 8 * i, 8 * i + 8);
                         long remote_timestamp = Longs.fromByteArray(currLong);
                         timestampVectorWriteLock.lock();
+                        //for each node, the timestamp value will be set to the maximum of the current local timestamp for
+                        //that node and the one it recieved via the epidemic protocol
                         timestampVector.set(i, Math.max(timestampVector.get(i), remote_timestamp));
                         timestampVectorWriteLock.unlock();
                     }
                 }
             }
         });
+        //start threads
         sendThread.start();
         receiveThread.start();
     }
 
+    //Is alive is inferred by checking the timestamp for that node with the given ID, by entropy if a node is participating in
+    //epidemic protocol then the timestamp for that node should be no older than what is found by the below formula
     public boolean isAlive(int nodeID) {
         if (System.currentTimeMillis() - timestampVector.get(nodeID) < delayMs * ((Math.log(N) / Math.log(2)) + safetyRounds)) {
             return true;
