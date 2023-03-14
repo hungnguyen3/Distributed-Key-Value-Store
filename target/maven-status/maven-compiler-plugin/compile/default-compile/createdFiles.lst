@@ -17,6 +17,7 @@ com\g6\CPEN431\A7\App.class
 com\g6\CPEN431\A7\HashRing$1.class
 com\g6\CPEN431\A7\NetworkLayer.class
 ca\NetSysLab\ProtocolBuffers\KeyValueResponse.class
+com\g6\CPEN431\A7\StorageLayer$1.class
 ca\NetSysLab\ProtocolBuffers\KeyValueRequest.class
 ca\NetSysLab\ProtocolBuffers\KeyValueRequest$KVRequest$1.class
 com\g6\CPEN431\A7\StorageLayer$ValueVersionPair.class
@@ -27,6 +28,7 @@ ca\NetSysLab\ProtocolBuffers\Message.class
 ca\NetSysLab\ProtocolBuffers\Message$Msg$1.class
 ca\NetSysLab\ProtocolBuffers\KeyValueRequest$KVRequestOrBuilder.class
 com\g6\CPEN431\A7\StorageLayer.class
+com\g6\CPEN431\A7\TransferRequest.class
 com\g6\CPEN431\A7\HashUtils.class
 ca\NetSysLab\ProtocolBuffers\Message$MsgOrBuilder.class
 ca\NetSysLab\ProtocolBuffers\Message$1.class

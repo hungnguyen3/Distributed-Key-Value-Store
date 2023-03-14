@@ -91,6 +91,7 @@ public class HashRing {
         //try to start the epidemic protocol and print error message if it fails
         this.epidemic = new Epidemic((ArrayList<Node>)nodes.clone(), myID, 500, 20000 + myID, 20);
         this.myID = myID;
+
         try {
             this.epidemic.startEpidemic();
         } catch (Exception e){
@@ -189,9 +190,11 @@ public class HashRing {
      * Check all the nodes that are previously dead for rejoins
      * Upon rejoins, perform corresponding redistribution for range lists
      * After redistribution, remove the newly rejoined nodes from 'deadNodes'
+     * Returns a list of transfer requests that must be performed by this node
      */
-    public void checkAndHandleRejoins() {
+    public ArrayList<TransferRequest> checkAndHandleRejoins() {
         List<Node> rejoinedNodes = new ArrayList<>();
+        ArrayList<TransferRequest> transferRequests = new ArrayList<>();
 
         for (Node deadNode : deadNodes) {
             if (epidemic.isAlive(deadNode.getNodeID())) { // Check if the dead node has rejoined
@@ -223,12 +226,16 @@ public class HashRing {
                     }
                 }
 
+
                 if (nodeTookOverRanges != null) {
                     // Transfer any ranges that the rejoined node is responsible for from nodeToTakeOverRanges to the rejoined node
                     for (int range : nodeTookOverRanges.getRangeList()) {
                         if (deadNode.inRange(range)) {
                             deadNode.addRange(range);
                             nodeTookOverRanges.removeRange(range);
+                            if(myID == nodeTookOverRanges.getNodeID()){
+                                transferRequests.add(new TransferRequest(deadNode, range));
+                            }
                         }
                     }
 
@@ -240,6 +247,7 @@ public class HashRing {
 
         // Remove the newly rejoined nodes from the deadNodes list
         deadNodes.removeAll(rejoinedNodes);
+        return transferRequests;
     }
 
     public void clearNodeCache() {

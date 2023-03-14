@@ -19,7 +19,7 @@ public class RequestHandlingLayer {
     private final KVResponse ERROR_OUT_OF_MEMORY = KVResponse.newBuilder().setErrCode(0x02).build();
     private final KVResponse ERROR_INVALID_COMMAND = KVResponse.newBuilder().setErrCode(0x05).build();
     private final KVResponse ERROR_NON_EXISTENT = KVResponse.newBuilder().setErrCode(0x01).build();
-    private final KVResponse ZERO_ERR_CODE= KVResponse.newBuilder().setErrCode(0x00).build();
+    private final KVResponse ZERO_ERR_CODE = KVResponse.newBuilder().setErrCode(0x00).build();
 
     public RequestHandlingLayer(StorageLayer storageLayer, Cache cache, HashRing hashRing) {
         this.storageLayer = storageLayer;
@@ -86,6 +86,10 @@ public class RequestHandlingLayer {
         }
         cache.put(reqMsgId, response);
         return response;
+    }
+
+    public void performTransfer(TransferRequest transferRequest){
+        storageLayer.performTransfer(transferRequest);
     }
 
     private static long getMemoryUsage() {

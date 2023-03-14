@@ -18,7 +18,7 @@ public class App {
         int cacheSize = Integer.parseInt(args[2]);
 
         // Create a new storage layer, cache, isAlive map, and hash ring
-        StorageLayer storage = new StorageLayer();
+        StorageLayer storage = new StorageLayer(port + 20000);
         Cache cache = new Cache(cacheSize);
 
         HashRing hashRing = new HashRing("servers.txt", address, port);

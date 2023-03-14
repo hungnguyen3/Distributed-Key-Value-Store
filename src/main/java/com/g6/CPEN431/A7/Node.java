@@ -74,4 +74,6 @@ public class Node {
 
     public int getEpidemicPort() {return epidemicPort;}
     public int getNodeID() {return nodeID;}
+
+    public int getHashRingSize() {return hashRingSize;}
 }
