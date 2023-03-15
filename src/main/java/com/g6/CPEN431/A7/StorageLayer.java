@@ -9,6 +9,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class StorageLayer {
     DatagramSocket transferSocket;
@@ -55,7 +56,7 @@ public class StorageLayer {
         }
     }
 
-    private Map<ByteString, ValueVersionPair> store = new HashMap<ByteString, ValueVersionPair>();
+    private ConcurrentHashMap<ByteString, ValueVersionPair> store = new ConcurrentHashMap<>();;
     public ValueVersionPair get(ByteString key) {
         if (!store.containsKey(key)) {
             return null;
@@ -79,7 +80,7 @@ public class StorageLayer {
     public void performTransfer(TransferRequest transferRequest) {
         Node destinationNode = transferRequest.getDestinationNode();
         int range = transferRequest.getRange();
-        Set<ByteString> keySet = store.keySet();
+        Set<ByteString> keySet = new HashSet<>(store.keySet());
         Set<ByteString> toRemove = new HashSet<>();
         for(ByteString b : keySet){
             byte[] key_byte_array = b.toByteArray();
