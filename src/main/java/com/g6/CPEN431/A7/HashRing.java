@@ -269,6 +269,10 @@ public class HashRing {
     }
 
     public int getMembershipCount() {
+        if(nodes.size() == 1) {
+            return 1;
+        }
+
         int count = 0;
         for (Node node : nodes) {
             if (epidemic.isAlive(node.getNodeID())) {
