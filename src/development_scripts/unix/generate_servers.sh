@@ -11,7 +11,7 @@ truncate -s 0 servers.txt
 
 # Generate server IPs and ports
 for (( i=0; i<$numberOfNodes; i++ )); do
-    port=$((10000+i))
+    port=$((10001+i))
     echo "${ip_address}:${port}" >> servers.txt
 done
 

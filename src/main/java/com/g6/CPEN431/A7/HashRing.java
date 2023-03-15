@@ -149,7 +149,7 @@ public class HashRing {
 
         // Add the deadNode to deadNodes array
         deadNodes.add(deadNode);
-        System.out.println("Node with ID " + deadNode.getNodeID() + " just dropped");
+        // System.out.println("Node with ID " + deadNode.getNodeID() + " just dropped");
 
         // Walk the ring to find a node that is not dead to the left of the dead node
         int counter = 0;
@@ -174,7 +174,7 @@ public class HashRing {
             }
 
             if (counter >= nodes.size()) {
-                System.out.println("Walked the entire ring and ended up not finding any alive nodes!!");
+                // System.out.println("Walked the entire ring and ended up not finding any alive nodes!!");
             }
         }
 
@@ -228,7 +228,7 @@ public class HashRing {
                     ArrayList<Integer> rangesToRemove = new ArrayList<>();
                     for (int range : nodeTookOverRanges.getRangeSet()) {
                         if (range >= deadNode.getNodeID() && range < getNextLivingSuccessorID(deadNode)) {
-                            System.out.println("Transferring Range " + range + " to node with id " + deadNode.getNodeID());
+                            // System.out.println("Transferring Range " + range + " to node with id " + deadNode.getNodeID());
                             deadNode.addRange(range);
                             rangesToRemove.add(range);
 
@@ -242,7 +242,7 @@ public class HashRing {
                     }
 
                     rejoinedNodes.add(deadNode);
-                    System.out.println("Node with ID " + deadNode.getNodeID() + " just rejoined");
+                    // System.out.println("Node with ID " + deadNode.getNodeID() + " just rejoined");
                 }
             }
         }

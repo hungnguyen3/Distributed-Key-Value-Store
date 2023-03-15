@@ -12,7 +12,7 @@ public class RequestHandlingLayer {
     private HashRing hashRing;
     private final int MAX_KEY_LENGTH = 32;
     private final int MAX_VALUE_LENGTH = 10000; //(1 << 20);
-    private final long MAX_MEMORY_USAGE = 60;
+    private final long MAX_MEMORY_USAGE = 505;
     private final int NODE_PID = Integer.parseInt(ManagementFactory.getRuntimeMXBean().getName().split("@")[0]);
     private final KVResponse ERROR_KEY_TOO_LONG = KVResponse.newBuilder().setErrCode(0x06).build();
     private final KVResponse ERROR_VALUE_TOO_LONG = KVResponse.newBuilder().setErrCode(0x07).build();

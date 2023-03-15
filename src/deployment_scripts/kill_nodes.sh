@@ -19,6 +19,4 @@ while read pid || [ -n "$pid" ]; do
   [[ ! -z "$pid" ]] && kill -9 $pid && echo "Shut down server process with pid $pid"
 done < $pid_list
 
-pkill -f 'java -Xmx64m -jar'
-
-cd src/development_scripts/unix
+pkill -f 'java -Xmx512m -jar'

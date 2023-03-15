@@ -84,7 +84,7 @@ public class NetworkLayer implements Runnable {
                         //Check to see if any of the dead nodes has rejoined and update HashRing.
                         ArrayList<TransferRequest> transferRequests =  hashRing.checkAndHandleRejoins();
                         for (TransferRequest transferRequest : transferRequests) {
-                            System.out.println("Transfer request detected range: " + transferRequest.getRange() + "from node with ID: " + (port - 10000) + " to node with ID: " + transferRequest.getDestinationNode().getNodeID());
+                            // System.out.println("Transfer request detected range: " + transferRequest.getRange() + "from node with ID: " + (port - 10000) + " to node with ID: " + transferRequest.getDestinationNode().getNodeID());
                             requestHandlingLayer.performTransfer(transferRequest);
                         }
 
@@ -137,6 +137,17 @@ public class NetworkLayer implements Runnable {
                 // Send the response back to the client
                 DatagramPacket responseMessagePacket = new DatagramPacket(responseMessageBytes, responseMessageBytes.length, clientHost, clientPort);
                 datagramSocket.send(responseMessagePacket);
+
+                // Debugging statement
+//                if(request.getCommand() == 0x01) {
+//                    System.out.println("Sent PUT response to client!!! " + clientHost + ":" + clientPort);
+//                }
+//                if(request.getCommand() == 0x02) {
+//                    System.out.println("Sent GET response to client!!! " + clientHost + ":" + clientPort);
+//                }
+//                if(request.getCommand() == 0x03) {
+//                    System.out.println("Sent REM response to client!!! " + clientHost + ":" + clientPort);
+//                }
             }
         } catch (IOException e) {
             e.printStackTrace();

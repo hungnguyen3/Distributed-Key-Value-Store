@@ -24,14 +24,12 @@ public class StorageLayer {
                         DatagramPacket packet = new DatagramPacket(receiveBuffer, receiveBuffer.length);
                         try {
                             transferSocket.receive(packet);
-                            System.out.println("RECEIVING TRANSFER");
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
                         byte[] incomingPacketData = Arrays.copyOf(packet.getData(), packet.getLength());
                         try {
                             KeyValueRequest.KVRequest incomingRequest = KeyValueRequest.KVRequest.parseFrom(incomingPacketData);
-                            System.out.println("STORING KEY " + incomingRequest.getKey() + ",VALUE " + incomingRequest.getValue() + ",VERSION " + incomingRequest.getVersion());
                             store.put(incomingRequest.getKey(), new ValueVersionPair(incomingRequest.getValue(), incomingRequest.getVersion()));
                         } catch (InvalidProtocolBufferException e) {
                             throw new RuntimeException(e);
