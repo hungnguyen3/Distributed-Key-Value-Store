@@ -8,7 +8,7 @@
 
 - for single node:
 
-  `java -Xmx64m -jar A7.jar 35.89.101.200 10001 310`
+  `java -Xmx64m -jar A9.jar 35.89.101.200 10001 310`
 
 - for 20 nodes (on Mac):
 
