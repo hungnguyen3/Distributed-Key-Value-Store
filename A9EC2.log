@@ -1,0 +1,3473 @@
+CPEN 431 EVALUATION test Client
+Time: Thu Mar 16 04:03:52 UTC 2023
+Build Date: Wed Mar 15 23:08:24 UTC 2023
+Java process ID: 41804
+Assignment ID: 9
+Client Version: 1
+
+[Info] A9 client running in SUBMIT mode.
+
+[Info] Starting A9 Tests
+
+[Info] Correct submission information.
+[Info] Checking if the test client is running on AWS
+[Info] Detected instance type: c6a.8xlarge
+
+[Info] Done building nodes' list.
+[Info] The deployment has 80 server nodes.
+
+[Info] Checking SSH connectivity to deployed servers ...
+[Info] SSH check passed!
+
+[Info] Checking server deployment.
+Deployment information:
+c6a.8xlarge 
+ Ubuntu 20.04.5 LTS 
+ qdisc netem 8002: root refcnt 2 limit 1000 delay 5.0ms loss 0.25% 
+ qdisc netem 8003: root refcnt 33 limit 1000 delay 5.0ms loss 0.25% 
+ net-tools 1.60+git20180626.aebd88e-1ubuntu1
+[Test isAlive] for 127.0.0.1:43100
+Sending GETPID to all servers... 
+[Info] Server node 127.0.0.143100 has process ID 41779.
+[ ... Completed in 0.006 seconds ]
+[OK]
+Sending GetMembershipCount to all servers... 
+[Info] Server 127.0.0.1:43100 replied with membership count = 1 (expected count = 1)
+[ ... Completed in 0.002 seconds ]
+[Ok] All servers returned the expected membership count (1)
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.001 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST Basic PUT/GET (PUT -> GET). Value Length = 8 Bytes ]
+TEST_PASSED
+
+[ TEST Basic PUT/GET (PUT -> GET). Value Length = 32 Bytes ]
+TEST_PASSED
+
+[ TEST Basic PUT/GET (PUT -> GET). Value Length = 2048 Bytes ]
+TEST_PASSED
+
+[ TEST Basic PUT/GET (PUT -> GET). Value Length = 10000 Bytes ]
+TEST_PASSED
+
+
+[ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 8 Bytes ]
+TEST_PASSED
+
+
+[ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 32 Bytes ]
+TEST_PASSED
+
+
+[ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 2048 Bytes ]
+TEST_PASSED
+
+
+[ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 10000 Bytes ]
+TEST_PASSED
+
+[ TEST Basic REMOVE (PUT -> GET -> REM -> GET). Value Length = 32 Bytes. ]
+TEST_PASSED
+
+[ TEST Double remove (PUT -> REM -> REM). Value Length = 32 Bytes. ]
+TEST_PASSED
+
+[ TEST Invalid Command. ]
+TEST_PASSED
+
+[ TEST At-Most-Once Client Policy (PUT -> REM -> REM). Value length =  32 Bytes ]
+TEST_PASSED
+
+[ TEST At-Most-Once Client Policy Empty REMs (EMPTY -> REM -> REM) ]
+TEST_PASSED
+
+[ TEST At-Most-Once Client Policy Error Return Code (REM -> PUT -> REM) ]
+TEST_PASSED
+
+[ TEST At-Most-Once Client Policy (PUT -> REM -> many PUT -> REM). Value length =  32 Bytes ]
+Pausing for 10 seconds to wait for the cache to be cleared!
+TEST_PASSED
+
+[ TEST At-Most-Once Client Policy For PUTs (PUT1 -> PUT2 -> PUT1 -> GET2) ]
+TEST_PASSED
+
+[TEST Invalid Key ]
+TEST_PASSED
+
+[TEST Invalid Value ]
+TEST_PASSED
+
+[ TEST Single Front-End Performance (1 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+Test time limit reached: 60.0s.
+Test completed after 713962 closed loops.
+[Test isAlive] for 127.0.0.1:43100
+[ ... Completed in 0.001 seconds ]
+Local Single node: Test Status: TEST_PASSED
+Clients: 1
+Total Requests (without replies): 1427922
+Total Requests (including replies): 1427932
+Successful Responses: 1427921
+Timeout Responses: 1
+Total Failed Responses: 0
+% Success: 99.99992996816353
+% Timeout: 7.003183647286056E-5
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 410ms, [min] 0ms
+[avg] 0.03147022839498824 ms, [stdev] 0.4694297684611773ms
+Throughput: 23797.906736442117 requests per second
+Goodput: 23797.89007033099 requests per second
+Retry Rate (Successful requests): 1.0000070031836472
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.006 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.785 seconds ]
+
+[ TEST Single Front-End Performance (16 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test completed after 165959 closed loops.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test completed after 165789 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 165740 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 165925 closed loops.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test completed after 165845 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 165722 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 165885 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 165998 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 166090 closed loops.
+Test completed after 165718 closed loops.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test completed after 166076 closed loops.
+Test completed after 165885 closed loops.
+Test completed after 165747 closed loops.
+Test completed after 166017 closed loops.
+Test completed after 165782 closed loops.
+Test completed after 165891 closed loops.
+[Test isAlive] for 127.0.0.1:43100
+[ ... Completed in 0.001 seconds ]
+Local Single node: Test Status: TEST_PASSED
+Clients: 16
+Total Requests (without replies): 5308126
+Total Requests (including replies): 5308126
+Successful Responses: 5308126
+Timeout Responses: 0
+Total Failed Responses: 0
+% Success: 100.0
+% Timeout: 0.0
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 24ms, [min] 0ms
+[avg] 0.1681957059798505 ms, [stdev] 0.4193766771835589ms
+Throughput: 88465.81780607313 requests per second
+Goodput: 88465.81780607313 requests per second
+Retry Rate (Successful requests): 1.0
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.003 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 67.231 seconds ]
+
+[ TEST Single Front-End Performance (64 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test completed after 42194 closed loops.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test completed after 42197 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 42207 closed loops.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test completed after 42201 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 42206 closed loops.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test completed after 42191 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 42205 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 42177 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 42194 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 42217 closed loops.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test completed after 42197 closed loops.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test completed after 42195 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 42197 closed loops.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test completed after 42202 closed loops.
+Test completed after 42163 closed loops.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test completed after 42199 closed loops.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test completed after 42216 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 42202 closed loops.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test completed after 42204 closed loops.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test completed after 42201 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 42200 closed loops.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test completed after 42202 closed loops.
+Test completed after 42200 closed loops.
+Test completed after 42204 closed loops.
+Test completed after 42209 closed loops.
+Test completed after 42203 closed loops.
+Test completed after 42198 closed loops.
+Test completed after 42210 closed loops.
+Test completed after 42202 closed loops.
+Test completed after 42193 closed loops.
+Test completed after 42193 closed loops.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test completed after 42205 closed loops.
+Test completed after 42203 closed loops.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test completed after 42191 closed loops.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test completed after 42189 closed loops.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test completed after 42194 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 42224 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 42186 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 42206 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 42212 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 42198 closed loops.
+Test completed after 42204 closed loops.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test completed after 42186 closed loops.
+Test completed after 42210 closed loops.
+Test completed after 42199 closed loops.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test completed after 42196 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 42211 closed loops.
+Test time limit reached: 60.0s.
+Test completed after 42218 closed loops.
+Test time limit reached: 60.0s.
+Test time limit reached: 60.0s.
+Test completed after 42204 closed loops.
+Test completed after 42183 closed loops.
+Test completed after 42197 closed loops.
+Test completed after 42186 closed loops.
+Test completed after 42203 closed loops.
+Test completed after 42209 closed loops.
+Test completed after 42214 closed loops.
+Test completed after 42209 closed loops.
+Test completed after 42193 closed loops.
+Test completed after 42202 closed loops.
+Test completed after 42196 closed loops.
+Test completed after 42180 closed loops.
+Test completed after 42204 closed loops.
+Test completed after 42218 closed loops.
+Test completed after 42209 closed loops.
+Test completed after 42200 closed loops.
+[Test isAlive] for 127.0.0.1:43100
+[ ... Completed in 0.0 seconds ]
+Local Single node: Test Status: TEST_PASSED
+Clients: 64
+Total Requests (without replies): 5401605
+Total Requests (including replies): 5401605
+Successful Responses: 5401605
+Timeout Responses: 0
+Total Failed Responses: 0
+% Success: 100.0
+% Timeout: 0.0
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 27ms, [min] 0ms
+[avg] 0.6976855952999155 ms, [stdev] 0.7066314581118943ms
+Throughput: 90019.248395967 requests per second
+Goodput: 90019.248395967 requests per second
+Retry Rate (Successful requests): 1.0
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.003 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 67.259 seconds ]
+
+[ TEST Single Client Capacity (Value Size = 500 bytes, Limit = 146800 PUTs, ~69.99969482421875 MiB) : PUT -> GET (closed loop) ]
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.0 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+ERROR_OUT_OF_SPACE
+Received error code after 78422 closed loops (~37.39452362060547 MiB).
+PUTs sent = 78422(~37.39452362060547 MiB) , Limit = 146800
+[Test isAlive]
+Test Passed. Server is ok.
+TEST_PASSED
+[Info] Shutting down local server(s)!
+[Test isAlive] for 127.0.0.1:43100
+[ ... Completed in 10.002 seconds ]
+[Info] Local tests completed in 248.726 seconds
+[Info] Finished tests for the local deployment!
+
+[Info] The deployment has 80 server nodes.
+Sending GET PID to all servers (v2) ... 
+>>> Server node 44.233.222.183:10001 has process ID 155848.
+>>> Server node 44.233.222.183:10002 has process ID 155849.
+>>> Server node 44.233.222.183:10003 has process ID 155850.
+>>> Server node 44.233.222.183:10004 has process ID 155851.
+>>> Server node 44.233.222.183:10005 has process ID 155852.
+>>> Server node 44.233.222.183:10006 has process ID 155853.
+>>> Server node 44.233.222.183:10007 has process ID 155854.
+>>> Server node 44.233.222.183:10008 has process ID 155855.
+>>> Server node 44.233.222.183:10009 has process ID 155856.
+>>> Server node 44.233.222.183:10010 has process ID 155857.
+>>> Server node 44.233.222.183:10011 has process ID 155858.
+>>> Server node 44.233.222.183:10012 has process ID 155859.
+>>> Server node 44.233.222.183:10013 has process ID 155860.
+>>> Server node 44.233.222.183:10014 has process ID 155861.
+>>> Server node 44.233.222.183:10015 has process ID 155864.
+>>> Server node 44.233.222.183:10016 has process ID 155865.
+>>> Server node 44.233.222.183:10017 has process ID 155866.
+>>> Server node 44.233.222.183:10018 has process ID 155868.
+>>> Server node 44.233.222.183:10019 has process ID 155869.
+>>> Server node 44.233.222.183:10020 has process ID 155871.
+>>> Server node 44.233.222.183:10021 has process ID 155878.
+>>> Server node 44.233.222.183:10022 has process ID 155880.
+>>> Server node 44.233.222.183:10023 has process ID 155882.
+>>> Server node 44.233.222.183:10024 has process ID 155885.
+>>> Server node 44.233.222.183:10025 has process ID 155887.
+>>> Server node 44.233.222.183:10026 has process ID 155889.
+>>> Server node 44.233.222.183:10027 has process ID 155891.
+>>> Server node 44.233.222.183:10028 has process ID 155893.
+>>> Server node 44.233.222.183:10029 has process ID 155895.
+>>> Server node 44.233.222.183:10030 has process ID 155906.
+>>> Server node 44.233.222.183:10031 has process ID 155922.
+>>> Server node 44.233.222.183:10032 has process ID 155926.
+>>> Server node 44.233.222.183:10033 has process ID 155928.
+>>> Server node 44.233.222.183:10034 has process ID 155931.
+>>> Server node 44.233.222.183:10035 has process ID 155932.
+>>> Server node 44.233.222.183:10036 has process ID 155938.
+>>> Server node 44.233.222.183:10037 has process ID 155943.
+>>> Server node 44.233.222.183:10038 has process ID 155947.
+>>> Server node 44.233.222.183:10039 has process ID 155950.
+>>> Server node 44.233.222.183:10040 has process ID 155954.
+>>> Server node 44.233.222.183:10041 has process ID 155959.
+>>> Server node 44.233.222.183:10042 has process ID 155972.
+>>> Server node 44.233.222.183:10043 has process ID 155986.
+>>> Server node 44.233.222.183:10044 has process ID 155989.
+>>> Server node 44.233.222.183:10045 has process ID 155994.
+>>> Server node 44.233.222.183:10046 has process ID 155997.
+>>> Server node 44.233.222.183:10047 has process ID 156002.
+>>> Server node 44.233.222.183:10048 has process ID 156011.
+>>> Server node 44.233.222.183:10049 has process ID 156017.
+>>> Server node 44.233.222.183:10050 has process ID 156022.
+>>> Server node 44.233.222.183:10051 has process ID 156028.
+>>> Server node 44.233.222.183:10052 has process ID 156031.
+>>> Server node 44.233.222.183:10053 has process ID 156037.
+>>> Server node 44.233.222.183:10054 has process ID 156040.
+>>> Server node 44.233.222.183:10055 has process ID 156049.
+>>> Server node 44.233.222.183:10056 has process ID 156052.
+>>> Server node 44.233.222.183:10057 has process ID 156055.
+>>> Server node 44.233.222.183:10058 has process ID 156064.
+>>> Server node 44.233.222.183:10059 has process ID 156070.
+>>> Server node 44.233.222.183:10060 has process ID 156075.
+>>> Server node 44.233.222.183:10061 has process ID 156081.
+>>> Server node 44.233.222.183:10062 has process ID 156083.
+>>> Server node 44.233.222.183:10063 has process ID 156084.
+>>> Server node 44.233.222.183:10064 has process ID 156089.
+>>> Server node 44.233.222.183:10065 has process ID 156091.
+>>> Server node 44.233.222.183:10066 has process ID 156096.
+>>> Server node 44.233.222.183:10067 has process ID 156099.
+>>> Server node 44.233.222.183:10068 has process ID 156107.
+>>> Server node 44.233.222.183:10069 has process ID 156115.
+>>> Server node 44.233.222.183:10070 has process ID 156119.
+>>> Server node 44.233.222.183:10071 has process ID 156128.
+>>> Server node 44.233.222.183:10072 has process ID 156136.
+>>> Server node 44.233.222.183:10073 has process ID 156139.
+>>> Server node 44.233.222.183:10074 has process ID 156220.
+>>> Server node 44.233.222.183:10075 has process ID 156223.
+>>> Server node 44.233.222.183:10076 has process ID 156227.
+>>> Server node 44.233.222.183:10077 has process ID 156235.
+>>> Server node 44.233.222.183:10078 has process ID 156239.
+>>> Server node 44.233.222.183:10079 has process ID 156246.
+>>> Server node 44.233.222.183:10080 has process ID 156254.
+[ ... Completed in 54.538 seconds ]
+[OK]
+Testing memory usage 
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10001 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10002 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10003 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10004 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10005 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10006 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10007 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10008 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10009 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10010 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10011 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10012 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10013 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10014 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10015 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10016 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10017 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10018 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10019 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10020 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10021 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10022 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10023 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10024 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10025 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10026 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10027 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10028 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10029 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10030 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10031 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10032 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10033 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10034 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10035 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10036 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10037 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10038 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10039 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10040 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10041 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10042 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10043 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10044 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10045 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10046 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10047 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10048 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10049 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10050 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10051 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10052 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10053 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10054 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10055 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10056 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10057 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10058 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10059 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10060 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10061 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10062 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10063 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10064 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10065 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10066 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10067 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10068 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10069 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10070 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10071 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10072 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10073 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10074 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10075 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10076 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10077 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10078 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10079 has memory limit of 512M.
+Command information:
+c6a.8xlarge 
+ Xmx512m
+>>> Server node 44.233.222.183:10080 has memory limit of 512M.
+[ ... Completed in 44.067 seconds ]
+[OK]
+
+Sending GetMembershipCount to all servers... 
+[Info] Server 44.233.222.183:10001 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10002 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10004 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10003 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10005 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10008 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10007 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10009 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10010 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10012 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10011 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10013 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10016 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10014 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10006 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10018 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10015 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10017 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10019 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10020 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10024 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10023 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10021 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10025 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10027 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10022 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10031 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10026 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10030 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10032 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10029 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10028 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10036 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10035 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10037 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10034 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10033 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10039 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10040 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10038 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10041 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10042 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10043 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10044 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10045 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10046 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10048 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10047 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10050 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10049 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10051 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10052 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10053 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10055 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10054 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10057 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10056 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10058 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10060 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10059 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10062 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10063 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10061 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10064 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10065 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10066 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10067 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10068 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10069 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10070 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10071 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10072 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10074 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10076 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10075 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10077 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10073 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10078 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10080 replied with membership count = 80 (expected count = 80)
+[Info] Server 44.233.222.183:10079 replied with membership count = 80 (expected count = 80)
+[ ... Completed in 0.011 seconds ]
+[Ok] All servers returned the expected membership count (80)
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.014 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[Test isAlive] for 44.233.222.183:10001
+
+[ TEST Basic PUT/GET (PUT -> GET). Value Length = 8 Bytes ]
+TEST_PASSED
+
+[ TEST Basic PUT/GET (PUT -> GET). Value Length = 32 Bytes ]
+TEST_PASSED
+
+[ TEST Basic PUT/GET (PUT -> GET). Value Length = 512 Bytes ]
+TEST_PASSED
+
+[ TEST Basic PUT/GET (PUT -> GET). Value Length = 1024 Bytes ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+
+[ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 8 Bytes ]
+TEST_PASSED
+
+
+[ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 32 Bytes ]
+TEST_PASSED
+
+
+[ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 512 Bytes ]
+TEST_PASSED
+
+
+[ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 1024 Bytes ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.048 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST Basic REMOVE (PUT -> GET -> REM -> GET). Value Length = 32 Bytes. ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST Double remove (PUT -> REM -> REM). Value Length = 32 Bytes. ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST Invalid Command. ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST At-Most-Once Client Policy (PUT -> REM -> REM). Value length =  32 Bytes ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.011 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST At-Most-Once Client Policy Empty REMs (EMPTY -> REM -> REM) ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.011 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST At-Most-Once Client Policy (PUT -> REM -> many PUT -> REM). Value length =  32 Bytes ]
+Pausing for 10 seconds to wait for the cache to be cleared!
+TEST_PASSED
+
+[ TEST At-Most-Once Client Policy Error Return Code (REM -> PUT -> REM) ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST At-Most-Once Client Policy For PUTs (PUT1 -> PUT2 -> PUT1 -> GET2) ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[TEST Invalid Key ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.011 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[TEST Invalid Value ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST Single Front-End Performance (1 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 44.233.222.183:10001
+[ ... Completed in 0.006 seconds ]
+Stage 1 Single Front-End: Test Status: TEST_PASSED
+Clients: 1
+Total Requests (without replies): 5612
+Total Requests (including replies): 5633
+Successful Responses: 5612
+Timeout Responses: 0
+Total Failed Responses: 0
+% Success: 100.0
+% Timeout: 0.0
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 51ms, [min] 5ms
+[avg] 10.676229508196721 ms, [stdev] 2.585277861445883ms
+Throughput: 93.52709819345377 requests per second
+Goodput: 93.52709819345377 requests per second
+Retry Rate (Successful requests): 1.0037419814682822
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.011 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.031 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Single Front-End Performance (64 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 44.233.222.183:10001
+[ ... Completed in 0.006 seconds ]
+Stage 1 Single Front-End: Test Status: TEST_PASSED
+Clients: 64
+Total Requests (without replies): 364963
+Total Requests (including replies): 366837
+Successful Responses: 364963
+Timeout Responses: 0
+Total Failed Responses: 0
+% Success: 100.0
+% Timeout: 0.0
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 131ms, [min] 5ms
+[avg] 10.505599197726893 ms, [stdev] 3.0320802876930735ms
+Throughput: 6081.601706353835 requests per second
+Goodput: 6081.601706353835 requests per second
+Retry Rate (Successful requests): 1.0051347670859785
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.011 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.292 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Single Front-End Performance (256 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 44.233.222.183:10001
+[ ... Completed in 0.007 seconds ]
+Stage 1 Single Front-End: Test Status: TEST_PASSED
+Clients: 256
+Total Requests (without replies): 1447503
+Total Requests (including replies): 1456817
+Successful Responses: 1447503
+Timeout Responses: 0
+Total Failed Responses: 0
+% Success: 100.0
+% Timeout: 0.0
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 134ms, [min] 5ms
+[avg] 10.591477876038944 ms, [stdev] 3.393715231845801ms
+Throughput: 24105.765387689848 requests per second
+Goodput: 24105.765387689848 requests per second
+Retry Rate (Successful requests): 1.0064345289785237
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.046 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.929 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Single Front-End Performance (512 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 44.233.222.183:10001
+[ ... Completed in 0.006 seconds ]
+Stage 1 Single Front-End: Test Status: TEST_PASSED
+Clients: 512
+Total Requests (without replies): 2671729
+Total Requests (including replies): 2727745
+Successful Responses: 2671729
+Timeout Responses: 0
+Total Failed Responses: 0
+% Success: 100.0
+% Timeout: 0.0
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 295ms, [min] 5ms
+[avg] 11.475672120937416 ms, [stdev] 7.007720809147701ms
+Throughput: 44491.74021648626 requests per second
+Goodput: 44491.74021648626 requests per second
+Retry Rate (Successful requests): 1.020966198293315
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.042 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 66.606 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Multi Client Crash: PUT -> GET (closed loop) + REM -> WIPEOUT (closed loop) ]
+[Test isAlive]
+Test Passed. Server is ok.
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.011 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 84.347 seconds ]
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 8 Bytes ]
+TEST_PASSED
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 32 Bytes ]
+TEST_PASSED
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 512 Bytes ]
+TEST_PASSED
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 1024 Bytes ]
+TEST_PASSED
+[ ... TEST Completed in 0.475 seconds ]
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (1 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 44.233.222.183:10001
+[Test isAlive] for 44.233.222.183:10002
+[Test isAlive] for 44.233.222.183:10003
+[Test isAlive] for 44.233.222.183:10004
+[Test isAlive] for 44.233.222.183:10005
+[Test isAlive] for 44.233.222.183:10006
+[Test isAlive] for 44.233.222.183:10007
+[Test isAlive] for 44.233.222.183:10008
+[Test isAlive] for 44.233.222.183:10009
+[Test isAlive] for 44.233.222.183:10010
+[Test isAlive] for 44.233.222.183:10011
+[Test isAlive] for 44.233.222.183:10012
+[Test isAlive] for 44.233.222.183:10013
+[Test isAlive] for 44.233.222.183:10014
+[Test isAlive] for 44.233.222.183:10015
+[Test isAlive] for 44.233.222.183:10016
+[Test isAlive] for 44.233.222.183:10017
+[Test isAlive] for 44.233.222.183:10018
+[Test isAlive] for 44.233.222.183:10019
+[Test isAlive] for 44.233.222.183:10020
+[Test isAlive] for 44.233.222.183:10021
+[Test isAlive] for 44.233.222.183:10022
+[Test isAlive] for 44.233.222.183:10023
+[Test isAlive] for 44.233.222.183:10024
+[Test isAlive] for 44.233.222.183:10025
+[Test isAlive] for 44.233.222.183:10026
+[Test isAlive] for 44.233.222.183:10027
+[Test isAlive] for 44.233.222.183:10028
+[Test isAlive] for 44.233.222.183:10029
+[Test isAlive] for 44.233.222.183:10030
+[Test isAlive] for 44.233.222.183:10031
+[Test isAlive] for 44.233.222.183:10032
+[Test isAlive] for 44.233.222.183:10033
+[Test isAlive] for 44.233.222.183:10034
+[Test isAlive] for 44.233.222.183:10035
+[Test isAlive] for 44.233.222.183:10036
+[Test isAlive] for 44.233.222.183:10037
+[Test isAlive] for 44.233.222.183:10038
+[Test isAlive] for 44.233.222.183:10039
+[Test isAlive] for 44.233.222.183:10040
+[Test isAlive] for 44.233.222.183:10041
+[Test isAlive] for 44.233.222.183:10042
+[Test isAlive] for 44.233.222.183:10043
+[Test isAlive] for 44.233.222.183:10044
+[Test isAlive] for 44.233.222.183:10045
+[Test isAlive] for 44.233.222.183:10046
+[Test isAlive] for 44.233.222.183:10047
+[Test isAlive] for 44.233.222.183:10048
+[Test isAlive] for 44.233.222.183:10049
+[Test isAlive] for 44.233.222.183:10050
+[Test isAlive] for 44.233.222.183:10051
+[Test isAlive] for 44.233.222.183:10052
+[Test isAlive] for 44.233.222.183:10053
+[Test isAlive] for 44.233.222.183:10054
+[Test isAlive] for 44.233.222.183:10055
+[Test isAlive] for 44.233.222.183:10056
+[Test isAlive] for 44.233.222.183:10057
+[Test isAlive] for 44.233.222.183:10058
+[Test isAlive] for 44.233.222.183:10059
+[Test isAlive] for 44.233.222.183:10060
+[Test isAlive] for 44.233.222.183:10061
+[Test isAlive] for 44.233.222.183:10062
+[Test isAlive] for 44.233.222.183:10063
+[Test isAlive] for 44.233.222.183:10064
+[Test isAlive] for 44.233.222.183:10065
+[Test isAlive] for 44.233.222.183:10066
+[Test isAlive] for 44.233.222.183:10067
+[Test isAlive] for 44.233.222.183:10068
+[Test isAlive] for 44.233.222.183:10069
+[Test isAlive] for 44.233.222.183:10070
+[Test isAlive] for 44.233.222.183:10071
+[Test isAlive] for 44.233.222.183:10072
+[Test isAlive] for 44.233.222.183:10073
+[Test isAlive] for 44.233.222.183:10074
+[Test isAlive] for 44.233.222.183:10075
+[Test isAlive] for 44.233.222.183:10076
+[Test isAlive] for 44.233.222.183:10077
+[Test isAlive] for 44.233.222.183:10078
+[Test isAlive] for 44.233.222.183:10079
+[Test isAlive] for 44.233.222.183:10080
+[ ... Completed in 0.011 seconds ]
+TEST_PASSED
+Stage 1 Random Front-End Performance: Test Status: TEST_PASSED
+Clients: 1
+Total Requests (without replies): 5605
+Total Requests (including replies): 5624
+Successful Responses: 5605
+Timeout Responses: 0
+Total Failed Responses: 0
+% Success: 100.0
+% Timeout: 0.0
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 51ms, [min] 5ms
+[avg] 10.695272078501338 ms, [stdev] 2.4972964761071648ms
+Throughput: 93.41199606686332 requests per second
+Goodput: 93.41199606686332 requests per second
+Retry Rate (Successful requests): 1.0033898305084745
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.028 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (64 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 44.233.222.183:10002
+[Test isAlive] for 44.233.222.183:10005
+[Test isAlive] for 44.233.222.183:10006
+[Test isAlive] for 44.233.222.183:10003
+[Test isAlive] for 44.233.222.183:10001
+[Test isAlive] for 44.233.222.183:10007
+[Test isAlive] for 44.233.222.183:10004
+[Test isAlive] for 44.233.222.183:10008
+[Test isAlive] for 44.233.222.183:10009
+[Test isAlive] for 44.233.222.183:10010
+[Test isAlive] for 44.233.222.183:10011
+[Test isAlive] for 44.233.222.183:10012
+[Test isAlive] for 44.233.222.183:10013
+[Test isAlive] for 44.233.222.183:10014
+[Test isAlive] for 44.233.222.183:10015
+[Test isAlive] for 44.233.222.183:10016
+[Test isAlive] for 44.233.222.183:10017
+[Test isAlive] for 44.233.222.183:10018
+[Test isAlive] for 44.233.222.183:10019
+[Test isAlive] for 44.233.222.183:10020
+[Test isAlive] for 44.233.222.183:10021
+[Test isAlive] for 44.233.222.183:10022
+[Test isAlive] for 44.233.222.183:10023
+[Test isAlive] for 44.233.222.183:10024
+[Test isAlive] for 44.233.222.183:10025
+[Test isAlive] for 44.233.222.183:10026
+[Test isAlive] for 44.233.222.183:10027
+[Test isAlive] for 44.233.222.183:10028
+[Test isAlive] for 44.233.222.183:10029
+[Test isAlive] for 44.233.222.183:10030
+[Test isAlive] for 44.233.222.183:10031
+[Test isAlive] for 44.233.222.183:10032
+[Test isAlive] for 44.233.222.183:10033
+[Test isAlive] for 44.233.222.183:10034
+[Test isAlive] for 44.233.222.183:10035
+[Test isAlive] for 44.233.222.183:10036
+[Test isAlive] for 44.233.222.183:10037
+[Test isAlive] for 44.233.222.183:10038
+[Test isAlive] for 44.233.222.183:10039
+[Test isAlive] for 44.233.222.183:10040
+[Test isAlive] for 44.233.222.183:10041
+[Test isAlive] for 44.233.222.183:10042
+[Test isAlive] for 44.233.222.183:10043
+[Test isAlive] for 44.233.222.183:10044
+[Test isAlive] for 44.233.222.183:10045
+[Test isAlive] for 44.233.222.183:10046
+[Test isAlive] for 44.233.222.183:10047
+[Test isAlive] for 44.233.222.183:10048
+[Test isAlive] for 44.233.222.183:10049
+[Test isAlive] for 44.233.222.183:10050
+[Test isAlive] for 44.233.222.183:10051
+[Test isAlive] for 44.233.222.183:10052
+[Test isAlive] for 44.233.222.183:10053
+[Test isAlive] for 44.233.222.183:10054
+[Test isAlive] for 44.233.222.183:10055
+[Test isAlive] for 44.233.222.183:10056
+[Test isAlive] for 44.233.222.183:10057
+[Test isAlive] for 44.233.222.183:10058
+[Test isAlive] for 44.233.222.183:10059
+[Test isAlive] for 44.233.222.183:10060
+[Test isAlive] for 44.233.222.183:10061
+[Test isAlive] for 44.233.222.183:10062
+[Test isAlive] for 44.233.222.183:10063
+[Test isAlive] for 44.233.222.183:10064
+[Test isAlive] for 44.233.222.183:10065
+[Test isAlive] for 44.233.222.183:10066
+[Test isAlive] for 44.233.222.183:10067
+[Test isAlive] for 44.233.222.183:10068
+[Test isAlive] for 44.233.222.183:10069
+[Test isAlive] for 44.233.222.183:10070
+[Test isAlive] for 44.233.222.183:10071
+[Test isAlive] for 44.233.222.183:10072
+[Test isAlive] for 44.233.222.183:10073
+[Test isAlive] for 44.233.222.183:10074
+[Test isAlive] for 44.233.222.183:10075
+[Test isAlive] for 44.233.222.183:10076
+[Test isAlive] for 44.233.222.183:10077
+[Test isAlive] for 44.233.222.183:10078
+[Test isAlive] for 44.233.222.183:10079
+[Test isAlive] for 44.233.222.183:10080
+[ ... Completed in 0.013 seconds ]
+TEST_PASSED
+[ CPU load (loadavg, last one minute) 0.34 ]
+Stage 1 Random Front-End Performance: Test Status: TEST_PASSED
+Clients: 64
+Total Requests (without replies): 365634
+Total Requests (including replies): 367404
+Successful Responses: 365634
+Timeout Responses: 0
+Total Failed Responses: 0
+% Success: 100.0
+% Timeout: 0.0
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 131ms, [min] 5ms
+[avg] 10.488212255971819 ms, [stdev] 2.916851187191526ms
+Throughput: 6091.057506496968 requests per second
+Goodput: 6091.057506496968 requests per second
+Retry Rate (Successful requests): 1.0048409064802508
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.018 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.242 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (256 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 44.233.222.183:10002
+[Test isAlive] for 44.233.222.183:10006
+[Test isAlive] for 44.233.222.183:10004
+[Test isAlive] for 44.233.222.183:10005
+[Test isAlive] for 44.233.222.183:10003
+[Test isAlive] for 44.233.222.183:10001
+[Test isAlive] for 44.233.222.183:10008
+[Test isAlive] for 44.233.222.183:10007
+[Test isAlive] for 44.233.222.183:10009
+[Test isAlive] for 44.233.222.183:10010
+[Test isAlive] for 44.233.222.183:10011
+[Test isAlive] for 44.233.222.183:10012
+[Test isAlive] for 44.233.222.183:10013
+[Test isAlive] for 44.233.222.183:10014
+[Test isAlive] for 44.233.222.183:10015
+[Test isAlive] for 44.233.222.183:10016
+[Test isAlive] for 44.233.222.183:10017
+[Test isAlive] for 44.233.222.183:10018
+[Test isAlive] for 44.233.222.183:10019
+[Test isAlive] for 44.233.222.183:10020
+[Test isAlive] for 44.233.222.183:10021
+[Test isAlive] for 44.233.222.183:10022
+[Test isAlive] for 44.233.222.183:10023
+[Test isAlive] for 44.233.222.183:10024
+[Test isAlive] for 44.233.222.183:10025
+[Test isAlive] for 44.233.222.183:10026
+[Test isAlive] for 44.233.222.183:10027
+[Test isAlive] for 44.233.222.183:10028
+[Test isAlive] for 44.233.222.183:10029
+[Test isAlive] for 44.233.222.183:10030
+[Test isAlive] for 44.233.222.183:10031
+[Test isAlive] for 44.233.222.183:10032
+[Test isAlive] for 44.233.222.183:10033
+[Test isAlive] for 44.233.222.183:10034
+[Test isAlive] for 44.233.222.183:10035
+[Test isAlive] for 44.233.222.183:10036
+[Test isAlive] for 44.233.222.183:10037
+[Test isAlive] for 44.233.222.183:10038
+[Test isAlive] for 44.233.222.183:10039
+[Test isAlive] for 44.233.222.183:10040
+[Test isAlive] for 44.233.222.183:10041
+[Test isAlive] for 44.233.222.183:10042
+[Test isAlive] for 44.233.222.183:10043
+[Test isAlive] for 44.233.222.183:10044
+[Test isAlive] for 44.233.222.183:10045
+[Test isAlive] for 44.233.222.183:10046
+[Test isAlive] for 44.233.222.183:10047
+[Test isAlive] for 44.233.222.183:10048
+[Test isAlive] for 44.233.222.183:10049
+[Test isAlive] for 44.233.222.183:10050
+[Test isAlive] for 44.233.222.183:10051
+[Test isAlive] for 44.233.222.183:10052
+[Test isAlive] for 44.233.222.183:10053
+[Test isAlive] for 44.233.222.183:10054
+[Test isAlive] for 44.233.222.183:10055
+[Test isAlive] for 44.233.222.183:10056
+[Test isAlive] for 44.233.222.183:10057
+[Test isAlive] for 44.233.222.183:10058
+[Test isAlive] for 44.233.222.183:10059
+[Test isAlive] for 44.233.222.183:10060
+[Test isAlive] for 44.233.222.183:10061
+[Test isAlive] for 44.233.222.183:10062
+[Test isAlive] for 44.233.222.183:10063
+[Test isAlive] for 44.233.222.183:10064
+[Test isAlive] for 44.233.222.183:10065
+[Test isAlive] for 44.233.222.183:10066
+[Test isAlive] for 44.233.222.183:10067
+[Test isAlive] for 44.233.222.183:10068
+[Test isAlive] for 44.233.222.183:10069
+[Test isAlive] for 44.233.222.183:10070
+[Test isAlive] for 44.233.222.183:10071
+[Test isAlive] for 44.233.222.183:10072
+[Test isAlive] for 44.233.222.183:10073
+[Test isAlive] for 44.233.222.183:10074
+[Test isAlive] for 44.233.222.183:10075
+[Test isAlive] for 44.233.222.183:10076
+[Test isAlive] for 44.233.222.183:10077
+[Test isAlive] for 44.233.222.183:10078
+[Test isAlive] for 44.233.222.183:10079
+[Test isAlive] for 44.233.222.183:10080
+[ ... Completed in 0.011 seconds ]
+TEST_PASSED
+[ CPU load (loadavg, last one minute) 0.54 ]
+Stage 1 Random Front-End Performance: Test Status: TEST_PASSED
+Clients: 256
+Total Requests (without replies): 1459204
+Total Requests (including replies): 1466503
+Successful Responses: 1459204
+Timeout Responses: 0
+Total Failed Responses: 0
+% Success: 100.0
+% Timeout: 0.0
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 132ms, [min] 5ms
+[avg] 10.505908015603028 ms, [stdev] 2.974758194316087ms
+Throughput: 24305.078534903478 requests per second
+Goodput: 24305.078534903478 requests per second
+Retry Rate (Successful requests): 1.0050020422093142
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.014 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.939 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (512 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 44.233.222.183:10003
+[Test isAlive] for 44.233.222.183:10001
+[Test isAlive] for 44.233.222.183:10002
+[Test isAlive] for 44.233.222.183:10005
+[Test isAlive] for 44.233.222.183:10006
+[Test isAlive] for 44.233.222.183:10004
+[Test isAlive] for 44.233.222.183:10007
+[Test isAlive] for 44.233.222.183:10008
+[Test isAlive] for 44.233.222.183:10010
+[Test isAlive] for 44.233.222.183:10009
+[Test isAlive] for 44.233.222.183:10011
+[Test isAlive] for 44.233.222.183:10012
+[Test isAlive] for 44.233.222.183:10013
+[Test isAlive] for 44.233.222.183:10014
+[Test isAlive] for 44.233.222.183:10015
+[Test isAlive] for 44.233.222.183:10016
+[Test isAlive] for 44.233.222.183:10017
+[Test isAlive] for 44.233.222.183:10018
+[Test isAlive] for 44.233.222.183:10019
+[Test isAlive] for 44.233.222.183:10020
+[Test isAlive] for 44.233.222.183:10021
+[Test isAlive] for 44.233.222.183:10022
+[Test isAlive] for 44.233.222.183:10023
+[Test isAlive] for 44.233.222.183:10024
+[Test isAlive] for 44.233.222.183:10025
+[Test isAlive] for 44.233.222.183:10026
+[Test isAlive] for 44.233.222.183:10027
+[Test isAlive] for 44.233.222.183:10028
+[Test isAlive] for 44.233.222.183:10029
+[Test isAlive] for 44.233.222.183:10030
+[Test isAlive] for 44.233.222.183:10031
+[Test isAlive] for 44.233.222.183:10032
+[Test isAlive] for 44.233.222.183:10033
+[Test isAlive] for 44.233.222.183:10034
+[Test isAlive] for 44.233.222.183:10035
+[Test isAlive] for 44.233.222.183:10036
+[Test isAlive] for 44.233.222.183:10037
+[Test isAlive] for 44.233.222.183:10038
+[Test isAlive] for 44.233.222.183:10039
+[Test isAlive] for 44.233.222.183:10040
+[Test isAlive] for 44.233.222.183:10041
+[Test isAlive] for 44.233.222.183:10042
+[Test isAlive] for 44.233.222.183:10043
+[Test isAlive] for 44.233.222.183:10044
+[Test isAlive] for 44.233.222.183:10045
+[Test isAlive] for 44.233.222.183:10047
+[Test isAlive] for 44.233.222.183:10046
+[Test isAlive] for 44.233.222.183:10048
+[Test isAlive] for 44.233.222.183:10049
+[Test isAlive] for 44.233.222.183:10050
+[Test isAlive] for 44.233.222.183:10051
+[Test isAlive] for 44.233.222.183:10052
+[Test isAlive] for 44.233.222.183:10053
+[Test isAlive] for 44.233.222.183:10054
+[Test isAlive] for 44.233.222.183:10055
+[Test isAlive] for 44.233.222.183:10056
+[Test isAlive] for 44.233.222.183:10057
+[Test isAlive] for 44.233.222.183:10058
+[Test isAlive] for 44.233.222.183:10059
+[Test isAlive] for 44.233.222.183:10060
+[Test isAlive] for 44.233.222.183:10061
+[Test isAlive] for 44.233.222.183:10062
+[Test isAlive] for 44.233.222.183:10063
+[Test isAlive] for 44.233.222.183:10064
+[Test isAlive] for 44.233.222.183:10065
+[Test isAlive] for 44.233.222.183:10066
+[Test isAlive] for 44.233.222.183:10067
+[Test isAlive] for 44.233.222.183:10068
+[Test isAlive] for 44.233.222.183:10069
+[Test isAlive] for 44.233.222.183:10070
+[Test isAlive] for 44.233.222.183:10071
+[Test isAlive] for 44.233.222.183:10072
+[Test isAlive] for 44.233.222.183:10073
+[Test isAlive] for 44.233.222.183:10074
+[Test isAlive] for 44.233.222.183:10075
+[Test isAlive] for 44.233.222.183:10076
+[Test isAlive] for 44.233.222.183:10077
+[Test isAlive] for 44.233.222.183:10078
+[Test isAlive] for 44.233.222.183:10079
+[Test isAlive] for 44.233.222.183:10080
+[ ... Completed in 0.05 seconds ]
+TEST_PASSED
+[ CPU load (loadavg, last one minute) 1.29 ]
+Stage 1 Random Front-End Performance: Test Status: TEST_PASSED
+Clients: 512
+Total Requests (without replies): 2895269
+Total Requests (including replies): 2910088
+Successful Responses: 2895269
+Timeout Responses: 0
+Total Failed Responses: 0
+% Success: 100.0
+% Timeout: 0.0
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 291ms, [min] 5ms
+[avg] 10.586405960896897 ms, [stdev] 3.100201886236935ms
+Throughput: 48213.501856755094 requests per second
+Goodput: 48213.501856755094 requests per second
+Retry Rate (Successful requests): 1.0051183499702445
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.024 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 66.706 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Concurrent Store/Load v2; Stage 0; (Clients = 32, Limit = 40000 PUTs) ]
+Issuing PUTS ... 
+[DONE in 13.323s]
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; Of 40000 stored keys: 40000 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.0%
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; Total Value Size (MiB): 19.14737033843994 MiB.
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; SUCCESS Response Count: 40000.0.
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; % SUCCESS: 100.0%.
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; % FAILED (Not SUCCESS): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; % TIMEOUT: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; % ERROR-UID: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; % ERROR-OTHER: 0.0%.
+[Info] PUTs % SUCCESS Ok: 100.0% Success.(90.0% minimum required).
+Confirming keys were stored correctly.
+Issuing GETs ... 
+[DONE in 13.431s]
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; Of 40000 stored keys: 40000 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.0%
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; Total Value Size (MiB): 19.14737033843994 MiB.
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; SUCCESS Response Count: 40000.0.
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; % SUCCESS: 100.0%.
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; % FAILED (Not SUCCESS): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; % TIMEOUT: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; % ERROR-UID: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; % ERROR-OTHER: 0.0%.
+[Info] GETs % SUCCESS Ok: 100.0% Success.(90.0% minimum required).
+Checking that 80 nodes are alive
+[Test isAlive] for 44.233.222.183:10001
+[Test isAlive] for 44.233.222.183:10002
+[Test isAlive] for 44.233.222.183:10003
+[Test isAlive] for 44.233.222.183:10004
+[Test isAlive] for 44.233.222.183:10005
+[Test isAlive] for 44.233.222.183:10006
+[Test isAlive] for 44.233.222.183:10007
+[Test isAlive] for 44.233.222.183:10008
+[Test isAlive] for 44.233.222.183:10009
+[Test isAlive] for 44.233.222.183:10010
+[Test isAlive] for 44.233.222.183:10011
+[Test isAlive] for 44.233.222.183:10012
+[Test isAlive] for 44.233.222.183:10013
+[Test isAlive] for 44.233.222.183:10014
+[Test isAlive] for 44.233.222.183:10015
+[Test isAlive] for 44.233.222.183:10016
+[Test isAlive] for 44.233.222.183:10017
+[Test isAlive] for 44.233.222.183:10018
+[Test isAlive] for 44.233.222.183:10019
+[Test isAlive] for 44.233.222.183:10020
+[Test isAlive] for 44.233.222.183:10021
+[Test isAlive] for 44.233.222.183:10022
+[Test isAlive] for 44.233.222.183:10023
+[Test isAlive] for 44.233.222.183:10024
+[Test isAlive] for 44.233.222.183:10025
+[Test isAlive] for 44.233.222.183:10026
+[Test isAlive] for 44.233.222.183:10027
+[Test isAlive] for 44.233.222.183:10028
+[Test isAlive] for 44.233.222.183:10029
+[Test isAlive] for 44.233.222.183:10030
+[Test isAlive] for 44.233.222.183:10031
+[Test isAlive] for 44.233.222.183:10032
+[Test isAlive] for 44.233.222.183:10033
+[Test isAlive] for 44.233.222.183:10034
+[Test isAlive] for 44.233.222.183:10035
+[Test isAlive] for 44.233.222.183:10036
+[Test isAlive] for 44.233.222.183:10037
+[Test isAlive] for 44.233.222.183:10038
+[Test isAlive] for 44.233.222.183:10039
+[Test isAlive] for 44.233.222.183:10040
+[Test isAlive] for 44.233.222.183:10041
+[Test isAlive] for 44.233.222.183:10042
+[Test isAlive] for 44.233.222.183:10043
+[Test isAlive] for 44.233.222.183:10044
+[Test isAlive] for 44.233.222.183:10045
+[Test isAlive] for 44.233.222.183:10046
+[Test isAlive] for 44.233.222.183:10047
+[Test isAlive] for 44.233.222.183:10048
+[Test isAlive] for 44.233.222.183:10049
+[Test isAlive] for 44.233.222.183:10050
+[Test isAlive] for 44.233.222.183:10051
+[Test isAlive] for 44.233.222.183:10052
+[Test isAlive] for 44.233.222.183:10053
+[Test isAlive] for 44.233.222.183:10054
+[Test isAlive] for 44.233.222.183:10055
+[Test isAlive] for 44.233.222.183:10056
+[Test isAlive] for 44.233.222.183:10057
+[Test isAlive] for 44.233.222.183:10058
+[Test isAlive] for 44.233.222.183:10059
+[Test isAlive] for 44.233.222.183:10060
+[Test isAlive] for 44.233.222.183:10061
+[Test isAlive] for 44.233.222.183:10062
+[Test isAlive] for 44.233.222.183:10063
+[Test isAlive] for 44.233.222.183:10064
+[Test isAlive] for 44.233.222.183:10065
+[Test isAlive] for 44.233.222.183:10066
+[Test isAlive] for 44.233.222.183:10067
+[Test isAlive] for 44.233.222.183:10068
+[Test isAlive] for 44.233.222.183:10069
+[Test isAlive] for 44.233.222.183:10070
+[Test isAlive] for 44.233.222.183:10071
+[Test isAlive] for 44.233.222.183:10072
+[Test isAlive] for 44.233.222.183:10073
+[Test isAlive] for 44.233.222.183:10074
+[Test isAlive] for 44.233.222.183:10075
+[Test isAlive] for 44.233.222.183:10076
+[Test isAlive] for 44.233.222.183:10077
+[Test isAlive] for 44.233.222.183:10078
+[Test isAlive] for 44.233.222.183:10079
+[Test isAlive] for 44.233.222.183:10080
+[ ... Completed in 0.046 seconds ]
+TEST_PASSED
+[ ... TEST Completed in 26.812 seconds ]
+
+[Info] Preparing for Stage 1 of the Suspend Test
+[Info] To suspend 5 node(s) in Stage 1.
+[Info] Will suspend 44.233.222.183:10065
+[Info] Will suspend 44.233.222.183:10067
+[Info] Will suspend 44.233.222.183:10062
+[Info] Will suspend 44.233.222.183:10051
+[Info] Will suspend 44.233.222.183:10044
+[Info] Will keep alive 44.233.222.183:10076
+[Info] Will keep alive 44.233.222.183:10074
+[Info] Will keep alive 44.233.222.183:10058
+[Info] Will keep alive 44.233.222.183:10073
+[Info] Will keep alive 44.233.222.183:10017
+[Info] Will keep alive 44.233.222.183:10024
+[Info] Will keep alive 44.233.222.183:10037
+[Info] Will keep alive 44.233.222.183:10004
+[Info] Will keep alive 44.233.222.183:10002
+[Info] Will keep alive 44.233.222.183:10031
+[Info] Will keep alive 44.233.222.183:10070
+[Info] Will keep alive 44.233.222.183:10048
+[Info] Will keep alive 44.233.222.183:10054
+[Info] Will keep alive 44.233.222.183:10014
+[Info] Will keep alive 44.233.222.183:10005
+[Info] Will keep alive 44.233.222.183:10050
+[Info] Will keep alive 44.233.222.183:10069
+[Info] Will keep alive 44.233.222.183:10034
+[Info] Will keep alive 44.233.222.183:10080
+[Info] Will keep alive 44.233.222.183:10032
+[Info] Will keep alive 44.233.222.183:10047
+[Info] Will keep alive 44.233.222.183:10027
+[Info] Will keep alive 44.233.222.183:10025
+[Info] Will keep alive 44.233.222.183:10040
+[Info] Will keep alive 44.233.222.183:10022
+[Info] Will keep alive 44.233.222.183:10015
+[Info] Will keep alive 44.233.222.183:10023
+[Info] Will keep alive 44.233.222.183:10001
+[Info] Will keep alive 44.233.222.183:10008
+[Info] Will keep alive 44.233.222.183:10038
+[Info] Will keep alive 44.233.222.183:10059
+[Info] Will keep alive 44.233.222.183:10075
+[Info] Will keep alive 44.233.222.183:10053
+[Info] Will keep alive 44.233.222.183:10036
+[Info] Will keep alive 44.233.222.183:10003
+[Info] Will keep alive 44.233.222.183:10011
+[Info] Will keep alive 44.233.222.183:10078
+[Info] Will keep alive 44.233.222.183:10006
+[Info] Will keep alive 44.233.222.183:10046
+[Info] Will keep alive 44.233.222.183:10020
+[Info] Will keep alive 44.233.222.183:10057
+[Info] Will keep alive 44.233.222.183:10055
+[Info] Will keep alive 44.233.222.183:10041
+[Info] Will keep alive 44.233.222.183:10068
+[Info] Will keep alive 44.233.222.183:10066
+[Info] Will keep alive 44.233.222.183:10045
+[Info] Will keep alive 44.233.222.183:10012
+[Info] Will keep alive 44.233.222.183:10079
+[Info] Will keep alive 44.233.222.183:10021
+[Info] Will keep alive 44.233.222.183:10030
+[Info] Will keep alive 44.233.222.183:10033
+[Info] Will keep alive 44.233.222.183:10056
+[Info] Will keep alive 44.233.222.183:10010
+[Info] Will keep alive 44.233.222.183:10077
+[Info] Will keep alive 44.233.222.183:10072
+[Info] Will keep alive 44.233.222.183:10009
+[Info] Will keep alive 44.233.222.183:10052
+[Info] Will keep alive 44.233.222.183:10026
+[Info] Will keep alive 44.233.222.183:10049
+[Info] Will keep alive 44.233.222.183:10042
+[Info] Will keep alive 44.233.222.183:10029
+[Info] Will keep alive 44.233.222.183:10064
+[Info] Will keep alive 44.233.222.183:10035
+[Info] Will keep alive 44.233.222.183:10013
+[Info] Will keep alive 44.233.222.183:10043
+[Info] Will keep alive 44.233.222.183:10007
+[Info] Will keep alive 44.233.222.183:10016
+[Info] Will keep alive 44.233.222.183:10019
+[Info] Will keep alive 44.233.222.183:10061
+[Info] Will keep alive 44.233.222.183:10063
+[Info] Will keep alive 44.233.222.183:10018
+[Info] Will keep alive 44.233.222.183:10071
+[Info] Will keep alive 44.233.222.183:10039
+[Info] Will keep alive 44.233.222.183:10028
+[Info] Will keep alive 44.233.222.183:10060
+Waiting 10 seconds before suspending nodes
+[Info] Suspending 5 servers.
+Server 44.233.222.183:10065 suspended
+Server 44.233.222.183:10051 suspended
+Server 44.233.222.183:10067 suspended
+Server 44.233.222.183:10044 suspended
+Server 44.233.222.183:10062 suspended
+[ ... Completed in 2.557 seconds ]
+Waiting 60 seconds after suspending nodes
+[Info] Stage 1 Scenario: Alive Nodes: 75. Dead Nodes: 5
+
+
+[ TEST Suspend Verify v2; Stage 1; Key Recovery; ]
+Checking that 5 nodes are suspended
+[Test isAlive] for 44.233.222.183:10065
+[Test isAlive] for 44.233.222.183:10067
+[Test isAlive] for 44.233.222.183:10062
+[Test isAlive] for 44.233.222.183:10051
+[Test isAlive] for 44.233.222.183:10044
+[ ... Completed in 10.002 seconds ]
+Checking that 75 nodes are alive
+[Test isAlive] for 44.233.222.183:10076
+[Test isAlive] for 44.233.222.183:10074
+[Test isAlive] for 44.233.222.183:10058
+[Test isAlive] for 44.233.222.183:10073
+[Test isAlive] for 44.233.222.183:10017
+[Test isAlive] for 44.233.222.183:10024
+[Test isAlive] for 44.233.222.183:10037
+[Test isAlive] for 44.233.222.183:10004
+[Test isAlive] for 44.233.222.183:10002
+[Test isAlive] for 44.233.222.183:10031
+[Test isAlive] for 44.233.222.183:10070
+[Test isAlive] for 44.233.222.183:10048
+[Test isAlive] for 44.233.222.183:10054
+[Test isAlive] for 44.233.222.183:10014
+[Test isAlive] for 44.233.222.183:10005
+[Test isAlive] for 44.233.222.183:10069
+[Test isAlive] for 44.233.222.183:10050
+[Test isAlive] for 44.233.222.183:10034
+[Test isAlive] for 44.233.222.183:10080
+[Test isAlive] for 44.233.222.183:10032
+[Test isAlive] for 44.233.222.183:10047
+[Test isAlive] for 44.233.222.183:10027
+[Test isAlive] for 44.233.222.183:10025
+[Test isAlive] for 44.233.222.183:10040
+[Test isAlive] for 44.233.222.183:10022
+[Test isAlive] for 44.233.222.183:10015
+[Test isAlive] for 44.233.222.183:10023
+[Test isAlive] for 44.233.222.183:10001
+[Test isAlive] for 44.233.222.183:10008
+[Test isAlive] for 44.233.222.183:10038
+[Test isAlive] for 44.233.222.183:10059
+[Test isAlive] for 44.233.222.183:10075
+[Test isAlive] for 44.233.222.183:10053
+[Test isAlive] for 44.233.222.183:10036
+[Test isAlive] for 44.233.222.183:10003
+[Test isAlive] for 44.233.222.183:10011
+[Test isAlive] for 44.233.222.183:10078
+[Test isAlive] for 44.233.222.183:10006
+[Test isAlive] for 44.233.222.183:10046
+[Test isAlive] for 44.233.222.183:10020
+[Test isAlive] for 44.233.222.183:10057
+[Test isAlive] for 44.233.222.183:10055
+[Test isAlive] for 44.233.222.183:10041
+[Test isAlive] for 44.233.222.183:10068
+[Test isAlive] for 44.233.222.183:10066
+[Test isAlive] for 44.233.222.183:10045
+[Test isAlive] for 44.233.222.183:10012
+[Test isAlive] for 44.233.222.183:10079
+[Test isAlive] for 44.233.222.183:10021
+[Test isAlive] for 44.233.222.183:10030
+[Test isAlive] for 44.233.222.183:10033
+[Test isAlive] for 44.233.222.183:10056
+[Test isAlive] for 44.233.222.183:10010
+[Test isAlive] for 44.233.222.183:10077
+[Test isAlive] for 44.233.222.183:10072
+[Test isAlive] for 44.233.222.183:10009
+[Test isAlive] for 44.233.222.183:10052
+[Test isAlive] for 44.233.222.183:10026
+[Test isAlive] for 44.233.222.183:10049
+[Test isAlive] for 44.233.222.183:10042
+[Test isAlive] for 44.233.222.183:10029
+[Test isAlive] for 44.233.222.183:10064
+[Test isAlive] for 44.233.222.183:10035
+[Test isAlive] for 44.233.222.183:10013
+[Test isAlive] for 44.233.222.183:10043
+[Test isAlive] for 44.233.222.183:10007
+[Test isAlive] for 44.233.222.183:10016
+[Test isAlive] for 44.233.222.183:10019
+[Test isAlive] for 44.233.222.183:10061
+[Test isAlive] for 44.233.222.183:10063
+[Test isAlive] for 44.233.222.183:10018
+[Test isAlive] for 44.233.222.183:10071
+[Test isAlive] for 44.233.222.183:10039
+[Test isAlive] for 44.233.222.183:10028
+[Test isAlive] for 44.233.222.183:10060
+[ ... Completed in 0.012 seconds ]
+Sending GetMembershipCount to all servers... 
+[Info] Server 44.233.222.183:10076 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10074 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10058 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10017 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10024 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10073 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10004 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10037 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10002 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10014 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10054 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10048 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10031 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10050 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10070 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10005 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10080 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10069 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10032 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10047 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10040 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10027 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10022 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10025 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10015 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10008 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10023 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10034 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10001 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10075 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10038 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10059 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10053 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10036 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10078 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10003 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10011 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10046 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10006 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10020 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10041 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10057 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10068 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10055 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10066 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10012 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10045 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10021 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10079 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10033 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10030 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10056 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10010 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10077 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10072 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10009 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10052 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10049 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10026 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10042 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10029 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10064 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10035 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10013 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10007 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10043 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10016 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10019 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10063 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10061 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10018 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10071 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10060 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10039 replied with membership count = 75 (expected count = 75)
+[Info] Server 44.233.222.183:10028 replied with membership count = 75 (expected count = 75)
+[ ... Completed in 0.009 seconds ]
+[Ok] All servers returned the expected membership count (75)
+Attempting retrieval of keys... 
+Issuing GETs ... 
+[DONE in 15.323s]
+[Info] Suspend Verify v2; Stage 1; Key Recovery; Of 40000 stored keys: 37434 SUCCESS, 0 TIMEOUT, 2566 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Suspend Verify v2; Stage 1; Key Recovery; Expected Key Loss: 6.25%. Actual Key Loss: 6.415%
+[Info] Suspend Verify v2; Stage 1; Key Recovery; Total Value Size (MiB): 17.92098045349121 MiB.
+[Info] Suspend Verify v2; Stage 1; Key Recovery; SUCCESS Response Count: 37434.0.
+[Info] Suspend Verify v2; Stage 1; Key Recovery; % SUCCESS: 93.585%.
+[Info] Suspend Verify v2; Stage 1; Key Recovery; % FAILED (Not SUCCESS): 6.415%.
+[Info] Suspend Verify v2; Stage 1; Key Recovery; % TIMEOUT: 0.0%.
+[Info] Suspend Verify v2; Stage 1; Key Recovery; % KEY-NOT-FOUND: 6.415%.
+[Info] Suspend Verify v2; Stage 1; Key Recovery; % ERROR-UID: 0.0%.
+[Info] Suspend Verify v2; Stage 1; Key Recovery; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Suspend Verify v2; Stage 1; Key Recovery; % ERROR-OTHER: 0.0%.
+[Info] Minimum GET SUCCESS % Ok: 93.585% Success.(93.75% SUCCESS expected, 46.875% minimum required).
+TEST_PASSED
+[ ... TEST Completed in 25.349 seconds ]
+
+[Info] Preparing for Stage 2a of the Suspend/Resume Test
+[Info] Stage 2a Scenario: Alive Nodes: 75. Dead Nodes: 5
+
+[ TEST Concurrent Store/Load v2; Stage 2a; (Clients = 32, Limit = 20000 PUTs) ]
+Issuing PUTS ... 
+[DONE in 6.745s]
+[Info] Concurrent Store/Load v2; Stage 2a; PUT Phase; Of 20000 stored keys: 20000 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Concurrent Store/Load v2; Stage 2a; PUT Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.0%
+[Info] Concurrent Store/Load v2; Stage 2a; PUT Phase; Total Value Size (MiB): 9.5274019241333 MiB.
+[Info] Concurrent Store/Load v2; Stage 2a; PUT Phase; SUCCESS Response Count: 20000.0.
+[Info] Concurrent Store/Load v2; Stage 2a; PUT Phase; % SUCCESS: 100.0%.
+[Info] Concurrent Store/Load v2; Stage 2a; PUT Phase; % FAILED (Not SUCCESS): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 2a; PUT Phase; % TIMEOUT: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 2a; PUT Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 2a; PUT Phase; % ERROR-UID: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 2a; PUT Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 2a; PUT Phase; % ERROR-OTHER: 0.0%.
+[Info] PUTs % SUCCESS Ok: 100.0% Success.(90.0% minimum required).
+Confirming keys were stored correctly.
+Issuing GETs ... 
+[DONE in 6.827s]
+[Info] Concurrent Store/Load v2; Stage 2a; GET Phase; Of 20000 stored keys: 20000 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Concurrent Store/Load v2; Stage 2a; GET Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.0%
+[Info] Concurrent Store/Load v2; Stage 2a; GET Phase; Total Value Size (MiB): 9.5274019241333 MiB.
+[Info] Concurrent Store/Load v2; Stage 2a; GET Phase; SUCCESS Response Count: 20000.0.
+[Info] Concurrent Store/Load v2; Stage 2a; GET Phase; % SUCCESS: 100.0%.
+[Info] Concurrent Store/Load v2; Stage 2a; GET Phase; % FAILED (Not SUCCESS): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 2a; GET Phase; % TIMEOUT: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 2a; GET Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 2a; GET Phase; % ERROR-UID: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 2a; GET Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 2a; GET Phase; % ERROR-OTHER: 0.0%.
+[Info] GETs % SUCCESS Ok: 100.0% Success.(90.0% minimum required).
+Checking that 75 nodes are alive
+[Test isAlive] for 44.233.222.183:10076
+[Test isAlive] for 44.233.222.183:10074
+[Test isAlive] for 44.233.222.183:10058
+[Test isAlive] for 44.233.222.183:10073
+[Test isAlive] for 44.233.222.183:10017
+[Test isAlive] for 44.233.222.183:10024
+[Test isAlive] for 44.233.222.183:10037
+[Test isAlive] for 44.233.222.183:10004
+[Test isAlive] for 44.233.222.183:10002
+[Test isAlive] for 44.233.222.183:10031
+[Test isAlive] for 44.233.222.183:10070
+[Test isAlive] for 44.233.222.183:10048
+[Test isAlive] for 44.233.222.183:10054
+[Test isAlive] for 44.233.222.183:10014
+[Test isAlive] for 44.233.222.183:10005
+[Test isAlive] for 44.233.222.183:10050
+[Test isAlive] for 44.233.222.183:10069
+[Test isAlive] for 44.233.222.183:10034
+[Test isAlive] for 44.233.222.183:10080
+[Test isAlive] for 44.233.222.183:10032
+[Test isAlive] for 44.233.222.183:10047
+[Test isAlive] for 44.233.222.183:10027
+[Test isAlive] for 44.233.222.183:10025
+[Test isAlive] for 44.233.222.183:10040
+[Test isAlive] for 44.233.222.183:10022
+[Test isAlive] for 44.233.222.183:10015
+[Test isAlive] for 44.233.222.183:10023
+[Test isAlive] for 44.233.222.183:10001
+[Test isAlive] for 44.233.222.183:10008
+[Test isAlive] for 44.233.222.183:10038
+[Test isAlive] for 44.233.222.183:10059
+[Test isAlive] for 44.233.222.183:10075
+[Test isAlive] for 44.233.222.183:10053
+[Test isAlive] for 44.233.222.183:10036
+[Test isAlive] for 44.233.222.183:10003
+[Test isAlive] for 44.233.222.183:10011
+[Test isAlive] for 44.233.222.183:10078
+[Test isAlive] for 44.233.222.183:10006
+[Test isAlive] for 44.233.222.183:10046
+[Test isAlive] for 44.233.222.183:10020
+[Test isAlive] for 44.233.222.183:10057
+[Test isAlive] for 44.233.222.183:10055
+[Test isAlive] for 44.233.222.183:10041
+[Test isAlive] for 44.233.222.183:10068
+[Test isAlive] for 44.233.222.183:10066
+[Test isAlive] for 44.233.222.183:10045
+[Test isAlive] for 44.233.222.183:10012
+[Test isAlive] for 44.233.222.183:10079
+[Test isAlive] for 44.233.222.183:10021
+[Test isAlive] for 44.233.222.183:10030
+[Test isAlive] for 44.233.222.183:10033
+[Test isAlive] for 44.233.222.183:10056
+[Test isAlive] for 44.233.222.183:10010
+[Test isAlive] for 44.233.222.183:10077
+[Test isAlive] for 44.233.222.183:10072
+[Test isAlive] for 44.233.222.183:10009
+[Test isAlive] for 44.233.222.183:10052
+[Test isAlive] for 44.233.222.183:10026
+[Test isAlive] for 44.233.222.183:10049
+[Test isAlive] for 44.233.222.183:10042
+[Test isAlive] for 44.233.222.183:10029
+[Test isAlive] for 44.233.222.183:10064
+[Test isAlive] for 44.233.222.183:10035
+[Test isAlive] for 44.233.222.183:10013
+[Test isAlive] for 44.233.222.183:10043
+[Test isAlive] for 44.233.222.183:10007
+[Test isAlive] for 44.233.222.183:10016
+[Test isAlive] for 44.233.222.183:10019
+[Test isAlive] for 44.233.222.183:10061
+[Test isAlive] for 44.233.222.183:10063
+[Test isAlive] for 44.233.222.183:10018
+[Test isAlive] for 44.233.222.183:10071
+[Test isAlive] for 44.233.222.183:10039
+[Test isAlive] for 44.233.222.183:10028
+[Test isAlive] for 44.233.222.183:10060
+[ ... Completed in 0.01 seconds ]
+TEST_PASSED
+[ ... TEST Completed in 13.584 seconds ]
+
+[Info] Preparing for Stage 2b of the Suspend/Resume Test
+[Info] To resume 1 node(s) in Stage 2a.
+[Info] Will resume 44.233.222.183:10044
+[Info] Will keep suspended 44.233.222.183:10065
+[Info] Will keep suspended 44.233.222.183:10067
+[Info] Will keep suspended 44.233.222.183:10062
+[Info] Will keep suspended 44.233.222.183:10051
+Waiting 10 seconds before resuming nodes
+[Info] Resuming 1 servers.
+Server 44.233.222.183:10044 resumed
+[ ... Completed in 0.51 seconds ]
+Waiting 60 seconds after resuming nodes
+[Info] Stage 2b Scenario: Alive Nodes: 76. Dead Nodes: 4
+
+
+[ TEST Suspend Verify v2; Stage 2b; Key Recovery; ]
+Checking that 4 nodes are suspended
+[Test isAlive] for 44.233.222.183:10065
+[Test isAlive] for 44.233.222.183:10067
+[Test isAlive] for 44.233.222.183:10062
+[Test isAlive] for 44.233.222.183:10051
+[ ... Completed in 10.002 seconds ]
+Checking that 76 nodes are alive
+[Test isAlive] for 44.233.222.183:10044
+[Test isAlive] for 44.233.222.183:10023
+[Test isAlive] for 44.233.222.183:10050
+[Test isAlive] for 44.233.222.183:10072
+[Test isAlive] for 44.233.222.183:10063
+[Test isAlive] for 44.233.222.183:10066
+[Test isAlive] for 44.233.222.183:10069
+[Test isAlive] for 44.233.222.183:10031
+[Test isAlive] for 44.233.222.183:10068
+[Test isAlive] for 44.233.222.183:10057
+[Test isAlive] for 44.233.222.183:10052
+[Test isAlive] for 44.233.222.183:10079
+[Test isAlive] for 44.233.222.183:10039
+[Test isAlive] for 44.233.222.183:10019
+[Test isAlive] for 44.233.222.183:10046
+[Test isAlive] for 44.233.222.183:10027
+[Test isAlive] for 44.233.222.183:10070
+[Test isAlive] for 44.233.222.183:10018
+[Test isAlive] for 44.233.222.183:10059
+[Test isAlive] for 44.233.222.183:10025
+[Test isAlive] for 44.233.222.183:10021
+[Test isAlive] for 44.233.222.183:10033
+[Test isAlive] for 44.233.222.183:10076
+[Test isAlive] for 44.233.222.183:10053
+[Test isAlive] for 44.233.222.183:10029
+[Test isAlive] for 44.233.222.183:10054
+[Test isAlive] for 44.233.222.183:10042
+[Test isAlive] for 44.233.222.183:10034
+[Test isAlive] for 44.233.222.183:10077
+[Test isAlive] for 44.233.222.183:10008
+[Test isAlive] for 44.233.222.183:10001
+[Test isAlive] for 44.233.222.183:10006
+[Test isAlive] for 44.233.222.183:10012
+[Test isAlive] for 44.233.222.183:10022
+[Test isAlive] for 44.233.222.183:10074
+[Test isAlive] for 44.233.222.183:10015
+[Test isAlive] for 44.233.222.183:10005
+[Test isAlive] for 44.233.222.183:10061
+[Test isAlive] for 44.233.222.183:10003
+[Test isAlive] for 44.233.222.183:10011
+[Test isAlive] for 44.233.222.183:10038
+[Test isAlive] for 44.233.222.183:10043
+[Test isAlive] for 44.233.222.183:10032
+[Test isAlive] for 44.233.222.183:10013
+[Test isAlive] for 44.233.222.183:10049
+[Test isAlive] for 44.233.222.183:10010
+[Test isAlive] for 44.233.222.183:10055
+[Test isAlive] for 44.233.222.183:10047
+[Test isAlive] for 44.233.222.183:10040
+[Test isAlive] for 44.233.222.183:10073
+[Test isAlive] for 44.233.222.183:10020
+[Test isAlive] for 44.233.222.183:10026
+[Test isAlive] for 44.233.222.183:10080
+[Test isAlive] for 44.233.222.183:10075
+[Test isAlive] for 44.233.222.183:10030
+[Test isAlive] for 44.233.222.183:10048
+[Test isAlive] for 44.233.222.183:10017
+[Test isAlive] for 44.233.222.183:10064
+[Test isAlive] for 44.233.222.183:10009
+[Test isAlive] for 44.233.222.183:10041
+[Test isAlive] for 44.233.222.183:10002
+[Test isAlive] for 44.233.222.183:10028
+[Test isAlive] for 44.233.222.183:10045
+[Test isAlive] for 44.233.222.183:10037
+[Test isAlive] for 44.233.222.183:10035
+[Test isAlive] for 44.233.222.183:10014
+[Test isAlive] for 44.233.222.183:10078
+[Test isAlive] for 44.233.222.183:10016
+[Test isAlive] for 44.233.222.183:10056
+[Test isAlive] for 44.233.222.183:10004
+[Test isAlive] for 44.233.222.183:10071
+[Test isAlive] for 44.233.222.183:10024
+[Test isAlive] for 44.233.222.183:10007
+[Test isAlive] for 44.233.222.183:10058
+[Test isAlive] for 44.233.222.183:10036
+[Test isAlive] for 44.233.222.183:10060
+[ ... Completed in 0.01 seconds ]
+Sending GetMembershipCount to all servers... 
+[Info] Server 44.233.222.183:10044 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10023 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10050 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10072 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10063 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10066 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10069 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10031 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10068 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10057 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10052 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10039 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10019 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10079 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10046 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10027 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10070 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10059 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10018 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10025 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10021 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10033 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10076 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10053 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10029 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10054 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10042 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10077 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10034 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10008 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10006 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10001 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10012 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10022 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10074 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10015 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10005 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10061 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10003 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10011 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10038 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10043 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10032 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10013 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10010 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10055 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10047 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10049 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10040 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10073 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10020 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10026 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10080 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10030 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10048 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10075 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10064 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10017 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10009 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10041 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10002 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10028 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10045 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10037 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10035 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10004 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10078 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10014 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10056 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10016 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10024 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10007 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10036 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10071 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10058 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10060 replied with membership count = 76 (expected count = 76)
+[ ... Completed in 0.014 seconds ]
+[Ok] All servers returned the expected membership count (76)
+Attempting retrieval of keys... 
+Issuing GETs ... 
+[DONE in 15.196s]
+[Info] Suspend Verify v2; Stage 2b; Key Recovery; Of 40000 stored keys: 37488 SUCCESS, 0 TIMEOUT, 2512 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Suspend Verify v2; Stage 2b; Key Recovery; Expected Key Loss: 5.0%. Actual Key Loss: 6.28%
+[Info] Suspend Verify v2; Stage 2b; Key Recovery; Total Value Size (MiB): 17.95960521697998 MiB.
+[Info] Suspend Verify v2; Stage 2b; Key Recovery; SUCCESS Response Count: 37488.0.
+[Info] Suspend Verify v2; Stage 2b; Key Recovery; % SUCCESS: 93.72%.
+[Info] Suspend Verify v2; Stage 2b; Key Recovery; % FAILED (Not SUCCESS): 6.28%.
+[Info] Suspend Verify v2; Stage 2b; Key Recovery; % TIMEOUT: 0.0%.
+[Info] Suspend Verify v2; Stage 2b; Key Recovery; % KEY-NOT-FOUND: 6.28%.
+[Info] Suspend Verify v2; Stage 2b; Key Recovery; % ERROR-UID: 0.0%.
+[Info] Suspend Verify v2; Stage 2b; Key Recovery; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Suspend Verify v2; Stage 2b; Key Recovery; % ERROR-OTHER: 0.0%.
+[Info] Minimum GET SUCCESS % Ok: 93.72% Success.(95.0% SUCCESS expected, 47.5% minimum required).
+TEST_PASSED
+[ ... TEST Completed in 25.223 seconds ]
+
+[Info] Preparing for Stage 2c of the Suspend/Resume Test
+[Info] Stage 2c Scenario: Alive Nodes: 76. Dead Nodes: 4
+
+
+[ TEST Suspend Verify v2; Stage 2c; Key Recovery; ]
+Checking that 4 nodes are suspended
+[Test isAlive] for 44.233.222.183:10065
+[Test isAlive] for 44.233.222.183:10067
+[Test isAlive] for 44.233.222.183:10062
+[Test isAlive] for 44.233.222.183:10051
+[ ... Completed in 10.003 seconds ]
+Checking that 76 nodes are alive
+[Test isAlive] for 44.233.222.183:10044
+[Test isAlive] for 44.233.222.183:10023
+[Test isAlive] for 44.233.222.183:10050
+[Test isAlive] for 44.233.222.183:10072
+[Test isAlive] for 44.233.222.183:10063
+[Test isAlive] for 44.233.222.183:10066
+[Test isAlive] for 44.233.222.183:10069
+[Test isAlive] for 44.233.222.183:10031
+[Test isAlive] for 44.233.222.183:10068
+[Test isAlive] for 44.233.222.183:10057
+[Test isAlive] for 44.233.222.183:10052
+[Test isAlive] for 44.233.222.183:10079
+[Test isAlive] for 44.233.222.183:10039
+[Test isAlive] for 44.233.222.183:10019
+[Test isAlive] for 44.233.222.183:10046
+[Test isAlive] for 44.233.222.183:10027
+[Test isAlive] for 44.233.222.183:10070
+[Test isAlive] for 44.233.222.183:10018
+[Test isAlive] for 44.233.222.183:10059
+[Test isAlive] for 44.233.222.183:10025
+[Test isAlive] for 44.233.222.183:10021
+[Test isAlive] for 44.233.222.183:10033
+[Test isAlive] for 44.233.222.183:10076
+[Test isAlive] for 44.233.222.183:10053
+[Test isAlive] for 44.233.222.183:10029
+[Test isAlive] for 44.233.222.183:10054
+[Test isAlive] for 44.233.222.183:10042
+[Test isAlive] for 44.233.222.183:10034
+[Test isAlive] for 44.233.222.183:10077
+[Test isAlive] for 44.233.222.183:10008
+[Test isAlive] for 44.233.222.183:10001
+[Test isAlive] for 44.233.222.183:10006
+[Test isAlive] for 44.233.222.183:10012
+[Test isAlive] for 44.233.222.183:10022
+[Test isAlive] for 44.233.222.183:10074
+[Test isAlive] for 44.233.222.183:10015
+[Test isAlive] for 44.233.222.183:10005
+[Test isAlive] for 44.233.222.183:10061
+[Test isAlive] for 44.233.222.183:10003
+[Test isAlive] for 44.233.222.183:10011
+[Test isAlive] for 44.233.222.183:10038
+[Test isAlive] for 44.233.222.183:10043
+[Test isAlive] for 44.233.222.183:10032
+[Test isAlive] for 44.233.222.183:10013
+[Test isAlive] for 44.233.222.183:10049
+[Test isAlive] for 44.233.222.183:10010
+[Test isAlive] for 44.233.222.183:10055
+[Test isAlive] for 44.233.222.183:10047
+[Test isAlive] for 44.233.222.183:10040
+[Test isAlive] for 44.233.222.183:10073
+[Test isAlive] for 44.233.222.183:10020
+[Test isAlive] for 44.233.222.183:10026
+[Test isAlive] for 44.233.222.183:10080
+[Test isAlive] for 44.233.222.183:10075
+[Test isAlive] for 44.233.222.183:10030
+[Test isAlive] for 44.233.222.183:10048
+[Test isAlive] for 44.233.222.183:10017
+[Test isAlive] for 44.233.222.183:10064
+[Test isAlive] for 44.233.222.183:10009
+[Test isAlive] for 44.233.222.183:10041
+[Test isAlive] for 44.233.222.183:10002
+[Test isAlive] for 44.233.222.183:10028
+[Test isAlive] for 44.233.222.183:10045
+[Test isAlive] for 44.233.222.183:10037
+[Test isAlive] for 44.233.222.183:10035
+[Test isAlive] for 44.233.222.183:10014
+[Test isAlive] for 44.233.222.183:10078
+[Test isAlive] for 44.233.222.183:10016
+[Test isAlive] for 44.233.222.183:10056
+[Test isAlive] for 44.233.222.183:10004
+[Test isAlive] for 44.233.222.183:10071
+[Test isAlive] for 44.233.222.183:10024
+[Test isAlive] for 44.233.222.183:10007
+[Test isAlive] for 44.233.222.183:10058
+[Test isAlive] for 44.233.222.183:10036
+[Test isAlive] for 44.233.222.183:10060
+[ ... Completed in 0.049 seconds ]
+Sending GetMembershipCount to all servers... 
+[Info] Server 44.233.222.183:10044 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10072 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10023 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10050 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10063 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10066 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10069 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10031 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10068 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10057 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10052 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10079 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10039 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10019 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10046 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10027 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10059 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10070 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10018 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10025 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10021 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10033 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10076 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10029 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10053 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10054 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10042 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10034 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10077 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10008 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10012 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10006 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10074 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10022 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10001 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10015 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10005 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10061 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10003 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10011 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10038 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10043 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10032 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10013 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10010 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10049 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10055 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10047 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10040 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10073 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10020 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10026 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10080 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10075 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10030 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10048 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10017 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10064 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10009 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10041 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10002 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10028 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10045 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10037 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10035 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10014 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10078 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10016 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10056 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10004 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10071 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10024 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10007 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10058 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10036 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10060 replied with membership count = 76 (expected count = 76)
+[ ... Completed in 0.01 seconds ]
+[Ok] All servers returned the expected membership count (76)
+Attempting retrieval of keys... 
+Issuing GETs ... 
+[DONE in 6.891s]
+[Info] Suspend Verify v2; Stage 2c; Key Recovery; Of 20000 stored keys: 19759 SUCCESS, 0 TIMEOUT, 241 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Suspend Verify v2; Stage 2c; Key Recovery; Expected Key Loss: 0.0%. Actual Key Loss: 1.205%
+[Info] Suspend Verify v2; Stage 2c; Key Recovery; Total Value Size (MiB): 9.421777725219727 MiB.
+[Info] Suspend Verify v2; Stage 2c; Key Recovery; SUCCESS Response Count: 19759.0.
+[Info] Suspend Verify v2; Stage 2c; Key Recovery; % SUCCESS: 98.795%.
+[Info] Suspend Verify v2; Stage 2c; Key Recovery; % FAILED (Not SUCCESS): 1.205%.
+[Info] Suspend Verify v2; Stage 2c; Key Recovery; % TIMEOUT: 0.0%.
+[Info] Suspend Verify v2; Stage 2c; Key Recovery; % KEY-NOT-FOUND: 1.205%.
+[Info] Suspend Verify v2; Stage 2c; Key Recovery; % ERROR-UID: 0.0%.
+[Info] Suspend Verify v2; Stage 2c; Key Recovery; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Suspend Verify v2; Stage 2c; Key Recovery; % ERROR-OTHER: 0.0%.
+[Info] Minimum GET SUCCESS % Ok: 98.795% Success.(100.0% SUCCESS expected, 90.0% minimum required).
+TEST_PASSED
+[ ... TEST Completed in 16.953 seconds ]
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 5.01 seconds ]
+Pausing for 6 seconds to wait for the cache to be cleared!
+
+Sending GetMembershipCount to all servers... 
+[Info] Server 44.233.222.183:10050 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10063 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10072 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10031 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10023 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10044 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10069 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10052 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10066 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10079 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10057 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10039 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10068 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10027 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10070 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10018 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10046 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10019 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10025 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10059 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10033 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10076 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10053 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10021 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10029 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10054 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10034 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10042 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10077 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10008 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10001 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10006 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10012 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10022 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10015 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10074 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10061 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10005 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10003 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10011 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10038 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10043 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10032 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10013 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10049 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10010 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10055 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10047 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10040 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10073 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10020 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10026 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10080 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10075 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10030 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10048 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10017 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10064 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10041 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10002 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10028 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10045 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10037 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10014 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10078 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10016 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10056 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10009 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10071 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10004 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10024 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10007 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10058 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10036 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10060 replied with membership count = 76 (expected count = 76)
+[Info] Server 44.233.222.183:10035 replied with membership count = 76 (expected count = 76)
+[ ... Completed in 0.051 seconds ]
+[Ok] All servers returned the expected membership count (76)
+[ ... TEST Completed in 0.051 seconds ]
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 8 Bytes ]
+TEST_PASSED
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 32 Bytes ]
+TEST_PASSED
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 512 Bytes ]
+TEST_PASSED
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 1024 Bytes ]
+TEST_PASSED
+[ ... TEST Completed in 0.409 seconds ]
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST Single Front-End Performance (1 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 44.233.222.183:10044
+[ ... Completed in 0.006 seconds ]
+Stage 2 Single Front-End: Test Status: TEST_PASSED
+Clients: 1
+Total Requests (without replies): 10836
+Total Requests (including replies): 10873
+Successful Responses: 10836
+Timeout Responses: 0
+Total Failed Responses: 0
+% Success: 100.0
+% Timeout: 0.0
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 126ms, [min] 5ms
+[avg] 5.5234403839055 ms, [stdev] 2.7224753637406436ms
+Throughput: 180.59398020065998 requests per second
+Goodput: 180.59398020065998 requests per second
+Retry Rate (Successful requests): 1.0034145441122184
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.014 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.026 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Single Front-End Performance (64 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 44.233.222.183:10044
+[ ... Completed in 0.006 seconds ]
+Stage 2 Single Front-End: Test Status: TEST_PASSED
+Clients: 64
+Total Requests (without replies): 699855
+Total Requests (including replies): 701674
+Successful Responses: 699855
+Timeout Responses: 0
+Total Failed Responses: 0
+% Success: 100.0
+% Timeout: 0.0
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 130ms, [min] 5ms
+[avg] 5.469542976759471 ms, [stdev] 2.2919692861734777ms
+Throughput: 11656.09073648446 requests per second
+Goodput: 11656.09073648446 requests per second
+Retry Rate (Successful requests): 1.0025991098156046
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.038 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.398 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Single Front-End Performance (256 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.081 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.006 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.007 seconds ]
+[OK]
+[Test isAlive] for 44.233.222.183:10044
+[ ... Completed in 0.006 seconds ]
+Stage 2 Single Front-End: Test Status: TEST_PASSED
+Clients: 256
+Total Requests (without replies): 2417215
+Total Requests (including replies): 2459706
+Successful Responses: 2416767
+Timeout Responses: 0
+Total Failed Responses: 448
+% Success: 99.981466274204
+% Timeout: 0.0
+% Failed: 0.018533725796009044
+Response Time (Successful requests):
+[max] 288ms, [min] 5ms
+[avg] 6.317213450862247 ms, [stdev] 6.209038481837885ms
+Throughput: 40259.406072517115 requests per second
+Goodput: 40251.94450458853 requests per second
+Retry Rate (Successful requests): 1.0175784942588888
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.056 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 66.598 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Single Front-End Performance (512 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.066 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.008 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.072 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.007 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.007 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.007 seconds ]
+[OK]
+[Test isAlive] for 44.233.222.183:10044
+[ ... Completed in 0.006 seconds ]
+Stage 2 Single Front-End: Test Status: TEST_PASSED
+Clients: 512
+Total Requests (without replies): 2850353
+Total Requests (including replies): 3125606
+Successful Responses: 2849282
+Timeout Responses: 20
+Total Failed Responses: 1051
+% Success: 99.96242570657039
+% Timeout: 7.016674776773263E-4
+% Failed: 0.036872625951943495
+Response Time (Successful requests):
+[max] 559ms, [min] 5ms
+[avg] 10.69630699944758 ms, [stdev] 20.12535735628102ms
+Throughput: 46819.20170827858 requests per second
+Goodput: 46801.6097240473 requests per second
+Retry Rate (Successful requests): 1.0965680391165586
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.048 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 67.393 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (1 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 44.233.222.183:10044
+[Test isAlive] for 44.233.222.183:10023
+[Test isAlive] for 44.233.222.183:10050
+[Test isAlive] for 44.233.222.183:10072
+[Test isAlive] for 44.233.222.183:10063
+[Test isAlive] for 44.233.222.183:10066
+[Test isAlive] for 44.233.222.183:10069
+[Test isAlive] for 44.233.222.183:10031
+[Test isAlive] for 44.233.222.183:10068
+[Test isAlive] for 44.233.222.183:10057
+[Test isAlive] for 44.233.222.183:10052
+[Test isAlive] for 44.233.222.183:10079
+[Test isAlive] for 44.233.222.183:10039
+[Test isAlive] for 44.233.222.183:10019
+[Test isAlive] for 44.233.222.183:10046
+[Test isAlive] for 44.233.222.183:10027
+[Test isAlive] for 44.233.222.183:10070
+[Test isAlive] for 44.233.222.183:10018
+[Test isAlive] for 44.233.222.183:10059
+[Test isAlive] for 44.233.222.183:10025
+[Test isAlive] for 44.233.222.183:10021
+[Test isAlive] for 44.233.222.183:10033
+[Test isAlive] for 44.233.222.183:10076
+[Test isAlive] for 44.233.222.183:10053
+[Test isAlive] for 44.233.222.183:10029
+[Test isAlive] for 44.233.222.183:10054
+[Test isAlive] for 44.233.222.183:10042
+[Test isAlive] for 44.233.222.183:10034
+[Test isAlive] for 44.233.222.183:10077
+[Test isAlive] for 44.233.222.183:10008
+[Test isAlive] for 44.233.222.183:10001
+[Test isAlive] for 44.233.222.183:10006
+[Test isAlive] for 44.233.222.183:10012
+[Test isAlive] for 44.233.222.183:10022
+[Test isAlive] for 44.233.222.183:10074
+[Test isAlive] for 44.233.222.183:10015
+[Test isAlive] for 44.233.222.183:10005
+[Test isAlive] for 44.233.222.183:10061
+[Test isAlive] for 44.233.222.183:10003
+[Test isAlive] for 44.233.222.183:10011
+[Test isAlive] for 44.233.222.183:10038
+[Test isAlive] for 44.233.222.183:10043
+[Test isAlive] for 44.233.222.183:10032
+[Test isAlive] for 44.233.222.183:10013
+[Test isAlive] for 44.233.222.183:10049
+[Test isAlive] for 44.233.222.183:10010
+[Test isAlive] for 44.233.222.183:10055
+[Test isAlive] for 44.233.222.183:10047
+[Test isAlive] for 44.233.222.183:10040
+[Test isAlive] for 44.233.222.183:10073
+[Test isAlive] for 44.233.222.183:10020
+[Test isAlive] for 44.233.222.183:10026
+[Test isAlive] for 44.233.222.183:10080
+[Test isAlive] for 44.233.222.183:10075
+[Test isAlive] for 44.233.222.183:10030
+[Test isAlive] for 44.233.222.183:10048
+[Test isAlive] for 44.233.222.183:10017
+[Test isAlive] for 44.233.222.183:10064
+[Test isAlive] for 44.233.222.183:10009
+[Test isAlive] for 44.233.222.183:10041
+[Test isAlive] for 44.233.222.183:10002
+[Test isAlive] for 44.233.222.183:10028
+[Test isAlive] for 44.233.222.183:10045
+[Test isAlive] for 44.233.222.183:10037
+[Test isAlive] for 44.233.222.183:10035
+[Test isAlive] for 44.233.222.183:10014
+[Test isAlive] for 44.233.222.183:10078
+[Test isAlive] for 44.233.222.183:10016
+[Test isAlive] for 44.233.222.183:10056
+[Test isAlive] for 44.233.222.183:10004
+[Test isAlive] for 44.233.222.183:10071
+[Test isAlive] for 44.233.222.183:10024
+[Test isAlive] for 44.233.222.183:10007
+[Test isAlive] for 44.233.222.183:10058
+[Test isAlive] for 44.233.222.183:10036
+[Test isAlive] for 44.233.222.183:10060
+[ ... Completed in 0.01 seconds ]
+TEST_PASSED
+Stage 2 Random Front-End: Test Status: TEST_PASSED
+Clients: 1
+Total Requests (without replies): 5548
+Total Requests (including replies): 5570
+Successful Responses: 5482
+Timeout Responses: 0
+Total Failed Responses: 66
+% Success: 98.81038211968277
+% Timeout: 0.0
+% Failed: 1.1896178803172315
+Response Time (Successful requests):
+[max] 51ms, [min] 5ms
+[avg] 10.532287486318861 ms, [stdev] 2.648052608721396ms
+Throughput: 92.45896175318724 requests per second
+Goodput: 91.35905341221564 requests per second
+Retry Rate (Successful requests): 1.0039653929343908
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.028 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (64 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.012 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.048 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.048 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Warning] Received out-of-space error. Sending wipeout!
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+[Test isAlive] for 44.233.222.183:10023
+[Test isAlive] for 44.233.222.183:10063
+[Test isAlive] for 44.233.222.183:10044
+[Test isAlive] for 44.233.222.183:10050
+[Test isAlive] for 44.233.222.183:10066
+[Test isAlive] for 44.233.222.183:10031
+[Test isAlive] for 44.233.222.183:10072
+[Test isAlive] for 44.233.222.183:10069
+[Test isAlive] for 44.233.222.183:10068
+[Test isAlive] for 44.233.222.183:10057
+[Test isAlive] for 44.233.222.183:10052
+[Test isAlive] for 44.233.222.183:10079
+[Test isAlive] for 44.233.222.183:10039
+[Test isAlive] for 44.233.222.183:10019
+[Test isAlive] for 44.233.222.183:10046
+[Test isAlive] for 44.233.222.183:10027
+[Test isAlive] for 44.233.222.183:10070
+[Test isAlive] for 44.233.222.183:10018
+[Test isAlive] for 44.233.222.183:10059
+[Test isAlive] for 44.233.222.183:10025
+[Test isAlive] for 44.233.222.183:10021
+[Test isAlive] for 44.233.222.183:10033
+[Test isAlive] for 44.233.222.183:10076
+[Test isAlive] for 44.233.222.183:10053
+[Test isAlive] for 44.233.222.183:10029
+[Test isAlive] for 44.233.222.183:10054
+[Test isAlive] for 44.233.222.183:10042
+[Test isAlive] for 44.233.222.183:10034
+[Test isAlive] for 44.233.222.183:10077
+[Test isAlive] for 44.233.222.183:10008
+[Test isAlive] for 44.233.222.183:10001
+[Test isAlive] for 44.233.222.183:10006
+[Test isAlive] for 44.233.222.183:10012
+[Test isAlive] for 44.233.222.183:10022
+[Test isAlive] for 44.233.222.183:10074
+[Test isAlive] for 44.233.222.183:10015
+[Test isAlive] for 44.233.222.183:10005
+[Test isAlive] for 44.233.222.183:10061
+[Test isAlive] for 44.233.222.183:10003
+[Test isAlive] for 44.233.222.183:10011
+[Test isAlive] for 44.233.222.183:10038
+[Test isAlive] for 44.233.222.183:10043
+[Test isAlive] for 44.233.222.183:10032
+[Test isAlive] for 44.233.222.183:10013
+[Test isAlive] for 44.233.222.183:10049
+[Test isAlive] for 44.233.222.183:10010
+[Test isAlive] for 44.233.222.183:10055
+[Test isAlive] for 44.233.222.183:10047
+[Test isAlive] for 44.233.222.183:10040
+[Test isAlive] for 44.233.222.183:10073
+[Test isAlive] for 44.233.222.183:10020
+[Test isAlive] for 44.233.222.183:10026
+[Test isAlive] for 44.233.222.183:10080
+[Test isAlive] for 44.233.222.183:10075
+[Test isAlive] for 44.233.222.183:10030
+[Test isAlive] for 44.233.222.183:10048
+[Test isAlive] for 44.233.222.183:10017
+[Test isAlive] for 44.233.222.183:10064
+[Test isAlive] for 44.233.222.183:10009
+[Test isAlive] for 44.233.222.183:10041
+[Test isAlive] for 44.233.222.183:10002
+[Test isAlive] for 44.233.222.183:10028
+[Test isAlive] for 44.233.222.183:10045
+[Test isAlive] for 44.233.222.183:10037
+[Test isAlive] for 44.233.222.183:10035
+[Test isAlive] for 44.233.222.183:10014
+[Test isAlive] for 44.233.222.183:10078
+[Test isAlive] for 44.233.222.183:10016
+[Test isAlive] for 44.233.222.183:10056
+[Test isAlive] for 44.233.222.183:10004
+[Test isAlive] for 44.233.222.183:10071
+[Test isAlive] for 44.233.222.183:10024
+[Test isAlive] for 44.233.222.183:10007
+[Test isAlive] for 44.233.222.183:10058
+[Test isAlive] for 44.233.222.183:10036
+[Test isAlive] for 44.233.222.183:10060
+[ ... Completed in 0.01 seconds ]
+TEST_PASSED
+[ CPU load (loadavg, last one minute) 0.43 ]
+Stage 2 Random Front-End: Test Status: TEST_PASSED
+Clients: 64
+Total Requests (without replies): 356662
+Total Requests (including replies): 358394
+Successful Responses: 352177
+Timeout Responses: 0
+Total Failed Responses: 4485
+% Success: 98.74250691130538
+% Timeout: 0.0
+% Failed: 1.2574930886946185
+Response Time (Successful requests):
+[max] 131ms, [min] 5ms
+[avg] 10.458502400781425 ms, [stdev] 3.0300796375186314ms
+Throughput: 5942.583891499217 requests per second
+Goodput: 5867.856309773734 requests per second
+Retry Rate (Successful requests): 1.0048561383046133
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.01 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.165 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (256 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 44.233.222.183:10023
+[Test isAlive] for 44.233.222.183:10072
+[Test isAlive] for 44.233.222.183:10063
+[Test isAlive] for 44.233.222.183:10044
+[Test isAlive] for 44.233.222.183:10050
+[Test isAlive] for 44.233.222.183:10066
+[Test isAlive] for 44.233.222.183:10069
+[Test isAlive] for 44.233.222.183:10031
+[Test isAlive] for 44.233.222.183:10068
+[Test isAlive] for 44.233.222.183:10057
+[Test isAlive] for 44.233.222.183:10052
+[Test isAlive] for 44.233.222.183:10079
+[Test isAlive] for 44.233.222.183:10039
+[Test isAlive] for 44.233.222.183:10019
+[Test isAlive] for 44.233.222.183:10046
+[Test isAlive] for 44.233.222.183:10027
+[Test isAlive] for 44.233.222.183:10070
+[Test isAlive] for 44.233.222.183:10018
+[Test isAlive] for 44.233.222.183:10059
+[Test isAlive] for 44.233.222.183:10025
+[Test isAlive] for 44.233.222.183:10021
+[Test isAlive] for 44.233.222.183:10033
+[Test isAlive] for 44.233.222.183:10076
+[Test isAlive] for 44.233.222.183:10053
+[Test isAlive] for 44.233.222.183:10029
+[Test isAlive] for 44.233.222.183:10054
+[Test isAlive] for 44.233.222.183:10042
+[Test isAlive] for 44.233.222.183:10077
+[Test isAlive] for 44.233.222.183:10034
+[Test isAlive] for 44.233.222.183:10008
+[Test isAlive] for 44.233.222.183:10001
+[Test isAlive] for 44.233.222.183:10006
+[Test isAlive] for 44.233.222.183:10012
+[Test isAlive] for 44.233.222.183:10022
+[Test isAlive] for 44.233.222.183:10074
+[Test isAlive] for 44.233.222.183:10015
+[Test isAlive] for 44.233.222.183:10005
+[Test isAlive] for 44.233.222.183:10061
+[Test isAlive] for 44.233.222.183:10003
+[Test isAlive] for 44.233.222.183:10011
+[Test isAlive] for 44.233.222.183:10038
+[Test isAlive] for 44.233.222.183:10043
+[Test isAlive] for 44.233.222.183:10032
+[Test isAlive] for 44.233.222.183:10013
+[Test isAlive] for 44.233.222.183:10049
+[Test isAlive] for 44.233.222.183:10010
+[Test isAlive] for 44.233.222.183:10055
+[Test isAlive] for 44.233.222.183:10047
+[Test isAlive] for 44.233.222.183:10040
+[Test isAlive] for 44.233.222.183:10073
+[Test isAlive] for 44.233.222.183:10020
+[Test isAlive] for 44.233.222.183:10026
+[Test isAlive] for 44.233.222.183:10080
+[Test isAlive] for 44.233.222.183:10075
+[Test isAlive] for 44.233.222.183:10030
+[Test isAlive] for 44.233.222.183:10048
+[Test isAlive] for 44.233.222.183:10017
+[Test isAlive] for 44.233.222.183:10064
+[Test isAlive] for 44.233.222.183:10009
+[Test isAlive] for 44.233.222.183:10041
+[Test isAlive] for 44.233.222.183:10002
+[Test isAlive] for 44.233.222.183:10028
+[Test isAlive] for 44.233.222.183:10045
+[Test isAlive] for 44.233.222.183:10037
+[Test isAlive] for 44.233.222.183:10035
+[Test isAlive] for 44.233.222.183:10014
+[Test isAlive] for 44.233.222.183:10078
+[Test isAlive] for 44.233.222.183:10016
+[Test isAlive] for 44.233.222.183:10056
+[Test isAlive] for 44.233.222.183:10004
+[Test isAlive] for 44.233.222.183:10071
+[Test isAlive] for 44.233.222.183:10024
+[Test isAlive] for 44.233.222.183:10007
+[Test isAlive] for 44.233.222.183:10058
+[Test isAlive] for 44.233.222.183:10036
+[Test isAlive] for 44.233.222.183:10060
+[ ... Completed in 0.011 seconds ]
+TEST_PASSED
+[ CPU load (loadavg, last one minute) 0.72 ]
+Stage 2 Random Front-End: Test Status: TEST_PASSED
+Clients: 256
+Total Requests (without replies): 1427914
+Total Requests (including replies): 1435301
+Successful Responses: 1410901
+Timeout Responses: 0
+Total Failed Responses: 17013
+% Success: 98.80854169088614
+% Timeout: 0.0
+% Failed: 1.1914583091138542
+Response Time (Successful requests):
+[max] 291ms, [min] 5ms
+[avg] 10.489172521672321 ms, [stdev] 3.082891999015906ms
+Throughput: 23780.335076441395 requests per second
+Goodput: 23497.002298238018 requests per second
+Retry Rate (Successful requests): 1.0051732807437983
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.013 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.613 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (512 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 44.233.222.183:10023
+[Test isAlive] for 44.233.222.183:10050
+[Test isAlive] for 44.233.222.183:10044
+[Test isAlive] for 44.233.222.183:10072
+[Test isAlive] for 44.233.222.183:10066
+[Test isAlive] for 44.233.222.183:10063
+[Test isAlive] for 44.233.222.183:10069
+[Test isAlive] for 44.233.222.183:10031
+[Test isAlive] for 44.233.222.183:10068
+[Test isAlive] for 44.233.222.183:10057
+[Test isAlive] for 44.233.222.183:10052
+[Test isAlive] for 44.233.222.183:10079
+[Test isAlive] for 44.233.222.183:10039
+[Test isAlive] for 44.233.222.183:10019
+[Test isAlive] for 44.233.222.183:10046
+[Test isAlive] for 44.233.222.183:10027
+[Test isAlive] for 44.233.222.183:10070
+[Test isAlive] for 44.233.222.183:10018
+[Test isAlive] for 44.233.222.183:10059
+[Test isAlive] for 44.233.222.183:10025
+[Test isAlive] for 44.233.222.183:10021
+[Test isAlive] for 44.233.222.183:10033
+[Test isAlive] for 44.233.222.183:10076
+[Test isAlive] for 44.233.222.183:10053
+[Test isAlive] for 44.233.222.183:10029
+[Test isAlive] for 44.233.222.183:10054
+[Test isAlive] for 44.233.222.183:10042
+[Test isAlive] for 44.233.222.183:10034
+[Test isAlive] for 44.233.222.183:10077
+[Test isAlive] for 44.233.222.183:10008
+[Test isAlive] for 44.233.222.183:10001
+[Test isAlive] for 44.233.222.183:10006
+[Test isAlive] for 44.233.222.183:10012
+[Test isAlive] for 44.233.222.183:10022
+[Test isAlive] for 44.233.222.183:10074
+[Test isAlive] for 44.233.222.183:10015
+[Test isAlive] for 44.233.222.183:10005
+[Test isAlive] for 44.233.222.183:10061
+[Test isAlive] for 44.233.222.183:10003
+[Test isAlive] for 44.233.222.183:10011
+[Test isAlive] for 44.233.222.183:10038
+[Test isAlive] for 44.233.222.183:10043
+[Test isAlive] for 44.233.222.183:10032
+[Test isAlive] for 44.233.222.183:10013
+[Test isAlive] for 44.233.222.183:10049
+[Test isAlive] for 44.233.222.183:10010
+[Test isAlive] for 44.233.222.183:10055
+[Test isAlive] for 44.233.222.183:10047
+[Test isAlive] for 44.233.222.183:10040
+[Test isAlive] for 44.233.222.183:10073
+[Test isAlive] for 44.233.222.183:10020
+[Test isAlive] for 44.233.222.183:10026
+[Test isAlive] for 44.233.222.183:10080
+[Test isAlive] for 44.233.222.183:10075
+[Test isAlive] for 44.233.222.183:10030
+[Test isAlive] for 44.233.222.183:10048
+[Test isAlive] for 44.233.222.183:10017
+[Test isAlive] for 44.233.222.183:10064
+[Test isAlive] for 44.233.222.183:10009
+[Test isAlive] for 44.233.222.183:10041
+[Test isAlive] for 44.233.222.183:10002
+[Test isAlive] for 44.233.222.183:10028
+[Test isAlive] for 44.233.222.183:10045
+[Test isAlive] for 44.233.222.183:10037
+[Test isAlive] for 44.233.222.183:10035
+[Test isAlive] for 44.233.222.183:10014
+[Test isAlive] for 44.233.222.183:10078
+[Test isAlive] for 44.233.222.183:10016
+[Test isAlive] for 44.233.222.183:10056
+[Test isAlive] for 44.233.222.183:10004
+[Test isAlive] for 44.233.222.183:10071
+[Test isAlive] for 44.233.222.183:10024
+[Test isAlive] for 44.233.222.183:10007
+[Test isAlive] for 44.233.222.183:10058
+[Test isAlive] for 44.233.222.183:10036
+[Test isAlive] for 44.233.222.183:10060
+[ ... Completed in 0.047 seconds ]
+TEST_PASSED
+[ CPU load (loadavg, last one minute) 1.17 ]
+Stage 2 Random Front-End: Test Status: TEST_PASSED
+Clients: 512
+Total Requests (without replies): 2825668
+Total Requests (including replies): 2840273
+Successful Responses: 2791975
+Timeout Responses: 0
+Total Failed Responses: 33693
+% Success: 98.80760938652382
+% Timeout: 0.0
+% Failed: 1.1923906134761761
+Response Time (Successful requests):
+[max] 142ms, [min] 5ms
+[avg] 10.598741750911094 ms, [stdev] 3.3287441591219546ms
+Throughput: 47055.25395503747 requests per second
+Goodput: 46494.17152373023 requests per second
+Retry Rate (Successful requests): 1.0051686893152345
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.015 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 66.264 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[Test isAlive] for 44.233.222.183:10065
+[Test isAlive] for 44.233.222.183:10067
+[Test isAlive] for 44.233.222.183:10062
+[Test isAlive] for 44.233.222.183:10051
+[ ... Completed in 10.002 seconds ]
+
+Results Summary:
+Client AWS Instance Type : c6a.8xlarge
+Client Local Hostname : ip-172-31-57-87
+Client Local IP : ip-172-31-57-87/172.31.57.87
+Concurrent Store/Load v2; Stage 0; : 2.0
+Concurrent Store/Load v2; Stage 0; GET Phase; % ERROR-INVALID-GET (value or version) : 0.0
+Concurrent Store/Load v2; Stage 0; GET Phase; % ERROR-OTHER : 0.0
+Concurrent Store/Load v2; Stage 0; GET Phase; % ERROR-UID : 0.0
+Concurrent Store/Load v2; Stage 0; GET Phase; % FAILED (Not SUCCESS) : 0.0
+Concurrent Store/Load v2; Stage 0; GET Phase; % KEY-NOT-FOUND : 0.0
+Concurrent Store/Load v2; Stage 0; GET Phase; % SUCCESS : 100.0
+Concurrent Store/Load v2; Stage 0; GET Phase; % TIMEOUT : 0.0
+Concurrent Store/Load v2; Stage 0; GET Phase; SUCCESS Response Count : 40000.0
+Concurrent Store/Load v2; Stage 0; GET Phase; Total Value Size (MiB) : 19.14737033843994
+Concurrent Store/Load v2; Stage 0; PUT Phase; % ERROR-INVALID-GET (value or version) : 0.0
+Concurrent Store/Load v2; Stage 0; PUT Phase; % ERROR-OTHER : 0.0
+Concurrent Store/Load v2; Stage 0; PUT Phase; % ERROR-UID : 0.0
+Concurrent Store/Load v2; Stage 0; PUT Phase; % FAILED (Not SUCCESS) : 0.0
+Concurrent Store/Load v2; Stage 0; PUT Phase; % KEY-NOT-FOUND : 0.0
+Concurrent Store/Load v2; Stage 0; PUT Phase; % SUCCESS : 100.0
+Concurrent Store/Load v2; Stage 0; PUT Phase; % TIMEOUT : 0.0
+Concurrent Store/Load v2; Stage 0; PUT Phase; SUCCESS Response Count : 40000.0
+Concurrent Store/Load v2; Stage 0; PUT Phase; Total Value Size (MiB) : 19.14737033843994
+Concurrent Store/Load v2; Stage 2a; : 2.0
+Concurrent Store/Load v2; Stage 2a; GET Phase; % ERROR-INVALID-GET (value or version) : 0.0
+Concurrent Store/Load v2; Stage 2a; GET Phase; % ERROR-OTHER : 0.0
+Concurrent Store/Load v2; Stage 2a; GET Phase; % ERROR-UID : 0.0
+Concurrent Store/Load v2; Stage 2a; GET Phase; % FAILED (Not SUCCESS) : 0.0
+Concurrent Store/Load v2; Stage 2a; GET Phase; % KEY-NOT-FOUND : 0.0
+Concurrent Store/Load v2; Stage 2a; GET Phase; % SUCCESS : 100.0
+Concurrent Store/Load v2; Stage 2a; GET Phase; % TIMEOUT : 0.0
+Concurrent Store/Load v2; Stage 2a; GET Phase; SUCCESS Response Count : 20000.0
+Concurrent Store/Load v2; Stage 2a; GET Phase; Total Value Size (MiB) : 9.5274019241333
+Concurrent Store/Load v2; Stage 2a; PUT Phase; % ERROR-INVALID-GET (value or version) : 0.0
+Concurrent Store/Load v2; Stage 2a; PUT Phase; % ERROR-OTHER : 0.0
+Concurrent Store/Load v2; Stage 2a; PUT Phase; % ERROR-UID : 0.0
+Concurrent Store/Load v2; Stage 2a; PUT Phase; % FAILED (Not SUCCESS) : 0.0
+Concurrent Store/Load v2; Stage 2a; PUT Phase; % KEY-NOT-FOUND : 0.0
+Concurrent Store/Load v2; Stage 2a; PUT Phase; % SUCCESS : 100.0
+Concurrent Store/Load v2; Stage 2a; PUT Phase; % TIMEOUT : 0.0
+Concurrent Store/Load v2; Stage 2a; PUT Phase; SUCCESS Response Count : 20000.0
+Concurrent Store/Load v2; Stage 2a; PUT Phase; Total Value Size (MiB) : 9.5274019241333
+Local At-Most-Once Policy : 2.0
+Local At-Most-Once Policy Empty REMs : 2.0
+Local At-Most-Once Policy Error Return Code : 2.0
+Local At-Most-Once Policy Full Test : 2.0
+Local Basic PUT GET  : 2.0
+Local Client Capacity Test : 2.0
+Local Double PUT with version : 2.0
+Local Double Remove : 2.0
+Local Invalid Command : 2.0
+Local Invalid Key Test : 2.0
+Local Invalid Value Test : 2.0
+Local Remove Operation : 2.0
+Local Shutdown Test : 2.0
+Local Single node: 1 Client(s) % Failed : 0.0
+Local Single node: 1 Client(s) % Success : 99.99992996816353
+Local Single node: 1 Client(s) % Timeout : 7.003183647286056E-5
+Local Single node: 1 Client(s) Average Response Time (ms) : 1.0
+Local Single node: 1 Client(s) Goodput (Requests per Second) : 23798.0
+Local Single node: 1 Client(s) Maximum Response Time (ms) : 410.0
+Local Single node: 1 Client(s) STDEV Response Time (ms) : 1.0
+Local Single node: 1 Client(s) Successful Responses : 1427921
+Local Single node: 1 Client(s) Throughput (Requests per Second) : 23798.0
+Local Single node: 1 Client(s) Timeout Responses : 1
+Local Single node: 1 Client(s) Total Failed Responses : 0
+Local Single node: 1 Client(s) Total Requests (including retries) : 1427932
+Local Single node: 1 Client(s) Total Requests (without retries) : 1427922
+Local Single node: 16 Client(s) % Failed : 0.0
+Local Single node: 16 Client(s) % Success : 100.0
+Local Single node: 16 Client(s) % Timeout : 0.0
+Local Single node: 16 Client(s) Average Response Time (ms) : 1.0
+Local Single node: 16 Client(s) Goodput (Requests per Second) : 88466.0
+Local Single node: 16 Client(s) Maximum Response Time (ms) : 24.0
+Local Single node: 16 Client(s) STDEV Response Time (ms) : 1.0
+Local Single node: 16 Client(s) Successful Responses : 5308126
+Local Single node: 16 Client(s) Throughput (Requests per Second) : 88466.0
+Local Single node: 16 Client(s) Timeout Responses : 0
+Local Single node: 16 Client(s) Total Failed Responses : 0
+Local Single node: 16 Client(s) Total Requests (including retries) : 5308126
+Local Single node: 16 Client(s) Total Requests (without retries) : 5308126
+Local Single node: 64 Client(s) % Failed : 0.0
+Local Single node: 64 Client(s) % Success : 100.0
+Local Single node: 64 Client(s) % Timeout : 0.0
+Local Single node: 64 Client(s) Average Response Time (ms) : 1.0
+Local Single node: 64 Client(s) Goodput (Requests per Second) : 90020.0
+Local Single node: 64 Client(s) Maximum Response Time (ms) : 27.0
+Local Single node: 64 Client(s) STDEV Response Time (ms) : 1.0
+Local Single node: 64 Client(s) Successful Responses : 5401605
+Local Single node: 64 Client(s) Throughput (Requests per Second) : 90020.0
+Local Single node: 64 Client(s) Timeout Responses : 0
+Local Single node: 64 Client(s) Total Failed Responses : 0
+Local Single node: 64 Client(s) Total Requests (including retries) : 5401605
+Local Single node: 64 Client(s) Total Requests (without retries) : 5401605
+Server Count : 80
+Server List : 44.233.222.183_10001_44.233.222.183_10002_44.233.222.183_10003_44.233.222.183_10004_44.233.222.183_10005_44.233.222.183_10006_44.233.222.183_10007_44.233.222.183_10008_44.233.222.183_10009_44.233.222.183_10010_44.233.222.183_10011_44.233.222.183_10012_44.233.222.183_10013_44.233.222.183_10014_44.233.222.183_10015_44.233.222.183_10016_44.233.222.183_10017_44.233.222.183_10018_44.233.222.183_10019_44.233.222.183_10020_44.233.222.183_10021_44.233.222.183_10022_44.233.222.183_10023_44.233.222.183_10024_44.233.222.183_10025_44.233.222.183_10026_44.233.222.183_10027_44.233.222.183_10028_44.233.222.183_10029_44.233.222.183_10030_44.233.222.183_10031_44.233.222.183_10032_44.233.222.183_10033_44.233.222.183_10034_44.233.222.183_10035_44.233.222.183_10036_44.233.222.183_10037_44.233.222.183_10038_44.233.222.183_10039_44.233.222.183_10040_44.233.222.183_10041_44.233.222.183_10042_44.233.222.183_10043_44.233.222.183_10044_44.233.222.183_10045_44.233.222.183_10046_44.233.222.183_10047_44.233.222.183_10048_44.233.222.183_10049_44.233.222.183_10050_44.233.222.183_10051_44.233.222.183_10052_44.233.222.183_10053_44.233.222.183_10054_44.233.222.183_10055_44.233.222.183_10056_44.233.222.183_10057_44.233.222.183_10058_44.233.222.183_10059_44.233.222.183_10060_44.233.222.183_10061_44.233.222.183_10062_44.233.222.183_10063_44.233.222.183_10064_44.233.222.183_10065_44.233.222.183_10066_44.233.222.183_10067_44.233.222.183_10068_44.233.222.183_10069_44.233.222.183_10070_44.233.222.183_10071_44.233.222.183_10072_44.233.222.183_10073_44.233.222.183_10074_44.233.222.183_10075_44.233.222.183_10076_44.233.222.183_10077_44.233.222.183_10078_44.233.222.183_10079_44.233.222.183_10080_
+Single Client Capacity (MiB) for value size of 500 : 38.0
+Stage 1 Random Front-End Basic : 2.0
+Stage 1 Random Front-End Performance: 1 Client(s) % Failed : 0.0
+Stage 1 Random Front-End Performance: 1 Client(s) % Success : 100.0
+Stage 1 Random Front-End Performance: 1 Client(s) % Timeout : 0.0
+Stage 1 Random Front-End Performance: 1 Client(s) Average Response Time (ms) : 11.0
+Stage 1 Random Front-End Performance: 1 Client(s) Goodput (Requests per Second) : 94.0
+Stage 1 Random Front-End Performance: 1 Client(s) Maximum Response Time (ms) : 51.0
+Stage 1 Random Front-End Performance: 1 Client(s) STDEV Response Time (ms) : 3.0
+Stage 1 Random Front-End Performance: 1 Client(s) Successful Responses : 5605
+Stage 1 Random Front-End Performance: 1 Client(s) Throughput (Requests per Second) : 94.0
+Stage 1 Random Front-End Performance: 1 Client(s) Timeout Responses : 0
+Stage 1 Random Front-End Performance: 1 Client(s) Total Failed Responses : 0
+Stage 1 Random Front-End Performance: 1 Client(s) Total Requests (including replies) : 5624
+Stage 1 Random Front-End Performance: 1 Client(s) Total Requests (without replies) : 5605
+Stage 1 Random Front-End Performance: 256 Client(s) % Failed : 0.0
+Stage 1 Random Front-End Performance: 256 Client(s) % Success : 100.0
+Stage 1 Random Front-End Performance: 256 Client(s) % Timeout : 0.0
+Stage 1 Random Front-End Performance: 256 Client(s) Average Response Time (ms) : 11.0
+Stage 1 Random Front-End Performance: 256 Client(s) CPU load (loadavg - last one minute) : 0.54
+Stage 1 Random Front-End Performance: 256 Client(s) Goodput (Requests per Second) : 24306.0
+Stage 1 Random Front-End Performance: 256 Client(s) Maximum Response Time (ms) : 132.0
+Stage 1 Random Front-End Performance: 256 Client(s) STDEV Response Time (ms) : 3.0
+Stage 1 Random Front-End Performance: 256 Client(s) Successful Responses : 1459204
+Stage 1 Random Front-End Performance: 256 Client(s) Throughput (Requests per Second) : 24306.0
+Stage 1 Random Front-End Performance: 256 Client(s) Timeout Responses : 0
+Stage 1 Random Front-End Performance: 256 Client(s) Total Failed Responses : 0
+Stage 1 Random Front-End Performance: 256 Client(s) Total Requests (including replies) : 1466503
+Stage 1 Random Front-End Performance: 256 Client(s) Total Requests (without replies) : 1459204
+Stage 1 Random Front-End Performance: 512 Client(s) % Failed : 0.0
+Stage 1 Random Front-End Performance: 512 Client(s) % Success : 100.0
+Stage 1 Random Front-End Performance: 512 Client(s) % Timeout : 0.0
+Stage 1 Random Front-End Performance: 512 Client(s) Average Response Time (ms) : 11.0
+Stage 1 Random Front-End Performance: 512 Client(s) CPU load (loadavg - last one minute) : 1.29
+Stage 1 Random Front-End Performance: 512 Client(s) Goodput (Requests per Second) : 48214.0
+Stage 1 Random Front-End Performance: 512 Client(s) Maximum Response Time (ms) : 291.0
+Stage 1 Random Front-End Performance: 512 Client(s) STDEV Response Time (ms) : 4.0
+Stage 1 Random Front-End Performance: 512 Client(s) Successful Responses : 2895269
+Stage 1 Random Front-End Performance: 512 Client(s) Throughput (Requests per Second) : 48214.0
+Stage 1 Random Front-End Performance: 512 Client(s) Timeout Responses : 0
+Stage 1 Random Front-End Performance: 512 Client(s) Total Failed Responses : 0
+Stage 1 Random Front-End Performance: 512 Client(s) Total Requests (including replies) : 2910088
+Stage 1 Random Front-End Performance: 512 Client(s) Total Requests (without replies) : 2895269
+Stage 1 Random Front-End Performance: 64 Client(s) % Failed : 0.0
+Stage 1 Random Front-End Performance: 64 Client(s) % Success : 100.0
+Stage 1 Random Front-End Performance: 64 Client(s) % Timeout : 0.0
+Stage 1 Random Front-End Performance: 64 Client(s) Average Response Time (ms) : 11.0
+Stage 1 Random Front-End Performance: 64 Client(s) CPU load (loadavg - last one minute) : 0.34
+Stage 1 Random Front-End Performance: 64 Client(s) Goodput (Requests per Second) : 6092.0
+Stage 1 Random Front-End Performance: 64 Client(s) Maximum Response Time (ms) : 131.0
+Stage 1 Random Front-End Performance: 64 Client(s) STDEV Response Time (ms) : 3.0
+Stage 1 Random Front-End Performance: 64 Client(s) Successful Responses : 365634
+Stage 1 Random Front-End Performance: 64 Client(s) Throughput (Requests per Second) : 6092.0
+Stage 1 Random Front-End Performance: 64 Client(s) Timeout Responses : 0
+Stage 1 Random Front-End Performance: 64 Client(s) Total Failed Responses : 0
+Stage 1 Random Front-End Performance: 64 Client(s) Total Requests (including replies) : 367404
+Stage 1 Random Front-End Performance: 64 Client(s) Total Requests (without replies) : 365634
+Stage 1 Single Front Node (At-Most-Once) Policy : 2.0
+Stage 1 Single Front Node At-Most-Once Policy Empty REMs : 2.0
+Stage 1 Single Front Node At-Most-Once Policy Error Return Code : 2.0
+Stage 1 Single Front Node At-Most-Once Policy Full Test : 2.0
+Stage 1 Single Front Node Basic PUT GET  : 2.0
+Stage 1 Single Front Node Double PUT with version : 2.0
+Stage 1 Single Front Node Double Remove : 2.0
+Stage 1 Single Front Node Invalid Command : 2.0
+Stage 1 Single Front Node Invalid Key Test : 2.0
+Stage 1 Single Front Node Invalid Value Test : 2.0
+Stage 1 Single Front Node Multi-Client Crash : 2.0
+Stage 1 Single Front Node Remove Operation : 2.0
+Stage 1 Single Front-End: 1 Client(s) % Failed : 0.0
+Stage 1 Single Front-End: 1 Client(s) % Success : 100.0
+Stage 1 Single Front-End: 1 Client(s) % Timeout : 0.0
+Stage 1 Single Front-End: 1 Client(s) Average Response Time (ms) : 11.0
+Stage 1 Single Front-End: 1 Client(s) Goodput (Requests per Second) : 94.0
+Stage 1 Single Front-End: 1 Client(s) Maximum Response Time (ms) : 51.0
+Stage 1 Single Front-End: 1 Client(s) STDEV Response Time (ms) : 3.0
+Stage 1 Single Front-End: 1 Client(s) Successful Responses : 5612
+Stage 1 Single Front-End: 1 Client(s) Throughput (Requests per Second) : 94.0
+Stage 1 Single Front-End: 1 Client(s) Timeout Responses : 0
+Stage 1 Single Front-End: 1 Client(s) Total Failed Responses : 0
+Stage 1 Single Front-End: 1 Client(s) Total Requests (including retries) : 5633
+Stage 1 Single Front-End: 1 Client(s) Total Requests (without retries) : 5612
+Stage 1 Single Front-End: 256 Client(s) % Failed : 0.0
+Stage 1 Single Front-End: 256 Client(s) % Success : 100.0
+Stage 1 Single Front-End: 256 Client(s) % Timeout : 0.0
+Stage 1 Single Front-End: 256 Client(s) Average Response Time (ms) : 11.0
+Stage 1 Single Front-End: 256 Client(s) Goodput (Requests per Second) : 24106.0
+Stage 1 Single Front-End: 256 Client(s) Maximum Response Time (ms) : 134.0
+Stage 1 Single Front-End: 256 Client(s) STDEV Response Time (ms) : 4.0
+Stage 1 Single Front-End: 256 Client(s) Successful Responses : 1447503
+Stage 1 Single Front-End: 256 Client(s) Throughput (Requests per Second) : 24106.0
+Stage 1 Single Front-End: 256 Client(s) Timeout Responses : 0
+Stage 1 Single Front-End: 256 Client(s) Total Failed Responses : 0
+Stage 1 Single Front-End: 256 Client(s) Total Requests (including retries) : 1456817
+Stage 1 Single Front-End: 256 Client(s) Total Requests (without retries) : 1447503
+Stage 1 Single Front-End: 512 Client(s) % Failed : 0.0
+Stage 1 Single Front-End: 512 Client(s) % Success : 100.0
+Stage 1 Single Front-End: 512 Client(s) % Timeout : 0.0
+Stage 1 Single Front-End: 512 Client(s) Average Response Time (ms) : 12.0
+Stage 1 Single Front-End: 512 Client(s) Goodput (Requests per Second) : 44492.0
+Stage 1 Single Front-End: 512 Client(s) Maximum Response Time (ms) : 295.0
+Stage 1 Single Front-End: 512 Client(s) STDEV Response Time (ms) : 8.0
+Stage 1 Single Front-End: 512 Client(s) Successful Responses : 2671729
+Stage 1 Single Front-End: 512 Client(s) Throughput (Requests per Second) : 44492.0
+Stage 1 Single Front-End: 512 Client(s) Timeout Responses : 0
+Stage 1 Single Front-End: 512 Client(s) Total Failed Responses : 0
+Stage 1 Single Front-End: 512 Client(s) Total Requests (including retries) : 2727745
+Stage 1 Single Front-End: 512 Client(s) Total Requests (without retries) : 2671729
+Stage 1 Single Front-End: 64 Client(s) % Failed : 0.0
+Stage 1 Single Front-End: 64 Client(s) % Success : 100.0
+Stage 1 Single Front-End: 64 Client(s) % Timeout : 0.0
+Stage 1 Single Front-End: 64 Client(s) Average Response Time (ms) : 11.0
+Stage 1 Single Front-End: 64 Client(s) Goodput (Requests per Second) : 6082.0
+Stage 1 Single Front-End: 64 Client(s) Maximum Response Time (ms) : 131.0
+Stage 1 Single Front-End: 64 Client(s) STDEV Response Time (ms) : 4.0
+Stage 1 Single Front-End: 64 Client(s) Successful Responses : 364963
+Stage 1 Single Front-End: 64 Client(s) Throughput (Requests per Second) : 6082.0
+Stage 1 Single Front-End: 64 Client(s) Timeout Responses : 0
+Stage 1 Single Front-End: 64 Client(s) Total Failed Responses : 0
+Stage 1 Single Front-End: 64 Client(s) Total Requests (including retries) : 366837
+Stage 1 Single Front-End: 64 Client(s) Total Requests (without retries) : 364963
+Stage 1 Suspend Node Count : 5
+Stage 2 Distributed Shutdown Honoured : 2.0
+Stage 2 Random Front-End Basic : 2.0
+Stage 2 Random Front-End: 1 Client(s) % Failed : 1.1896178803172315
+Stage 2 Random Front-End: 1 Client(s) % Success : 98.81038211968277
+Stage 2 Random Front-End: 1 Client(s) % Timeout : 0.0
+Stage 2 Random Front-End: 1 Client(s) Average Response Time (ms) : 11.0
+Stage 2 Random Front-End: 1 Client(s) Goodput (Requests per Second) : 92.0
+Stage 2 Random Front-End: 1 Client(s) Maximum Response Time (ms) : 51.0
+Stage 2 Random Front-End: 1 Client(s) STDEV Response Time (ms) : 3.0
+Stage 2 Random Front-End: 1 Client(s) Successful Responses : 5482
+Stage 2 Random Front-End: 1 Client(s) Throughput (Requests per Second) : 93.0
+Stage 2 Random Front-End: 1 Client(s) Timeout Responses : 0
+Stage 2 Random Front-End: 1 Client(s) Total Failed Responses : 66
+Stage 2 Random Front-End: 1 Client(s) Total Requests (including replies) : 5570
+Stage 2 Random Front-End: 1 Client(s) Total Requests (without replies) : 5548
+Stage 2 Random Front-End: 256 Client(s) % Failed : 1.1914583091138542
+Stage 2 Random Front-End: 256 Client(s) % Success : 98.80854169088614
+Stage 2 Random Front-End: 256 Client(s) % Timeout : 0.0
+Stage 2 Random Front-End: 256 Client(s) Average Response Time (ms) : 11.0
+Stage 2 Random Front-End: 256 Client(s) CPU load (loadavg - last one minute) : 0.72
+Stage 2 Random Front-End: 256 Client(s) Goodput (Requests per Second) : 23498.0
+Stage 2 Random Front-End: 256 Client(s) Maximum Response Time (ms) : 291.0
+Stage 2 Random Front-End: 256 Client(s) STDEV Response Time (ms) : 4.0
+Stage 2 Random Front-End: 256 Client(s) Successful Responses : 1410901
+Stage 2 Random Front-End: 256 Client(s) Throughput (Requests per Second) : 23781.0
+Stage 2 Random Front-End: 256 Client(s) Timeout Responses : 0
+Stage 2 Random Front-End: 256 Client(s) Total Failed Responses : 17013
+Stage 2 Random Front-End: 256 Client(s) Total Requests (including replies) : 1435301
+Stage 2 Random Front-End: 256 Client(s) Total Requests (without replies) : 1427914
+Stage 2 Random Front-End: 512 Client(s) % Failed : 1.1923906134761761
+Stage 2 Random Front-End: 512 Client(s) % Success : 98.80760938652382
+Stage 2 Random Front-End: 512 Client(s) % Timeout : 0.0
+Stage 2 Random Front-End: 512 Client(s) Average Response Time (ms) : 11.0
+Stage 2 Random Front-End: 512 Client(s) CPU load (loadavg - last one minute) : 1.17
+Stage 2 Random Front-End: 512 Client(s) Goodput (Requests per Second) : 46495.0
+Stage 2 Random Front-End: 512 Client(s) Maximum Response Time (ms) : 142.0
+Stage 2 Random Front-End: 512 Client(s) STDEV Response Time (ms) : 4.0
+Stage 2 Random Front-End: 512 Client(s) Successful Responses : 2791975
+Stage 2 Random Front-End: 512 Client(s) Throughput (Requests per Second) : 47056.0
+Stage 2 Random Front-End: 512 Client(s) Timeout Responses : 0
+Stage 2 Random Front-End: 512 Client(s) Total Failed Responses : 33693
+Stage 2 Random Front-End: 512 Client(s) Total Requests (including replies) : 2840273
+Stage 2 Random Front-End: 512 Client(s) Total Requests (without replies) : 2825668
+Stage 2 Random Front-End: 64 Client(s) % Failed : 1.2574930886946185
+Stage 2 Random Front-End: 64 Client(s) % Success : 98.74250691130538
+Stage 2 Random Front-End: 64 Client(s) % Timeout : 0.0
+Stage 2 Random Front-End: 64 Client(s) Average Response Time (ms) : 11.0
+Stage 2 Random Front-End: 64 Client(s) CPU load (loadavg - last one minute) : 0.43
+Stage 2 Random Front-End: 64 Client(s) Goodput (Requests per Second) : 5868.0
+Stage 2 Random Front-End: 64 Client(s) Maximum Response Time (ms) : 131.0
+Stage 2 Random Front-End: 64 Client(s) STDEV Response Time (ms) : 4.0
+Stage 2 Random Front-End: 64 Client(s) Successful Responses : 352177
+Stage 2 Random Front-End: 64 Client(s) Throughput (Requests per Second) : 5943.0
+Stage 2 Random Front-End: 64 Client(s) Timeout Responses : 0
+Stage 2 Random Front-End: 64 Client(s) Total Failed Responses : 4485
+Stage 2 Random Front-End: 64 Client(s) Total Requests (including replies) : 358394
+Stage 2 Random Front-End: 64 Client(s) Total Requests (without replies) : 356662
+Stage 2 Resumed Node Count : 1
+Stage 2 Single Front-End: 1 Client(s) % Failed : 0.0
+Stage 2 Single Front-End: 1 Client(s) % Success : 100.0
+Stage 2 Single Front-End: 1 Client(s) % Timeout : 0.0
+Stage 2 Single Front-End: 1 Client(s) Average Response Time (ms) : 6.0
+Stage 2 Single Front-End: 1 Client(s) Goodput (Requests per Second) : 181.0
+Stage 2 Single Front-End: 1 Client(s) Maximum Response Time (ms) : 126.0
+Stage 2 Single Front-End: 1 Client(s) STDEV Response Time (ms) : 3.0
+Stage 2 Single Front-End: 1 Client(s) Successful Responses : 10836
+Stage 2 Single Front-End: 1 Client(s) Throughput (Requests per Second) : 181.0
+Stage 2 Single Front-End: 1 Client(s) Timeout Responses : 0
+Stage 2 Single Front-End: 1 Client(s) Total Failed Responses : 0
+Stage 2 Single Front-End: 1 Client(s) Total Requests (including retries) : 10873
+Stage 2 Single Front-End: 1 Client(s) Total Requests (without retries) : 10836
+Stage 2 Single Front-End: 256 Client(s) % Failed : 0.018533725796009044
+Stage 2 Single Front-End: 256 Client(s) % Success : 99.981466274204
+Stage 2 Single Front-End: 256 Client(s) % Timeout : 0.0
+Stage 2 Single Front-End: 256 Client(s) Average Response Time (ms) : 7.0
+Stage 2 Single Front-End: 256 Client(s) Goodput (Requests per Second) : 40252.0
+Stage 2 Single Front-End: 256 Client(s) Maximum Response Time (ms) : 288.0
+Stage 2 Single Front-End: 256 Client(s) STDEV Response Time (ms) : 7.0
+Stage 2 Single Front-End: 256 Client(s) Successful Responses : 2416767
+Stage 2 Single Front-End: 256 Client(s) Throughput (Requests per Second) : 40260.0
+Stage 2 Single Front-End: 256 Client(s) Timeout Responses : 0
+Stage 2 Single Front-End: 256 Client(s) Total Failed Responses : 448
+Stage 2 Single Front-End: 256 Client(s) Total Requests (including retries) : 2459706
+Stage 2 Single Front-End: 256 Client(s) Total Requests (without retries) : 2417215
+Stage 2 Single Front-End: 512 Client(s) % Failed : 0.036872625951943495
+Stage 2 Single Front-End: 512 Client(s) % Success : 99.96242570657039
+Stage 2 Single Front-End: 512 Client(s) % Timeout : 7.016674776773263E-4
+Stage 2 Single Front-End: 512 Client(s) Average Response Time (ms) : 11.0
+Stage 2 Single Front-End: 512 Client(s) Goodput (Requests per Second) : 46802.0
+Stage 2 Single Front-End: 512 Client(s) Maximum Response Time (ms) : 559.0
+Stage 2 Single Front-End: 512 Client(s) STDEV Response Time (ms) : 21.0
+Stage 2 Single Front-End: 512 Client(s) Successful Responses : 2849282
+Stage 2 Single Front-End: 512 Client(s) Throughput (Requests per Second) : 46820.0
+Stage 2 Single Front-End: 512 Client(s) Timeout Responses : 20
+Stage 2 Single Front-End: 512 Client(s) Total Failed Responses : 1051
+Stage 2 Single Front-End: 512 Client(s) Total Requests (including retries) : 3125606
+Stage 2 Single Front-End: 512 Client(s) Total Requests (without retries) : 2850353
+Stage 2 Single Front-End: 64 Client(s) % Failed : 0.0
+Stage 2 Single Front-End: 64 Client(s) % Success : 100.0
+Stage 2 Single Front-End: 64 Client(s) % Timeout : 0.0
+Stage 2 Single Front-End: 64 Client(s) Average Response Time (ms) : 6.0
+Stage 2 Single Front-End: 64 Client(s) Goodput (Requests per Second) : 11657.0
+Stage 2 Single Front-End: 64 Client(s) Maximum Response Time (ms) : 130.0
+Stage 2 Single Front-End: 64 Client(s) STDEV Response Time (ms) : 3.0
+Stage 2 Single Front-End: 64 Client(s) Successful Responses : 699855
+Stage 2 Single Front-End: 64 Client(s) Throughput (Requests per Second) : 11657.0
+Stage 2 Single Front-End: 64 Client(s) Timeout Responses : 0
+Stage 2 Single Front-End: 64 Client(s) Total Failed Responses : 0
+Stage 2 Single Front-End: 64 Client(s) Total Requests (including retries) : 701674
+Stage 2 Single Front-End: 64 Client(s) Total Requests (without retries) : 699855
+Suspend Verify v2; Stage 1; Key Recovery; : 2.0
+Suspend Verify v2; Stage 1; Key Recovery; % ERROR-INVALID-GET (value or version) : 0.0
+Suspend Verify v2; Stage 1; Key Recovery; % ERROR-OTHER : 0.0
+Suspend Verify v2; Stage 1; Key Recovery; % ERROR-UID : 0.0
+Suspend Verify v2; Stage 1; Key Recovery; % FAILED (Not SUCCESS) : 6.415
+Suspend Verify v2; Stage 1; Key Recovery; % KEY-NOT-FOUND : 6.415
+Suspend Verify v2; Stage 1; Key Recovery; % SUCCESS : 93.585
+Suspend Verify v2; Stage 1; Key Recovery; % TIMEOUT : 0.0
+Suspend Verify v2; Stage 1; Key Recovery; SUCCESS Response Count : 37434.0
+Suspend Verify v2; Stage 1; Key Recovery; Total Value Size (MiB) : 17.92098045349121
+Suspend Verify v2; Stage 2b; Key Recovery; : 2.0
+Suspend Verify v2; Stage 2b; Key Recovery; % ERROR-INVALID-GET (value or version) : 0.0
+Suspend Verify v2; Stage 2b; Key Recovery; % ERROR-OTHER : 0.0
+Suspend Verify v2; Stage 2b; Key Recovery; % ERROR-UID : 0.0
+Suspend Verify v2; Stage 2b; Key Recovery; % FAILED (Not SUCCESS) : 6.28
+Suspend Verify v2; Stage 2b; Key Recovery; % KEY-NOT-FOUND : 6.28
+Suspend Verify v2; Stage 2b; Key Recovery; % SUCCESS : 93.72
+Suspend Verify v2; Stage 2b; Key Recovery; % TIMEOUT : 0.0
+Suspend Verify v2; Stage 2b; Key Recovery; SUCCESS Response Count : 37488.0
+Suspend Verify v2; Stage 2b; Key Recovery; Total Value Size (MiB) : 17.95960521697998
+Suspend Verify v2; Stage 2c; Key Recovery; : 2.0
+Suspend Verify v2; Stage 2c; Key Recovery; % ERROR-INVALID-GET (value or version) : 0.0
+Suspend Verify v2; Stage 2c; Key Recovery; % ERROR-OTHER : 0.0
+Suspend Verify v2; Stage 2c; Key Recovery; % ERROR-UID : 0.0
+Suspend Verify v2; Stage 2c; Key Recovery; % FAILED (Not SUCCESS) : 1.205
+Suspend Verify v2; Stage 2c; Key Recovery; % KEY-NOT-FOUND : 1.205
+Suspend Verify v2; Stage 2c; Key Recovery; % SUCCESS : 98.795
+Suspend Verify v2; Stage 2c; Key Recovery; % TIMEOUT : 0.0
+Suspend Verify v2; Stage 2c; Key Recovery; SUCCESS Response Count : 19759.0
+Suspend Verify v2; Stage 2c; Key Recovery; Total Value Size (MiB) : 9.421777725219727
+Test Start Time : Thu Mar 16 04:03:52 UTC 2023
+Result Verification Code : A90D841DA6972E864EF51F0778E4C9B0
+[Info] Number of collected result fields: 359
+[Info] Submission Successful!
+[Info] Results server is up. Secret is valid.
+[Info] Results successfully submitted.
+[Info] Completed A9 Tests.
+
+[TA-Note] Resuming any remaining dead nodes (so you do not have to redeploy your service)!
+Waiting 10 seconds before resuming nodes
+[Info] Resuming 4 servers.
+Server 44.233.222.183:10065 resumed
+Server 44.233.222.183:10067 resumed
+Server 44.233.222.183:10062 resumed
+Server 44.233.222.183:10051 resumed
+[ ... Completed in 2.042 seconds ]
+
+Testing completed in 1920.925s

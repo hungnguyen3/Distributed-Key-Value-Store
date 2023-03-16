@@ -5,7 +5,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class App {
     public static void main(String[] args) {
         // Check if the correct number of command line arguments was provided
-        System.out.println("startup version 9.14");
+        System.out.println("startup version 9.17");
         if (args.length < 2) {
             System.err.println("Usage: java -jar A7.jar <address> <port> <cacheSize>");
             System.exit(1);

@@ -6,6 +6,7 @@ import ca.NetSysLab.ProtocolBuffers.Message.Msg;
 import com.google.common.primitives.Bytes;
 import com.google.common.primitives.Longs;
 import com.google.protobuf.ByteString;
+import com.google.protobuf.InvalidProtocolBufferException;
 
 import javax.xml.crypto.Data;
 import java.awt.*;
@@ -99,9 +100,18 @@ public class NetworkLayer implements Runnable {
                 datagramSocket.receive(requestMessagePacket);
 
                 // Parse the incoming message as a KVRequest protobuf message
-                Msg reqMsg = Msg.parseFrom(Arrays.copyOfRange(requestMessagePacket.getData(), 0, requestMessagePacket.getLength()));
+                Msg reqMsg;
+                KVRequest request;
+                try {
+                    reqMsg = Msg.parseFrom(Arrays.copyOfRange(requestMessagePacket.getData(), 0, requestMessagePacket.getLength()));
+                    request = KVRequest.parseFrom(reqMsg.getPayload());
+                    // Process the request...
+                } catch (InvalidProtocolBufferException e) {
+                    System.out.println("ERROR: PROTOBUF PARSE" + e);
+                    continue;
+                }
+
                 ByteString reqMsgId = reqMsg.getMessageID();
-                KVRequest request = KVRequest.parseFrom(reqMsg.getPayload());
 
                 // Process the incoming request and get the response
                 KeyValueResponse.KVResponse processedResponse = null;
