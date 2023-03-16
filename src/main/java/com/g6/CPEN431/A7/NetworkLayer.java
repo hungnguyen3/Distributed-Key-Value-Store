@@ -1,6 +1,7 @@
 package com.g6.CPEN431.A7;
 
 import ca.NetSysLab.ProtocolBuffers.KeyValueRequest.KVRequest;
+import ca.NetSysLab.ProtocolBuffers.KeyValueResponse;
 import ca.NetSysLab.ProtocolBuffers.Message.Msg;
 import com.google.common.primitives.Bytes;
 import com.google.common.primitives.Longs;
@@ -24,6 +25,11 @@ public class NetworkLayer implements Runnable {
     private String address;
     private RequestHandlingLayer requestHandlingLayer;
     private HashRing hashRing;
+    private final int REDIRECT_MAX_COUNT = 5;
+    private final int SUCCESS_CODE = 0x00;
+    private final int KEY_TOO_LONG_CODE = 0x06;
+    private final int VALUE_TOO_LONG_CODE = 0x07;
+    private final int OUT_OF_MEM_CODE = 0x02;
 
     /**
      * Constructor to create a new NetworkLayer.
@@ -97,30 +103,60 @@ public class NetworkLayer implements Runnable {
                 ByteString reqMsgId = reqMsg.getMessageID();
                 KVRequest request = KVRequest.parseFrom(reqMsg.getPayload());
 
+                // Process the incoming request and get the response
+                KeyValueResponse.KVResponse processedResponse = null;
+
                 //Routes the request to the correct handler. Based on UDP Protocol current node will not make sure forwarding succeeds. It will
                 //let the client send retries and forward retries for the client.
                 if(this.hashRing.getMembershipCount() > 1) {
-                    // If the reqMsg contains 2 extra fields originalSenderHost and OriginalSenderPort, this is a forwarded Request
-                    Boolean isRequestForwardedFromAnotherNode = !reqMsg.getOriginalSenderHost().equals("") && reqMsg.getOriginalSenderPort() != 0;
                     int reqCommand = request.getCommand();
+                    int redirectCount = reqMsg.getRedirectCount();
 
-                    // If this is not a forwarded request and is a PUT, GET or REM command, forward the request to the correct node
-                    if (!isRequestForwardedFromAnotherNode && (reqCommand == 0x01 || reqCommand == 0x02 || reqCommand == 0x03)) {
+                    // Set client's host and port for the directed request
+                    String clientHost = reqMsg.getOriginalSenderHost().equals("")? requestMessagePacket.getAddress().toString() : reqMsg.getOriginalSenderHost();
+                    int clientPort = reqMsg.getOriginalSenderPort() == 0? requestMessagePacket.getPort() : reqMsg.getOriginalSenderPort();
 
+                    Msg.Builder forwardMsgBuilder = Msg.newBuilder()
+                            .setMessageID(reqMsgId)
+                            .setPayload(reqMsg.getPayload())
+                            .setCheckSum(reqMsg.getCheckSum())
+                            .setOriginalSenderHost(clientHost)
+                            .setOriginalSenderPort(clientPort)
+                            .setRedirectCount(redirectCount + 1);
 
+                    if(reqCommand == 0x01 && redirectCount == 0) {
                         // Get the node to redirect to
                         Node forwardNode = hashRing.getNodeForKey(request.getKey().toByteArray());
                         // If the forwardNode is not the current node, forward the request to the forwardNode
                         if (forwardNode.getPort() != port || !forwardNode.getHost().equals(address)) {
+                            // Create a new forward message based on the original message
+                            Msg forwardMsg = forwardMsgBuilder.setReceivingNodeID(forwardNode.getNodeID()).build();
+
+                            // Serialize the forward message to a byte array
+                            byte[] forwardMessageBytes = forwardMsg.toByteArray();
+
+                            // Create forwarded message packet with forwardNode address and port
+                            DatagramPacket forwardedMessagePacket = new DatagramPacket(forwardMessageBytes, forwardMessageBytes.length, InetAddress.getByName(forwardNode.getHost()), forwardNode.getPort());
+
+                            // Send the forwarded message packet to the forwardNode
+                            datagramSocket.send(forwardedMessagePacket);
+
+                            // Continue to listen for incoming requests
+                            continue;
+                        }
+                    } else if ((reqCommand == 0x02 || reqCommand == 0x03) && redirectCount < REDIRECT_MAX_COUNT) {
+                        // Try to search the key here
+                        processedResponse = requestHandlingLayer.processRequest(request, reqMsgId);
+
+                        // If key not found, continue to redirect
+                        if (processedResponse.getErrCode() != SUCCESS_CODE
+                                && processedResponse.getErrCode() != KEY_TOO_LONG_CODE
+                                && processedResponse.getErrCode() != VALUE_TOO_LONG_CODE) {
+                            // Get the node to redirect to
+                            Node forwardNode = hashRing.getRedirectNode(request.getKey().toByteArray(), reqMsg.getReceivingNodeID(), redirectCount == 0);
 
                             // Create a new forward message based on the original message
-                            Msg forwardMsg = Msg.newBuilder()
-                                    .setMessageID(reqMsgId)
-                                    .setPayload(reqMsg.getPayload())
-                                    .setCheckSum(reqMsg.getCheckSum())
-                                    .setOriginalSenderHost(requestMessagePacket.getAddress().toString())
-                                    .setOriginalSenderPort(requestMessagePacket.getPort())
-                                    .build();
+                            Msg forwardMsg = forwardMsgBuilder.setReceivingNodeID(forwardNode.getNodeID()).build();
 
                             // Serialize the forward message to a byte array
                             byte[] forwardMessageBytes = forwardMsg.toByteArray();
@@ -137,8 +173,11 @@ public class NetworkLayer implements Runnable {
                     }
                 }
 
-                // Process the incoming request and get the response
-                byte[] responseBytes = requestHandlingLayer.processRequest(request, reqMsgId).toByteArray();
+                if(processedResponse == null) {
+                    processedResponse = requestHandlingLayer.processRequest(request, reqMsgId);
+                }
+
+                byte[] responseBytes = processedResponse.toByteArray();
 
                 // Construct the response message with the response and computed checksum
                 Msg resMsg = Msg.newBuilder()
@@ -158,16 +197,17 @@ public class NetworkLayer implements Runnable {
                 DatagramPacket responseMessagePacket = new DatagramPacket(responseMessageBytes, responseMessageBytes.length, clientHost, clientPort);
                 datagramSocket.send(responseMessagePacket);
 
-                // Debugging statement
-//                if(request.getCommand() == 0x01) {
-//                    System.out.println("Sent PUT response to client!!! " + clientHost + ":" + clientPort);
-//                }
-//                if(request.getCommand() == 0x02) {
-//                    System.out.println("Sent GET response to client!!! " + clientHost + ":" + clientPort);
-//                }
-//                if(request.getCommand() == 0x03) {
-//                    System.out.println("Sent REM response to client!!! " + clientHost + ":" + clientPort);
-//                }
+                /*
+                if(request.getCommand() == 0x01) {
+                    System.out.println("Sent PUT response to client!!! " + clientHost + ":" + clientPort + "Err code " + processedResponse.getErrCode());
+                }
+                if(request.getCommand() == 0x02) {
+                    System.out.println("Sent GET response to client!!! " + clientHost + ":" + clientPort + "Err code " + processedResponse.getErrCode());
+                }
+                if(request.getCommand() == 0x03) {
+                    System.out.println("Sent REM response to client!!! " + clientHost + ":" + clientPort + "Err code " + processedResponse.getErrCode());
+                }
+                */
             }
         } catch (IOException e) {
             e.printStackTrace();

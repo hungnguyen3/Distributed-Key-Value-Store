@@ -95,6 +95,14 @@ public class HashRing {
         }
     }
 
+    public Node getRedirectNode(byte[] key_byte_array, int startingPoint, boolean strictMode) {
+        if (strictMode) {
+            return getNodeForKey(key_byte_array);
+        } else {
+            return getNextLivingPredecessorNode(startingPoint);
+        }
+    }
+
     /**
      * Method to get the node responsible for a given key
      */
@@ -253,7 +261,7 @@ public class HashRing {
     }
 
     //gets the next living successor by checking the next nodeID until
-    //the end of the initial number of nodes, if no living successor is found returns INTEGER_MAX_VALUE
+    //if no living successor is found returns INTEGER_MAX_VALUE
     private int getNextLivingSuccessorID(Node node){
         for(int i = node.getNodeID() + 1; i < initialNumNodes; i++) {
             if(epidemic.isAlive(i)){
@@ -261,6 +269,17 @@ public class HashRing {
             }
         }
         return Integer.MAX_VALUE;
+    }
+
+    private Node getNextLivingPredecessorNode(int nodeId){
+        int currentNodeID = nodeId;
+        for(int i = currentNodeID - 1; i >= currentNodeID - initialNumNodes; i--) {
+            int predecessorID = (i + initialNumNodes) % initialNumNodes;
+            if (epidemic.isAlive(predecessorID)) {
+                return nodes.get(predecessorID);
+            }
+        }
+        return null;
     }
 
 

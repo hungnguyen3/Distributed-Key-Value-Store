@@ -6,7 +6,7 @@ numberOfNodes=20
 
 cd ../../..
 
-# mvn clean compile assembly:single
+mvn clean compile assembly:single
 truncate -s 0 pid_list.txt
 
 # Launch instances of the Java program with different port numbers
