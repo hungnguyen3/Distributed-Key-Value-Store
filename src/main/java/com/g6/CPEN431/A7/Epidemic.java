@@ -23,6 +23,7 @@ class Epidemic {
     private int port; //port to use for epidemic protocol
     private int safetyRounds; //number of buffer rounds for checking if remote node isAlive
     private Random rng = new Random();
+    private final Lock timestampVectorWriteLock = new ReentrantLock();
 
     public Epidemic(List<Node> nodeList, int myID, int delayMs, int port, int safetyRounds){
         this.nodeList = nodeList;
@@ -41,7 +42,6 @@ class Epidemic {
     public void startEpidemic() throws SocketException {
         final DatagramSocket datagramSocket = new DatagramSocket(port);
         final byte[] receiveBuffer = new byte[8 * N];
-        final Lock timestampVectorWriteLock = new ReentrantLock();
 
         //this thread will continually update its own timestamp in the timestamp vector and then
         Thread sendThread = new Thread(new Runnable() {
@@ -54,7 +54,8 @@ class Epidemic {
                     //find a random other node to send the timestamp vector to
                     do {
                         ID = rng.nextInt(N);
-                    } while(ID == myID || (isAlive(myID) && !isAlive(ID)));
+                    } while(ID == myID || !isAlive(ID));
+
 
                     timestampVectorWriteLock.lock();
                     //set the timestamp for this node to updated to the current time
@@ -86,11 +87,13 @@ class Epidemic {
 
                     //Sleep thread for the delay
                     try {
-                        if(isAlive(myID)) {
-                            Thread.sleep(delayMs);
-                        }
+                        Thread.sleep(delayMs);
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
+                    }
+
+                    if(!isAlive(myID)){
+                        broadcast(datagramSocket);
                     }
                 }
             }
@@ -138,5 +141,43 @@ class Epidemic {
             return false;
         }
     }
+
+    //if Node has been dead then returns to being alive update the timestamp locally then broadcast to all nodes
+    private void broadcast(DatagramSocket datagramSocket){
+        System.out.println("BROADCASTING ON EPIDEMIC");
+
+        timestampVectorWriteLock.lock();
+        //set the timestamp for this node to updated to the current time
+        timestampVector.set(myID, System.currentTimeMillis());
+        timestampVectorWriteLock.unlock();
+
+        //create a bytebuffer from the timestamp vector
+        byte[] timestampByteBuffer = new byte[]{};
+        for(int i = 0; i < N; i++){
+            timestampByteBuffer = Bytes.concat(timestampByteBuffer, Longs.toByteArray(timestampVector.get(i)));
+        }
+
+
+        for(int i = 0; i < N; i++){
+            Node sendNode = nodeList.get(i);
+            InetAddress address = null;
+            try {
+                address = InetAddress.getByName(sendNode.getHost());
+            } catch (UnknownHostException e) {
+                throw new RuntimeException(e);
+            }
+
+            //create the packet holding the timestamp vector and send to random node
+            DatagramPacket timestampPush = new DatagramPacket(timestampByteBuffer, timestampByteBuffer.length, address, sendNode.getEpidemicPort());
+
+            try {
+                datagramSocket.send(timestampPush);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+    }
+
 
 }
