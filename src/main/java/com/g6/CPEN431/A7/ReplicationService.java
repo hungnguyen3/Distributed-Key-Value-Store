@@ -19,7 +19,7 @@ public class ReplicationService {
    * Method to get the next replica for this key
    * TODO: review this method
    */
-  public Node getNextReplica(int replicateCount) {
+  public Node getNextReplica() {
     int currentNodeID = this.nodeId;
     // TODO: do the wrap around maybe
     for(int i = currentNodeID - 1; i >= currentNodeID - hashRingSize; i--) {

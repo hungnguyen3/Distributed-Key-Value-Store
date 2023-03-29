@@ -108,7 +108,7 @@ public class HashRing {
         if (strictMode) {
             return getPrimaryNodeForKey(key_byte_array);
         } else {
-            return this.replicationService.getNextReplica(startingPoint);
+            return this.replicationService.getNextReplica();
         }
     }
 

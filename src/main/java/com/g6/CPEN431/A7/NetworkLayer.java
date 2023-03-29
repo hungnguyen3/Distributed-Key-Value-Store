@@ -136,8 +136,8 @@ public class NetworkLayer implements Runnable {
 
                             // Perform chain replication
                             replicateCount = replicateCount + 1;
-                            Node nextReplica = hashRing.getReplicationService().getNextReplica(replicateCount);
-                            if (nextReplica != null) {
+                            Node nextReplica = hashRing.getReplicationService().getNextReplica();
+                            if (nextReplica == null) {
                                 System.out.println("FAILED TO GET THE NEXT REPLICA");
                             }
                             

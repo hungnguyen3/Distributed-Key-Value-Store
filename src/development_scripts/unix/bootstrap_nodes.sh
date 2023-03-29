@@ -2,7 +2,7 @@
 
 # Set IP address and number of nodes
 ip_address="127.0.0.1"
-numberOfNodes=20
+numberOfNodes=30
 
 cd ../../..
 
