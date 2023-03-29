@@ -12,6 +12,7 @@ import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
 import ca.NetSysLab.ProtocolBuffers.KeyValueRequest.KVRequest;
+import ca.NetSysLab.ProtocolBuffers.KeyValueResponse.KVResponse;
 import ca.NetSysLab.ProtocolBuffers.KeyValueResponse;
 import ca.NetSysLab.ProtocolBuffers.Message.Msg;
 
@@ -26,6 +27,8 @@ public class NetworkLayer implements Runnable {
     private final int KEY_TOO_LONG_CODE = 0x06;
     private final int VALUE_TOO_LONG_CODE = 0x07;
     private final int OUT_OF_MEM_CODE = 0x02;
+    private final KVResponse ERROR_NON_EXISTENT = KVResponse.newBuilder().setErrCode(0x01).build();
+    private final KVResponse ZERO_ERR_CODE = KVResponse.newBuilder().setErrCode(0x00).build();
 
     /**
      * Constructor to create a new NetworkLayer.
@@ -95,6 +98,7 @@ public class NetworkLayer implements Runnable {
                     int reqCommand = request.getCommand();
                     int redirectCount = reqMsg.getRedirectCount();
                     int replicateCount = reqMsg.getReplicateCount();
+                    int removeCount = reqMsg.getRemoveCount();
 
                     // Set client's host and port for the directed request
                     String clientHost = reqMsg.getOriginalSenderHost().equals("")? requestMessagePacket.getAddress().toString() : reqMsg.getOriginalSenderHost();
@@ -158,9 +162,9 @@ public class NetworkLayer implements Runnable {
                             processedResponse = requestHandlingLayer.processRequest(request, reqMsgId);
                         }
                     } 
-                    // GET and REMOVE REQUESTS
+                    // GET REQUESTS
                     // TODO: The logic here needs to be reviewd
-                    else if ((reqCommand == 0x02 || reqCommand == 0x03) && redirectCount < REDIRECT_MAX_COUNT) {
+                    else if (reqCommand == 0x02 && redirectCount < REDIRECT_MAX_COUNT) {
                         // Try to search the key here
                         processedResponse = requestHandlingLayer.processRequest(request, reqMsgId);
 
@@ -185,6 +189,48 @@ public class NetworkLayer implements Runnable {
 
                             // Continue to listen for incoming requests
                             continue;
+                        }
+                    }
+                    // REMOVE REQUESTS
+                    // TODO: The logic here needs to be reviewd
+                    else if (reqCommand == 0x03 && redirectCount < REDIRECT_MAX_COUNT) {
+                        // Try to search the key here
+                        processedResponse = requestHandlingLayer.processRequest(request, reqMsgId);
+
+                        // If key not found, continue to redirect
+                        if (processedResponse.getErrCode() != KEY_TOO_LONG_CODE
+                            && processedResponse.getErrCode() != VALUE_TOO_LONG_CODE) {
+                            // How many times have we removed the key
+                            if (processedResponse.getErrCode() == SUCCESS_CODE) {
+                               removeCount = removeCount + 1; 
+                            }
+
+                            // Get the node to redirect to
+                            Node forwardNode = hashRing.getRedirectNode(request.getKey().toByteArray(), reqMsg.getReceivingNodeID(), redirectCount == 0);
+
+                            // Create a new forward message based on the original message
+                            Msg forwardMsg = forwardMsgBuilder.setReceivingNodeID(forwardNode.getNodeID()).setRemoveCount(removeCount).build();
+                            
+                            // Serialize the forward message to a byte array
+                            byte[] forwardMessageBytes = forwardMsg.toByteArray();
+
+                            // Create forwarded message packet with forwardNode address and port
+                            DatagramPacket forwardedMessagePacket = new DatagramPacket(forwardMessageBytes, forwardMessageBytes.length, InetAddress.getByName(forwardNode.getHost()), forwardNode.getPort());
+
+                            // Send the forwarded message packet to the forwardNode
+                            datagramSocket.send(forwardedMessagePacket);
+
+                            // Continue to listen for incoming requests
+                            continue;
+                        }
+                    }
+                    else if (reqCommand == 0x03 && redirectCount == REDIRECT_MAX_COUNT) {
+                        // If we have finished all removes and at least remove one, return a success
+                        if (removeCount > 0) {
+                            processedResponse = ZERO_ERR_CODE;
+                        }
+                        if (removeCount == 0) {
+                            processedResponse = ERROR_NON_EXISTENT;
                         }
                     }
                 }
