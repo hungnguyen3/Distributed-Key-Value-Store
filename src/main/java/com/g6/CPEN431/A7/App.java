@@ -10,10 +10,11 @@ public class App {
         }
 
         // Parse the command line arguments
-        String address = args[0];
-        int port = Integer.parseInt(args[1]);
+        int maxMemUsage = Integer.parseInt(args[0]);
+        String address = args[1];
+        int port = Integer.parseInt(args[2]);
         System.out.println("Opening on port: " + port);
-        int cacheSize = Integer.parseInt(args[2]);
+        int cacheSize = Integer.parseInt(args[3]);
 
         // Create a new storage layer, cache, isAlive map, and hash ring
         StorageLayer storage = new StorageLayer(port + 20000);
@@ -22,7 +23,7 @@ public class App {
         HashRing hashRing = new HashRing("servers.txt", address, port);
 
         // Create a new request handling layer and network layer using the above objects
-        RequestHandlingLayer requestHandler = new RequestHandlingLayer(storage, cache, hashRing);
+        RequestHandlingLayer requestHandler = new RequestHandlingLayer(storage, cache, hashRing, maxMemUsage);
         NetworkLayer network = new NetworkLayer(address, port, requestHandler, hashRing);
 
         // Start the network layer
