@@ -59,7 +59,7 @@ class Epidemic {
                     //find a random other node to send the timestamp vector to
                     do {
                         ID = rng.nextInt(N);
-                    } while(ID == myID);
+                    } while(ID == myID || !isAlive(ID));
                     //create a bytebuffer from the timestamp vector
                     byte[] timestampByteBuffer = new byte[]{};
                     for(int i = 0; i < N; i++){
