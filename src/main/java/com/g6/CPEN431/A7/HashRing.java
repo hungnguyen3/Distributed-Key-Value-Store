@@ -90,7 +90,7 @@ public class HashRing {
         }
 
         //try to start the epidemic protocol and print error message if it fails
-        this.epidemic = new Epidemic((ArrayList<Node>)nodes.clone(), myID, 500, 20000 + myID, 20);
+        this.epidemic = new Epidemic((ArrayList<Node>)nodes.clone(), myID, 200, 20000 + myID, 20);
         this.myID = myID;
         this.initialNumNodes = hashRingSize;
 

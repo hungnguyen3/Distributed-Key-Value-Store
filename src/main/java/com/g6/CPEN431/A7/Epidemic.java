@@ -51,15 +51,16 @@ class Epidemic {
                 int k = 0;
                 while(true){
 
+                    //find a random other node to send the timestamp vector to
+                    do {
+                        ID = rng.nextInt(N);
+                    } while(ID == myID || (isAlive(myID) && !isAlive(ID)));
+
                     timestampVectorWriteLock.lock();
                     //set the timestamp for this node to updated to the current time
                     timestampVector.set(myID, System.currentTimeMillis());
                     timestampVectorWriteLock.unlock();
 
-                    //find a random other node to send the timestamp vector to
-                    do {
-                        ID = rng.nextInt(N);
-                    } while(ID == myID || !isAlive(ID));
                     //create a bytebuffer from the timestamp vector
                     byte[] timestampByteBuffer = new byte[]{};
                     for(int i = 0; i < N; i++){
@@ -85,7 +86,9 @@ class Epidemic {
 
                     //Sleep thread for the delay
                     try {
-                        Thread.sleep(delayMs);
+                        if(isAlive(myID)) {
+                            Thread.sleep(delayMs);
+                        }
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
