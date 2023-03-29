@@ -244,7 +244,7 @@ public class HashRing {
                     // Transfer any ranges that the rejoined node is responsible for from nodeToTakeOverRanges to the rejoined node
                     ArrayList<Integer> rangesToRemove = new ArrayList<>();
                     for (int range : nodeTookOverRanges.getRangeSet()) {
-                        if (range >= deadNode.getNodeID() && range < getNextLivingSuccessorID(deadNode)) {
+                        if (shouldTransfer(deadNode.getNodeID(), getNextLivingSuccessorID(deadNode), range)) {
                             // System.out.println("Transferring Range " + range + " to node with id " + deadNode.getNodeID());
                             deadNode.addRange(range);
                             rangesToRemove.add(range);
@@ -272,13 +272,16 @@ public class HashRing {
     //gets the next living successor by checking the next nodeID until
     //if no living successor is found returns INTEGER_MAX_VALUE
     private int getNextLivingSuccessorID(Node node){
-        for(int i = node.getNodeID() + 1; i < initialNumNodes; i++) {
-            if(epidemic.isAlive(i)){
-                return i;
+        int currentNodeID = node.getNodeID();
+        for(int i = currentNodeID + 1; i <= currentNodeID + initialNumNodes; i++) {
+            int successorID = i % initialNumNodes;
+            if (epidemic.isAlive(successorID)) {
+                return successorID;
             }
         }
-        return Integer.MAX_VALUE;
+        return node.getNodeID();
     }
+
 
     public void clearNodeCache() {
         nodeCache.clear();
@@ -300,5 +303,14 @@ public class HashRing {
             }
         }
         return count;
+    }
+
+    private boolean shouldTransfer(int deadNodeID, int successorNodeID, int range) {
+        if(deadNodeID < successorNodeID){
+            return (range >= deadNodeID);
+        } else if (deadNodeID > successorNodeID){
+            return (range >= deadNodeID || range < successorNodeID);
+        }
+        return false;
     }
 }
