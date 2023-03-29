@@ -19,6 +19,12 @@ public class HashRing {
 
     private LinkedHashMap<Integer, Node> nodeCache;
 
+    private ReplicationService replicationService;
+
+    public ReplicationService getReplicationService() {
+        return replicationService;
+    }
+
     private Epidemic epidemic;
     private int myID;
     private  int initialNumNodes;
@@ -88,6 +94,8 @@ public class HashRing {
         this.myID = myID;
         this.initialNumNodes = hashRingSize;
 
+        this.replicationService = new ReplicationService(hashRingSize, this.nodes, this.myID, this.epidemic);
+
         try {
             this.epidemic.startEpidemic();
         } catch (Exception e){
@@ -95,18 +103,19 @@ public class HashRing {
         }
     }
 
+    // When performing get or remove, we need to search the primary node first, then all the replication nodes
     public Node getRedirectNode(byte[] key_byte_array, int startingPoint, boolean strictMode) {
         if (strictMode) {
-            return getNodeForKey(key_byte_array);
+            return getPrimaryNodeForKey(key_byte_array);
         } else {
-            return getNextLivingPredecessorNode(startingPoint);
+            return this.replicationService.getNextReplica(startingPoint);
         }
     }
 
     /**
      * Method to get the node responsible for a given key
      */
-    public Node getNodeForKey(byte[] key_byte_array) {
+    public Node getPrimaryNodeForKey(byte[] key_byte_array) {
         // Calculate the hash value of the key using the Murmur3 hash function
         // System.out.println("I am Node: " + myAddress + myPort + " ID:" + myID);
         int hash = HashUtils.hash(key_byte_array);
@@ -129,7 +138,7 @@ public class HashRing {
                     // Node is not alive, update the hash ring and try again
                     updateHashRingUponDeadNode(node);
                     // System.out.println("DEAD NODE#########################################################");
-                    return getNodeForKey(key_byte_array);
+                    return getPrimaryNodeForKey(key_byte_array);
                 }
             }
         }
@@ -270,18 +279,6 @@ public class HashRing {
         }
         return Integer.MAX_VALUE;
     }
-
-    private Node getNextLivingPredecessorNode(int nodeId){
-        int currentNodeID = nodeId;
-        for(int i = currentNodeID - 1; i >= currentNodeID - initialNumNodes; i--) {
-            int predecessorID = (i + initialNumNodes) % initialNumNodes;
-            if (epidemic.isAlive(predecessorID)) {
-                return nodes.get(predecessorID);
-            }
-        }
-        return null;
-    }
-
 
     public void clearNodeCache() {
         nodeCache.clear();

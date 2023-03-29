@@ -61,7 +61,13 @@ public final class Message {
     int getRedirectCount();
 
     /**
-     * <code>int32 receivingNodeID = 7;</code>
+     * <code>int32 replicateCount = 7;</code>
+     * @return The replicateCount.
+     */
+    int getReplicateCount();
+
+    /**
+     * <code>int32 receivingNodeID = 8;</code>
      * @return The receivingNodeID.
      */
     int getReceivingNodeID();
@@ -203,10 +209,21 @@ public final class Message {
       return redirectCount_;
     }
 
-    public static final int RECEIVINGNODEID_FIELD_NUMBER = 7;
+    public static final int REPLICATECOUNT_FIELD_NUMBER = 7;
+    private int replicateCount_ = 0;
+    /**
+     * <code>int32 replicateCount = 7;</code>
+     * @return The replicateCount.
+     */
+    @java.lang.Override
+    public int getReplicateCount() {
+      return replicateCount_;
+    }
+
+    public static final int RECEIVINGNODEID_FIELD_NUMBER = 8;
     private int receivingNodeID_ = 0;
     /**
-     * <code>int32 receivingNodeID = 7;</code>
+     * <code>int32 receivingNodeID = 8;</code>
      * @return The receivingNodeID.
      */
     @java.lang.Override
@@ -246,8 +263,11 @@ public final class Message {
       if (redirectCount_ != 0) {
         output.writeInt32(6, redirectCount_);
       }
+      if (replicateCount_ != 0) {
+        output.writeInt32(7, replicateCount_);
+      }
       if (receivingNodeID_ != 0) {
-        output.writeInt32(7, receivingNodeID_);
+        output.writeInt32(8, receivingNodeID_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -281,9 +301,13 @@ public final class Message {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(6, redirectCount_);
       }
+      if (replicateCount_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(7, replicateCount_);
+      }
       if (receivingNodeID_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(7, receivingNodeID_);
+          .computeInt32Size(8, receivingNodeID_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -312,6 +336,8 @@ public final class Message {
           != other.getOriginalSenderPort()) return false;
       if (getRedirectCount()
           != other.getRedirectCount()) return false;
+      if (getReplicateCount()
+          != other.getReplicateCount()) return false;
       if (getReceivingNodeID()
           != other.getReceivingNodeID()) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
@@ -338,6 +364,8 @@ public final class Message {
       hash = (53 * hash) + getOriginalSenderPort();
       hash = (37 * hash) + REDIRECTCOUNT_FIELD_NUMBER;
       hash = (53 * hash) + getRedirectCount();
+      hash = (37 * hash) + REPLICATECOUNT_FIELD_NUMBER;
+      hash = (53 * hash) + getReplicateCount();
       hash = (37 * hash) + RECEIVINGNODEID_FIELD_NUMBER;
       hash = (53 * hash) + getReceivingNodeID();
       hash = (29 * hash) + getUnknownFields().hashCode();
@@ -475,6 +503,7 @@ public final class Message {
         originalSenderHost_ = "";
         originalSenderPort_ = 0;
         redirectCount_ = 0;
+        replicateCount_ = 0;
         receivingNodeID_ = 0;
         return this;
       }
@@ -528,6 +557,9 @@ public final class Message {
           result.redirectCount_ = redirectCount_;
         }
         if (((from_bitField0_ & 0x00000040) != 0)) {
+          result.replicateCount_ = replicateCount_;
+        }
+        if (((from_bitField0_ & 0x00000080) != 0)) {
           result.receivingNodeID_ = receivingNodeID_;
         }
       }
@@ -596,6 +628,9 @@ public final class Message {
         if (other.getRedirectCount() != 0) {
           setRedirectCount(other.getRedirectCount());
         }
+        if (other.getReplicateCount() != 0) {
+          setReplicateCount(other.getReplicateCount());
+        }
         if (other.getReceivingNodeID() != 0) {
           setReceivingNodeID(other.getReceivingNodeID());
         }
@@ -656,10 +691,15 @@ public final class Message {
                 break;
               } // case 48
               case 56: {
-                receivingNodeID_ = input.readInt32();
+                replicateCount_ = input.readInt32();
                 bitField0_ |= 0x00000040;
                 break;
               } // case 56
+              case 64: {
+                receivingNodeID_ = input.readInt32();
+                bitField0_ |= 0x00000080;
+                break;
+              } // case 64
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -909,9 +949,41 @@ public final class Message {
         return this;
       }
 
+      private int replicateCount_ ;
+      /**
+       * <code>int32 replicateCount = 7;</code>
+       * @return The replicateCount.
+       */
+      @java.lang.Override
+      public int getReplicateCount() {
+        return replicateCount_;
+      }
+      /**
+       * <code>int32 replicateCount = 7;</code>
+       * @param value The replicateCount to set.
+       * @return This builder for chaining.
+       */
+      public Builder setReplicateCount(int value) {
+        
+        replicateCount_ = value;
+        bitField0_ |= 0x00000040;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 replicateCount = 7;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearReplicateCount() {
+        bitField0_ = (bitField0_ & ~0x00000040);
+        replicateCount_ = 0;
+        onChanged();
+        return this;
+      }
+
       private int receivingNodeID_ ;
       /**
-       * <code>int32 receivingNodeID = 7;</code>
+       * <code>int32 receivingNodeID = 8;</code>
        * @return The receivingNodeID.
        */
       @java.lang.Override
@@ -919,23 +991,23 @@ public final class Message {
         return receivingNodeID_;
       }
       /**
-       * <code>int32 receivingNodeID = 7;</code>
+       * <code>int32 receivingNodeID = 8;</code>
        * @param value The receivingNodeID to set.
        * @return This builder for chaining.
        */
       public Builder setReceivingNodeID(int value) {
         
         receivingNodeID_ = value;
-        bitField0_ |= 0x00000040;
+        bitField0_ |= 0x00000080;
         onChanged();
         return this;
       }
       /**
-       * <code>int32 receivingNodeID = 7;</code>
+       * <code>int32 receivingNodeID = 8;</code>
        * @return This builder for chaining.
        */
       public Builder clearReceivingNodeID() {
-        bitField0_ = (bitField0_ & ~0x00000040);
+        bitField0_ = (bitField0_ & ~0x00000080);
         receivingNodeID_ = 0;
         onChanged();
         return this;
@@ -1018,12 +1090,13 @@ public final class Message {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\rMessage.proto\"\243\001\n\003Msg\022\021\n\tmessageID\030\001 \001" +
+      "\n\rMessage.proto\"\273\001\n\003Msg\022\021\n\tmessageID\030\001 \001" +
       "(\014\022\017\n\007payload\030\002 \001(\014\022\020\n\010checkSum\030\003 \001(\006\022\032\n" +
       "\022originalSenderHost\030\004 \001(\t\022\032\n\022originalSen" +
-      "derPort\030\005 \001(\005\022\025\n\rredirectCount\030\006 \001(\005\022\027\n\017" +
-      "receivingNodeID\030\007 \001(\005B\'\n\034ca.NetSysLab.Pr" +
-      "otocolBuffersB\007Messageb\006proto3"
+      "derPort\030\005 \001(\005\022\025\n\rredirectCount\030\006 \001(\005\022\026\n\016" +
+      "replicateCount\030\007 \001(\005\022\027\n\017receivingNodeID\030" +
+      "\010 \001(\005B\'\n\034ca.NetSysLab.ProtocolBuffersB\007M" +
+      "essageb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -1034,7 +1107,7 @@ public final class Message {
     internal_static_Msg_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Msg_descriptor,
-        new java.lang.String[] { "MessageID", "Payload", "CheckSum", "OriginalSenderHost", "OriginalSenderPort", "RedirectCount", "ReceivingNodeID", });
+        new java.lang.String[] { "MessageID", "Payload", "CheckSum", "OriginalSenderHost", "OriginalSenderPort", "RedirectCount", "ReplicateCount", "ReceivingNodeID", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
