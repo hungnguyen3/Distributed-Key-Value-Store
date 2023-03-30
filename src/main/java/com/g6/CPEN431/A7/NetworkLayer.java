@@ -5,6 +5,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.zip.CRC32;
 
@@ -68,6 +69,27 @@ public class NetworkLayer implements Runnable {
      */
     @Override
     public void run() {
+        //Thread for to poll for rejoins every 5 seconds
+        Thread detectRejoinThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(true){
+                    //Check to see if any of the dead nodes has rejoined and update HashRing.
+                    ArrayList<TransferRequest> transferRequests =  hashRing.checkAndHandleRejoins();
+                    for (TransferRequest transferRequest : transferRequests) {
+                        // System.out.println("Transfer request detected range: " + transferRequest.getRange() + "from node with ID: " + (port - 10000) + " to node with ID: " + transferRequest.getDestinationNode().getNodeID());
+                        requestHandlingLayer.performTransfer(transferRequest);
+                    }
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        System.out.println("Interrupted");
+                    }
+                }
+            }
+        });
+        detectRejoinThread.start();
+    
         try (DatagramSocket datagramSocket = new DatagramSocket(port)) {
             while (true) {
                 // Receive incoming request
@@ -140,7 +162,7 @@ public class NetworkLayer implements Runnable {
 
                             // Perform chain replication
                             replicateCount = replicateCount + 1;
-                            Node nextReplica = hashRing.getReplicationService().getNextReplica();
+                            Node nextReplica = hashRing.getNextReplica();
                             if (nextReplica == null) {
                                 System.out.println("FAILED TO GET THE NEXT REPLICA");
                             }

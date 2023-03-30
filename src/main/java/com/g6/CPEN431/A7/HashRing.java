@@ -5,9 +5,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class HashRing {
     // Assumes there is at least 1 node after initialization.
@@ -15,7 +17,8 @@ public class HashRing {
     private final ArrayList<Node> nodes;
 
     // DO NOT USE THIS TO DETERMINE IF A NODE IS ALIVE
-    private ArrayList<Node> deadNodes;
+    private Set<Node> deadNodes;
+    private int previousDeadNodesSize = 0;
 
     private LinkedHashMap<Integer, Node> nodeCache;
 
@@ -27,7 +30,7 @@ public class HashRing {
 
     private Epidemic epidemic;
     private int myID;
-    private  int initialNumNodes;
+    private int initialNumNodes;
 
     /**
      * Constructor to create a new HashRing.
@@ -37,7 +40,7 @@ public class HashRing {
      */
     public HashRing(String configFilePath, String myAddress, int myPort) {
         this.nodes = new ArrayList<>();
-        this.deadNodes = new ArrayList<>();
+        this.deadNodes = new HashSet<>();
 
         this.nodeCache = new LinkedHashMap<Integer, Node>(200, 0.75f, true) {
             protected boolean removeEldestEntry(Map.Entry<Integer, Node> eldest) {
@@ -108,7 +111,7 @@ public class HashRing {
         if (strictMode) {
             return getPrimaryNodeForKey(key_byte_array);
         } else {
-            return this.replicationService.getNextReplica();
+            return this.getNextReplica();
         }
     }
 
@@ -153,6 +156,25 @@ public class HashRing {
         }
         return firstNode;
     }
+  
+    /**
+     * Method to get the next replica for this key
+     * TODO: review this method
+     */
+    public Node getNextReplica() {
+      int currentNodeID = this.myID;
+      int hashRingSize = this.initialNumNodes;
+
+      for(int i = currentNodeID - 1; i >= currentNodeID - hashRingSize; i--) {
+          int predecessorID = (i + hashRingSize) % hashRingSize;
+          if (epidemic.isAlive(predecessorID)) {
+              return nodes.get(predecessorID);
+          } else {
+              updateHashRingUponDeadNode(nodes.get(predecessorID));
+          }
+      }
+      return null;
+    }
 
     /**
      * Upon encountering a deadNode (call it Node B), add it to deadNodes list
@@ -194,7 +216,11 @@ public class HashRing {
                 // System.out.println("Walked the entire ring and ended up not finding any alive nodes!!");
             }
         }
-
+        if (previousDeadNodesSize != deadNodes.size()) {
+            System.out.println("After node drop:");
+            previousDeadNodesSize = deadNodes.size();
+            printAllNodeRangeSets();
+        }
         // Clear the node cache
         nodeCache.clear();
     }
@@ -236,6 +262,7 @@ public class HashRing {
 
                     if (counter >= nodes.size()) {
                         System.out.println("Walked the entire ring and ended up not finding the node that took over the deadNode's rangeList!!");
+                        break;
                     }
                 }
 
@@ -266,14 +293,25 @@ public class HashRing {
 
         // Remove the newly rejoined nodes from the deadNodes list
         deadNodes.removeAll(rejoinedNodes);
+       
+        if(rejoinedNodes.size() > 0) {
+            System.out.println("After Rejoins:");
+            printAllNodeRangeSets();
+        }
         return transferRequests;
+    }
+
+    public void printAllNodeRangeSets() {
+        for (Node node : nodes) {
+            System.out.println("Node ID: " + node.getNodeID() + ", Range Set: " + node.getRangeSet());
+        }
     }
 
     //gets the next living successor by checking the next nodeID until
     //if no living successor is found returns INTEGER_MAX_VALUE
     private int getNextLivingSuccessorID(Node node){
         int currentNodeID = node.getNodeID();
-        for(int i = currentNodeID + 1; i <= currentNodeID + initialNumNodes; i++) {
+        for(int i = currentNodeID + 1; i <= currentNodeID + initialNumNodes - 1; i++) {
             int successorID = i % initialNumNodes;
             if (epidemic.isAlive(successorID)) {
                 return successorID;
@@ -311,6 +349,6 @@ public class HashRing {
         } else if (deadNodeID > successorNodeID){
             return (range >= deadNodeID || range < successorNodeID);
         }
-        return false;
+        return true;
     }
 }
