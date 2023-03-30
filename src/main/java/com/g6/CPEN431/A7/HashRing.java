@@ -261,9 +261,39 @@ public class HashRing {
                     
                     System.out.println("Node with ID " + node.getNodeID() + " has range set: " + node.getRangeSet());
 
-                    if (counter >= nodes.size()) {
-                        System.out.print("Current index is: " + index);
-                        System.out.println("Walked the entire ring and ended up not finding the node that took over the deadNode's rangeList!!");
+                    if (counter >= nodes.size()) {  // SPECIAL CASE :////
+                        // When the node was previously dead for a long time, all of the node's rangeList was wiped out
+            //          // In this case, we need to reinitialie the ranges from scratch
+                        int lastAliveIndex = myID;
+
+                        counter = 0;
+                        int index2 = myID;
+                        while (true) {
+                            if(epidemic.isAlive(index2)){
+                                nodes.get(index2).addRange(index2);
+                                lastAliveIndex = index2;
+                            } else {
+                                nodes.get(lastAliveIndex).addRange(index2);
+                            }
+
+                            if (index2 < nodes.size() - 1) {
+                                index2 = index2 + 1;
+                            } else if (index2 == nodes.size() - 1) {
+                                index2 = 0;
+                            }
+
+                            counter = counter + 1;
+                            if (counter >= nodes.size()) {
+                                break;
+                            }
+                        }
+                        
+                        System.out.println("Special case");
+                        for(Node n : nodes) {
+                            System.out.println("Node with ID " + n.getNodeID() + " has range set: " + n.getRangeSet());
+                        }
+                        
+                        rejoinedNodes.add(deadNode);
                         break;
                     }
                 }

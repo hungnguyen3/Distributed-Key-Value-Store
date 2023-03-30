@@ -312,13 +312,6 @@ public class NetworkLayer implements Runnable {
                 // Send the response back to the client
                 DatagramPacket responseMessagePacket = new DatagramPacket(responseMessageBytes, responseMessageBytes.length, clientHost, clientPort);
                 datagramSocket.send(responseMessagePacket);
-
-                // if(request.getCommand() == 0x02 && processedResponse.getErrCode() == 0x01) {
-                //     System.out.println("Node w ID: " + (port - 10000 - 1) + "Sent GET response to client!!! " + clientHost + ":" + clientPort + "Err code " + processedResponse.getErrCode());
-                // }
-                if(request.getCommand() == 0x03){
-                    System.out.println("Node w ID: " + (port - 10000 - 1) + "Sent REM response to client!!! " + clientHost + ":" + clientPort + "Err code " + processedResponse.getErrCode());
-                }
             }
         } catch (IOException e) {
             e.printStackTrace();

@@ -3,7 +3,7 @@ package com.g6.CPEN431.A7;
 public class App {
     public static void main(String[] args) {
         // Check if the correct number of command line arguments was provided
-        System.out.println("startup version 10.26 attempt to fix miss hahahah");
+        System.out.println("startup version 10.32 special fix");
         if (args.length < 2) {
             System.err.println("Usage: java -jar A7.jar <address> <port> <cacheSize>");
             System.exit(1);

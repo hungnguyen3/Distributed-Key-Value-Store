@@ -39,6 +39,33 @@ class Epidemic {
         }
     }
 
+    private int getRandomNodeID() {
+        List<Integer> deadNodes = new ArrayList<>();
+        for (int i = 0; i < N; i++) {
+            if (!isAlive(i)) {
+                deadNodes.add(i);
+            }
+        }
+
+        // If all nodes are dead, choose a random node regardless of its state
+        if (deadNodes.size() == N - 1) {
+            int randomID;
+            do {
+                randomID = rng.nextInt(N);
+            } while (randomID == myID);
+            return randomID;
+        }
+
+        // Otherwise, find a random alive node
+        int randomID;
+        do {
+            randomID = rng.nextInt(N);
+        } while (randomID == myID || !isAlive(randomID));
+
+        return randomID;
+    }
+
+
     public void startEpidemic() throws SocketException {
         final DatagramSocket datagramSocket = new DatagramSocket(port);
         final byte[] receiveBuffer = new byte[8 * N];
@@ -51,11 +78,7 @@ class Epidemic {
                 int k = 0;
                 while(true){
 
-                    //find a random other node to send the timestamp vector to
-                    do {
-                        ID = rng.nextInt(N);
-                    } while(ID == myID || !isAlive(ID));
-
+                    ID = getRandomNodeID();
 
                     timestampVectorWriteLock.lock();
                     //set the timestamp for this node to updated to the current time
@@ -98,7 +121,7 @@ class Epidemic {
                     }
                     
                     // Print dead nodes
-                    printDeadNodes();
+                    // printDeadNodes();
                 }
             }
         });
@@ -202,6 +225,4 @@ class Epidemic {
         }
 
     }
-
-
 }
