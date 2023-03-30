@@ -7,6 +7,7 @@ import java.net.InetAddress;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.ConcurrentModificationException;
 import java.util.zip.CRC32;
 
 import com.google.protobuf.ByteString;
@@ -75,16 +76,23 @@ public class NetworkLayer implements Runnable {
             public void run() {
                 while(true){
                     //Check to see if any of the dead nodes has rejoined and update HashRing.
-                    ArrayList<TransferRequest> transferRequests =  hashRing.checkAndHandleRejoins();
-                    for (TransferRequest transferRequest : transferRequests) {
-                        // System.out.println("Transfer request detected range: " + transferRequest.getRange() + "from node with ID: " + (port - 10000) + " to node with ID: " + transferRequest.getDestinationNode().getNodeID());
-                        requestHandlingLayer.performTransfer(transferRequest);
-                    }
                     try {
-                        Thread.sleep(5000);
-                    } catch (InterruptedException e) {
-                        System.out.println("Interrupted");
-                    }
+                        ArrayList<TransferRequest> transferRequests =  hashRing.checkAndHandleRejoins();
+                        
+                        for (TransferRequest transferRequest : transferRequests) {
+                            // System.out.println("Transfer request detected range: " + transferRequest.getRange() + "from node with ID: " + (port - 10000) + " to node with ID: " + transferRequest.getDestinationNode().getNodeID());
+                            requestHandlingLayer.performTransfer(transferRequest);
+                        }
+                        try {
+                            Thread.sleep(5000);
+                        } catch (InterruptedException e) {
+                            System.out.println("Interrupted");
+                        }
+
+                        hashRing.checkAndHandleRejoins();
+                    } catch (ConcurrentModificationException e) {
+                        System.out.println("ERROR: CHECKING FOR REJOINS" + e);
+                    }                  
                 }
             }
         });
@@ -155,6 +163,31 @@ public class NetworkLayer implements Runnable {
 
                                 // Continue to listen for incoming requests
                                 continue;
+                            } else if (forwardNode.getPort() == port && forwardNode.getHost().equals(address)){ // If the forwardNode is the current node, process the request
+                                // Put key-value pair into storage
+                                processedResponse = requestHandlingLayer.processRequest(request, reqMsgId);
+
+                                // Perform chain replication
+                                replicateCount = replicateCount + 1;
+                                Node nextReplica = hashRing.getNextReplica();
+                                if (nextReplica == null) {
+                                    System.out.println("FAILED TO GET THE NEXT REPLICA");
+                                }
+                                
+                                Msg replicateMsg = forwardMsgBuilder.setReplicateCount(replicateCount).setReceivingNodeID(nextReplica.getNodeID()).build();
+
+                                byte [] replicateMessageBytes = replicateMsg.toByteArray();
+
+                                // Create forwarded message packet with forwardNode address and port
+                                DatagramPacket replicateMessagePacket = new DatagramPacket(replicateMessageBytes, replicateMessageBytes.length, InetAddress.getByName(nextReplica.getHost()), nextReplica.getPort());
+
+                                // Send the forwarded message packet to the forwardNode
+                                datagramSocket.send(replicateMessagePacket);
+
+                                // Continue to listen for incoming requests
+                                continue;
+                            } else {
+                                System.out.println("ERROR: SHOULD NEVER HAPPEN");
                             }
                         } else if (replicateCount != 3) { // put into primary node, 1st replica, and 2nd replica
                             // Put key-value pair into storage
@@ -219,7 +252,6 @@ public class NetworkLayer implements Runnable {
                         // Try to search the key here
                         processedResponse = requestHandlingLayer.processRequest(request, reqMsgId);
 
-                        // If key not found, continue to redirect
                         if (processedResponse.getErrCode() != KEY_TOO_LONG_CODE
                             && processedResponse.getErrCode() != VALUE_TOO_LONG_CODE) {
                             // How many times have we removed the key
@@ -281,17 +313,12 @@ public class NetworkLayer implements Runnable {
                 DatagramPacket responseMessagePacket = new DatagramPacket(responseMessageBytes, responseMessageBytes.length, clientHost, clientPort);
                 datagramSocket.send(responseMessagePacket);
 
-                /*
-                if(request.getCommand() == 0x01) {
-                    System.out.println("Sent PUT response to client!!! " + clientHost + ":" + clientPort + "Err code " + processedResponse.getErrCode());
+                // if(request.getCommand() == 0x02 && processedResponse.getErrCode() == 0x01) {
+                //     System.out.println("Node w ID: " + (port - 10000 - 1) + "Sent GET response to client!!! " + clientHost + ":" + clientPort + "Err code " + processedResponse.getErrCode());
+                // }
+                if(request.getCommand() == 0x03){
+                    System.out.println("Node w ID: " + (port - 10000 - 1) + "Sent REM response to client!!! " + clientHost + ":" + clientPort + "Err code " + processedResponse.getErrCode());
                 }
-                if(request.getCommand() == 0x02) {
-                    System.out.println("Sent GET response to client!!! " + clientHost + ":" + clientPort + "Err code " + processedResponse.getErrCode());
-                }
-                if(request.getCommand() == 0x03) {
-                    System.out.println("Sent REM response to client!!! " + clientHost + ":" + clientPort + "Err code " + processedResponse.getErrCode());
-                }
-                */
             }
         } catch (IOException e) {
             e.printStackTrace();

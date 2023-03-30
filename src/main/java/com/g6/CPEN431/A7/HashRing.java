@@ -5,11 +5,13 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Collections;
+import java.util.ConcurrentModificationException;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class HashRing {
     // Assumes there is at least 1 node after initialization.
@@ -18,7 +20,6 @@ public class HashRing {
 
     // DO NOT USE THIS TO DETERMINE IF A NODE IS ALIVE
     private Set<Node> deadNodes;
-    private int previousDeadNodesSize = 0;
 
     private LinkedHashMap<Integer, Node> nodeCache;
 
@@ -40,7 +41,7 @@ public class HashRing {
      */
     public HashRing(String configFilePath, String myAddress, int myPort) {
         this.nodes = new ArrayList<>();
-        this.deadNodes = new HashSet<>();
+        this.deadNodes = Collections.newSetFromMap(new ConcurrentHashMap<Node, Boolean>());
 
         this.nodeCache = new LinkedHashMap<Integer, Node>(200, 0.75f, true) {
             protected boolean removeEldestEntry(Map.Entry<Integer, Node> eldest) {
@@ -216,11 +217,6 @@ public class HashRing {
                 // System.out.println("Walked the entire ring and ended up not finding any alive nodes!!");
             }
         }
-        if (previousDeadNodesSize != deadNodes.size()) {
-            System.out.println("After node drop:");
-            previousDeadNodesSize = deadNodes.size();
-            printAllNodeRangeSets();
-        }
         // Clear the node cache
         nodeCache.clear();
     }
@@ -231,7 +227,7 @@ public class HashRing {
      * After redistribution, remove the newly rejoined nodes from 'deadNodes'
      * Returns a list of transfer requests that must be performed by this node
      */
-    public ArrayList<TransferRequest> checkAndHandleRejoins() {
+    public ArrayList<TransferRequest> checkAndHandleRejoins() throws ConcurrentModificationException {
         List<Node> rejoinedNodes = new ArrayList<>();
         ArrayList<TransferRequest> transferRequests = new ArrayList<>();
 
@@ -240,6 +236,9 @@ public class HashRing {
                 int deadNodeIndex = nodes.indexOf(deadNode);
                 Node nodeTookOverRanges = null;
 
+                System.out.println("-----------------------------");
+                System.out.println("This is node + " + myID + " and I am checking for rejoins");
+                System.out.println("Node with ID " + deadNodeIndex + " is alive again");
                 // Walk the ring to find a node that is not dead to the left of the dead node
                 // The node that we find should have taken over the dead node's rangeList
                 int counter = 0;
@@ -259,8 +258,11 @@ public class HashRing {
                         nodeTookOverRanges = node;
                         break;
                     }
+                    
+                    System.out.println("Node with ID " + node.getNodeID() + " has range set: " + node.getRangeSet());
 
                     if (counter >= nodes.size()) {
+                        System.out.print("Current index is: " + index);
                         System.out.println("Walked the entire ring and ended up not finding the node that took over the deadNode's rangeList!!");
                         break;
                     }
@@ -272,7 +274,7 @@ public class HashRing {
                     ArrayList<Integer> rangesToRemove = new ArrayList<>();
                     for (int range : nodeTookOverRanges.getRangeSet()) {
                         if (shouldTransfer(deadNode.getNodeID(), getNextLivingSuccessorID(deadNode), range)) {
-                            // System.out.println("Transferring Range " + range + " to node with id " + deadNode.getNodeID());
+                            // System.out.println("Node " + myID + " transferring Range " + range + " to node with id " + deadNode.getNodeID());
                             deadNode.addRange(range);
                             rangesToRemove.add(range);
 
@@ -295,16 +297,10 @@ public class HashRing {
         deadNodes.removeAll(rejoinedNodes);
        
         if(rejoinedNodes.size() > 0) {
-            System.out.println("After Rejoins:");
-            printAllNodeRangeSets();
+            // Clear the node cache
+            nodeCache.clear();
         }
         return transferRequests;
-    }
-
-    public void printAllNodeRangeSets() {
-        for (Node node : nodes) {
-            System.out.println("Node ID: " + node.getNodeID() + ", Range Set: " + node.getRangeSet());
-        }
     }
 
     //gets the next living successor by checking the next nodeID until
@@ -317,6 +313,8 @@ public class HashRing {
                 return successorID;
             }
         }
+
+        System.out.println("No living successor found for node with id: ?????????????????????????????" + node.getNodeID());
         return node.getNodeID();
     }
 
@@ -349,6 +347,6 @@ public class HashRing {
         } else if (deadNodeID > successorNodeID){
             return (range >= deadNodeID || range < successorNodeID);
         }
-        return true;
+        return false;
     }
 }

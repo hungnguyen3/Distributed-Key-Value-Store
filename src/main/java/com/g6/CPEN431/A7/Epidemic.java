@@ -93,8 +93,12 @@ class Epidemic {
                     }
 
                     if(!isAlive(myID)){
+                        System.out.println("Node " + myID + " is dead, broadcasting to all nodes");
                         broadcast(datagramSocket);
                     }
+                    
+                    // Print dead nodes
+                    printDeadNodes();
                 }
             }
         });
@@ -130,6 +134,26 @@ class Epidemic {
         //start threads
         sendThread.start();
         receiveThread.start();
+    }
+
+    private int previousDeadNodesCount = -1;
+    private long lastPrintTime = System.currentTimeMillis();
+    private int printInterval = 60000; // Print every 60 seconds (60000 milliseconds)
+
+    private void printDeadNodes() {
+        List<Integer> deadNodes = new ArrayList<>();
+        for (int i = 0; i < N; i++) {
+            if (!isAlive(i)) {
+                deadNodes.add(i);
+            }
+        }
+
+        long currentTime = System.currentTimeMillis();
+        if (deadNodes.size() != previousDeadNodesCount || (currentTime - lastPrintTime >= printInterval)) {
+            System.out.println("Node " + myID + " has the following dead nodes: " + deadNodes);
+            previousDeadNodesCount = deadNodes.size();
+            lastPrintTime = currentTime;
+        }
     }
 
     //Is alive is inferred by checking the timestamp for that node with the given ID, by entropy if a node is participating in
