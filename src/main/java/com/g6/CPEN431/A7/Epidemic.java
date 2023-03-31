@@ -1,16 +1,20 @@
 package com.g6.CPEN431.A7;
 
-import com.google.common.primitives.Bytes;
-import com.google.common.primitives.Longs;
-
 import java.io.IOException;
-import java.net.*;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.SocketException;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+
+import com.google.common.primitives.Bytes;
+import com.google.common.primitives.Longs;
 
 class Epidemic {
     private List<Node> nodeList; //list of other nodes, assumed that node ID is the order in th list
@@ -47,7 +51,7 @@ class Epidemic {
             }
         }
 
-        // If all nodes are dead, choose a random node regardless of its state
+        // If only 5 nodes are alive, broadcast to all nodes regardless of alive status
         if (deadNodes.size() == N - 1) {
             int randomID;
             do {
@@ -121,7 +125,7 @@ class Epidemic {
                     }
                     
                     // Print dead nodes
-                    // printDeadNodes();
+                    printDeadNodes();
                 }
             }
         });
@@ -161,7 +165,7 @@ class Epidemic {
 
     private int previousDeadNodesCount = -1;
     private long lastPrintTime = System.currentTimeMillis();
-    private int printInterval = 60000; // Print every 60 seconds (60000 milliseconds)
+    private int printInterval = 20000; // Print every 60 seconds (60000 milliseconds)
 
     private void printDeadNodes() {
         List<Integer> deadNodes = new ArrayList<>();
