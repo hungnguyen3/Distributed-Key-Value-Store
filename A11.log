@@ -1,0 +1,3306 @@
+CPEN 431 EVALUATION test Client
+Time: Fri Mar 31 13:06:28 UTC 2023
+Build Date: Fri Mar 31 11:46:29 UTC 2023
+Java process ID: 189680
+Assignment ID: 11
+Client Version: 1
+
+[Info] A11 client running in TEST mode.
+
+[Info] Starting A11 Tests
+
+[Info] Done building nodes' list.
+
+[Info] The deployment has 30 server nodes.
+
+[Info] Skipping tests of local deployment since not running in submit mode.
+Sending GETPID to all servers... 
+[Info] Server node 127.0.0.110001 has process ID 188808.
+[Info] Server node 127.0.0.110002 has process ID 188809.
+[Info] Server node 127.0.0.110003 has process ID 188810.
+[Info] Server node 127.0.0.110004 has process ID 188811.
+[Info] Server node 127.0.0.110005 has process ID 188812.
+[Info] Server node 127.0.0.110006 has process ID 188813.
+[Info] Server node 127.0.0.110007 has process ID 188814.
+[Info] Server node 127.0.0.110008 has process ID 188815.
+[Info] Server node 127.0.0.110009 has process ID 188816.
+[Info] Server node 127.0.0.110010 has process ID 188817.
+[Info] Server node 127.0.0.110011 has process ID 188818.
+[Info] Server node 127.0.0.110012 has process ID 188819.
+[Info] Server node 127.0.0.110013 has process ID 188820.
+[Info] Server node 127.0.0.110014 has process ID 188821.
+[Info] Server node 127.0.0.110015 has process ID 188822.
+[Info] Server node 127.0.0.110016 has process ID 188824.
+[Info] Server node 127.0.0.110017 has process ID 188826.
+[Info] Server node 127.0.0.110018 has process ID 188828.
+[Info] Server node 127.0.0.110019 has process ID 188829.
+[Info] Server node 127.0.0.110020 has process ID 188831.
+[Info] Server node 127.0.0.110021 has process ID 188839.
+[Info] Server node 127.0.0.110022 has process ID 188840.
+[Info] Server node 127.0.0.110023 has process ID 188842.
+[Info] Server node 127.0.0.110024 has process ID 188844.
+[Info] Server node 127.0.0.110025 has process ID 188846.
+[Info] Server node 127.0.0.110026 has process ID 188848.
+[Info] Server node 127.0.0.110027 has process ID 188853.
+[Info] Server node 127.0.0.110028 has process ID 188859.
+[Info] Server node 127.0.0.110029 has process ID 188862.
+[Info] Server node 127.0.0.110030 has process ID 188871.
+[ ... Completed in 0.127 seconds ]
+[OK]
+
+Sending GetMembershipCount to all servers... 
+[Info] Server 127.0.0.1:10002 replied with membership count = 30 (expected count = 30)
+[Info] Server 127.0.0.1:10014 replied with membership count = 30 (expected count = 30)
+[Info] Server 127.0.0.1:10029 replied with membership count = 30 (expected count = 30)
+[Info] Server 127.0.0.1:10025 replied with membership count = 30 (expected count = 30)
+[Info] Server 127.0.0.1:10006 replied with membership count = 30 (expected count = 30)
+[Info] Server 127.0.0.1:10012 replied with membership count = 30 (expected count = 30)
+[Info] Server 127.0.0.1:10009 replied with membership count = 30 (expected count = 30)
+[Info] Server 127.0.0.1:10017 replied with membership count = 30 (expected count = 30)
+[Info] Server 127.0.0.1:10018 replied with membership count = 30 (expected count = 30)
+[Info] Server 127.0.0.1:10013 replied with membership count = 30 (expected count = 30)
+[Info] Server 127.0.0.1:10016 replied with membership count = 30 (expected count = 30)
+[Info] Server 127.0.0.1:10005 replied with membership count = 30 (expected count = 30)
+[Info] Server 127.0.0.1:10026 replied with membership count = 30 (expected count = 30)
+[Info] Server 127.0.0.1:10010 replied with membership count = 30 (expected count = 30)
+[Info] Server 127.0.0.1:10015 replied with membership count = 30 (expected count = 30)
+[Info] Server 127.0.0.1:10027 replied with membership count = 30 (expected count = 30)
+[Info] Server 127.0.0.1:10001 replied with membership count = 30 (expected count = 30)
+[Info] Server 127.0.0.1:10004 replied with membership count = 30 (expected count = 30)
+[Info] Server 127.0.0.1:10019 replied with membership count = 30 (expected count = 30)
+[Info] Server 127.0.0.1:10023 replied with membership count = 30 (expected count = 30)
+[Info] Server 127.0.0.1:10011 replied with membership count = 30 (expected count = 30)
+[Info] Server 127.0.0.1:10030 replied with membership count = 30 (expected count = 30)
+[Info] Server 127.0.0.1:10007 replied with membership count = 30 (expected count = 30)
+[Info] Server 127.0.0.1:10028 replied with membership count = 30 (expected count = 30)
+[Info] Server 127.0.0.1:10021 replied with membership count = 30 (expected count = 30)
+[Info] Server 127.0.0.1:10008 replied with membership count = 30 (expected count = 30)
+[Info] Server 127.0.0.1:10022 replied with membership count = 30 (expected count = 30)
+[Info] Server 127.0.0.1:10003 replied with membership count = 30 (expected count = 30)
+[Info] Server 127.0.0.1:10020 replied with membership count = 30 (expected count = 30)
+[Info] Server 127.0.0.1:10024 replied with membership count = 30 (expected count = 30)
+[ ... Completed in 0.011 seconds ]
+[Ok] All servers returned the expected membership count (30)
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.004 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[Test isAlive] for 127.0.0.1:10001
+
+[ TEST Basic PUT/GET (PUT -> GET). Value Length = 8 Bytes ]
+TEST_PASSED
+
+[ TEST Basic PUT/GET (PUT -> GET). Value Length = 32 Bytes ]
+TEST_PASSED
+
+[ TEST Basic PUT/GET (PUT -> GET). Value Length = 512 Bytes ]
+TEST_PASSED
+
+[ TEST Basic PUT/GET (PUT -> GET). Value Length = 1024 Bytes ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.005 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+
+[ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 8 Bytes ]
+TEST_PASSED
+
+
+[ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 32 Bytes ]
+TEST_PASSED
+
+
+[ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 512 Bytes ]
+TEST_PASSED
+
+
+[ TEST Basic KVS with message version (PUT Version 1 -> GET -> PUT Version 2 -> GET). Value Length = 1024 Bytes ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.005 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST Basic REMOVE (PUT -> GET -> REM -> GET). Value Length = 32 Bytes. ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.005 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST Double remove (PUT -> REM -> REM). Value Length = 32 Bytes. ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.004 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST Invalid Command. ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.005 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST At-Most-Once Client Policy (PUT -> REM -> REM). Value length =  32 Bytes ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.005 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST At-Most-Once Client Policy Empty REMs (EMPTY -> REM -> REM) ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.005 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST At-Most-Once Client Policy (PUT -> REM -> many PUT -> REM). Value length =  32 Bytes ]
+Pausing for 10 seconds to wait for the cache to be cleared!
+TEST_PASSED
+
+[ TEST At-Most-Once Client Policy Error Return Code (REM -> PUT -> REM) ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.004 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST At-Most-Once Client Policy For PUTs (PUT1 -> PUT2 -> PUT1 -> GET2) ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.004 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[TEST Invalid Key ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.004 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[TEST Invalid Value ]
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.004 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST Multi Client Crash: PUT -> GET (closed loop) + REM -> WIPEOUT (closed loop) ]
+[Test isAlive]
+Test Passed. Server is ok.
+TEST_PASSED
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.003 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 76.013 seconds ]
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 8 Bytes ]
+TEST_PASSED
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 32 Bytes ]
+TEST_PASSED
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 512 Bytes ]
+TEST_PASSED
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 1024 Bytes ]
+TEST_PASSED
+[ ... TEST Completed in 0.071 seconds ]
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.003 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (1 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10007
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10008
+[Test isAlive] for 127.0.0.1:10001
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10011
+[Test isAlive] for 127.0.0.1:10014
+[Test isAlive] for 127.0.0.1:10013
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10020
+[Test isAlive] for 127.0.0.1:10024
+[Test isAlive] for 127.0.0.1:10021
+[Test isAlive] for 127.0.0.1:10023
+[Test isAlive] for 127.0.0.1:10022
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10025
+[Test isAlive] for 127.0.0.1:10026
+[Test isAlive] for 127.0.0.1:10027
+[Test isAlive] for 127.0.0.1:10028
+[Test isAlive] for 127.0.0.1:10029
+[Test isAlive] for 127.0.0.1:10030
+[ ... Completed in 0.009 seconds ]
+TEST_PASSED
+Stage 1 Random Front-End: Test Status: TEST_PASSED
+Clients: 1
+Total Requests (without replies): 426250
+Total Requests (including replies): 426250
+Successful Responses: 426250
+Timeout Responses: 0
+Total Failed Responses: 0
+% Success: 100.0
+% Timeout: 0.0
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 16ms, [min] 0ms
+[avg] 0.12815718475073315 ms, [stdev] 0.34942485620085884ms
+Throughput: 7104.048265862236 requests per second
+Goodput: 7104.048265862236 requests per second
+Retry Rate (Successful requests): 1.0
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.036 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.417 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (16 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10001
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10007
+[Test isAlive] for 127.0.0.1:10008
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10011
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10013
+[Test isAlive] for 127.0.0.1:10014
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10020
+[Test isAlive] for 127.0.0.1:10021
+[Test isAlive] for 127.0.0.1:10022
+[Test isAlive] for 127.0.0.1:10023
+[Test isAlive] for 127.0.0.1:10024
+[Test isAlive] for 127.0.0.1:10025
+[Test isAlive] for 127.0.0.1:10026
+[Test isAlive] for 127.0.0.1:10027
+[Test isAlive] for 127.0.0.1:10028
+[Test isAlive] for 127.0.0.1:10029
+[Test isAlive] for 127.0.0.1:10030
+[ ... Completed in 0.004 seconds ]
+TEST_PASSED
+Stage 1 Random Front-End: Test Status: TEST_PASSED
+Clients: 16
+Total Requests (without replies): 4709703
+Total Requests (including replies): 4709813
+Successful Responses: 4709703
+Timeout Responses: 0
+Total Failed Responses: 0
+% Success: 100.0
+% Timeout: 0.0
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 53ms, [min] 0ms
+[avg] 0.18266162431049263 ms, [stdev] 0.6243031358345306ms
+Throughput: 78492.43358554714 requests per second
+Goodput: 78492.43358554714 requests per second
+Retry Rate (Successful requests): 1.0000233560375251
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.085 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 67.612 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (256 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10001
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10007
+[Test isAlive] for 127.0.0.1:10008
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10011
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10013
+[Test isAlive] for 127.0.0.1:10014
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10020
+[Test isAlive] for 127.0.0.1:10021
+[Test isAlive] for 127.0.0.1:10022
+[Test isAlive] for 127.0.0.1:10023
+[Test isAlive] for 127.0.0.1:10024
+[Test isAlive] for 127.0.0.1:10025
+[Test isAlive] for 127.0.0.1:10026
+[Test isAlive] for 127.0.0.1:10027
+[Test isAlive] for 127.0.0.1:10028
+[Test isAlive] for 127.0.0.1:10029
+[Test isAlive] for 127.0.0.1:10030
+[ ... Completed in 0.004 seconds ]
+TEST_PASSED
+[ CPU load (loadavg, last one minute) 25.94 ]
+Stage 1 Random Front-End: Test Status: TEST_PASSED
+Clients: 256
+Total Requests (without replies): 7551648
+Total Requests (including replies): 7569041
+Successful Responses: 7551645
+Timeout Responses: 3
+Total Failed Responses: 0
+% Success: 99.99996027357207
+% Timeout: 3.97264279267254E-5
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 522ms, [min] 0ms
+[avg] 2.0076938203530488 ms, [stdev] 3.9243929563922464ms
+Throughput: 125774.85384986925 requests per second
+Goodput: 125774.8038840126 requests per second
+Retry Rate (Successful requests): 1.0023032058697652
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.184 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 70.175 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (1024 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10008
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10001
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10007
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10011
+[Test isAlive] for 127.0.0.1:10013
+[Test isAlive] for 127.0.0.1:10014
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10020
+[Test isAlive] for 127.0.0.1:10021
+[Test isAlive] for 127.0.0.1:10022
+[Test isAlive] for 127.0.0.1:10023
+[Test isAlive] for 127.0.0.1:10024
+[Test isAlive] for 127.0.0.1:10025
+[Test isAlive] for 127.0.0.1:10026
+[Test isAlive] for 127.0.0.1:10027
+[Test isAlive] for 127.0.0.1:10028
+[Test isAlive] for 127.0.0.1:10029
+[Test isAlive] for 127.0.0.1:10030
+[ ... Completed in 0.004 seconds ]
+TEST_PASSED
+[ CPU load (loadavg, last one minute) 34.79 ]
+Stage 1 Random Front-End: Test Status: TEST_PASSED
+Clients: 1024
+Total Requests (without replies): 7108782
+Total Requests (including replies): 7489548
+Successful Responses: 7108758
+Timeout Responses: 24
+Total Failed Responses: 0
+% Success: 99.99966238942199
+% Timeout: 3.3761057801463037E-4
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 583ms, [min] 0ms
+[avg] 8.55011114459094 ms, [stdev] 15.67905941771452ms
+Throughput: 118180.30988163319 requests per second
+Goodput: 118179.91089240591 requests per second
+Retry Rate (Successful requests): 1.0535627622284662
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.138 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 69.566 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (2048 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10007
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10001
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10008
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10011
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10013
+[Test isAlive] for 127.0.0.1:10014
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10020
+[Test isAlive] for 127.0.0.1:10021
+[Test isAlive] for 127.0.0.1:10022
+[Test isAlive] for 127.0.0.1:10023
+[Test isAlive] for 127.0.0.1:10024
+[Test isAlive] for 127.0.0.1:10025
+[Test isAlive] for 127.0.0.1:10026
+[Test isAlive] for 127.0.0.1:10027
+[Test isAlive] for 127.0.0.1:10028
+[Test isAlive] for 127.0.0.1:10029
+[Test isAlive] for 127.0.0.1:10030
+[ ... Completed in 0.004 seconds ]
+TEST_PASSED
+[ CPU load (loadavg, last one minute) 66.31 ]
+Stage 1 Random Front-End: Test Status: TEST_PASSED
+Clients: 2048
+Total Requests (without replies): 5885545
+Total Requests (including replies): 6933832
+Successful Responses: 5882872
+Timeout Responses: 2673
+Total Failed Responses: 0
+% Success: 99.95458364518494
+% Timeout: 0.04541635481505961
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 803ms, [min] 0ms
+[avg] 20.15358484767304 ms, [stdev] 40.30080173625576ms
+Throughput: 97402.48241621845 requests per second
+Goodput: 97358.24575920563 requests per second
+Retry Rate (Successful requests): 1.1781121374486134
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.083 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 68.362 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Concurrent Store/Load v2; Stage 0; (Clients = 64, Limit = 40000 PUTs) ]
+Issuing PUTS ... 
+[DONE in 0.552s]
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; Of 40000 stored keys: 40000 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.0%
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; Total Value Size (MiB): 19.09311866760254 MiB.
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; SUCCESS Response Count: 40000.0.
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; % SUCCESS: 100.0%.
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; % FAILED (Not SUCCESS): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; % TIMEOUT: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; % ERROR-UID: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; PUT Phase; % ERROR-OTHER: 0.0%.
+[Info] PUTs % SUCCESS Ok: 100.0% Success.(90.0% minimum required).
+Confirming keys were stored correctly.
+Issuing GETs ... 
+[DONE in 0.278s]
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; Of 40000 stored keys: 40000 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.0%
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; Total Value Size (MiB): 19.09311866760254 MiB.
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; SUCCESS Response Count: 40000.0.
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; % SUCCESS: 100.0%.
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; % FAILED (Not SUCCESS): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; % TIMEOUT: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; % ERROR-UID: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 0; GET Phase; % ERROR-OTHER: 0.0%.
+[Info] GETs % SUCCESS Ok: 100.0% Success.(90.0% minimum required).
+Checking that 30 nodes are alive
+[Test isAlive] for 127.0.0.1:10001
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10007
+[Test isAlive] for 127.0.0.1:10008
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10011
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10013
+[Test isAlive] for 127.0.0.1:10014
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10020
+[Test isAlive] for 127.0.0.1:10021
+[Test isAlive] for 127.0.0.1:10022
+[Test isAlive] for 127.0.0.1:10023
+[Test isAlive] for 127.0.0.1:10024
+[Test isAlive] for 127.0.0.1:10025
+[Test isAlive] for 127.0.0.1:10026
+[Test isAlive] for 127.0.0.1:10028
+[Test isAlive] for 127.0.0.1:10027
+[Test isAlive] for 127.0.0.1:10029
+[Test isAlive] for 127.0.0.1:10030
+[ ... Completed in 0.003 seconds ]
+TEST_PASSED
+[ ... TEST Completed in 0.844 seconds ]
+
+[Info] Preparing for Stage 1 of the Suspend Test
+[Info] To suspend 24 node(s) in Stage 1.
+[Info] Will suspend 127.0.0.1:10011
+[Info] Will suspend 127.0.0.1:10019
+[Info] Will suspend 127.0.0.1:10008
+[Info] Will suspend 127.0.0.1:10012
+[Info] Will keep alive 127.0.0.1:10014
+[Info] Will keep alive 127.0.0.1:10027
+[Info] Will keep alive 127.0.0.1:10009
+[Info] Will keep alive 127.0.0.1:10005
+[Info] Will keep alive 127.0.0.1:10028
+[Info] Will keep alive 127.0.0.1:10010
+[Info] Will keep alive 127.0.0.1:10023
+[Info] Will keep alive 127.0.0.1:10024
+[Info] Will keep alive 127.0.0.1:10017
+[Info] Will keep alive 127.0.0.1:10004
+[Info] Will keep alive 127.0.0.1:10026
+[Info] Will keep alive 127.0.0.1:10001
+[Info] Will keep alive 127.0.0.1:10025
+[Info] Will keep alive 127.0.0.1:10013
+[Info] Will keep alive 127.0.0.1:10018
+[Info] Will keep alive 127.0.0.1:10003
+[Info] Will keep alive 127.0.0.1:10006
+[Info] Will keep alive 127.0.0.1:10022
+[Info] Will keep alive 127.0.0.1:10021
+[Info] Will keep alive 127.0.0.1:10029
+[Info] Will keep alive 127.0.0.1:10002
+[Info] Will keep alive 127.0.0.1:10030
+[Info] Will keep alive 127.0.0.1:10020
+[Info] Will keep alive 127.0.0.1:10007
+[Info] Will keep alive 127.0.0.1:10015
+[Info] Will keep alive 127.0.0.1:10016
+Waiting 10 seconds before suspending nodes
+[Info] Suspending 4 servers.
+[ ... Completed in 0.007 seconds ]
+Waiting 30 seconds after suspending nodes
+[Info] Stage 1 Scenario: Alive Nodes: 26. Dead Nodes: 4
+[Info] Will suspend 127.0.0.1:10014
+[Info] Will suspend 127.0.0.1:10027
+[Info] Will suspend 127.0.0.1:10009
+[Info] Will suspend 127.0.0.1:10005
+[Info] Will keep alive 127.0.0.1:10028
+[Info] Will keep alive 127.0.0.1:10010
+[Info] Will keep alive 127.0.0.1:10023
+[Info] Will keep alive 127.0.0.1:10024
+[Info] Will keep alive 127.0.0.1:10017
+[Info] Will keep alive 127.0.0.1:10004
+[Info] Will keep alive 127.0.0.1:10026
+[Info] Will keep alive 127.0.0.1:10001
+[Info] Will keep alive 127.0.0.1:10025
+[Info] Will keep alive 127.0.0.1:10013
+[Info] Will keep alive 127.0.0.1:10018
+[Info] Will keep alive 127.0.0.1:10003
+[Info] Will keep alive 127.0.0.1:10006
+[Info] Will keep alive 127.0.0.1:10022
+[Info] Will keep alive 127.0.0.1:10021
+[Info] Will keep alive 127.0.0.1:10029
+[Info] Will keep alive 127.0.0.1:10002
+[Info] Will keep alive 127.0.0.1:10030
+[Info] Will keep alive 127.0.0.1:10020
+[Info] Will keep alive 127.0.0.1:10007
+[Info] Will keep alive 127.0.0.1:10015
+[Info] Will keep alive 127.0.0.1:10016
+Waiting 10 seconds before suspending nodes
+[Info] Suspending 4 servers.
+[ ... Completed in 0.003 seconds ]
+Waiting 30 seconds after suspending nodes
+[Info] Stage 1 Scenario: Alive Nodes: 22. Dead Nodes: 8
+[Info] Will suspend 127.0.0.1:10028
+[Info] Will suspend 127.0.0.1:10010
+[Info] Will suspend 127.0.0.1:10023
+[Info] Will suspend 127.0.0.1:10024
+[Info] Will keep alive 127.0.0.1:10017
+[Info] Will keep alive 127.0.0.1:10004
+[Info] Will keep alive 127.0.0.1:10026
+[Info] Will keep alive 127.0.0.1:10001
+[Info] Will keep alive 127.0.0.1:10025
+[Info] Will keep alive 127.0.0.1:10013
+[Info] Will keep alive 127.0.0.1:10018
+[Info] Will keep alive 127.0.0.1:10003
+[Info] Will keep alive 127.0.0.1:10006
+[Info] Will keep alive 127.0.0.1:10022
+[Info] Will keep alive 127.0.0.1:10021
+[Info] Will keep alive 127.0.0.1:10029
+[Info] Will keep alive 127.0.0.1:10002
+[Info] Will keep alive 127.0.0.1:10030
+[Info] Will keep alive 127.0.0.1:10020
+[Info] Will keep alive 127.0.0.1:10007
+[Info] Will keep alive 127.0.0.1:10015
+[Info] Will keep alive 127.0.0.1:10016
+Waiting 10 seconds before suspending nodes
+[Info] Suspending 4 servers.
+[ ... Completed in 0.002 seconds ]
+Waiting 30 seconds after suspending nodes
+[Info] Stage 1 Scenario: Alive Nodes: 18. Dead Nodes: 12
+[Info] Will suspend 127.0.0.1:10017
+[Info] Will suspend 127.0.0.1:10004
+[Info] Will suspend 127.0.0.1:10026
+[Info] Will suspend 127.0.0.1:10001
+[Info] Will keep alive 127.0.0.1:10025
+[Info] Will keep alive 127.0.0.1:10013
+[Info] Will keep alive 127.0.0.1:10018
+[Info] Will keep alive 127.0.0.1:10003
+[Info] Will keep alive 127.0.0.1:10006
+[Info] Will keep alive 127.0.0.1:10022
+[Info] Will keep alive 127.0.0.1:10021
+[Info] Will keep alive 127.0.0.1:10029
+[Info] Will keep alive 127.0.0.1:10002
+[Info] Will keep alive 127.0.0.1:10030
+[Info] Will keep alive 127.0.0.1:10020
+[Info] Will keep alive 127.0.0.1:10007
+[Info] Will keep alive 127.0.0.1:10015
+[Info] Will keep alive 127.0.0.1:10016
+Waiting 10 seconds before suspending nodes
+[Info] Suspending 4 servers.
+[ ... Completed in 0.002 seconds ]
+Waiting 30 seconds after suspending nodes
+[Info] Stage 1 Scenario: Alive Nodes: 14. Dead Nodes: 16
+[Info] Will suspend 127.0.0.1:10025
+[Info] Will suspend 127.0.0.1:10013
+[Info] Will suspend 127.0.0.1:10018
+[Info] Will suspend 127.0.0.1:10003
+[Info] Will keep alive 127.0.0.1:10006
+[Info] Will keep alive 127.0.0.1:10022
+[Info] Will keep alive 127.0.0.1:10021
+[Info] Will keep alive 127.0.0.1:10029
+[Info] Will keep alive 127.0.0.1:10002
+[Info] Will keep alive 127.0.0.1:10030
+[Info] Will keep alive 127.0.0.1:10020
+[Info] Will keep alive 127.0.0.1:10007
+[Info] Will keep alive 127.0.0.1:10015
+[Info] Will keep alive 127.0.0.1:10016
+Waiting 10 seconds before suspending nodes
+[Info] Suspending 4 servers.
+[ ... Completed in 0.003 seconds ]
+Waiting 30 seconds after suspending nodes
+[Info] Stage 1 Scenario: Alive Nodes: 10. Dead Nodes: 20
+[Info] Will suspend 127.0.0.1:10006
+[Info] Will suspend 127.0.0.1:10022
+[Info] Will suspend 127.0.0.1:10021
+[Info] Will suspend 127.0.0.1:10029
+[Info] Will keep alive 127.0.0.1:10002
+[Info] Will keep alive 127.0.0.1:10030
+[Info] Will keep alive 127.0.0.1:10020
+[Info] Will keep alive 127.0.0.1:10007
+[Info] Will keep alive 127.0.0.1:10015
+[Info] Will keep alive 127.0.0.1:10016
+Waiting 10 seconds before suspending nodes
+[Info] Suspending 4 servers.
+[ ... Completed in 0.003 seconds ]
+Waiting 30 seconds after suspending nodes
+[Info] Stage 1 Scenario: Alive Nodes: 6. Dead Nodes: 24
+
+
+[ TEST Suspend Verify v2; Stage 1; Key Recovery; ]
+Checking that 24 nodes are suspended
+[Test isAlive] for 127.0.0.1:10011
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10008
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10014
+[Test isAlive] for 127.0.0.1:10027
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10028
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10023
+[Test isAlive] for 127.0.0.1:10024
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10026
+[Test isAlive] for 127.0.0.1:10001
+[Test isAlive] for 127.0.0.1:10025
+[Test isAlive] for 127.0.0.1:10013
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10022
+[Test isAlive] for 127.0.0.1:10021
+[Test isAlive] for 127.0.0.1:10029
+[ ... Completed in 10.003 seconds ]
+Checking that 6 nodes are alive
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10030
+[Test isAlive] for 127.0.0.1:10020
+[Test isAlive] for 127.0.0.1:10007
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10016
+[ ... Completed in 0.001 seconds ]
+Sending GetMembershipCount to all servers... 
+[Info] Server 127.0.0.1:10002 replied with membership count = 6 (expected count = 6)
+[Info] Server 127.0.0.1:10030 replied with membership count = 6 (expected count = 6)
+[Info] Server 127.0.0.1:10020 replied with membership count = 6 (expected count = 6)
+[Info] Server 127.0.0.1:10007 replied with membership count = 6 (expected count = 6)
+[Info] Server 127.0.0.1:10016 replied with membership count = 6 (expected count = 6)
+[Info] Server 127.0.0.1:10015 replied with membership count = 6 (expected count = 6)
+[ ... Completed in 0.002 seconds ]
+[Ok] All servers returned the expected membership count (6)
+Attempting retrieval of keys... 
+Issuing GETs ... 
+[DONE in 3.113s]
+[Info] Suspend Verify v2; Stage 1; Key Recovery; Of 40000 stored keys: 25176 SUCCESS, 0 TIMEOUT, 14824 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Suspend Verify v2; Stage 1; Key Recovery; Expected Key Loss: 80.0%. Actual Key Loss: 37.06%
+[Info] Suspend Verify v2; Stage 1; Key Recovery; Total Value Size (MiB): 12.04906177520752 MiB.
+[Info] Suspend Verify v2; Stage 1; Key Recovery; SUCCESS Response Count: 25176.0.
+[Info] Suspend Verify v2; Stage 1; Key Recovery; % SUCCESS: 62.94%.
+[Info] Suspend Verify v2; Stage 1; Key Recovery; % FAILED (Not SUCCESS): 37.06%.
+[Info] Suspend Verify v2; Stage 1; Key Recovery; % TIMEOUT: 0.0%.
+[Info] Suspend Verify v2; Stage 1; Key Recovery; % KEY-NOT-FOUND: 37.06%.
+[Info] Suspend Verify v2; Stage 1; Key Recovery; % ERROR-UID: 0.0%.
+[Info] Suspend Verify v2; Stage 1; Key Recovery; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Suspend Verify v2; Stage 1; Key Recovery; % ERROR-OTHER: 0.0%.
+[Info] Minimum GET SUCCESS % Ok: 62.94% Success.(20.0% SUCCESS expected, 10.0% minimum required).
+TEST_PASSED
+[ ... TEST Completed in 13.121 seconds ]
+
+[Info] Preparing for Stage 2a of the Suspend/Resume Test
+[Info] Stage 2a Scenario: Alive Nodes: 6. Dead Nodes: 24
+
+[ TEST Concurrent Store/Load v2; Stage 2a; (Clients = 64, Limit = 20000 PUTs) ]
+Issuing PUTS ... 
+[DONE in 2.317s]
+[Info] Concurrent Store/Load v2; Stage 2a; PUT Phase; Of 20000 stored keys: 20000 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Concurrent Store/Load v2; Stage 2a; PUT Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.0%
+[Info] Concurrent Store/Load v2; Stage 2a; PUT Phase; Total Value Size (MiB): 9.63187026977539 MiB.
+[Info] Concurrent Store/Load v2; Stage 2a; PUT Phase; SUCCESS Response Count: 20000.0.
+[Info] Concurrent Store/Load v2; Stage 2a; PUT Phase; % SUCCESS: 100.0%.
+[Info] Concurrent Store/Load v2; Stage 2a; PUT Phase; % FAILED (Not SUCCESS): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 2a; PUT Phase; % TIMEOUT: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 2a; PUT Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 2a; PUT Phase; % ERROR-UID: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 2a; PUT Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 2a; PUT Phase; % ERROR-OTHER: 0.0%.
+[Info] PUTs % SUCCESS Ok: 100.0% Success.(90.0% minimum required).
+Confirming keys were stored correctly.
+Issuing GETs ... 
+[DONE in 0.71s]
+[Info] Concurrent Store/Load v2; Stage 2a; GET Phase; Of 20000 stored keys: 20000 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Concurrent Store/Load v2; Stage 2a; GET Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.0%
+[Info] Concurrent Store/Load v2; Stage 2a; GET Phase; Total Value Size (MiB): 9.63187026977539 MiB.
+[Info] Concurrent Store/Load v2; Stage 2a; GET Phase; SUCCESS Response Count: 20000.0.
+[Info] Concurrent Store/Load v2; Stage 2a; GET Phase; % SUCCESS: 100.0%.
+[Info] Concurrent Store/Load v2; Stage 2a; GET Phase; % FAILED (Not SUCCESS): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 2a; GET Phase; % TIMEOUT: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 2a; GET Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 2a; GET Phase; % ERROR-UID: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 2a; GET Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 2a; GET Phase; % ERROR-OTHER: 0.0%.
+[Info] GETs % SUCCESS Ok: 100.0% Success.(90.0% minimum required).
+Checking that 6 nodes are alive
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10030
+[Test isAlive] for 127.0.0.1:10020
+[Test isAlive] for 127.0.0.1:10007
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10016
+[ ... Completed in 0.001 seconds ]
+TEST_PASSED
+[ ... TEST Completed in 3.03 seconds ]
+
+[Info] Preparing for Stage 2b of the Suspend/Resume Test
+[Info] To resume 3 node(s) in Stage 2a.
+[Info] Will resume 127.0.0.1:10006
+[Info] Will resume 127.0.0.1:10021
+[Info] Will resume 127.0.0.1:10017
+[Info] Will keep suspended 127.0.0.1:10022
+[Info] Will keep suspended 127.0.0.1:10026
+[Info] Will keep suspended 127.0.0.1:10029
+[Info] Will keep suspended 127.0.0.1:10010
+[Info] Will keep suspended 127.0.0.1:10013
+[Info] Will keep suspended 127.0.0.1:10018
+[Info] Will keep suspended 127.0.0.1:10008
+[Info] Will keep suspended 127.0.0.1:10004
+[Info] Will keep suspended 127.0.0.1:10025
+[Info] Will keep suspended 127.0.0.1:10024
+[Info] Will keep suspended 127.0.0.1:10005
+[Info] Will keep suspended 127.0.0.1:10028
+[Info] Will keep suspended 127.0.0.1:10023
+[Info] Will keep suspended 127.0.0.1:10003
+[Info] Will keep suspended 127.0.0.1:10011
+[Info] Will keep suspended 127.0.0.1:10009
+[Info] Will keep suspended 127.0.0.1:10001
+[Info] Will keep suspended 127.0.0.1:10014
+[Info] Will keep suspended 127.0.0.1:10019
+[Info] Will keep suspended 127.0.0.1:10027
+[Info] Will keep suspended 127.0.0.1:10012
+Waiting 10 seconds before resuming nodes
+[Info] Resuming 3 servers.
+[ ... Completed in 0.004 seconds ]
+Waiting 60 seconds after resuming nodes
+[Info] Stage 2b Scenario: Alive Nodes: 9. Dead Nodes: 21
+
+
+[ TEST Suspend Verify v2; Stage 2b; Key Recovery; ]
+Checking that 21 nodes are suspended
+[Test isAlive] for 127.0.0.1:10022
+[Test isAlive] for 127.0.0.1:10026
+[Test isAlive] for 127.0.0.1:10029
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10013
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10008
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10025
+[Test isAlive] for 127.0.0.1:10024
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10028
+[Test isAlive] for 127.0.0.1:10023
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10011
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10001
+[Test isAlive] for 127.0.0.1:10014
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10027
+[Test isAlive] for 127.0.0.1:10012
+[ ... Completed in 10.002 seconds ]
+Checking that 9 nodes are alive
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10021
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10007
+[Test isAlive] for 127.0.0.1:10030
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10020
+[ ... Completed in 0.001 seconds ]
+Sending GetMembershipCount to all servers... 
+[Info] Server 127.0.0.1:10006 replied with membership count = 9 (expected count = 9)
+[Info] Server 127.0.0.1:10021 replied with membership count = 9 (expected count = 9)
+[Info] Server 127.0.0.1:10017 replied with membership count = 9 (expected count = 9)
+[Info] Server 127.0.0.1:10007 replied with membership count = 9 (expected count = 9)
+[Info] Server 127.0.0.1:10002 replied with membership count = 9 (expected count = 9)
+[Info] Server 127.0.0.1:10016 replied with membership count = 9 (expected count = 9)
+[Info] Server 127.0.0.1:10020 replied with membership count = 9 (expected count = 9)
+[Info] Server 127.0.0.1:10015 replied with membership count = 9 (expected count = 9)
+[Info] Server 127.0.0.1:10030 replied with membership count = 9 (expected count = 9)
+[ ... Completed in 0.001 seconds ]
+[Ok] All servers returned the expected membership count (9)
+Attempting retrieval of keys... 
+Issuing GETs ... 
+[DONE in 2.488s]
+[Info] Suspend Verify v2; Stage 2b; Key Recovery; Of 40000 stored keys: 27863 SUCCESS, 0 TIMEOUT, 12137 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Suspend Verify v2; Stage 2b; Key Recovery; Expected Key Loss: 70.0%. Actual Key Loss: 30.3425%
+[Info] Suspend Verify v2; Stage 2b; Key Recovery; Total Value Size (MiB): 13.315857887268066 MiB.
+[Info] Suspend Verify v2; Stage 2b; Key Recovery; SUCCESS Response Count: 27863.0.
+[Info] Suspend Verify v2; Stage 2b; Key Recovery; % SUCCESS: 69.6575%.
+[Info] Suspend Verify v2; Stage 2b; Key Recovery; % FAILED (Not SUCCESS): 30.3425%.
+[Info] Suspend Verify v2; Stage 2b; Key Recovery; % TIMEOUT: 0.0%.
+[Info] Suspend Verify v2; Stage 2b; Key Recovery; % KEY-NOT-FOUND: 30.3425%.
+[Info] Suspend Verify v2; Stage 2b; Key Recovery; % ERROR-UID: 0.0%.
+[Info] Suspend Verify v2; Stage 2b; Key Recovery; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Suspend Verify v2; Stage 2b; Key Recovery; % ERROR-OTHER: 0.0%.
+[Info] Minimum GET SUCCESS % Ok: 69.6575% Success.(30.0% SUCCESS expected, 15.0% minimum required).
+TEST_PASSED
+[ ... TEST Completed in 12.493 seconds ]
+
+[Info] Preparing for Stage 2c of the Suspend/Resume Test
+[Info] Stage 2c Scenario: Alive Nodes: 9. Dead Nodes: 21
+
+
+[ TEST Suspend Verify v2; Stage 2c; Key Recovery; ]
+Checking that 21 nodes are suspended
+[Test isAlive] for 127.0.0.1:10022
+[Test isAlive] for 127.0.0.1:10026
+[Test isAlive] for 127.0.0.1:10029
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10013
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10008
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10025
+[Test isAlive] for 127.0.0.1:10024
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10028
+[Test isAlive] for 127.0.0.1:10023
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10011
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10001
+[Test isAlive] for 127.0.0.1:10014
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10027
+[Test isAlive] for 127.0.0.1:10012
+[ ... Completed in 10.003 seconds ]
+Checking that 9 nodes are alive
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10021
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10007
+[Test isAlive] for 127.0.0.1:10030
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10020
+[ ... Completed in 0.001 seconds ]
+Sending GetMembershipCount to all servers... 
+[Info] Server 127.0.0.1:10006 replied with membership count = 9 (expected count = 9)
+[Info] Server 127.0.0.1:10021 replied with membership count = 9 (expected count = 9)
+[Info] Server 127.0.0.1:10017 replied with membership count = 9 (expected count = 9)
+[Info] Server 127.0.0.1:10007 replied with membership count = 9 (expected count = 9)
+[Info] Server 127.0.0.1:10002 replied with membership count = 9 (expected count = 9)
+[Info] Server 127.0.0.1:10030 replied with membership count = 9 (expected count = 9)
+[Info] Server 127.0.0.1:10015 replied with membership count = 9 (expected count = 9)
+[Info] Server 127.0.0.1:10020 replied with membership count = 9 (expected count = 9)
+[Info] Server 127.0.0.1:10016 replied with membership count = 9 (expected count = 9)
+[ ... Completed in 0.0 seconds ]
+[Ok] All servers returned the expected membership count (9)
+Attempting retrieval of keys... 
+Issuing GETs ... 
+[DONE in 0.66s]
+[Info] Suspend Verify v2; Stage 2c; Key Recovery; Of 20000 stored keys: 20000 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Suspend Verify v2; Stage 2c; Key Recovery; Expected Key Loss: 0.0%. Actual Key Loss: 0.0%
+[Info] Suspend Verify v2; Stage 2c; Key Recovery; Total Value Size (MiB): 9.63187026977539 MiB.
+[Info] Suspend Verify v2; Stage 2c; Key Recovery; SUCCESS Response Count: 20000.0.
+[Info] Suspend Verify v2; Stage 2c; Key Recovery; % SUCCESS: 100.0%.
+[Info] Suspend Verify v2; Stage 2c; Key Recovery; % FAILED (Not SUCCESS): 0.0%.
+[Info] Suspend Verify v2; Stage 2c; Key Recovery; % TIMEOUT: 0.0%.
+[Info] Suspend Verify v2; Stage 2c; Key Recovery; % KEY-NOT-FOUND: 0.0%.
+[Info] Suspend Verify v2; Stage 2c; Key Recovery; % ERROR-UID: 0.0%.
+[Info] Suspend Verify v2; Stage 2c; Key Recovery; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Suspend Verify v2; Stage 2c; Key Recovery; % ERROR-OTHER: 0.0%.
+[Info] Minimum GET SUCCESS % Ok: 100.0% Success.(100.0% SUCCESS expected, 50.0% minimum required).
+TEST_PASSED
+[ ... TEST Completed in 10.666 seconds ]
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.005 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 5.005 seconds ]
+Pausing for 6 seconds to wait for the cache to be cleared!
+
+Sending GetMembershipCount to all servers... 
+[Info] Server 127.0.0.1:10007 replied with membership count = 9 (expected count = 9)
+[Info] Server 127.0.0.1:10006 replied with membership count = 9 (expected count = 9)
+[Info] Server 127.0.0.1:10021 replied with membership count = 9 (expected count = 9)
+[Info] Server 127.0.0.1:10017 replied with membership count = 9 (expected count = 9)
+[Info] Server 127.0.0.1:10002 replied with membership count = 9 (expected count = 9)
+[Info] Server 127.0.0.1:10030 replied with membership count = 9 (expected count = 9)
+[Info] Server 127.0.0.1:10016 replied with membership count = 9 (expected count = 9)
+[Info] Server 127.0.0.1:10020 replied with membership count = 9 (expected count = 9)
+[Info] Server 127.0.0.1:10015 replied with membership count = 9 (expected count = 9)
+[ ... Completed in 0.001 seconds ]
+[Ok] All servers returned the expected membership count (9)
+[ ... TEST Completed in 0.001 seconds ]
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 8 Bytes ]
+TEST_PASSED
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 32 Bytes ]
+TEST_PASSED
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 512 Bytes ]
+TEST_PASSED
+
+[ TEST Random Front-End Basic (PUT -> GET -> REM -> REM -> GET). Value Length = 1024 Bytes ]
+TEST_PASSED
+[ ... TEST Completed in 0.02 seconds ]
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.004 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST Random Front-End Performance (1 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10021
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10007
+[Test isAlive] for 127.0.0.1:10030
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10020
+[ ... Completed in 0.001 seconds ]
+TEST_PASSED
+Stage 2 Random Front-End: Test Status: TEST_PASSED
+Clients: 1
+Total Requests (without replies): 144037
+Total Requests (including replies): 144037
+Successful Responses: 144037
+Timeout Responses: 0
+Total Failed Responses: 0
+% Success: 100.0
+% Timeout: 0.0
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 25ms, [min] 0ms
+[avg] 0.4046390857904566 ms, [stdev] 0.5066222809218883ms
+Throughput: 2400.5766570557157 requests per second
+Goodput: 2400.5766570557157 requests per second
+Retry Rate (Successful requests): 1.0
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.009 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.068 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (16 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10030
+[Test isAlive] for 127.0.0.1:10021
+[Test isAlive] for 127.0.0.1:10007
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10020
+[ ... Completed in 0.001 seconds ]
+TEST_PASSED
+Stage 2 Random Front-End: Test Status: TEST_PASSED
+Clients: 16
+Total Requests (without replies): 957241
+Total Requests (including replies): 957241
+Successful Responses: 957241
+Timeout Responses: 0
+Total Failed Responses: 0
+% Success: 100.0
+% Timeout: 0.0
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 16ms, [min] 0ms
+[avg] 0.9876050022930485 ms, [stdev] 0.8170563203643854ms
+Throughput: 15953.484883837205 requests per second
+Goodput: 15953.484883837205 requests per second
+Retry Rate (Successful requests): 1.0
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.06 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.518 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (256 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 127.0.0.1:10021
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10007
+[Test isAlive] for 127.0.0.1:10030
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10020
+[Test isAlive] for 127.0.0.1:10016
+[ ... Completed in 0.001 seconds ]
+TEST_PASSED
+[ CPU load (loadavg, last one minute) 8.07 ]
+Stage 2 Random Front-End: Test Status: TEST_PASSED
+Clients: 256
+Total Requests (without replies): 1221980
+Total Requests (including replies): 1280087
+Successful Responses: 1221956
+Timeout Responses: 24
+Total Failed Responses: 0
+% Success: 99.9980359744022
+% Timeout: 0.0019640255978002914
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 566ms, [min] 0ms
+[avg] 12.52947814814936 ms, [stdev] 18.408201293665403ms
+Throughput: 20343.616295137097 requests per second
+Goodput: 20343.216741305543 requests per second
+Retry Rate (Successful requests): 1.0475515147547423
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.11 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 65.834 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[ TEST Random Front-End Performance (512 clients, 60.0 seconds): PUT -> GET (closed loop) ]
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10021
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10007
+[Test isAlive] for 127.0.0.1:10030
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10020
+[ ... Completed in 0.001 seconds ]
+TEST_PASSED
+[ CPU load (loadavg, last one minute) 10.82 ]
+Stage 2 Random Front-End: Test Status: TEST_PASSED
+Clients: 512
+Total Requests (without replies): 1141336
+Total Requests (including replies): 1370560
+Successful Responses: 1139696
+Timeout Responses: 1640
+Total Failed Responses: 0
+% Success: 99.85630874694218
+% Timeout: 0.14369125305781996
+% Failed: 0.0
+Response Time (Successful requests):
+[max] 588ms, [min] 0ms
+[avg] 25.501525845488622 ms, [stdev] 47.50391821799174ms
+Throughput: 18865.681510132566 requests per second
+Goodput: 18838.57317597276 requests per second
+Retry Rate (Successful requests): 1.2008383157983276
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.046 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+[ ... TEST Completed in 66.053 seconds ]
+[Info] Pausing for 6 seconds to wait for the cache to be cleared!
+
+[Test isAlive] for 127.0.0.1:10022
+[Test isAlive] for 127.0.0.1:10026
+[Test isAlive] for 127.0.0.1:10029
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10013
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10008
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10025
+[Test isAlive] for 127.0.0.1:10024
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10028
+[Test isAlive] for 127.0.0.1:10023
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10011
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10001
+[Test isAlive] for 127.0.0.1:10014
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10027
+[Test isAlive] for 127.0.0.1:10012
+[ ... Completed in 10.003 seconds ]
+Waiting 10 seconds before resuming nodes
+[Info] Resuming 21 servers.
+[ ... Completed in 0.046 seconds ]
+Waiting 60 seconds after resuming nodes
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.006 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+
+[ TEST Concurrent Store/Load v2; Stage 3; (Clients = 128, Limit = 40000 PUTs) ]
+Issuing PUTS ... 
+[DONE in 0.505s]
+[Info] Concurrent Store/Load v2; Stage 3; PUT Phase; Of 40000 stored keys: 40000 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Concurrent Store/Load v2; Stage 3; PUT Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.0%
+[Info] Concurrent Store/Load v2; Stage 3; PUT Phase; Total Value Size (MiB): 19.11695384979248 MiB.
+[Info] Concurrent Store/Load v2; Stage 3; PUT Phase; SUCCESS Response Count: 40000.0.
+[Info] Concurrent Store/Load v2; Stage 3; PUT Phase; % SUCCESS: 100.0%.
+[Info] Concurrent Store/Load v2; Stage 3; PUT Phase; % FAILED (Not SUCCESS): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3; PUT Phase; % TIMEOUT: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3; PUT Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3; PUT Phase; % ERROR-UID: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3; PUT Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3; PUT Phase; % ERROR-OTHER: 0.0%.
+[Info] PUTs % SUCCESS Ok: 100.0% Success.(90.0% minimum required).
+Checking that 30 nodes are alive
+[Test isAlive] for 127.0.0.1:10001
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10007
+[Test isAlive] for 127.0.0.1:10008
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10011
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10013
+[Test isAlive] for 127.0.0.1:10014
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10020
+[Test isAlive] for 127.0.0.1:10021
+[Test isAlive] for 127.0.0.1:10022
+[Test isAlive] for 127.0.0.1:10023
+[Test isAlive] for 127.0.0.1:10024
+[Test isAlive] for 127.0.0.1:10025
+[Test isAlive] for 127.0.0.1:10026
+[Test isAlive] for 127.0.0.1:10027
+[Test isAlive] for 127.0.0.1:10028
+[Test isAlive] for 127.0.0.1:10029
+[Test isAlive] for 127.0.0.1:10030
+[ ... Completed in 0.002 seconds ]
+TEST_PASSED
+[ ... TEST Completed in 0.508 seconds ]
+
+[Info] Preparing for the sequential consistency Test (Stage 3)
+[Info] To suspend 12 total node(s) in sequential consistency test.
+
+[ TEST Concurrent Store/Load v2; Stage 3a; (Clients = 128, Limit = 20000 PUTs) ]
+Issuing RELOADS ... 
+[DONE in 0.201s]
+[Info] Concurrent Store/Load v2; Stage 3a; PUT Phase; Of 20000 stored keys: 20000 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Concurrent Store/Load v2; Stage 3a; PUT Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.0%
+[Info] Concurrent Store/Load v2; Stage 3a; PUT Phase; Total Value Size (MiB): 9.485525131225586 MiB.
+[Info] Concurrent Store/Load v2; Stage 3a; PUT Phase; SUCCESS Response Count: 20000.0.
+[Info] Concurrent Store/Load v2; Stage 3a; PUT Phase; % SUCCESS: 100.0%.
+[Info] Concurrent Store/Load v2; Stage 3a; PUT Phase; % FAILED (Not SUCCESS): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3a; PUT Phase; % TIMEOUT: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3a; PUT Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3a; PUT Phase; % ERROR-UID: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3a; PUT Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3a; PUT Phase; % ERROR-OTHER: 0.0%.
+[Info] PUTs % SUCCESS Ok: 100.0% Success.(90.0% minimum required).
+Checking that 30 nodes are alive
+[Test isAlive] for 127.0.0.1:10001
+[Test isAlive] for 127.0.0.1:10011
+[Test isAlive] for 127.0.0.1:10013
+[Test isAlive] for 127.0.0.1:10021
+[Test isAlive] for 127.0.0.1:10008
+[Test isAlive] for 127.0.0.1:10027
+[Test isAlive] for 127.0.0.1:10023
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10007
+[Test isAlive] for 127.0.0.1:10029
+[Test isAlive] for 127.0.0.1:10026
+[Test isAlive] for 127.0.0.1:10014
+[Test isAlive] for 127.0.0.1:10028
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10030
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10025
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10022
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10024
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10020
+[ ... Completed in 0.002 seconds ]
+TEST_PASSED
+[ ... TEST Completed in 0.204 seconds ]
+[Info] Will suspend 127.0.0.1:10001
+[Info] Will suspend 127.0.0.1:10011
+[Info] Will suspend 127.0.0.1:10013
+Waiting 10 seconds before suspending nodes
+[Info] Suspending 3 servers.
+[ ... Completed in 0.002 seconds ]
+Waiting 30 seconds after suspending nodes
+[Info] Stage 3 Scenario: Alive Nodes: 27. Dead Nodes: 3
+[ ... TEST Completed in 40.207 seconds ]
+
+
+[ TEST Sequential Consistency; Stage 3a; (Clients = 128, Limit = 40000 GETS) ]
+Checking that 3 nodes are suspended
+[Test isAlive] for 127.0.0.1:10001
+[Test isAlive] for 127.0.0.1:10011
+[Test isAlive] for 127.0.0.1:10013
+[ ... Completed in 10.002 seconds ]
+Checking that 27 nodes are alive
+[Test isAlive] for 127.0.0.1:10021
+[Test isAlive] for 127.0.0.1:10008
+[Test isAlive] for 127.0.0.1:10027
+[Test isAlive] for 127.0.0.1:10023
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10007
+[Test isAlive] for 127.0.0.1:10029
+[Test isAlive] for 127.0.0.1:10026
+[Test isAlive] for 127.0.0.1:10014
+[Test isAlive] for 127.0.0.1:10028
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10030
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10025
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10022
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10024
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10020
+[ ... Completed in 0.003 seconds ]
+Sending GetMembershipCount to all servers... 
+[Info] Server 127.0.0.1:10021 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10008 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10027 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10002 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10023 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10007 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10029 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10026 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10014 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10028 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10006 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10018 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10017 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10030 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10012 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10005 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10009 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10022 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10004 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10015 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10016 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10024 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10019 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10020 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10010 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10003 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10025 replied with membership count = 27 (expected count = 27)
+[ ... Completed in 0.003 seconds ]
+[Ok] All servers returned the expected membership count (27)
+Attempting retrieval of keys... 
+Issuing GETs ... 
+[DONE in 0.392s]
+[Info] Sequential Consistency; Stage 3a; GET Phase; Of 40000 stored keys: 40000 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Sequential Consistency; Stage 3a; GET Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.0%
+[Info] Sequential Consistency; Stage 3a; GET Phase; Total Value Size (MiB): 19.044261932373047 MiB.
+[Info] Sequential Consistency; Stage 3a; GET Phase; SUCCESS Response Count: 40000.0.
+[Info] Sequential Consistency; Stage 3a; GET Phase; % SUCCESS: 100.0%.
+[Info] Sequential Consistency; Stage 3a; GET Phase; % FAILED (Not SUCCESS): 0.0%.
+[Info] Sequential Consistency; Stage 3a; GET Phase; % TIMEOUT: 0.0%.
+[Info] Sequential Consistency; Stage 3a; GET Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Sequential Consistency; Stage 3a; GET Phase; % ERROR-UID: 0.0%.
+[Info] Sequential Consistency; Stage 3a; GET Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Sequential Consistency; Stage 3a; GET Phase; % ERROR-OTHER: 0.0%.
+[Info] Sequential Consistency; Stage 3a; GET Phase; NOT-STORED keys Count: 0.0.
+Checking that 27 nodes are alive
+[Test isAlive] for 127.0.0.1:10021
+[Test isAlive] for 127.0.0.1:10008
+[Test isAlive] for 127.0.0.1:10027
+[Test isAlive] for 127.0.0.1:10023
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10007
+[Test isAlive] for 127.0.0.1:10029
+[Test isAlive] for 127.0.0.1:10026
+[Test isAlive] for 127.0.0.1:10014
+[Test isAlive] for 127.0.0.1:10028
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10030
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10025
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10022
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10024
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10020
+[ ... Completed in 0.002 seconds ]
+TEST_PASSED
+[ TEST Concurrent Store/Load v2; Stage 3b; (Clients = 128, Limit = 20000 PUTs) ]
+Issuing RELOADS ... 
+[DONE in 0.318s]
+[Info] Concurrent Store/Load v2; Stage 3b; PUT Phase; Of 20000 stored keys: 20000 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Concurrent Store/Load v2; Stage 3b; PUT Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.0%
+[Info] Concurrent Store/Load v2; Stage 3b; PUT Phase; Total Value Size (MiB): 9.561532974243164 MiB.
+[Info] Concurrent Store/Load v2; Stage 3b; PUT Phase; SUCCESS Response Count: 20000.0.
+[Info] Concurrent Store/Load v2; Stage 3b; PUT Phase; % SUCCESS: 100.0%.
+[Info] Concurrent Store/Load v2; Stage 3b; PUT Phase; % FAILED (Not SUCCESS): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3b; PUT Phase; % TIMEOUT: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3b; PUT Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3b; PUT Phase; % ERROR-UID: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3b; PUT Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3b; PUT Phase; % ERROR-OTHER: 0.0%.
+[Info] PUTs % SUCCESS Ok: 100.0% Success.(90.0% minimum required).
+Checking that 27 nodes are alive
+[Test isAlive] for 127.0.0.1:10021
+[Test isAlive] for 127.0.0.1:10008
+[Test isAlive] for 127.0.0.1:10027
+[Test isAlive] for 127.0.0.1:10023
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10007
+[Test isAlive] for 127.0.0.1:10029
+[Test isAlive] for 127.0.0.1:10026
+[Test isAlive] for 127.0.0.1:10014
+[Test isAlive] for 127.0.0.1:10028
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10030
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10025
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10022
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10024
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10020
+[ ... Completed in 0.003 seconds ]
+TEST_PASSED
+[ ... TEST Completed in 0.321 seconds ]
+[Info] Will suspend 127.0.0.1:10021
+[Info] Will suspend 127.0.0.1:10008
+[Info] Will suspend 127.0.0.1:10027
+Waiting 10 seconds before suspending nodes
+[Info] Suspending 3 servers.
+[ ... Completed in 0.002 seconds ]
+Waiting 30 seconds after suspending nodes
+[Info] Stage 3 Scenario: Alive Nodes: 24. Dead Nodes: 6
+[ ... TEST Completed in 40.323 seconds ]
+
+
+[ TEST Sequential Consistency; Stage 3b; (Clients = 128, Limit = 40000 GETS) ]
+Checking that 6 nodes are suspended
+[Test isAlive] for 127.0.0.1:10001
+[Test isAlive] for 127.0.0.1:10011
+[Test isAlive] for 127.0.0.1:10013
+[Test isAlive] for 127.0.0.1:10021
+[Test isAlive] for 127.0.0.1:10008
+[Test isAlive] for 127.0.0.1:10027
+[ ... Completed in 10.002 seconds ]
+Checking that 24 nodes are alive
+[Test isAlive] for 127.0.0.1:10023
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10007
+[Test isAlive] for 127.0.0.1:10029
+[Test isAlive] for 127.0.0.1:10026
+[Test isAlive] for 127.0.0.1:10014
+[Test isAlive] for 127.0.0.1:10028
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10030
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10025
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10022
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10024
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10020
+[ ... Completed in 0.003 seconds ]
+Sending GetMembershipCount to all servers... 
+[Info] Server 127.0.0.1:10023 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10002 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10007 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10029 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10026 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10014 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10028 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10006 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10017 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10018 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10030 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10005 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10012 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10025 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10009 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10022 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10004 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10015 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10024 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10016 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10019 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10010 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10020 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10003 replied with membership count = 24 (expected count = 24)
+[ ... Completed in 0.002 seconds ]
+[Ok] All servers returned the expected membership count (24)
+Attempting retrieval of keys... 
+Issuing GETs ... 
+[DONE in 0.364s]
+[Info] Sequential Consistency; Stage 3b; GET Phase; Of 40000 stored keys: 40000 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Sequential Consistency; Stage 3b; GET Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.0%
+[Info] Sequential Consistency; Stage 3b; GET Phase; Total Value Size (MiB): 19.106436729431152 MiB.
+[Info] Sequential Consistency; Stage 3b; GET Phase; SUCCESS Response Count: 40000.0.
+[Info] Sequential Consistency; Stage 3b; GET Phase; % SUCCESS: 100.0%.
+[Info] Sequential Consistency; Stage 3b; GET Phase; % FAILED (Not SUCCESS): 0.0%.
+[Info] Sequential Consistency; Stage 3b; GET Phase; % TIMEOUT: 0.0%.
+[Info] Sequential Consistency; Stage 3b; GET Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Sequential Consistency; Stage 3b; GET Phase; % ERROR-UID: 0.0%.
+[Info] Sequential Consistency; Stage 3b; GET Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Sequential Consistency; Stage 3b; GET Phase; % ERROR-OTHER: 0.0%.
+[Info] Sequential Consistency; Stage 3b; GET Phase; NOT-STORED keys Count: 0.0.
+Checking that 24 nodes are alive
+[Test isAlive] for 127.0.0.1:10023
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10007
+[Test isAlive] for 127.0.0.1:10029
+[Test isAlive] for 127.0.0.1:10026
+[Test isAlive] for 127.0.0.1:10014
+[Test isAlive] for 127.0.0.1:10028
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10030
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10025
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10022
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10024
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10020
+[ ... Completed in 0.003 seconds ]
+TEST_PASSED
+[ TEST Concurrent Store/Load v2; Stage 3c; (Clients = 128, Limit = 20000 PUTs) ]
+Issuing RELOADS ... 
+[DONE in 0.384s]
+[Info] Concurrent Store/Load v2; Stage 3c; PUT Phase; Of 20000 stored keys: 20000 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Concurrent Store/Load v2; Stage 3c; PUT Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.0%
+[Info] Concurrent Store/Load v2; Stage 3c; PUT Phase; Total Value Size (MiB): 9.579999923706055 MiB.
+[Info] Concurrent Store/Load v2; Stage 3c; PUT Phase; SUCCESS Response Count: 20000.0.
+[Info] Concurrent Store/Load v2; Stage 3c; PUT Phase; % SUCCESS: 100.0%.
+[Info] Concurrent Store/Load v2; Stage 3c; PUT Phase; % FAILED (Not SUCCESS): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3c; PUT Phase; % TIMEOUT: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3c; PUT Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3c; PUT Phase; % ERROR-UID: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3c; PUT Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3c; PUT Phase; % ERROR-OTHER: 0.0%.
+[Info] PUTs % SUCCESS Ok: 100.0% Success.(90.0% minimum required).
+Checking that 24 nodes are alive
+[Test isAlive] for 127.0.0.1:10023
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10007
+[Test isAlive] for 127.0.0.1:10029
+[Test isAlive] for 127.0.0.1:10026
+[Test isAlive] for 127.0.0.1:10014
+[Test isAlive] for 127.0.0.1:10028
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10030
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10025
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10022
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10024
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10020
+[ ... Completed in 0.002 seconds ]
+TEST_PASSED
+[ ... TEST Completed in 0.387 seconds ]
+[Info] Will suspend 127.0.0.1:10023
+[Info] Will suspend 127.0.0.1:10002
+[Info] Will suspend 127.0.0.1:10007
+Waiting 10 seconds before suspending nodes
+[Info] Suspending 3 servers.
+[ ... Completed in 0.002 seconds ]
+Waiting 30 seconds after suspending nodes
+[Info] Stage 3 Scenario: Alive Nodes: 21. Dead Nodes: 9
+[ ... TEST Completed in 40.389 seconds ]
+
+
+[ TEST Sequential Consistency; Stage 3c; (Clients = 128, Limit = 40000 GETS) ]
+Checking that 9 nodes are suspended
+[Test isAlive] for 127.0.0.1:10001
+[Test isAlive] for 127.0.0.1:10011
+[Test isAlive] for 127.0.0.1:10013
+[Test isAlive] for 127.0.0.1:10021
+[Test isAlive] for 127.0.0.1:10008
+[Test isAlive] for 127.0.0.1:10027
+[Test isAlive] for 127.0.0.1:10023
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10007
+[ ... Completed in 10.003 seconds ]
+Checking that 21 nodes are alive
+[Test isAlive] for 127.0.0.1:10029
+[Test isAlive] for 127.0.0.1:10026
+[Test isAlive] for 127.0.0.1:10014
+[Test isAlive] for 127.0.0.1:10028
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10030
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10025
+[Test isAlive] for 127.0.0.1:10022
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10024
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10020
+[ ... Completed in 0.002 seconds ]
+Sending GetMembershipCount to all servers... 
+[Info] Server 127.0.0.1:10029 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10026 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10028 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10006 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10014 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10018 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10017 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10030 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10005 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10012 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10025 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10009 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10022 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10004 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10015 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10016 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10024 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10019 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10010 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10003 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10020 replied with membership count = 21 (expected count = 21)
+[ ... Completed in 0.002 seconds ]
+[Ok] All servers returned the expected membership count (21)
+Attempting retrieval of keys... 
+Issuing GETs ... 
+[DONE in 0.491s]
+[Info] Sequential Consistency; Stage 3c; GET Phase; Of 40000 stored keys: 40000 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Sequential Consistency; Stage 3c; GET Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.0%
+[Info] Sequential Consistency; Stage 3c; GET Phase; Total Value Size (MiB): 19.120463371276855 MiB.
+[Info] Sequential Consistency; Stage 3c; GET Phase; SUCCESS Response Count: 40000.0.
+[Info] Sequential Consistency; Stage 3c; GET Phase; % SUCCESS: 100.0%.
+[Info] Sequential Consistency; Stage 3c; GET Phase; % FAILED (Not SUCCESS): 0.0%.
+[Info] Sequential Consistency; Stage 3c; GET Phase; % TIMEOUT: 0.0%.
+[Info] Sequential Consistency; Stage 3c; GET Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Sequential Consistency; Stage 3c; GET Phase; % ERROR-UID: 0.0%.
+[Info] Sequential Consistency; Stage 3c; GET Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Sequential Consistency; Stage 3c; GET Phase; % ERROR-OTHER: 0.0%.
+[Info] Sequential Consistency; Stage 3c; GET Phase; NOT-STORED keys Count: 0.0.
+Checking that 21 nodes are alive
+[Test isAlive] for 127.0.0.1:10029
+[Test isAlive] for 127.0.0.1:10026
+[Test isAlive] for 127.0.0.1:10014
+[Test isAlive] for 127.0.0.1:10028
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10030
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10025
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10022
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10024
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10020
+[ ... Completed in 0.002 seconds ]
+TEST_PASSED
+[ TEST Concurrent Store/Load v2; Stage 3d; (Clients = 128, Limit = 20000 PUTs) ]
+Issuing RELOADS ... 
+[DONE in 0.559s]
+[Info] Concurrent Store/Load v2; Stage 3d; PUT Phase; Of 20000 stored keys: 20000 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Concurrent Store/Load v2; Stage 3d; PUT Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.0%
+[Info] Concurrent Store/Load v2; Stage 3d; PUT Phase; Total Value Size (MiB): 9.452847480773926 MiB.
+[Info] Concurrent Store/Load v2; Stage 3d; PUT Phase; SUCCESS Response Count: 20000.0.
+[Info] Concurrent Store/Load v2; Stage 3d; PUT Phase; % SUCCESS: 100.0%.
+[Info] Concurrent Store/Load v2; Stage 3d; PUT Phase; % FAILED (Not SUCCESS): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3d; PUT Phase; % TIMEOUT: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3d; PUT Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3d; PUT Phase; % ERROR-UID: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3d; PUT Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3d; PUT Phase; % ERROR-OTHER: 0.0%.
+[Info] PUTs % SUCCESS Ok: 100.0% Success.(90.0% minimum required).
+Checking that 21 nodes are alive
+[Test isAlive] for 127.0.0.1:10029
+[Test isAlive] for 127.0.0.1:10026
+[Test isAlive] for 127.0.0.1:10014
+[Test isAlive] for 127.0.0.1:10028
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10030
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10025
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10022
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10024
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10020
+[ ... Completed in 0.002 seconds ]
+TEST_PASSED
+[ ... TEST Completed in 0.562 seconds ]
+[Info] Will suspend 127.0.0.1:10029
+[Info] Will suspend 127.0.0.1:10026
+[Info] Will suspend 127.0.0.1:10014
+Waiting 10 seconds before suspending nodes
+[Info] Suspending 3 servers.
+[ ... Completed in 0.002 seconds ]
+Waiting 30 seconds after suspending nodes
+[Info] Stage 3 Scenario: Alive Nodes: 18. Dead Nodes: 12
+[ ... TEST Completed in 40.564 seconds ]
+
+
+[ TEST Sequential Consistency; Stage 3d; (Clients = 128, Limit = 40000 GETS) ]
+Checking that 12 nodes are suspended
+[Test isAlive] for 127.0.0.1:10001
+[Test isAlive] for 127.0.0.1:10011
+[Test isAlive] for 127.0.0.1:10013
+[Test isAlive] for 127.0.0.1:10021
+[Test isAlive] for 127.0.0.1:10008
+[Test isAlive] for 127.0.0.1:10027
+[Test isAlive] for 127.0.0.1:10023
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10007
+[Test isAlive] for 127.0.0.1:10029
+[Test isAlive] for 127.0.0.1:10026
+[Test isAlive] for 127.0.0.1:10014
+[ ... Completed in 10.002 seconds ]
+Checking that 18 nodes are alive
+[Test isAlive] for 127.0.0.1:10028
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10030
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10025
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10022
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10024
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10020
+[ ... Completed in 0.002 seconds ]
+Sending GetMembershipCount to all servers... 
+[Info] Server 127.0.0.1:10028 replied with membership count = 18 (expected count = 18)
+[Info] Server 127.0.0.1:10006 replied with membership count = 18 (expected count = 18)
+[Info] Server 127.0.0.1:10018 replied with membership count = 18 (expected count = 18)
+[Info] Server 127.0.0.1:10017 replied with membership count = 18 (expected count = 18)
+[Info] Server 127.0.0.1:10030 replied with membership count = 18 (expected count = 18)
+[Info] Server 127.0.0.1:10005 replied with membership count = 18 (expected count = 18)
+[Info] Server 127.0.0.1:10012 replied with membership count = 18 (expected count = 18)
+[Info] Server 127.0.0.1:10025 replied with membership count = 18 (expected count = 18)
+[Info] Server 127.0.0.1:10009 replied with membership count = 18 (expected count = 18)
+[Info] Server 127.0.0.1:10022 replied with membership count = 18 (expected count = 18)
+[Info] Server 127.0.0.1:10015 replied with membership count = 18 (expected count = 18)
+[Info] Server 127.0.0.1:10004 replied with membership count = 18 (expected count = 18)
+[Info] Server 127.0.0.1:10024 replied with membership count = 18 (expected count = 18)
+[Info] Server 127.0.0.1:10016 replied with membership count = 18 (expected count = 18)
+[Info] Server 127.0.0.1:10019 replied with membership count = 18 (expected count = 18)
+[Info] Server 127.0.0.1:10010 replied with membership count = 18 (expected count = 18)
+[Info] Server 127.0.0.1:10003 replied with membership count = 18 (expected count = 18)
+[Info] Server 127.0.0.1:10020 replied with membership count = 18 (expected count = 18)
+[ ... Completed in 0.002 seconds ]
+[Ok] All servers returned the expected membership count (18)
+Attempting retrieval of keys... 
+Issuing GETs ... 
+[DONE in 0.557s]
+[Info] Sequential Consistency; Stage 3d; GET Phase; Of 40000 stored keys: 40000 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Sequential Consistency; Stage 3d; GET Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.0%
+[Info] Sequential Consistency; Stage 3d; GET Phase; Total Value Size (MiB): 19.050554275512695 MiB.
+[Info] Sequential Consistency; Stage 3d; GET Phase; SUCCESS Response Count: 40000.0.
+[Info] Sequential Consistency; Stage 3d; GET Phase; % SUCCESS: 100.0%.
+[Info] Sequential Consistency; Stage 3d; GET Phase; % FAILED (Not SUCCESS): 0.0%.
+[Info] Sequential Consistency; Stage 3d; GET Phase; % TIMEOUT: 0.0%.
+[Info] Sequential Consistency; Stage 3d; GET Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Sequential Consistency; Stage 3d; GET Phase; % ERROR-UID: 0.0%.
+[Info] Sequential Consistency; Stage 3d; GET Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Sequential Consistency; Stage 3d; GET Phase; % ERROR-OTHER: 0.0%.
+[Info] Sequential Consistency; Stage 3d; GET Phase; NOT-STORED keys Count: 0.0.
+Checking that 18 nodes are alive
+[Test isAlive] for 127.0.0.1:10028
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10030
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10025
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10022
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10024
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10020
+[ ... Completed in 0.002 seconds ]
+TEST_PASSED
+[ TEST Concurrent Store/Load v2; Stage 3e; (Clients = 128, Limit = 20000 PUTs) ]
+Issuing RELOADS ... 
+[DONE in 0.738s]
+[Info] Concurrent Store/Load v2; Stage 3e; PUT Phase; Of 20000 stored keys: 20000 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Concurrent Store/Load v2; Stage 3e; PUT Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.0%
+[Info] Concurrent Store/Load v2; Stage 3e; PUT Phase; Total Value Size (MiB): 9.612451553344727 MiB.
+[Info] Concurrent Store/Load v2; Stage 3e; PUT Phase; SUCCESS Response Count: 20000.0.
+[Info] Concurrent Store/Load v2; Stage 3e; PUT Phase; % SUCCESS: 100.0%.
+[Info] Concurrent Store/Load v2; Stage 3e; PUT Phase; % FAILED (Not SUCCESS): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3e; PUT Phase; % TIMEOUT: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3e; PUT Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3e; PUT Phase; % ERROR-UID: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3e; PUT Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3e; PUT Phase; % ERROR-OTHER: 0.0%.
+[Info] PUTs % SUCCESS Ok: 100.0% Success.(90.0% minimum required).
+Checking that 18 nodes are alive
+[Test isAlive] for 127.0.0.1:10028
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10030
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10025
+[Test isAlive] for 127.0.0.1:10022
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10024
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10020
+[ ... Completed in 0.002 seconds ]
+TEST_PASSED
+[ ... TEST Completed in 0.74 seconds ]
+[Info] Will resume 127.0.0.1:10027
+[Info] Will resume 127.0.0.1:10021
+[Info] Will resume 127.0.0.1:10011
+Waiting 10 seconds before resuming nodes
+[Info] Resuming 3 servers.
+[ ... Completed in 0.002 seconds ]
+Waiting 30 seconds after resuming nodes
+[Info] Stage 3e Scenario: Alive Nodes: 21. Dead Nodes: 9
+[ ... TEST Completed in 40.744 seconds ]
+
+
+[ TEST Sequential Consistency; Stage 3e; (Clients = 128, Limit = 40000 GETS) ]
+Checking that 9 nodes are suspended
+[Test isAlive] for 127.0.0.1:10014
+[Test isAlive] for 127.0.0.1:10008
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10029
+[Test isAlive] for 127.0.0.1:10007
+[Test isAlive] for 127.0.0.1:10001
+[Test isAlive] for 127.0.0.1:10026
+[Test isAlive] for 127.0.0.1:10013
+[Test isAlive] for 127.0.0.1:10023
+[ ... Completed in 10.002 seconds ]
+Checking that 21 nodes are alive
+[Test isAlive] for 127.0.0.1:10028
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10030
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10025
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10022
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10024
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10020
+[Test isAlive] for 127.0.0.1:10027
+[Test isAlive] for 127.0.0.1:10021
+[Test isAlive] for 127.0.0.1:10011
+[ ... Completed in 0.002 seconds ]
+Sending GetMembershipCount to all servers... 
+[Info] Server 127.0.0.1:10028 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10006 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10030 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10017 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10005 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10012 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10018 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10025 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10009 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10022 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10004 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10015 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10016 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10024 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10019 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10010 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10003 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10020 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10027 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10021 replied with membership count = 21 (expected count = 21)
+[Info] Server 127.0.0.1:10011 replied with membership count = 21 (expected count = 21)
+[ ... Completed in 0.002 seconds ]
+[Ok] All servers returned the expected membership count (21)
+Attempting retrieval of keys... 
+Issuing GETs ... 
+[DONE in 0.466s]
+[Info] Sequential Consistency; Stage 3e; GET Phase; Of 40000 stored keys: 31195 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 8805 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Sequential Consistency; Stage 3e; GET Phase; Expected Key Loss: 0.0%. Actual Key Loss: 22.0125%
+[Info] Sequential Consistency; Stage 3e; GET Phase; Total Value Size (MiB): 14.915963172912598 MiB.
+[Info] Sequential Consistency; Stage 3e; GET Phase; SUCCESS Response Count: 31195.0.
+[Info] Sequential Consistency; Stage 3e; GET Phase; % SUCCESS: 77.9875%.
+[Info] Sequential Consistency; Stage 3e; GET Phase; % FAILED (Not SUCCESS): 22.0125%.
+[Info] Sequential Consistency; Stage 3e; GET Phase; % TIMEOUT: 0.0%.
+[Info] Sequential Consistency; Stage 3e; GET Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Sequential Consistency; Stage 3e; GET Phase; % ERROR-UID: 0.0%.
+[Info] Sequential Consistency; Stage 3e; GET Phase; % ERROR-INVALID-GET (value or version): 22.0125%.
+[Info] Sequential Consistency; Stage 3e; GET Phase; % ERROR-OTHER: 0.0%.
+[Info] Sequential Consistency; Stage 3e; GET Phase; NOT-STORED keys Count: 0.0.
+Checking that 21 nodes are alive
+[Test isAlive] for 127.0.0.1:10028
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10030
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10025
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10022
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10024
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10020
+[Test isAlive] for 127.0.0.1:10027
+[Test isAlive] for 127.0.0.1:10021
+[Test isAlive] for 127.0.0.1:10011
+[ ... Completed in 0.002 seconds ]
+TEST_PASSED
+[ TEST Concurrent Store/Load v2; Stage 3f; (Clients = 128, Limit = 20000 PUTs) ]
+Issuing RELOADS ... 
+[DONE in 0.497s]
+[Info] Concurrent Store/Load v2; Stage 3f; PUT Phase; Of 20000 stored keys: 20000 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Concurrent Store/Load v2; Stage 3f; PUT Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.0%
+[Info] Concurrent Store/Load v2; Stage 3f; PUT Phase; Total Value Size (MiB): 9.520020484924316 MiB.
+[Info] Concurrent Store/Load v2; Stage 3f; PUT Phase; SUCCESS Response Count: 20000.0.
+[Info] Concurrent Store/Load v2; Stage 3f; PUT Phase; % SUCCESS: 100.0%.
+[Info] Concurrent Store/Load v2; Stage 3f; PUT Phase; % FAILED (Not SUCCESS): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3f; PUT Phase; % TIMEOUT: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3f; PUT Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3f; PUT Phase; % ERROR-UID: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3f; PUT Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3f; PUT Phase; % ERROR-OTHER: 0.0%.
+[Info] PUTs % SUCCESS Ok: 100.0% Success.(90.0% minimum required).
+Checking that 21 nodes are alive
+[Test isAlive] for 127.0.0.1:10028
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10030
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10025
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10022
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10024
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10020
+[Test isAlive] for 127.0.0.1:10027
+[Test isAlive] for 127.0.0.1:10021
+[Test isAlive] for 127.0.0.1:10011
+[ ... Completed in 0.002 seconds ]
+TEST_PASSED
+[ ... TEST Completed in 0.5 seconds ]
+[Info] Will resume 127.0.0.1:10014
+[Info] Will resume 127.0.0.1:10002
+[Info] Will resume 127.0.0.1:10007
+Waiting 10 seconds before resuming nodes
+[Info] Resuming 3 servers.
+[ ... Completed in 0.003 seconds ]
+Waiting 30 seconds after resuming nodes
+[Info] Stage 3f Scenario: Alive Nodes: 24. Dead Nodes: 6
+[ ... TEST Completed in 40.503 seconds ]
+
+
+[ TEST Sequential Consistency; Stage 3f; (Clients = 128, Limit = 40000 GETS) ]
+Checking that 6 nodes are suspended
+[Test isAlive] for 127.0.0.1:10008
+[Test isAlive] for 127.0.0.1:10029
+[Test isAlive] for 127.0.0.1:10001
+[Test isAlive] for 127.0.0.1:10026
+[Test isAlive] for 127.0.0.1:10013
+[Test isAlive] for 127.0.0.1:10023
+[ ... Completed in 10.002 seconds ]
+Checking that 24 nodes are alive
+[Test isAlive] for 127.0.0.1:10028
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10030
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10025
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10022
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10024
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10020
+[Test isAlive] for 127.0.0.1:10027
+[Test isAlive] for 127.0.0.1:10021
+[Test isAlive] for 127.0.0.1:10011
+[Test isAlive] for 127.0.0.1:10014
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10007
+[ ... Completed in 0.003 seconds ]
+Sending GetMembershipCount to all servers... 
+[Info] Server 127.0.0.1:10028 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10006 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10018 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10017 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10030 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10005 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10012 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10025 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10009 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10022 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10004 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10015 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10024 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10016 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10019 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10010 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10020 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10003 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10027 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10021 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10011 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10014 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10002 replied with membership count = 24 (expected count = 24)
+[Info] Server 127.0.0.1:10007 replied with membership count = 24 (expected count = 24)
+[ ... Completed in 0.003 seconds ]
+[Ok] All servers returned the expected membership count (24)
+Attempting retrieval of keys... 
+Issuing GETs ... 
+[DONE in 0.404s]
+[Info] Sequential Consistency; Stage 3f; GET Phase; Of 40000 stored keys: 29354 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 10646 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Sequential Consistency; Stage 3f; GET Phase; Expected Key Loss: 0.0%. Actual Key Loss: 26.615%
+[Info] Sequential Consistency; Stage 3f; GET Phase; Total Value Size (MiB): 14.042865753173828 MiB.
+[Info] Sequential Consistency; Stage 3f; GET Phase; SUCCESS Response Count: 29354.0.
+[Info] Sequential Consistency; Stage 3f; GET Phase; % SUCCESS: 73.385%.
+[Info] Sequential Consistency; Stage 3f; GET Phase; % FAILED (Not SUCCESS): 26.615%.
+[Info] Sequential Consistency; Stage 3f; GET Phase; % TIMEOUT: 0.0%.
+[Info] Sequential Consistency; Stage 3f; GET Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Sequential Consistency; Stage 3f; GET Phase; % ERROR-UID: 0.0%.
+[Info] Sequential Consistency; Stage 3f; GET Phase; % ERROR-INVALID-GET (value or version): 26.615%.
+[Info] Sequential Consistency; Stage 3f; GET Phase; % ERROR-OTHER: 0.0%.
+[Info] Sequential Consistency; Stage 3f; GET Phase; NOT-STORED keys Count: 0.0.
+Checking that 24 nodes are alive
+[Test isAlive] for 127.0.0.1:10028
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10030
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10025
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10022
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10024
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10020
+[Test isAlive] for 127.0.0.1:10027
+[Test isAlive] for 127.0.0.1:10021
+[Test isAlive] for 127.0.0.1:10011
+[Test isAlive] for 127.0.0.1:10014
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10007
+[ ... Completed in 0.002 seconds ]
+TEST_PASSED
+[ TEST Concurrent Store/Load v2; Stage 3g; (Clients = 128, Limit = 20000 PUTs) ]
+Issuing RELOADS ... 
+[DONE in 0.401s]
+[Info] Concurrent Store/Load v2; Stage 3g; PUT Phase; Of 20000 stored keys: 20000 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Concurrent Store/Load v2; Stage 3g; PUT Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.0%
+[Info] Concurrent Store/Load v2; Stage 3g; PUT Phase; Total Value Size (MiB): 9.467251777648926 MiB.
+[Info] Concurrent Store/Load v2; Stage 3g; PUT Phase; SUCCESS Response Count: 20000.0.
+[Info] Concurrent Store/Load v2; Stage 3g; PUT Phase; % SUCCESS: 100.0%.
+[Info] Concurrent Store/Load v2; Stage 3g; PUT Phase; % FAILED (Not SUCCESS): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3g; PUT Phase; % TIMEOUT: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3g; PUT Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3g; PUT Phase; % ERROR-UID: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3g; PUT Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3g; PUT Phase; % ERROR-OTHER: 0.0%.
+[Info] PUTs % SUCCESS Ok: 100.0% Success.(90.0% minimum required).
+Checking that 24 nodes are alive
+[Test isAlive] for 127.0.0.1:10028
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10030
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10025
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10022
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10024
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10020
+[Test isAlive] for 127.0.0.1:10027
+[Test isAlive] for 127.0.0.1:10021
+[Test isAlive] for 127.0.0.1:10011
+[Test isAlive] for 127.0.0.1:10014
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10007
+[ ... Completed in 0.003 seconds ]
+TEST_PASSED
+[ ... TEST Completed in 0.404 seconds ]
+[Info] Will resume 127.0.0.1:10008
+[Info] Will resume 127.0.0.1:10001
+[Info] Will resume 127.0.0.1:10013
+Waiting 10 seconds before resuming nodes
+[Info] Resuming 3 servers.
+[ ... Completed in 0.002 seconds ]
+Waiting 30 seconds after resuming nodes
+[Info] Stage 3g Scenario: Alive Nodes: 27. Dead Nodes: 3
+[ ... TEST Completed in 40.406 seconds ]
+
+
+[ TEST Sequential Consistency; Stage 3g; (Clients = 128, Limit = 40000 GETS) ]
+Checking that 3 nodes are suspended
+[Test isAlive] for 127.0.0.1:10029
+[Test isAlive] for 127.0.0.1:10026
+[Test isAlive] for 127.0.0.1:10023
+[ ... Completed in 10.002 seconds ]
+Checking that 27 nodes are alive
+[Test isAlive] for 127.0.0.1:10028
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10030
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10025
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10022
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10024
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10020
+[Test isAlive] for 127.0.0.1:10027
+[Test isAlive] for 127.0.0.1:10021
+[Test isAlive] for 127.0.0.1:10011
+[Test isAlive] for 127.0.0.1:10014
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10007
+[Test isAlive] for 127.0.0.1:10008
+[Test isAlive] for 127.0.0.1:10001
+[Test isAlive] for 127.0.0.1:10013
+[ ... Completed in 0.004 seconds ]
+Sending GetMembershipCount to all servers... 
+[Info] Server 127.0.0.1:10028 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10006 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10018 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10017 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10030 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10005 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10012 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10025 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10009 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10022 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10004 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10015 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10024 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10016 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10019 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10010 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10003 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10020 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10027 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10021 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10014 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10011 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10002 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10007 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10008 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10001 replied with membership count = 27 (expected count = 27)
+[Info] Server 127.0.0.1:10013 replied with membership count = 27 (expected count = 27)
+[ ... Completed in 0.003 seconds ]
+[Ok] All servers returned the expected membership count (27)
+Attempting retrieval of keys... 
+Issuing GETs ... 
+[DONE in 0.304s]
+[Info] Sequential Consistency; Stage 3g; GET Phase; Of 40000 stored keys: 27553 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 12447 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Sequential Consistency; Stage 3g; GET Phase; Expected Key Loss: 0.0%. Actual Key Loss: 31.1175%
+[Info] Sequential Consistency; Stage 3g; GET Phase; Total Value Size (MiB): 13.160680770874023 MiB.
+[Info] Sequential Consistency; Stage 3g; GET Phase; SUCCESS Response Count: 27553.0.
+[Info] Sequential Consistency; Stage 3g; GET Phase; % SUCCESS: 68.8825%.
+[Info] Sequential Consistency; Stage 3g; GET Phase; % FAILED (Not SUCCESS): 31.1175%.
+[Info] Sequential Consistency; Stage 3g; GET Phase; % TIMEOUT: 0.0%.
+[Info] Sequential Consistency; Stage 3g; GET Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Sequential Consistency; Stage 3g; GET Phase; % ERROR-UID: 0.0%.
+[Info] Sequential Consistency; Stage 3g; GET Phase; % ERROR-INVALID-GET (value or version): 31.1175%.
+[Info] Sequential Consistency; Stage 3g; GET Phase; % ERROR-OTHER: 0.0%.
+[Info] Sequential Consistency; Stage 3g; GET Phase; NOT-STORED keys Count: 0.0.
+Checking that 27 nodes are alive
+[Test isAlive] for 127.0.0.1:10028
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10030
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10025
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10022
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10024
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10020
+[Test isAlive] for 127.0.0.1:10027
+[Test isAlive] for 127.0.0.1:10021
+[Test isAlive] for 127.0.0.1:10011
+[Test isAlive] for 127.0.0.1:10014
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10007
+[Test isAlive] for 127.0.0.1:10008
+[Test isAlive] for 127.0.0.1:10001
+[Test isAlive] for 127.0.0.1:10013
+[ ... Completed in 0.003 seconds ]
+TEST_PASSED
+[ TEST Concurrent Store/Load v2; Stage 3h; (Clients = 128, Limit = 20000 PUTs) ]
+Issuing RELOADS ... 
+[DONE in 0.309s]
+[Info] Concurrent Store/Load v2; Stage 3h; PUT Phase; Of 20000 stored keys: 20000 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 0 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Concurrent Store/Load v2; Stage 3h; PUT Phase; Expected Key Loss: 0.0%. Actual Key Loss: 0.0%
+[Info] Concurrent Store/Load v2; Stage 3h; PUT Phase; Total Value Size (MiB): 9.474322319030762 MiB.
+[Info] Concurrent Store/Load v2; Stage 3h; PUT Phase; SUCCESS Response Count: 20000.0.
+[Info] Concurrent Store/Load v2; Stage 3h; PUT Phase; % SUCCESS: 100.0%.
+[Info] Concurrent Store/Load v2; Stage 3h; PUT Phase; % FAILED (Not SUCCESS): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3h; PUT Phase; % TIMEOUT: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3h; PUT Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3h; PUT Phase; % ERROR-UID: 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3h; PUT Phase; % ERROR-INVALID-GET (value or version): 0.0%.
+[Info] Concurrent Store/Load v2; Stage 3h; PUT Phase; % ERROR-OTHER: 0.0%.
+[Info] PUTs % SUCCESS Ok: 100.0% Success.(90.0% minimum required).
+Checking that 27 nodes are alive
+[Test isAlive] for 127.0.0.1:10028
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10030
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10025
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10022
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10024
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10020
+[Test isAlive] for 127.0.0.1:10027
+[Test isAlive] for 127.0.0.1:10021
+[Test isAlive] for 127.0.0.1:10011
+[Test isAlive] for 127.0.0.1:10014
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10007
+[Test isAlive] for 127.0.0.1:10008
+[Test isAlive] for 127.0.0.1:10001
+[Test isAlive] for 127.0.0.1:10013
+[ ... Completed in 0.003 seconds ]
+TEST_PASSED
+[ ... TEST Completed in 0.312 seconds ]
+[Info] Will resume 127.0.0.1:10029
+[Info] Will resume 127.0.0.1:10023
+Waiting 10 seconds before resuming nodes
+[Info] Resuming 2 servers.
+[ ... Completed in 0.003 seconds ]
+Waiting 30 seconds after resuming nodes
+[Info] Stage 3h Scenario: Alive Nodes: 29. Dead Nodes: 1
+[ ... TEST Completed in 40.315 seconds ]
+
+
+[ TEST Sequential Consistency; Stage 3h; (Clients = 128, Limit = 40000 GETS) ]
+Checking that 1 nodes are suspended
+[Test isAlive] for 127.0.0.1:10026
+[ ... Completed in 10.003 seconds ]
+Checking that 29 nodes are alive
+[Test isAlive] for 127.0.0.1:10028
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10030
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10025
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10022
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10024
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10020
+[Test isAlive] for 127.0.0.1:10027
+[Test isAlive] for 127.0.0.1:10021
+[Test isAlive] for 127.0.0.1:10011
+[Test isAlive] for 127.0.0.1:10014
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10007
+[Test isAlive] for 127.0.0.1:10008
+[Test isAlive] for 127.0.0.1:10001
+[Test isAlive] for 127.0.0.1:10013
+[Test isAlive] for 127.0.0.1:10029
+[Test isAlive] for 127.0.0.1:10023
+[ ... Completed in 0.003 seconds ]
+Sending GetMembershipCount to all servers... 
+[Info] Server 127.0.0.1:10006 replied with membership count = 29 (expected count = 29)
+[Info] Server 127.0.0.1:10028 replied with membership count = 29 (expected count = 29)
+[Info] Server 127.0.0.1:10018 replied with membership count = 29 (expected count = 29)
+[Info] Server 127.0.0.1:10017 replied with membership count = 29 (expected count = 29)
+[Info] Server 127.0.0.1:10030 replied with membership count = 29 (expected count = 29)
+[Info] Server 127.0.0.1:10005 replied with membership count = 29 (expected count = 29)
+[Info] Server 127.0.0.1:10025 replied with membership count = 29 (expected count = 29)
+[Info] Server 127.0.0.1:10012 replied with membership count = 29 (expected count = 29)
+[Info] Server 127.0.0.1:10009 replied with membership count = 29 (expected count = 29)
+[Info] Server 127.0.0.1:10022 replied with membership count = 29 (expected count = 29)
+[Info] Server 127.0.0.1:10004 replied with membership count = 29 (expected count = 29)
+[Info] Server 127.0.0.1:10015 replied with membership count = 29 (expected count = 29)
+[Info] Server 127.0.0.1:10024 replied with membership count = 29 (expected count = 29)
+[Info] Server 127.0.0.1:10016 replied with membership count = 29 (expected count = 29)
+[Info] Server 127.0.0.1:10019 replied with membership count = 29 (expected count = 29)
+[Info] Server 127.0.0.1:10010 replied with membership count = 29 (expected count = 29)
+[Info] Server 127.0.0.1:10003 replied with membership count = 29 (expected count = 29)
+[Info] Server 127.0.0.1:10020 replied with membership count = 29 (expected count = 29)
+[Info] Server 127.0.0.1:10027 replied with membership count = 29 (expected count = 29)
+[Info] Server 127.0.0.1:10021 replied with membership count = 29 (expected count = 29)
+[Info] Server 127.0.0.1:10011 replied with membership count = 29 (expected count = 29)
+[Info] Server 127.0.0.1:10014 replied with membership count = 29 (expected count = 29)
+[Info] Server 127.0.0.1:10002 replied with membership count = 29 (expected count = 29)
+[Info] Server 127.0.0.1:10007 replied with membership count = 29 (expected count = 29)
+[Info] Server 127.0.0.1:10008 replied with membership count = 29 (expected count = 29)
+[Info] Server 127.0.0.1:10001 replied with membership count = 29 (expected count = 29)
+[Info] Server 127.0.0.1:10013 replied with membership count = 29 (expected count = 29)
+[Info] Server 127.0.0.1:10029 replied with membership count = 29 (expected count = 29)
+[Info] Server 127.0.0.1:10023 replied with membership count = 29 (expected count = 29)
+[ ... Completed in 0.003 seconds ]
+[Ok] All servers returned the expected membership count (29)
+Attempting retrieval of keys... 
+Issuing GETs ... 
+[DONE in 0.254s]
+[Info] Sequential Consistency; Stage 3h; GET Phase; Of 40000 stored keys: 28140 SUCCESS, 0 TIMEOUT, 0 KEY-NOT-FOUND, 0 ERROR-UID, 11860 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Sequential Consistency; Stage 3h; GET Phase; Expected Key Loss: 0.0%. Actual Key Loss: 29.65%
+[Info] Sequential Consistency; Stage 3h; GET Phase; Total Value Size (MiB): 13.380638122558594 MiB.
+[Info] Sequential Consistency; Stage 3h; GET Phase; SUCCESS Response Count: 28140.0.
+[Info] Sequential Consistency; Stage 3h; GET Phase; % SUCCESS: 70.35%.
+[Info] Sequential Consistency; Stage 3h; GET Phase; % FAILED (Not SUCCESS): 29.65%.
+[Info] Sequential Consistency; Stage 3h; GET Phase; % TIMEOUT: 0.0%.
+[Info] Sequential Consistency; Stage 3h; GET Phase; % KEY-NOT-FOUND: 0.0%.
+[Info] Sequential Consistency; Stage 3h; GET Phase; % ERROR-UID: 0.0%.
+[Info] Sequential Consistency; Stage 3h; GET Phase; % ERROR-INVALID-GET (value or version): 29.65%.
+[Info] Sequential Consistency; Stage 3h; GET Phase; % ERROR-OTHER: 0.0%.
+[Info] Sequential Consistency; Stage 3h; GET Phase; NOT-STORED keys Count: 0.0.
+Checking that 29 nodes are alive
+[Test isAlive] for 127.0.0.1:10028
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10030
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10025
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10022
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10024
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10020
+[Test isAlive] for 127.0.0.1:10027
+[Test isAlive] for 127.0.0.1:10021
+[Test isAlive] for 127.0.0.1:10011
+[Test isAlive] for 127.0.0.1:10014
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10007
+[Test isAlive] for 127.0.0.1:10008
+[Test isAlive] for 127.0.0.1:10001
+[Test isAlive] for 127.0.0.1:10013
+[Test isAlive] for 127.0.0.1:10029
+[Test isAlive] for 127.0.0.1:10023
+[ ... Completed in 0.002 seconds ]
+TEST_PASSED
+Waiting 10 seconds before resuming nodes
+[Info] Resuming 1 servers.
+[ ... Completed in 0.002 seconds ]
+
+Sending WIPE-OUT to all servers...
+[ ... Completed in 0.051 seconds ]
+[OK]
+Waiting for 5 seconds for the cache to be cleared!
+Waiting 60 seconds
+
+[ TEST Concurrent Store/Load v3; Stage 4; (Clients = 128, Limit = 5000 PUTs) ]
+Issuing PUTS ... 
+[DONE in 0.065s]
+[Info] PUTs % SUCCESS Ok: 100.0% Success.(90.0% minimum required).
+Confirming keys were stored correctly.
+Issuing GETs ... 
+[DONE in 0.031s]
+[Info] GETs % SUCCESS Ok: 100.0% Success.(90.0% minimum required).
+Checking that 30 nodes are alive
+[Test isAlive] for 127.0.0.1:10001
+[Test isAlive] for 127.0.0.1:10002
+[Test isAlive] for 127.0.0.1:10003
+[Test isAlive] for 127.0.0.1:10004
+[Test isAlive] for 127.0.0.1:10005
+[Test isAlive] for 127.0.0.1:10006
+[Test isAlive] for 127.0.0.1:10007
+[Test isAlive] for 127.0.0.1:10008
+[Test isAlive] for 127.0.0.1:10009
+[Test isAlive] for 127.0.0.1:10010
+[Test isAlive] for 127.0.0.1:10011
+[Test isAlive] for 127.0.0.1:10012
+[Test isAlive] for 127.0.0.1:10013
+[Test isAlive] for 127.0.0.1:10014
+[Test isAlive] for 127.0.0.1:10015
+[Test isAlive] for 127.0.0.1:10016
+[Test isAlive] for 127.0.0.1:10017
+[Test isAlive] for 127.0.0.1:10018
+[Test isAlive] for 127.0.0.1:10019
+[Test isAlive] for 127.0.0.1:10020
+[Test isAlive] for 127.0.0.1:10021
+[Test isAlive] for 127.0.0.1:10022
+[Test isAlive] for 127.0.0.1:10023
+[Test isAlive] for 127.0.0.1:10024
+[Test isAlive] for 127.0.0.1:10025
+[Test isAlive] for 127.0.0.1:10026
+[Test isAlive] for 127.0.0.1:10027
+[Test isAlive] for 127.0.0.1:10028
+[Test isAlive] for 127.0.0.1:10029
+[Test isAlive] for 127.0.0.1:10030
+[ ... Completed in 0.002 seconds ]
+TEST_PASSED
+[ ... TEST Completed in 0.1 seconds ]
+Confirming randomly selected keys were stored correctly.
+Issuing GETs ... 
+[DONE in 0.012s]
+Sequential Consistency 2; Update values stage 4a Increment 1;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.018s]
+TEST_PASSED
+Sequential Consistency 2; Update values stage 4a Increment 2;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.014s]
+TEST_PASSED
+Sequential Consistency 2; Update values stage 4a Increment 3;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.015s]
+TEST_PASSED
+[ ... TEST Completed in 0.068 seconds ]
+
+[Info] Preparing for the sequential consistency Test 2
+[Info] Will suspend 127.0.0.1:10005
+[Info] Will suspend 127.0.0.1:10013
+[Info] Will suspend 127.0.0.1:10015
+[Info] Suspending 3 servers.
+[ ... Completed in 0.002 seconds ]
+Waiting 15 seconds after suspend
+[ ... TEST Completed in 15.002 seconds ]
+[Info] Stage 4a Scenario: Alive Nodes: 27. Dead Nodes: 3
+Confirming randomly selected keys were stored correctly.
+Issuing GETs ... 
+[DONE in 0.017s]
+Sequential Consistency 2; Update values stage 4b Increment 1;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.018s]
+TEST_PASSED
+Sequential Consistency 2; Update values stage 4b Increment 2;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.016s]
+TEST_PASSED
+Sequential Consistency 2; Update values stage 4b Increment 3;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.016s]
+TEST_PASSED
+Sequential Consistency 2; Update values stage 4b Increment 4;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.016s]
+TEST_PASSED
+[ ... TEST Completed in 0.087 seconds ]
+
+[Info] Preparing for the sequential consistency Test 2
+[Info] Will suspend 127.0.0.1:10017
+[Info] Will suspend 127.0.0.1:10003
+[Info] Will suspend 127.0.0.1:10008
+[Info] Suspending 3 servers.
+[ ... Completed in 0.002 seconds ]
+Waiting 15 seconds after suspend
+[ ... TEST Completed in 15.002 seconds ]
+[Info] Stage 4b Scenario: Alive Nodes: 24. Dead Nodes: 6
+Confirming randomly selected keys were stored correctly.
+Issuing GETs ... 
+[DONE in 0.017s]
+Sequential Consistency 2; Update values stage 4c Increment 1;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.017s]
+TEST_PASSED
+Sequential Consistency 2; Update values stage 4c Increment 2;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.016s]
+TEST_PASSED
+Sequential Consistency 2; Update values stage 4c Increment 3;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.018s]
+TEST_PASSED
+Sequential Consistency 2; Update values stage 4c Increment 4;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.018s]
+TEST_PASSED
+[ ... TEST Completed in 0.091 seconds ]
+
+[Info] Preparing for the sequential consistency Test 2
+[Info] Will resume 127.0.0.1:10005
+[Info] Will resume 127.0.0.1:10013
+[Info] Will resume 127.0.0.1:10015
+[Info] Resuming 3 servers.
+[ ... Completed in 0.002 seconds ]
+Waiting 15 seconds after resume
+[ ... TEST Completed in 15.003 seconds ]
+[Info] Stage 4c Scenario: Alive Nodes: 27. Dead Nodes: 3
+Confirming randomly selected keys were stored correctly.
+Issuing GETs ... 
+[DONE in 0.015s]
+Sequential Consistency 2; Update values stage 4d Increment 1;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.018s]
+TEST_PASSED
+Sequential Consistency 2; Update values stage 4d Increment 2;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.022s]
+TEST_PASSED
+[ ... TEST Completed in 0.058 seconds ]
+
+[Info] Preparing for the sequential consistency Test 2
+[Info] Will suspend 127.0.0.1:10007
+[Info] Will suspend 127.0.0.1:10026
+[Info] Will suspend 127.0.0.1:10024
+[Info] Suspending 3 servers.
+[ ... Completed in 0.002 seconds ]
+Waiting 15 seconds after suspend
+[ ... TEST Completed in 15.002 seconds ]
+[Info] Stage 4d Scenario: Alive Nodes: 24. Dead Nodes: 6
+Confirming randomly selected keys were stored correctly.
+Issuing GETs ... 
+[DONE in 0.014s]
+Sequential Consistency 2; Update values stage 4e Increment 1;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.018s]
+TEST_PASSED
+Sequential Consistency 2; Update values stage 4e Increment 2;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.017s]
+TEST_PASSED
+[ ... TEST Completed in 0.051 seconds ]
+
+[Info] Preparing for the sequential consistency Test 2
+[Info] Will suspend 127.0.0.1:10012
+[Info] Will suspend 127.0.0.1:10030
+[Info] Will suspend 127.0.0.1:10011
+[Info] Suspending 3 servers.
+[ ... Completed in 0.002 seconds ]
+Waiting 15 seconds after suspend
+[ ... TEST Completed in 15.002 seconds ]
+[Info] Stage 4e Scenario: Alive Nodes: 21. Dead Nodes: 9
+Confirming randomly selected keys were stored correctly.
+Issuing GETs ... 
+[DONE in 0.017s]
+Sequential Consistency 2; Update values stage 4f Increment 1;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.02s]
+TEST_PASSED
+[ ... TEST Completed in 0.039 seconds ]
+
+[Info] Preparing for the sequential consistency Test 2
+[Info] Will resume 127.0.0.1:10017
+[Info] Will resume 127.0.0.1:10003
+[Info] Will resume 127.0.0.1:10008
+[Info] Resuming 3 servers.
+[ ... Completed in 0.002 seconds ]
+Waiting 15 seconds after resume
+[ ... TEST Completed in 15.002 seconds ]
+[Info] Stage 4f Scenario: Alive Nodes: 24. Dead Nodes: 6
+Confirming randomly selected keys were stored correctly.
+Issuing GETs ... 
+[DONE in 0.015s]
+Sequential Consistency 2; Update values stage 4g Increment 1;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.018s]
+TEST_PASSED
+Sequential Consistency 2; Update values stage 4g Increment 2;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.016s]
+TEST_PASSED
+Sequential Consistency 2; Update values stage 4g Increment 3;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.017s]
+TEST_PASSED
+[ ... TEST Completed in 0.07 seconds ]
+
+[Info] Preparing for the sequential consistency Test 2
+[Info] Will suspend 127.0.0.1:10006
+[Info] Will suspend 127.0.0.1:10020
+[Info] Will suspend 127.0.0.1:10025
+[Info] Suspending 3 servers.
+[ ... Completed in 0.002 seconds ]
+Waiting 15 seconds after suspend
+[ ... TEST Completed in 15.002 seconds ]
+[Info] Stage 4g Scenario: Alive Nodes: 21. Dead Nodes: 9
+Confirming randomly selected keys were stored correctly.
+Issuing GETs ... 
+[DONE in 0.017s]
+Sequential Consistency 2; Update values stage 4h Increment 1;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.026s]
+TEST_PASSED
+Sequential Consistency 2; Update values stage 4h Increment 2;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.02s]
+TEST_PASSED
+[ ... TEST Completed in 0.066 seconds ]
+
+[Info] Preparing for the sequential consistency Test 2
+[Info] Will suspend 127.0.0.1:10002
+[Info] Will suspend 127.0.0.1:10014
+[Info] Will suspend 127.0.0.1:10027
+[Info] Suspending 3 servers.
+[ ... Completed in 0.002 seconds ]
+Waiting 15 seconds after suspend
+[ ... TEST Completed in 15.002 seconds ]
+[Info] Stage 4h Scenario: Alive Nodes: 18. Dead Nodes: 12
+Confirming randomly selected keys were stored correctly.
+Issuing GETs ... 
+[DONE in 0.019s]
+Sequential Consistency 2; Update values stage 4i Increment 1;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.025s]
+TEST_PASSED
+Sequential Consistency 2; Update values stage 4i Increment 2;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.021s]
+TEST_PASSED
+[ ... TEST Completed in 0.068 seconds ]
+
+[Info] Preparing for the sequential consistency Test 2
+[Info] Will suspend 127.0.0.1:10010
+[Info] Will suspend 127.0.0.1:10023
+[Info] Will suspend 127.0.0.1:10028
+[Info] Suspending 3 servers.
+[ ... Completed in 0.003 seconds ]
+Waiting 15 seconds after suspend
+[ ... TEST Completed in 15.003 seconds ]
+[Info] Stage 4i Scenario: Alive Nodes: 15. Dead Nodes: 15
+Confirming randomly selected keys were stored correctly.
+Issuing GETs ... 
+[DONE in 0.016s]
+Sequential Consistency 2; Update values stage 4j Increment 1;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.028s]
+TEST_PASSED
+Sequential Consistency 2; Update values stage 4j Increment 2;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.026s]
+TEST_PASSED
+Sequential Consistency 2; Update values stage 4j Increment 3;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.024s]
+TEST_PASSED
+Sequential Consistency 2; Update values stage 4j Increment 4;
+Updating stored KV pairs ... 
+Issuing RELOADS ... 
+[DONE in 0.023s]
+TEST_PASSED
+[ ... TEST Completed in 0.121 seconds ]
+
+[Info] Preparing for the sequential consistency Test 2
+[Info] Will resume 127.0.0.1:10007
+[Info] Will resume 127.0.0.1:10026
+[Info] Will resume 127.0.0.1:10024
+[Info] Resuming 3 servers.
+[ ... Completed in 0.002 seconds ]
+Waiting 15 seconds after resume
+[ ... TEST Completed in 15.002 seconds ]
+[Info] Stage 4j Scenario: Alive Nodes: 18. Dead Nodes: 12
+
+
+[ TEST Stage 4; Verify Sequential Consistency 2; (Clients = 128, Limit = 5000 GETS) ]
+Attempting retrieval of keys... 
+Issuing GETs ... 
+[DONE in 0.081s]
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; Of 4940 stored keys: 4198 SUCCESS, 0 TIMEOUT, 67 KEY-NOT-FOUND, 0 ERROR-UID, 675 ERROR-INVALID-GET (value or version), 0 ERROR-OTHER.
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; Expected Key Loss: 0.0%. Actual Key Loss: 15.020242914979757%
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; Total Value Size (MiB): 2.37939453125 MiB.
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; SUCCESS Response Count: 4198.0.
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; % SUCCESS: 84.97975708502024%.
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; % FAILED (Not SUCCESS): 15.020242914979757%.
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; % TIMEOUT: 0.0%.
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; % KEY-NOT-FOUND: 1.3562753036437247%.
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; % ERROR-UID: 0.0%.
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; % ERROR-INVALID-GET (value or version): 13.663967611336032%.
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; % ERROR-OTHER: 0.0%.
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; NOT-STORED keys Count:                      60.0.
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; Retrieved Increments Count (tr):            10920.0
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; Timed Out Increments Count (tt):            0.0
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; Successful Increments Count (ts):           13121.0
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; SC Violations Count (tr<ts):                675.0
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; SC Compliant Count (ts<=tr<=ts+tt):         4198.0
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; SC Buggy-Implementation Count (tr>tt+ts):   0.0
+
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; % SC Compliant:                     86.14816334906628
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; % SC Violations:                    13.851836650933716
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; % SC Buggy-Implementation:          0.0
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; % Retrieved Increments (tr/ts):     83.2253639204329
+[Info] Stage 4; Verify Sequential Consistency 2; GET Phase; % Timed Out Increments (tt/ts):     0.0
+[Warning]: sequential consistency 2 violation
+TEST_PASSED
+Waiting 10 seconds before resuming nodes
+[Info] Resuming 12 servers.
+[ ... Completed in 0.005 seconds ]
+
+Results Summary:
+Client Local Hostname : ip-172-31-11-194
+Client Local IP : ip-172-31-11-194/172.31.11.194
+Concurrent Store/Load v2; Stage 0; : 2.0
+Concurrent Store/Load v2; Stage 0; GET Phase; % ERROR-INVALID-GET (value or version) : 0.0
+Concurrent Store/Load v2; Stage 0; GET Phase; % ERROR-OTHER : 0.0
+Concurrent Store/Load v2; Stage 0; GET Phase; % ERROR-UID : 0.0
+Concurrent Store/Load v2; Stage 0; GET Phase; % FAILED (Not SUCCESS) : 0.0
+Concurrent Store/Load v2; Stage 0; GET Phase; % KEY-NOT-FOUND : 0.0
+Concurrent Store/Load v2; Stage 0; GET Phase; % SUCCESS : 100.0
+Concurrent Store/Load v2; Stage 0; GET Phase; % TIMEOUT : 0.0
+Concurrent Store/Load v2; Stage 0; GET Phase; SUCCESS Response Count : 40000.0
+Concurrent Store/Load v2; Stage 0; GET Phase; Total Value Size (MiB) : 19.09311866760254
+Concurrent Store/Load v2; Stage 0; PUT Phase; % ERROR-INVALID-GET (value or version) : 0.0
+Concurrent Store/Load v2; Stage 0; PUT Phase; % ERROR-OTHER : 0.0
+Concurrent Store/Load v2; Stage 0; PUT Phase; % ERROR-UID : 0.0
+Concurrent Store/Load v2; Stage 0; PUT Phase; % FAILED (Not SUCCESS) : 0.0
+Concurrent Store/Load v2; Stage 0; PUT Phase; % KEY-NOT-FOUND : 0.0
+Concurrent Store/Load v2; Stage 0; PUT Phase; % SUCCESS : 100.0
+Concurrent Store/Load v2; Stage 0; PUT Phase; % TIMEOUT : 0.0
+Concurrent Store/Load v2; Stage 0; PUT Phase; SUCCESS Response Count : 40000.0
+Concurrent Store/Load v2; Stage 0; PUT Phase; Total Value Size (MiB) : 19.09311866760254
+Concurrent Store/Load v2; Stage 2a; : 2.0
+Concurrent Store/Load v2; Stage 2a; GET Phase; % ERROR-INVALID-GET (value or version) : 0.0
+Concurrent Store/Load v2; Stage 2a; GET Phase; % ERROR-OTHER : 0.0
+Concurrent Store/Load v2; Stage 2a; GET Phase; % ERROR-UID : 0.0
+Concurrent Store/Load v2; Stage 2a; GET Phase; % FAILED (Not SUCCESS) : 0.0
+Concurrent Store/Load v2; Stage 2a; GET Phase; % KEY-NOT-FOUND : 0.0
+Concurrent Store/Load v2; Stage 2a; GET Phase; % SUCCESS : 100.0
+Concurrent Store/Load v2; Stage 2a; GET Phase; % TIMEOUT : 0.0
+Concurrent Store/Load v2; Stage 2a; GET Phase; SUCCESS Response Count : 20000.0
+Concurrent Store/Load v2; Stage 2a; GET Phase; Total Value Size (MiB) : 9.63187026977539
+Concurrent Store/Load v2; Stage 2a; PUT Phase; % ERROR-INVALID-GET (value or version) : 0.0
+Concurrent Store/Load v2; Stage 2a; PUT Phase; % ERROR-OTHER : 0.0
+Concurrent Store/Load v2; Stage 2a; PUT Phase; % ERROR-UID : 0.0
+Concurrent Store/Load v2; Stage 2a; PUT Phase; % FAILED (Not SUCCESS) : 0.0
+Concurrent Store/Load v2; Stage 2a; PUT Phase; % KEY-NOT-FOUND : 0.0
+Concurrent Store/Load v2; Stage 2a; PUT Phase; % SUCCESS : 100.0
+Concurrent Store/Load v2; Stage 2a; PUT Phase; % TIMEOUT : 0.0
+Concurrent Store/Load v2; Stage 2a; PUT Phase; SUCCESS Response Count : 20000.0
+Concurrent Store/Load v2; Stage 2a; PUT Phase; Total Value Size (MiB) : 9.63187026977539
+Concurrent Store/Load v2; Stage 3; : 2.0
+Concurrent Store/Load v2; Stage 3; PUT Phase; % ERROR-INVALID-GET (value or version) : 0.0
+Concurrent Store/Load v2; Stage 3; PUT Phase; % ERROR-OTHER : 0.0
+Concurrent Store/Load v2; Stage 3; PUT Phase; % ERROR-UID : 0.0
+Concurrent Store/Load v2; Stage 3; PUT Phase; % FAILED (Not SUCCESS) : 0.0
+Concurrent Store/Load v2; Stage 3; PUT Phase; % KEY-NOT-FOUND : 0.0
+Concurrent Store/Load v2; Stage 3; PUT Phase; % SUCCESS : 100.0
+Concurrent Store/Load v2; Stage 3; PUT Phase; % TIMEOUT : 0.0
+Concurrent Store/Load v2; Stage 3; PUT Phase; SUCCESS Response Count : 40000.0
+Concurrent Store/Load v2; Stage 3; PUT Phase; Total Value Size (MiB) : 19.11695384979248
+Concurrent Store/Load v2; Stage 3a; : 2.0
+Concurrent Store/Load v2; Stage 3a; PUT Phase; % ERROR-INVALID-GET (value or version) : 0.0
+Concurrent Store/Load v2; Stage 3a; PUT Phase; % ERROR-OTHER : 0.0
+Concurrent Store/Load v2; Stage 3a; PUT Phase; % ERROR-UID : 0.0
+Concurrent Store/Load v2; Stage 3a; PUT Phase; % FAILED (Not SUCCESS) : 0.0
+Concurrent Store/Load v2; Stage 3a; PUT Phase; % KEY-NOT-FOUND : 0.0
+Concurrent Store/Load v2; Stage 3a; PUT Phase; % SUCCESS : 100.0
+Concurrent Store/Load v2; Stage 3a; PUT Phase; % TIMEOUT : 0.0
+Concurrent Store/Load v2; Stage 3a; PUT Phase; SUCCESS Response Count : 20000.0
+Concurrent Store/Load v2; Stage 3a; PUT Phase; Total Value Size (MiB) : 9.485525131225586
+Concurrent Store/Load v2; Stage 3b; : 2.0
+Concurrent Store/Load v2; Stage 3b; PUT Phase; % ERROR-INVALID-GET (value or version) : 0.0
+Concurrent Store/Load v2; Stage 3b; PUT Phase; % ERROR-OTHER : 0.0
+Concurrent Store/Load v2; Stage 3b; PUT Phase; % ERROR-UID : 0.0
+Concurrent Store/Load v2; Stage 3b; PUT Phase; % FAILED (Not SUCCESS) : 0.0
+Concurrent Store/Load v2; Stage 3b; PUT Phase; % KEY-NOT-FOUND : 0.0
+Concurrent Store/Load v2; Stage 3b; PUT Phase; % SUCCESS : 100.0
+Concurrent Store/Load v2; Stage 3b; PUT Phase; % TIMEOUT : 0.0
+Concurrent Store/Load v2; Stage 3b; PUT Phase; SUCCESS Response Count : 20000.0
+Concurrent Store/Load v2; Stage 3b; PUT Phase; Total Value Size (MiB) : 9.561532974243164
+Concurrent Store/Load v2; Stage 3c; : 2.0
+Concurrent Store/Load v2; Stage 3c; PUT Phase; % ERROR-INVALID-GET (value or version) : 0.0
+Concurrent Store/Load v2; Stage 3c; PUT Phase; % ERROR-OTHER : 0.0
+Concurrent Store/Load v2; Stage 3c; PUT Phase; % ERROR-UID : 0.0
+Concurrent Store/Load v2; Stage 3c; PUT Phase; % FAILED (Not SUCCESS) : 0.0
+Concurrent Store/Load v2; Stage 3c; PUT Phase; % KEY-NOT-FOUND : 0.0
+Concurrent Store/Load v2; Stage 3c; PUT Phase; % SUCCESS : 100.0
+Concurrent Store/Load v2; Stage 3c; PUT Phase; % TIMEOUT : 0.0
+Concurrent Store/Load v2; Stage 3c; PUT Phase; SUCCESS Response Count : 20000.0
+Concurrent Store/Load v2; Stage 3c; PUT Phase; Total Value Size (MiB) : 9.579999923706055
+Concurrent Store/Load v2; Stage 3d; : 2.0
+Concurrent Store/Load v2; Stage 3d; PUT Phase; % ERROR-INVALID-GET (value or version) : 0.0
+Concurrent Store/Load v2; Stage 3d; PUT Phase; % ERROR-OTHER : 0.0
+Concurrent Store/Load v2; Stage 3d; PUT Phase; % ERROR-UID : 0.0
+Concurrent Store/Load v2; Stage 3d; PUT Phase; % FAILED (Not SUCCESS) : 0.0
+Concurrent Store/Load v2; Stage 3d; PUT Phase; % KEY-NOT-FOUND : 0.0
+Concurrent Store/Load v2; Stage 3d; PUT Phase; % SUCCESS : 100.0
+Concurrent Store/Load v2; Stage 3d; PUT Phase; % TIMEOUT : 0.0
+Concurrent Store/Load v2; Stage 3d; PUT Phase; SUCCESS Response Count : 20000.0
+Concurrent Store/Load v2; Stage 3d; PUT Phase; Total Value Size (MiB) : 9.452847480773926
+Concurrent Store/Load v2; Stage 3e; : 2.0
+Concurrent Store/Load v2; Stage 3e; PUT Phase; % ERROR-INVALID-GET (value or version) : 0.0
+Concurrent Store/Load v2; Stage 3e; PUT Phase; % ERROR-OTHER : 0.0
+Concurrent Store/Load v2; Stage 3e; PUT Phase; % ERROR-UID : 0.0
+Concurrent Store/Load v2; Stage 3e; PUT Phase; % FAILED (Not SUCCESS) : 0.0
+Concurrent Store/Load v2; Stage 3e; PUT Phase; % KEY-NOT-FOUND : 0.0
+Concurrent Store/Load v2; Stage 3e; PUT Phase; % SUCCESS : 100.0
+Concurrent Store/Load v2; Stage 3e; PUT Phase; % TIMEOUT : 0.0
+Concurrent Store/Load v2; Stage 3e; PUT Phase; SUCCESS Response Count : 20000.0
+Concurrent Store/Load v2; Stage 3e; PUT Phase; Total Value Size (MiB) : 9.612451553344727
+Concurrent Store/Load v2; Stage 3f; : 2.0
+Concurrent Store/Load v2; Stage 3f; PUT Phase; % ERROR-INVALID-GET (value or version) : 0.0
+Concurrent Store/Load v2; Stage 3f; PUT Phase; % ERROR-OTHER : 0.0
+Concurrent Store/Load v2; Stage 3f; PUT Phase; % ERROR-UID : 0.0
+Concurrent Store/Load v2; Stage 3f; PUT Phase; % FAILED (Not SUCCESS) : 0.0
+Concurrent Store/Load v2; Stage 3f; PUT Phase; % KEY-NOT-FOUND : 0.0
+Concurrent Store/Load v2; Stage 3f; PUT Phase; % SUCCESS : 100.0
+Concurrent Store/Load v2; Stage 3f; PUT Phase; % TIMEOUT : 0.0
+Concurrent Store/Load v2; Stage 3f; PUT Phase; SUCCESS Response Count : 20000.0
+Concurrent Store/Load v2; Stage 3f; PUT Phase; Total Value Size (MiB) : 9.520020484924316
+Concurrent Store/Load v2; Stage 3g; : 2.0
+Concurrent Store/Load v2; Stage 3g; PUT Phase; % ERROR-INVALID-GET (value or version) : 0.0
+Concurrent Store/Load v2; Stage 3g; PUT Phase; % ERROR-OTHER : 0.0
+Concurrent Store/Load v2; Stage 3g; PUT Phase; % ERROR-UID : 0.0
+Concurrent Store/Load v2; Stage 3g; PUT Phase; % FAILED (Not SUCCESS) : 0.0
+Concurrent Store/Load v2; Stage 3g; PUT Phase; % KEY-NOT-FOUND : 0.0
+Concurrent Store/Load v2; Stage 3g; PUT Phase; % SUCCESS : 100.0
+Concurrent Store/Load v2; Stage 3g; PUT Phase; % TIMEOUT : 0.0
+Concurrent Store/Load v2; Stage 3g; PUT Phase; SUCCESS Response Count : 20000.0
+Concurrent Store/Load v2; Stage 3g; PUT Phase; Total Value Size (MiB) : 9.467251777648926
+Concurrent Store/Load v2; Stage 3h; : 2.0
+Concurrent Store/Load v2; Stage 3h; PUT Phase; % ERROR-INVALID-GET (value or version) : 0.0
+Concurrent Store/Load v2; Stage 3h; PUT Phase; % ERROR-OTHER : 0.0
+Concurrent Store/Load v2; Stage 3h; PUT Phase; % ERROR-UID : 0.0
+Concurrent Store/Load v2; Stage 3h; PUT Phase; % FAILED (Not SUCCESS) : 0.0
+Concurrent Store/Load v2; Stage 3h; PUT Phase; % KEY-NOT-FOUND : 0.0
+Concurrent Store/Load v2; Stage 3h; PUT Phase; % SUCCESS : 100.0
+Concurrent Store/Load v2; Stage 3h; PUT Phase; % TIMEOUT : 0.0
+Concurrent Store/Load v2; Stage 3h; PUT Phase; SUCCESS Response Count : 20000.0
+Concurrent Store/Load v2; Stage 3h; PUT Phase; Total Value Size (MiB) : 9.474322319030762
+Sequential Consistency; Stage 3a; : 2.0
+Sequential Consistency; Stage 3a; GET Phase; % ERROR-INVALID-GET (value or version) : 0.0
+Sequential Consistency; Stage 3a; GET Phase; % ERROR-OTHER : 0.0
+Sequential Consistency; Stage 3a; GET Phase; % ERROR-UID : 0.0
+Sequential Consistency; Stage 3a; GET Phase; % FAILED (Not SUCCESS) : 0.0
+Sequential Consistency; Stage 3a; GET Phase; % KEY-NOT-FOUND : 0.0
+Sequential Consistency; Stage 3a; GET Phase; % SUCCESS : 100.0
+Sequential Consistency; Stage 3a; GET Phase; % TIMEOUT : 0.0
+Sequential Consistency; Stage 3a; GET Phase; NOT-STORED keys Count : 0.0
+Sequential Consistency; Stage 3a; GET Phase; SUCCESS Response Count : 40000.0
+Sequential Consistency; Stage 3a; GET Phase; Total Value Size (MiB) : 19.044261932373047
+Sequential Consistency; Stage 3b; : 2.0
+Sequential Consistency; Stage 3b; GET Phase; % ERROR-INVALID-GET (value or version) : 0.0
+Sequential Consistency; Stage 3b; GET Phase; % ERROR-OTHER : 0.0
+Sequential Consistency; Stage 3b; GET Phase; % ERROR-UID : 0.0
+Sequential Consistency; Stage 3b; GET Phase; % FAILED (Not SUCCESS) : 0.0
+Sequential Consistency; Stage 3b; GET Phase; % KEY-NOT-FOUND : 0.0
+Sequential Consistency; Stage 3b; GET Phase; % SUCCESS : 100.0
+Sequential Consistency; Stage 3b; GET Phase; % TIMEOUT : 0.0
+Sequential Consistency; Stage 3b; GET Phase; NOT-STORED keys Count : 0.0
+Sequential Consistency; Stage 3b; GET Phase; SUCCESS Response Count : 40000.0
+Sequential Consistency; Stage 3b; GET Phase; Total Value Size (MiB) : 19.106436729431152
+Sequential Consistency; Stage 3c; : 2.0
+Sequential Consistency; Stage 3c; GET Phase; % ERROR-INVALID-GET (value or version) : 0.0
+Sequential Consistency; Stage 3c; GET Phase; % ERROR-OTHER : 0.0
+Sequential Consistency; Stage 3c; GET Phase; % ERROR-UID : 0.0
+Sequential Consistency; Stage 3c; GET Phase; % FAILED (Not SUCCESS) : 0.0
+Sequential Consistency; Stage 3c; GET Phase; % KEY-NOT-FOUND : 0.0
+Sequential Consistency; Stage 3c; GET Phase; % SUCCESS : 100.0
+Sequential Consistency; Stage 3c; GET Phase; % TIMEOUT : 0.0
+Sequential Consistency; Stage 3c; GET Phase; NOT-STORED keys Count : 0.0
+Sequential Consistency; Stage 3c; GET Phase; SUCCESS Response Count : 40000.0
+Sequential Consistency; Stage 3c; GET Phase; Total Value Size (MiB) : 19.120463371276855
+Sequential Consistency; Stage 3d; : 2.0
+Sequential Consistency; Stage 3d; GET Phase; % ERROR-INVALID-GET (value or version) : 0.0
+Sequential Consistency; Stage 3d; GET Phase; % ERROR-OTHER : 0.0
+Sequential Consistency; Stage 3d; GET Phase; % ERROR-UID : 0.0
+Sequential Consistency; Stage 3d; GET Phase; % FAILED (Not SUCCESS) : 0.0
+Sequential Consistency; Stage 3d; GET Phase; % KEY-NOT-FOUND : 0.0
+Sequential Consistency; Stage 3d; GET Phase; % SUCCESS : 100.0
+Sequential Consistency; Stage 3d; GET Phase; % TIMEOUT : 0.0
+Sequential Consistency; Stage 3d; GET Phase; NOT-STORED keys Count : 0.0
+Sequential Consistency; Stage 3d; GET Phase; SUCCESS Response Count : 40000.0
+Sequential Consistency; Stage 3d; GET Phase; Total Value Size (MiB) : 19.050554275512695
+Sequential Consistency; Stage 3e; : 2.0
+Sequential Consistency; Stage 3e; GET Phase; % ERROR-INVALID-GET (value or version) : 22.0125
+Sequential Consistency; Stage 3e; GET Phase; % ERROR-OTHER : 0.0
+Sequential Consistency; Stage 3e; GET Phase; % ERROR-UID : 0.0
+Sequential Consistency; Stage 3e; GET Phase; % FAILED (Not SUCCESS) : 22.0125
+Sequential Consistency; Stage 3e; GET Phase; % KEY-NOT-FOUND : 0.0
+Sequential Consistency; Stage 3e; GET Phase; % SUCCESS : 77.9875
+Sequential Consistency; Stage 3e; GET Phase; % TIMEOUT : 0.0
+Sequential Consistency; Stage 3e; GET Phase; NOT-STORED keys Count : 0.0
+Sequential Consistency; Stage 3e; GET Phase; SUCCESS Response Count : 31195.0
+Sequential Consistency; Stage 3e; GET Phase; Total Value Size (MiB) : 14.915963172912598
+Sequential Consistency; Stage 3f; : 2.0
+Sequential Consistency; Stage 3f; GET Phase; % ERROR-INVALID-GET (value or version) : 26.615
+Sequential Consistency; Stage 3f; GET Phase; % ERROR-OTHER : 0.0
+Sequential Consistency; Stage 3f; GET Phase; % ERROR-UID : 0.0
+Sequential Consistency; Stage 3f; GET Phase; % FAILED (Not SUCCESS) : 26.615
+Sequential Consistency; Stage 3f; GET Phase; % KEY-NOT-FOUND : 0.0
+Sequential Consistency; Stage 3f; GET Phase; % SUCCESS : 73.385
+Sequential Consistency; Stage 3f; GET Phase; % TIMEOUT : 0.0
+Sequential Consistency; Stage 3f; GET Phase; NOT-STORED keys Count : 0.0
+Sequential Consistency; Stage 3f; GET Phase; SUCCESS Response Count : 29354.0
+Sequential Consistency; Stage 3f; GET Phase; Total Value Size (MiB) : 14.042865753173828
+Sequential Consistency; Stage 3g; : 2.0
+Sequential Consistency; Stage 3g; GET Phase; % ERROR-INVALID-GET (value or version) : 31.1175
+Sequential Consistency; Stage 3g; GET Phase; % ERROR-OTHER : 0.0
+Sequential Consistency; Stage 3g; GET Phase; % ERROR-UID : 0.0
+Sequential Consistency; Stage 3g; GET Phase; % FAILED (Not SUCCESS) : 31.1175
+Sequential Consistency; Stage 3g; GET Phase; % KEY-NOT-FOUND : 0.0
+Sequential Consistency; Stage 3g; GET Phase; % SUCCESS : 68.8825
+Sequential Consistency; Stage 3g; GET Phase; % TIMEOUT : 0.0
+Sequential Consistency; Stage 3g; GET Phase; NOT-STORED keys Count : 0.0
+Sequential Consistency; Stage 3g; GET Phase; SUCCESS Response Count : 27553.0
+Sequential Consistency; Stage 3g; GET Phase; Total Value Size (MiB) : 13.160680770874023
+Sequential Consistency; Stage 3h; : 2.0
+Sequential Consistency; Stage 3h; GET Phase; % ERROR-INVALID-GET (value or version) : 29.65
+Sequential Consistency; Stage 3h; GET Phase; % ERROR-OTHER : 0.0
+Sequential Consistency; Stage 3h; GET Phase; % ERROR-UID : 0.0
+Sequential Consistency; Stage 3h; GET Phase; % FAILED (Not SUCCESS) : 29.65
+Sequential Consistency; Stage 3h; GET Phase; % KEY-NOT-FOUND : 0.0
+Sequential Consistency; Stage 3h; GET Phase; % SUCCESS : 70.35
+Sequential Consistency; Stage 3h; GET Phase; % TIMEOUT : 0.0
+Sequential Consistency; Stage 3h; GET Phase; NOT-STORED keys Count : 0.0
+Sequential Consistency; Stage 3h; GET Phase; SUCCESS Response Count : 28140.0
+Sequential Consistency; Stage 3h; GET Phase; Total Value Size (MiB) : 13.380638122558594
+Sequential consistency test Suspend Node Count : 12
+Server Count : 30
+Server List : 127.0.0.1_10001_127.0.0.1_10002_127.0.0.1_10003_127.0.0.1_10004_127.0.0.1_10005_127.0.0.1_10006_127.0.0.1_10007_127.0.0.1_10008_127.0.0.1_10009_127.0.0.1_10010_127.0.0.1_10011_127.0.0.1_10012_127.0.0.1_10013_127.0.0.1_10014_127.0.0.1_10015_127.0.0.1_10016_127.0.0.1_10017_127.0.0.1_10018_127.0.0.1_10019_127.0.0.1_10020_127.0.0.1_10021_127.0.0.1_10022_127.0.0.1_10023_127.0.0.1_10024_127.0.0.1_10025_127.0.0.1_10026_127.0.0.1_10027_127.0.0.1_10028_127.0.0.1_10029_127.0.0.1_10030_
+Single Front Node (At-Most-Once) Policy : 2.0
+Single Front Node At-Most-Once Policy Empty REMs : 2.0
+Single Front Node At-Most-Once Policy Error Return Code : 2.0
+Single Front Node At-Most-Once Policy Full Test : 2.0
+Single Front Node Basic PUT GET  : 2.0
+Single Front Node Double PUT with version : 2.0
+Single Front Node Double Remove : 2.0
+Single Front Node Invalid Command : 2.0
+Single Front Node Invalid Key Test : 2.0
+Single Front Node Invalid Value Test : 2.0
+Single Front Node Multi-Client Crash : 2.0
+Single Front Node Remove Operation : 2.0
+Stage 1 Random Front-End Basic : 2.0
+Stage 1 Random Front-End: 1 Client(s) % Failed : 0.0
+Stage 1 Random Front-End: 1 Client(s) % Success : 100.0
+Stage 1 Random Front-End: 1 Client(s) % Timeout : 0.0
+Stage 1 Random Front-End: 1 Client(s) Average Response Time (ms) : 1.0
+Stage 1 Random Front-End: 1 Client(s) Goodput (Requests per Second) : 7105.0
+Stage 1 Random Front-End: 1 Client(s) Maximum Response Time (ms) : 16.0
+Stage 1 Random Front-End: 1 Client(s) STDEV Response Time (ms) : 1.0
+Stage 1 Random Front-End: 1 Client(s) Successful Responses : 426250
+Stage 1 Random Front-End: 1 Client(s) Throughput (Requests per Second) : 7105.0
+Stage 1 Random Front-End: 1 Client(s) Timeout Responses : 0
+Stage 1 Random Front-End: 1 Client(s) Total Failed Responses : 0
+Stage 1 Random Front-End: 1 Client(s) Total Requests (including replies) : 426250
+Stage 1 Random Front-End: 1 Client(s) Total Requests (without replies) : 426250
+Stage 1 Random Front-End: 1024 Client(s) % Failed : 0.0
+Stage 1 Random Front-End: 1024 Client(s) % Success : 99.99966238942199
+Stage 1 Random Front-End: 1024 Client(s) % Timeout : 3.3761057801463037E-4
+Stage 1 Random Front-End: 1024 Client(s) Average Response Time (ms) : 9.0
+Stage 1 Random Front-End: 1024 Client(s) CPU load (loadavg - last one minute) : 34.79
+Stage 1 Random Front-End: 1024 Client(s) Goodput (Requests per Second) : 118180.0
+Stage 1 Random Front-End: 1024 Client(s) Maximum Response Time (ms) : 583.0
+Stage 1 Random Front-End: 1024 Client(s) STDEV Response Time (ms) : 16.0
+Stage 1 Random Front-End: 1024 Client(s) Successful Responses : 7108758
+Stage 1 Random Front-End: 1024 Client(s) Throughput (Requests per Second) : 118181.0
+Stage 1 Random Front-End: 1024 Client(s) Timeout Responses : 24
+Stage 1 Random Front-End: 1024 Client(s) Total Failed Responses : 0
+Stage 1 Random Front-End: 1024 Client(s) Total Requests (including replies) : 7489548
+Stage 1 Random Front-End: 1024 Client(s) Total Requests (without replies) : 7108782
+Stage 1 Random Front-End: 16 Client(s) % Failed : 0.0
+Stage 1 Random Front-End: 16 Client(s) % Success : 100.0
+Stage 1 Random Front-End: 16 Client(s) % Timeout : 0.0
+Stage 1 Random Front-End: 16 Client(s) Average Response Time (ms) : 1.0
+Stage 1 Random Front-End: 16 Client(s) Goodput (Requests per Second) : 78493.0
+Stage 1 Random Front-End: 16 Client(s) Maximum Response Time (ms) : 53.0
+Stage 1 Random Front-End: 16 Client(s) STDEV Response Time (ms) : 1.0
+Stage 1 Random Front-End: 16 Client(s) Successful Responses : 4709703
+Stage 1 Random Front-End: 16 Client(s) Throughput (Requests per Second) : 78493.0
+Stage 1 Random Front-End: 16 Client(s) Timeout Responses : 0
+Stage 1 Random Front-End: 16 Client(s) Total Failed Responses : 0
+Stage 1 Random Front-End: 16 Client(s) Total Requests (including replies) : 4709813
+Stage 1 Random Front-End: 16 Client(s) Total Requests (without replies) : 4709703
+Stage 1 Random Front-End: 2048 Client(s) % Failed : 0.0
+Stage 1 Random Front-End: 2048 Client(s) % Success : 99.95458364518494
+Stage 1 Random Front-End: 2048 Client(s) % Timeout : 0.04541635481505961
+Stage 1 Random Front-End: 2048 Client(s) Average Response Time (ms) : 21.0
+Stage 1 Random Front-End: 2048 Client(s) CPU load (loadavg - last one minute) : 66.31
+Stage 1 Random Front-End: 2048 Client(s) Goodput (Requests per Second) : 97359.0
+Stage 1 Random Front-End: 2048 Client(s) Maximum Response Time (ms) : 803.0
+Stage 1 Random Front-End: 2048 Client(s) STDEV Response Time (ms) : 41.0
+Stage 1 Random Front-End: 2048 Client(s) Successful Responses : 5882872
+Stage 1 Random Front-End: 2048 Client(s) Throughput (Requests per Second) : 97403.0
+Stage 1 Random Front-End: 2048 Client(s) Timeout Responses : 2673
+Stage 1 Random Front-End: 2048 Client(s) Total Failed Responses : 0
+Stage 1 Random Front-End: 2048 Client(s) Total Requests (including replies) : 6933832
+Stage 1 Random Front-End: 2048 Client(s) Total Requests (without replies) : 5885545
+Stage 1 Random Front-End: 256 Client(s) % Failed : 0.0
+Stage 1 Random Front-End: 256 Client(s) % Success : 99.99996027357207
+Stage 1 Random Front-End: 256 Client(s) % Timeout : 3.97264279267254E-5
+Stage 1 Random Front-End: 256 Client(s) Average Response Time (ms) : 3.0
+Stage 1 Random Front-End: 256 Client(s) CPU load (loadavg - last one minute) : 25.94
+Stage 1 Random Front-End: 256 Client(s) Goodput (Requests per Second) : 125775.0
+Stage 1 Random Front-End: 256 Client(s) Maximum Response Time (ms) : 522.0
+Stage 1 Random Front-End: 256 Client(s) STDEV Response Time (ms) : 4.0
+Stage 1 Random Front-End: 256 Client(s) Successful Responses : 7551645
+Stage 1 Random Front-End: 256 Client(s) Throughput (Requests per Second) : 125775.0
+Stage 1 Random Front-End: 256 Client(s) Timeout Responses : 3
+Stage 1 Random Front-End: 256 Client(s) Total Failed Responses : 0
+Stage 1 Random Front-End: 256 Client(s) Total Requests (including replies) : 7569041
+Stage 1 Random Front-End: 256 Client(s) Total Requests (without replies) : 7551648
+Stage 1 Suspend Node Count : 24
+Stage 2 Distributed Shutdown Honoured : 2.0
+Stage 2 Random Front-End Basic : 2.0
+Stage 2 Random Front-End: 1 Client(s) % Failed : 0.0
+Stage 2 Random Front-End: 1 Client(s) % Success : 100.0
+Stage 2 Random Front-End: 1 Client(s) % Timeout : 0.0
+Stage 2 Random Front-End: 1 Client(s) Average Response Time (ms) : 1.0
+Stage 2 Random Front-End: 1 Client(s) Goodput (Requests per Second) : 2401.0
+Stage 2 Random Front-End: 1 Client(s) Maximum Response Time (ms) : 25.0
+Stage 2 Random Front-End: 1 Client(s) STDEV Response Time (ms) : 1.0
+Stage 2 Random Front-End: 1 Client(s) Successful Responses : 144037
+Stage 2 Random Front-End: 1 Client(s) Throughput (Requests per Second) : 2401.0
+Stage 2 Random Front-End: 1 Client(s) Timeout Responses : 0
+Stage 2 Random Front-End: 1 Client(s) Total Failed Responses : 0
+Stage 2 Random Front-End: 1 Client(s) Total Requests (including replies) : 144037
+Stage 2 Random Front-End: 1 Client(s) Total Requests (without replies) : 144037
+Stage 2 Random Front-End: 16 Client(s) % Failed : 0.0
+Stage 2 Random Front-End: 16 Client(s) % Success : 100.0
+Stage 2 Random Front-End: 16 Client(s) % Timeout : 0.0
+Stage 2 Random Front-End: 16 Client(s) Average Response Time (ms) : 1.0
+Stage 2 Random Front-End: 16 Client(s) Goodput (Requests per Second) : 15954.0
+Stage 2 Random Front-End: 16 Client(s) Maximum Response Time (ms) : 16.0
+Stage 2 Random Front-End: 16 Client(s) STDEV Response Time (ms) : 1.0
+Stage 2 Random Front-End: 16 Client(s) Successful Responses : 957241
+Stage 2 Random Front-End: 16 Client(s) Throughput (Requests per Second) : 15954.0
+Stage 2 Random Front-End: 16 Client(s) Timeout Responses : 0
+Stage 2 Random Front-End: 16 Client(s) Total Failed Responses : 0
+Stage 2 Random Front-End: 16 Client(s) Total Requests (including replies) : 957241
+Stage 2 Random Front-End: 16 Client(s) Total Requests (without replies) : 957241
+Stage 2 Random Front-End: 256 Client(s) % Failed : 0.0
+Stage 2 Random Front-End: 256 Client(s) % Success : 99.9980359744022
+Stage 2 Random Front-End: 256 Client(s) % Timeout : 0.0019640255978002914
+Stage 2 Random Front-End: 256 Client(s) Average Response Time (ms) : 13.0
+Stage 2 Random Front-End: 256 Client(s) CPU load (loadavg - last one minute) : 8.07
+Stage 2 Random Front-End: 256 Client(s) Goodput (Requests per Second) : 20344.0
+Stage 2 Random Front-End: 256 Client(s) Maximum Response Time (ms) : 566.0
+Stage 2 Random Front-End: 256 Client(s) STDEV Response Time (ms) : 19.0
+Stage 2 Random Front-End: 256 Client(s) Successful Responses : 1221956
+Stage 2 Random Front-End: 256 Client(s) Throughput (Requests per Second) : 20344.0
+Stage 2 Random Front-End: 256 Client(s) Timeout Responses : 24
+Stage 2 Random Front-End: 256 Client(s) Total Failed Responses : 0
+Stage 2 Random Front-End: 256 Client(s) Total Requests (including replies) : 1280087
+Stage 2 Random Front-End: 256 Client(s) Total Requests (without replies) : 1221980
+Stage 2 Random Front-End: 512 Client(s) % Failed : 0.0
+Stage 2 Random Front-End: 512 Client(s) % Success : 99.85630874694218
+Stage 2 Random Front-End: 512 Client(s) % Timeout : 0.14369125305781996
+Stage 2 Random Front-End: 512 Client(s) Average Response Time (ms) : 26.0
+Stage 2 Random Front-End: 512 Client(s) CPU load (loadavg - last one minute) : 10.82
+Stage 2 Random Front-End: 512 Client(s) Goodput (Requests per Second) : 18839.0
+Stage 2 Random Front-End: 512 Client(s) Maximum Response Time (ms) : 588.0
+Stage 2 Random Front-End: 512 Client(s) STDEV Response Time (ms) : 48.0
+Stage 2 Random Front-End: 512 Client(s) Successful Responses : 1139696
+Stage 2 Random Front-End: 512 Client(s) Throughput (Requests per Second) : 18866.0
+Stage 2 Random Front-End: 512 Client(s) Timeout Responses : 1640
+Stage 2 Random Front-End: 512 Client(s) Total Failed Responses : 0
+Stage 2 Random Front-End: 512 Client(s) Total Requests (including replies) : 1370560
+Stage 2 Random Front-End: 512 Client(s) Total Requests (without replies) : 1141336
+Stage 2 Resumed Node Count : 3
+Stage 4; Verify Sequential Consistency 2; : 2.0
+Stage 4; Verify Sequential Consistency 2; GET Phase; % ERROR-INVALID-GET (value or version) : 13.663967611336032
+Stage 4; Verify Sequential Consistency 2; GET Phase; % ERROR-OTHER : 0.0
+Stage 4; Verify Sequential Consistency 2; GET Phase; % ERROR-UID : 0.0
+Stage 4; Verify Sequential Consistency 2; GET Phase; % FAILED (Not SUCCESS) : 15.020242914979757
+Stage 4; Verify Sequential Consistency 2; GET Phase; % KEY-NOT-FOUND : 1.3562753036437247
+Stage 4; Verify Sequential Consistency 2; GET Phase; % Retrieved Increments (tr/ts) : 83.2253639204329
+Stage 4; Verify Sequential Consistency 2; GET Phase; % SC Buggy-Implementation : 0.0
+Stage 4; Verify Sequential Consistency 2; GET Phase; % SC Compliant : 86.14816334906628
+Stage 4; Verify Sequential Consistency 2; GET Phase; % SC Violations : 13.851836650933716
+Stage 4; Verify Sequential Consistency 2; GET Phase; % SUCCESS : 84.97975708502024
+Stage 4; Verify Sequential Consistency 2; GET Phase; % TIMEOUT : 0.0
+Stage 4; Verify Sequential Consistency 2; GET Phase; % Timed Out Increments (tt/ts) : 0.0
+Stage 4; Verify Sequential Consistency 2; GET Phase; NOT-STORED keys Count : 60.0
+Stage 4; Verify Sequential Consistency 2; GET Phase; Retrieved Increments Count Sum (tr) : 10920.0
+Stage 4; Verify Sequential Consistency 2; GET Phase; SC Buggy-Implementation Count (tr>tt+ts) : 0.0
+Stage 4; Verify Sequential Consistency 2; GET Phase; SC Compliant Count (ts<=tr<=ts+tt) : 4198.0
+Stage 4; Verify Sequential Consistency 2; GET Phase; SC Violations Count (tr<ts) : 675.0
+Stage 4; Verify Sequential Consistency 2; GET Phase; SUCCESS Response Count : 4198.0
+Stage 4; Verify Sequential Consistency 2; GET Phase; Successful Increments Count Sum (ts) : 13121.0
+Stage 4; Verify Sequential Consistency 2; GET Phase; Timed-out Increments Count Sum (tt) : 0.0
+Stage 4; Verify Sequential Consistency 2; GET Phase; Total Value Size (MiB) : 2.37939453125
+Suspend Verify v2; Stage 1; Key Recovery; : 2.0
+Suspend Verify v2; Stage 1; Key Recovery; % ERROR-INVALID-GET (value or version) : 0.0
+Suspend Verify v2; Stage 1; Key Recovery; % ERROR-OTHER : 0.0
+Suspend Verify v2; Stage 1; Key Recovery; % ERROR-UID : 0.0
+Suspend Verify v2; Stage 1; Key Recovery; % FAILED (Not SUCCESS) : 37.06
+Suspend Verify v2; Stage 1; Key Recovery; % KEY-NOT-FOUND : 37.06
+Suspend Verify v2; Stage 1; Key Recovery; % SUCCESS : 62.94
+Suspend Verify v2; Stage 1; Key Recovery; % TIMEOUT : 0.0
+Suspend Verify v2; Stage 1; Key Recovery; SUCCESS Response Count : 25176.0
+Suspend Verify v2; Stage 1; Key Recovery; Total Value Size (MiB) : 12.04906177520752
+Suspend Verify v2; Stage 2b; Key Recovery; : 2.0
+Suspend Verify v2; Stage 2b; Key Recovery; % ERROR-INVALID-GET (value or version) : 0.0
+Suspend Verify v2; Stage 2b; Key Recovery; % ERROR-OTHER : 0.0
+Suspend Verify v2; Stage 2b; Key Recovery; % ERROR-UID : 0.0
+Suspend Verify v2; Stage 2b; Key Recovery; % FAILED (Not SUCCESS) : 30.3425
+Suspend Verify v2; Stage 2b; Key Recovery; % KEY-NOT-FOUND : 30.3425
+Suspend Verify v2; Stage 2b; Key Recovery; % SUCCESS : 69.6575
+Suspend Verify v2; Stage 2b; Key Recovery; % TIMEOUT : 0.0
+Suspend Verify v2; Stage 2b; Key Recovery; SUCCESS Response Count : 27863.0
+Suspend Verify v2; Stage 2b; Key Recovery; Total Value Size (MiB) : 13.315857887268066
+Suspend Verify v2; Stage 2c; Key Recovery; : 2.0
+Suspend Verify v2; Stage 2c; Key Recovery; % ERROR-INVALID-GET (value or version) : 0.0
+Suspend Verify v2; Stage 2c; Key Recovery; % ERROR-OTHER : 0.0
+Suspend Verify v2; Stage 2c; Key Recovery; % ERROR-UID : 0.0
+Suspend Verify v2; Stage 2c; Key Recovery; % FAILED (Not SUCCESS) : 0.0
+Suspend Verify v2; Stage 2c; Key Recovery; % KEY-NOT-FOUND : 0.0
+Suspend Verify v2; Stage 2c; Key Recovery; % SUCCESS : 100.0
+Suspend Verify v2; Stage 2c; Key Recovery; % TIMEOUT : 0.0
+Suspend Verify v2; Stage 2c; Key Recovery; SUCCESS Response Count : 20000.0
+Suspend Verify v2; Stage 2c; Key Recovery; Total Value Size (MiB) : 9.63187026977539
+Test Start Time : Fri Mar 31 13:06:29 UTC 2023
+Result Verification Code : 2D7345A434D762B5A593346EB5559748
+[Info] Number of collected result fields: 414
+[Info] Completed A11 Tests.
+
+[TA-Note] Resuming any remaining dead nodes (so you do not have to redeploy your service)!
+Waiting 10 seconds before resuming nodes
+[Info] Resuming 1 servers.
+[ ... Completed in 0.002 seconds ]
+
+Testing completed in 1854.614s
