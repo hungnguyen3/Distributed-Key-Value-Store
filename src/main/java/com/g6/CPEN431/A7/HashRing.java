@@ -132,6 +132,34 @@ public class HashRing {
       return null;
     }
 
+    public int getAlivePredecessor(int currentNodeID) {
+        int hashRingSize = this.initialNumNodes;
+
+        for(int i = currentNodeID - 1; i >= currentNodeID - hashRingSize; i--) {
+            int predecessorID = (i + hashRingSize) % hashRingSize;
+            if (epidemic.isAlive(predecessorID)) {
+                return predecessorID;
+            }
+        }
+
+        System.out.println("ERROR: No replica found for this key");
+        return -1;
+    }
+
+    public int getAliveSuccessor(int currentNodeID) {
+        int hashRingSize = this.initialNumNodes;
+
+        for(int i = currentNodeID + 1; i <= currentNodeID + hashRingSize; i++) {
+            int successorID = (i + hashRingSize) % hashRingSize;
+            if (epidemic.isAlive(successorID)) {
+                return successorID;
+            }
+        }
+
+        System.out.println("ERROR: No replica found for this key");
+        return -1;
+    }
+
     public ArrayList<TransferRequest> updateHashRingUponLatestEpidemicState() {
         ArrayList<TransferRequest> transferRequests = new ArrayList<>();
         HashSet<Node> aliveBeforeUpdate = new HashSet<>();
@@ -184,6 +212,47 @@ public class HashRing {
             }
         }
   
+        return transferRequests;
+    }
+
+    //should happen before updateHashRingUponEpidemicState
+    public ArrayList<TransferRequest> updateReplicaUponLatestEpidemicState() {
+        ArrayList<TransferRequest> transferRequests = new ArrayList<>();
+        HashSet<Integer> deadNodeIndices = new HashSet<>();
+
+        //Step 1 Find out which nodes have left or rejoined
+        for(Node node : nodes) {
+            if(!epidemic.isAlive(node.getNodeID())) {
+                deadNodeIndices.add(node.getNodeID());
+            }
+        }
+
+        //Step 2 Find out of current node is affected by node leaving/rejoining
+        int thirdPredecessorID = myID;
+        for(int i = 0; i < 3; i++) {
+            thirdPredecessorID = getAlivePredecessor(thirdPredecessorID);
+        }
+
+        for(int deadNodeIndex : deadNodeIndices) {
+            Boolean shouldForwardReplica = (myID > thirdPredecessorID && deadNodeIndex < myID && deadNodeIndex > thirdPredecessorID) ||
+                    (myID < thirdPredecessorID && (deadNodeIndex < myID || deadNodeIndex > thirdPredecessorID));
+            //send transfer request to self, networklistener will propagate it down to 3 replicas.
+            if(shouldForwardReplica) {
+                for(int i : nodes.get(myID).getRangeSet()) {
+                    TransferRequest transferRequest = new TransferRequest(nodes.get(thirdPredecessorID), i);
+                    transferRequests.add(transferRequest);
+                }
+            }
+
+            Boolean shouldReplicateDeadNodeRange = getAlivePredecessor(deadNodeIndex) == myID;
+            if(shouldReplicateDeadNodeRange) {
+                for(int i : nodes.get(deadNodeIndex).getRangeSet()) {
+                    TransferRequest transferRequest = new TransferRequest(nodes.get(deadNodeIndex), i);
+                    transferRequests.add(transferRequest);
+                }
+            }
+        }
+
         return transferRequests;
     }
 

@@ -23,8 +23,11 @@ public class HashRingUpdater implements Runnable {
             @Override
             public void run() {
                 try {
+                    ArrayList<TransferRequest> replicaTransferRequests = hashRing.updateReplicaUponLatestEpidemicState();
+                    for (TransferRequest replicaTransferRequest : replicaTransferRequests) {
+                        requestHandlingLayer.performTransfer(replicaTransferRequest);
+                    }
                     ArrayList<TransferRequest> transferRequests =  hashRing.updateHashRingUponLatestEpidemicState();
-                    
                     for (TransferRequest transferRequest : transferRequests) {
                         requestHandlingLayer.performTransfer(transferRequest);
                     }

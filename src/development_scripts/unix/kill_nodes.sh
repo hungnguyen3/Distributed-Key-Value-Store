@@ -1,7 +1,5 @@
 #!/bin/bash
 
-cd ../../..
-
 pid_list='pid_list.txt'
 if [ ! -f "$pid_list" ]; then
   echo "pid_list.txt file not found!"
@@ -23,4 +21,3 @@ done < $pid_list
 
 pkill -f 'java -Xmx64m -jar'
 
-cd src/development_scripts/unix
