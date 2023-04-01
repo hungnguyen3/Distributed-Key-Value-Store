@@ -22,7 +22,8 @@ public class NetworkListener implements Runnable {
     private String address;
     private RequestHandlingLayer requestHandlingLayer;
     private HashRing hashRing;
-    private final int REDIRECT_MAX_COUNT = 5;
+    private final int REDIRECT_MAX_COUNT = 3;
+    private final int REMOVE_MAX_COUNT = 5;
     private final int SUCCESS_CODE = 0x00;
     private final int KEY_TOO_LONG_CODE = 0x06;
     private final int VALUE_TOO_LONG_CODE = 0x07;
@@ -175,7 +176,29 @@ public class NetworkListener implements Runnable {
                         }
                     } 
                     // GET REQUESTS
-                    else if (reqCommand == 0x02 && redirectCount < REDIRECT_MAX_COUNT) {
+                    else if (reqCommand == 0x02 && redirectCount <= REDIRECT_MAX_COUNT) {
+                        // If this is never redirected, try to find the primary Node
+                        // TODO: if this is the primary node, execute instead of redirecting
+                        if (redirectCount == 0) {
+                            // Get the node to redirect to
+                            Node forwardNode = hashRing.getRedirectNode(request.getKey().toByteArray(), reqMsg.getReceivingNodeID(), redirectCount == 0);
+
+                            // Create a new forward message based on the original message
+                            Msg forwardMsg = forwardMsgBuilder.setReceivingNodeID(forwardNode.getNodeID()).build();
+
+                            // Serialize the forward message to a byte array
+                            byte[] forwardMessageBytes = forwardMsg.toByteArray();
+
+                            // Create forwarded message packet with forwardNode address and port
+                            DatagramPacket forwardedMessagePacket = new DatagramPacket(forwardMessageBytes, forwardMessageBytes.length, InetAddress.getByName(forwardNode.getHost()), forwardNode.getPort());
+
+                            // Send the forwarded message packet to the forwardNode
+                            datagramSocket.send(forwardedMessagePacket);
+
+                            // Continue to listen for incoming requests
+                            continue;
+                        }
+                        
                         // Try to search the key here
                         processedResponse = requestHandlingLayer.processRequest(request, reqMsgId);
 
@@ -203,7 +226,7 @@ public class NetworkListener implements Runnable {
                         }
                     }
                     // REMOVE REQUESTS
-                    else if (reqCommand == 0x03 && redirectCount < REDIRECT_MAX_COUNT) {
+                    else if (reqCommand == 0x03 && redirectCount <= REMOVE_MAX_COUNT) {
                         // Try to search the key here
                         processedResponse = requestHandlingLayer.processRequest(request, reqMsgId);
 
@@ -233,7 +256,7 @@ public class NetworkListener implements Runnable {
                             continue;
                         }
                     }
-                    else if (reqCommand == 0x03 && redirectCount == REDIRECT_MAX_COUNT) {
+                    else if (reqCommand == 0x03 && redirectCount == (REMOVE_MAX_COUNT + 1)) {
                         // If we have finished all removes and at least remove one, return a success
                         if (removeCount > 0) {
                             processedResponse = ZERO_ERR_CODE;

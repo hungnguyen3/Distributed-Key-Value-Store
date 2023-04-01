@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Set IP address and number of nodes
-ip_address="127.0.0.1"
-numberOfNodes=30
+ip_address="34.212.38.229"
+numberOfNodes=40
 
 cd ../../..
 

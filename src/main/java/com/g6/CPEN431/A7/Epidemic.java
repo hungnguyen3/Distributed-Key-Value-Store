@@ -125,7 +125,7 @@ class Epidemic {
                     }
                     
                     // Print dead nodes
-                    printDeadNodes();
+                    // printDeadNodes();
                 }
             }
         });

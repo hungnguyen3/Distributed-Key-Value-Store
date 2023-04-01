@@ -27,10 +27,6 @@ public class HashRingUpdater implements Runnable {
                     for (TransferRequest replicaTransferRequest : replicaTransferRequests) {
                         requestHandlingLayer.performTransfer(replicaTransferRequest);
                     }
-                    ArrayList<TransferRequest> transferRequests =  hashRing.updateHashRingUponLatestEpidemicState();
-                    for (TransferRequest transferRequest : transferRequests) {
-                        requestHandlingLayer.performTransfer(transferRequest);
-                    }
                 } catch (ConcurrentModificationException e) {
                     System.out.println("ERROR: CHECKING FOR REJOINS" + e);
                 } catch (Exception e) {

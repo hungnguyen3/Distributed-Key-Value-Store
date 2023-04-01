@@ -82,7 +82,7 @@ public class StorageLayer {
         int range = transferRequest.getRange();
         Set<ByteString> keySet = new HashSet<>(store.keySet());
         Set<ByteString> toRemove = new HashSet<>();
-        System.out.println("KEY TRANSFER From " + transferSocket.getLocalPort() + " to " + destinationNode.getPort());
+        // System.out.println("KEY TRANSFER From " + transferSocket.getLocalPort() + " to " + destinationNode.getPort());
         for(ByteString b : keySet){
             byte[] key_byte_array = b.toByteArray();
             int hash = HashUtils.hash(key_byte_array);
@@ -103,8 +103,8 @@ public class StorageLayer {
 
             }
         }
-        for(ByteString b : toRemove){
-            store.remove(b);
-        }
+        // for(ByteString b : toRemove){
+        //     store.remove(b);
+        // }
     }
 }
