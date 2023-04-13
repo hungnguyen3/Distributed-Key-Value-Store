@@ -128,8 +128,8 @@ public class HashRing {
           } 
       }
 
-      System.out.println("ERROR: No replica found for this key");
-      return null;
+      System.out.println("ERROR: No replica found for this key. Try again until find one ...");
+      return getNextReplica();
     }
 
     public int getAlivePredecessor(int currentNodeID) {
@@ -143,7 +143,7 @@ public class HashRing {
         }
 
         System.out.println("ERROR: No replica found for this key, retrying...");
-        return -1;
+        return getAlivePredecessor(currentNodeID);
     }
 
     public int getAliveSuccessor(int currentNodeID) {
@@ -215,7 +215,6 @@ public class HashRing {
         return transferRequests;
     }
 
-    //should happen before updateHashRingUponEpidemicState
     public ArrayList<TransferRequest> updateReplicaUponLatestEpidemicState() {
         ArrayList<TransferRequest> transferRequestsForDrops = new ArrayList<>();
         HashSet<Integer> deadBeforeUpdate = new HashSet<>();
@@ -245,7 +244,7 @@ public class HashRing {
             }
         }
       
-        //Step 2 Find out of current node is affected by node leaving/rejoining
+        //Step 4: Find out of current node is affected by node leaving/rejoining
         int firstPredecessorID = getAlivePredecessor(myID);
         int secondPredecessorID = getAlivePredecessor(firstPredecessorID);
         int thirdPredecessorID = getAlivePredecessor(secondPredecessorID);

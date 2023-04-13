@@ -2,7 +2,7 @@ package com.g6.CPEN431.A7;
 
 public class App {
     public static void main(String[] args) {
-        System.out.println("startup version 12.5");
+        System.out.println("startup version 12.7");
         if (args.length < 2) {
             System.err.println("Usage: java -jar A7.jar <address> <port> <cacheSize>");
             System.exit(1);

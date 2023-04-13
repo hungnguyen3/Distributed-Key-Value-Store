@@ -37,8 +37,6 @@ public class StorageLayer {
                                 store.put(incomingRequest.getKey(), new ValueVersionPair(incomingRequest.getValue(), incomingRequest.getVersion(), incomingRequest.getFirstReceivedAtPrimaryTimestamp()));
                             } else {
                                 if (currentValueVersionPair.firstReceivedAtPrimaryTimestamp > incomingRequest.getFirstReceivedAtPrimaryTimestamp()) {
-                                    System.out.println("Request Transfer: Received a request with a lower timestamp than the one we already have");
-
                                     // Send a transfer request to the node with outdated data to update with the newer data
                                     KVRequestWithTimestamp updateDataReq = KVRequestWithTimestamp.newBuilder()
                                             .setKey(incomingRequest.getKey())
@@ -47,7 +45,6 @@ public class StorageLayer {
                                             .setFirstReceivedAtPrimaryTimestamp(currentValueVersionPair.firstReceivedAtPrimaryTimestamp)
                                             .build();
                                     try {
-                                        System.out.println("Sending transfer request to " + packet.getAddress() + ":" + packet.getPort() + "to update data");
                                         DatagramPacket updateDataPacket = new DatagramPacket(updateDataReq.toByteArray(), updateDataReq.toByteArray().length, packet.getAddress(), packet.getPort());
                                         transferSocket.send(updateDataPacket);
                                     } catch (Exception e) {
