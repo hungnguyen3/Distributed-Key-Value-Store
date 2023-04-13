@@ -37,8 +37,23 @@ public class StorageLayer {
                                 store.put(incomingRequest.getKey(), new ValueVersionPair(incomingRequest.getValue(), incomingRequest.getVersion(), incomingRequest.getFirstReceivedAtPrimaryTimestamp()));
                             } else {
                                 if (currentValueVersionPair.firstReceivedAtPrimaryTimestamp > incomingRequest.getFirstReceivedAtPrimaryTimestamp()) {
-                                    // Do nothing
                                     System.out.println("Request Transfer: Received a request with a lower timestamp than the one we already have");
+
+                                    // Send a transfer request to the node with outdated data to update with the newer data
+                                    KVRequestWithTimestamp updateDataReq = KVRequestWithTimestamp.newBuilder()
+                                            .setKey(incomingRequest.getKey())
+                                            .setValue(currentValueVersionPair.value)
+                                            .setVersion(currentValueVersionPair.version)
+                                            .setFirstReceivedAtPrimaryTimestamp(currentValueVersionPair.firstReceivedAtPrimaryTimestamp)
+                                            .build();
+                                    try {
+                                        System.out.println("Sending transfer request to " + packet.getAddress() + ":" + packet.getPort() + "to update data");
+                                        DatagramPacket updateDataPacket = new DatagramPacket(updateDataReq.toByteArray(), updateDataReq.toByteArray().length, packet.getAddress(), packet.getPort());
+                                        transferSocket.send(updateDataPacket);
+                                    } catch (Exception e) {
+                                        System.out.println("ERROR ON SENDING INTERNAL KEY TRANSFER: " + e.getMessage());
+                                        e.printStackTrace();
+                                    }
                                 } else {
                                     store.put(incomingRequest.getKey(), new ValueVersionPair(incomingRequest.getValue(), incomingRequest.getVersion(), incomingRequest.getFirstReceivedAtPrimaryTimestamp()));
                                 }
@@ -96,7 +111,6 @@ public class StorageLayer {
         int range = transferRequest.getRange();
         Set<ByteString> keySet = new HashSet<>(store.keySet());
         Set<ByteString> toRemove = new HashSet<>();
-        // System.out.println("KEY TRANSFER From " + transferSocket.getLocalPort() + " to " + destinationNode.getPort());
         for(ByteString b : keySet){
             byte[] key_byte_array = b.toByteArray();
             int hash = HashUtils.hash(key_byte_array);
