@@ -77,6 +77,12 @@ public final class Message {
      * @return The receivingNodeID.
      */
     int getReceivingNodeID();
+
+    /**
+     * <code>int64 firstReceivedAtPrimaryTimestamp = 10;</code>
+     * @return The firstReceivedAtPrimaryTimestamp.
+     */
+    long getFirstReceivedAtPrimaryTimestamp();
   }
   /**
    * Protobuf type {@code Msg}
@@ -248,6 +254,17 @@ public final class Message {
       return receivingNodeID_;
     }
 
+    public static final int FIRSTRECEIVEDATPRIMARYTIMESTAMP_FIELD_NUMBER = 10;
+    private long firstReceivedAtPrimaryTimestamp_ = 0L;
+    /**
+     * <code>int64 firstReceivedAtPrimaryTimestamp = 10;</code>
+     * @return The firstReceivedAtPrimaryTimestamp.
+     */
+    @java.lang.Override
+    public long getFirstReceivedAtPrimaryTimestamp() {
+      return firstReceivedAtPrimaryTimestamp_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -288,6 +305,9 @@ public final class Message {
       }
       if (receivingNodeID_ != 0) {
         output.writeInt32(9, receivingNodeID_);
+      }
+      if (firstReceivedAtPrimaryTimestamp_ != 0L) {
+        output.writeInt64(10, firstReceivedAtPrimaryTimestamp_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -333,6 +353,10 @@ public final class Message {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(9, receivingNodeID_);
       }
+      if (firstReceivedAtPrimaryTimestamp_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(10, firstReceivedAtPrimaryTimestamp_);
+      }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
@@ -366,6 +390,8 @@ public final class Message {
           != other.getRemoveCount()) return false;
       if (getReceivingNodeID()
           != other.getReceivingNodeID()) return false;
+      if (getFirstReceivedAtPrimaryTimestamp()
+          != other.getFirstReceivedAtPrimaryTimestamp()) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -396,6 +422,9 @@ public final class Message {
       hash = (53 * hash) + getRemoveCount();
       hash = (37 * hash) + RECEIVINGNODEID_FIELD_NUMBER;
       hash = (53 * hash) + getReceivingNodeID();
+      hash = (37 * hash) + FIRSTRECEIVEDATPRIMARYTIMESTAMP_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getFirstReceivedAtPrimaryTimestamp());
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -534,6 +563,7 @@ public final class Message {
         replicateCount_ = 0;
         removeCount_ = 0;
         receivingNodeID_ = 0;
+        firstReceivedAtPrimaryTimestamp_ = 0L;
         return this;
       }
 
@@ -593,6 +623,9 @@ public final class Message {
         }
         if (((from_bitField0_ & 0x00000100) != 0)) {
           result.receivingNodeID_ = receivingNodeID_;
+        }
+        if (((from_bitField0_ & 0x00000200) != 0)) {
+          result.firstReceivedAtPrimaryTimestamp_ = firstReceivedAtPrimaryTimestamp_;
         }
       }
 
@@ -669,6 +702,9 @@ public final class Message {
         if (other.getReceivingNodeID() != 0) {
           setReceivingNodeID(other.getReceivingNodeID());
         }
+        if (other.getFirstReceivedAtPrimaryTimestamp() != 0L) {
+          setFirstReceivedAtPrimaryTimestamp(other.getFirstReceivedAtPrimaryTimestamp());
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
@@ -740,6 +776,11 @@ public final class Message {
                 bitField0_ |= 0x00000100;
                 break;
               } // case 72
+              case 80: {
+                firstReceivedAtPrimaryTimestamp_ = input.readInt64();
+                bitField0_ |= 0x00000200;
+                break;
+              } // case 80
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -1084,6 +1125,38 @@ public final class Message {
         onChanged();
         return this;
       }
+
+      private long firstReceivedAtPrimaryTimestamp_ ;
+      /**
+       * <code>int64 firstReceivedAtPrimaryTimestamp = 10;</code>
+       * @return The firstReceivedAtPrimaryTimestamp.
+       */
+      @java.lang.Override
+      public long getFirstReceivedAtPrimaryTimestamp() {
+        return firstReceivedAtPrimaryTimestamp_;
+      }
+      /**
+       * <code>int64 firstReceivedAtPrimaryTimestamp = 10;</code>
+       * @param value The firstReceivedAtPrimaryTimestamp to set.
+       * @return This builder for chaining.
+       */
+      public Builder setFirstReceivedAtPrimaryTimestamp(long value) {
+        
+        firstReceivedAtPrimaryTimestamp_ = value;
+        bitField0_ |= 0x00000200;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 firstReceivedAtPrimaryTimestamp = 10;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearFirstReceivedAtPrimaryTimestamp() {
+        bitField0_ = (bitField0_ & ~0x00000200);
+        firstReceivedAtPrimaryTimestamp_ = 0L;
+        onChanged();
+        return this;
+      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -1162,13 +1235,14 @@ public final class Message {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\rMessage.proto\"\320\001\n\003Msg\022\021\n\tmessageID\030\001 \001" +
+      "\n\rMessage.proto\"\371\001\n\003Msg\022\021\n\tmessageID\030\001 \001" +
       "(\014\022\017\n\007payload\030\002 \001(\014\022\020\n\010checkSum\030\003 \001(\006\022\032\n" +
       "\022originalSenderHost\030\004 \001(\t\022\032\n\022originalSen" +
       "derPort\030\005 \001(\005\022\025\n\rredirectCount\030\006 \001(\005\022\026\n\016" +
       "replicateCount\030\007 \001(\005\022\023\n\013removeCount\030\010 \001(" +
-      "\005\022\027\n\017receivingNodeID\030\t \001(\005B\'\n\034ca.NetSysL" +
-      "ab.ProtocolBuffersB\007Messageb\006proto3"
+      "\005\022\027\n\017receivingNodeID\030\t \001(\005\022\'\n\037firstRecei" +
+      "vedAtPrimaryTimestamp\030\n \001(\003B\'\n\034ca.NetSys" +
+      "Lab.ProtocolBuffersB\007Messageb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -1179,7 +1253,7 @@ public final class Message {
     internal_static_Msg_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Msg_descriptor,
-        new java.lang.String[] { "MessageID", "Payload", "CheckSum", "OriginalSenderHost", "OriginalSenderPort", "RedirectCount", "ReplicateCount", "RemoveCount", "ReceivingNodeID", });
+        new java.lang.String[] { "MessageID", "Payload", "CheckSum", "OriginalSenderHost", "OriginalSenderPort", "RedirectCount", "ReplicateCount", "RemoveCount", "ReceivingNodeID", "FirstReceivedAtPrimaryTimestamp", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

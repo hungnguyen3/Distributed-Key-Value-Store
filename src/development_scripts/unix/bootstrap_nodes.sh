@@ -3,7 +3,7 @@
 # Set IP address and number of nodes
 max_mem_usage=512
 ip_address="127.0.0.1"
-numberOfNodes=30
+numberOfNodes=40
 
 truncate -s 0 pid_list.txt
 
@@ -28,5 +28,4 @@ for (( i=0; i<$numberOfNodes; i++ )); do
     pid=$(lsof -i :$port -t)
     [[ ! -z "$pid" ]] && echo $pid >> pid_list.txt
 done
-
 

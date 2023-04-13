@@ -87,10 +87,16 @@ public class NetworkListener implements Runnable {
                     int redirectCount = reqMsg.getRedirectCount();
                     int replicateCount = reqMsg.getReplicateCount();
                     int removeCount = reqMsg.getRemoveCount();
+                    long firstReceivedAtPrimaryTimestamp = reqMsg.getFirstReceivedAtPrimaryTimestamp();
 
                     // Set client's host and port for the directed request
                     String clientHost = reqMsg.getOriginalSenderHost().equals("")? requestMessagePacket.getAddress().toString() : reqMsg.getOriginalSenderHost();
                     int clientPort = reqMsg.getOriginalSenderPort() == 0? requestMessagePacket.getPort() : reqMsg.getOriginalSenderPort();
+
+                    // Set the first received at primary node timestamp
+                    if(firstReceivedAtPrimaryTimestamp == 0) {
+                        firstReceivedAtPrimaryTimestamp = System.currentTimeMillis();
+                    }
 
                     Msg.Builder forwardMsgBuilder = Msg.newBuilder()
                             .setMessageID(reqMsgId)
@@ -98,7 +104,8 @@ public class NetworkListener implements Runnable {
                             .setCheckSum(reqMsg.getCheckSum())
                             .setOriginalSenderHost(clientHost)
                             .setOriginalSenderPort(clientPort)
-                            .setRedirectCount(redirectCount + 1);
+                            .setRedirectCount(redirectCount + 1)
+                            .setFirstReceivedAtPrimaryTimestamp(firstReceivedAtPrimaryTimestamp);
 
                     // PUT REQUEST
                     if(reqCommand == 0x01) {
@@ -123,7 +130,7 @@ public class NetworkListener implements Runnable {
                                 continue;
                             } else if (forwardNode.getPort() == port && forwardNode.getHost().equals(address)){ // If the forwardNode is the current node, process the request
                                 // Put key-value pair into storage
-                                processedResponse = requestHandlingLayer.processRequest(request, reqMsgId);
+                                processedResponse = requestHandlingLayer.processPutRequest(request, reqMsgId, firstReceivedAtPrimaryTimestamp);
 
                                 // Perform chain replication
                                 replicateCount = replicateCount + 1;
@@ -149,7 +156,7 @@ public class NetworkListener implements Runnable {
                             }
                         } else if (replicateCount != 3) { // put into primary node, 1st replica, and 2nd replica
                             // Put key-value pair into storage
-                            processedResponse = requestHandlingLayer.processRequest(request, reqMsgId);
+                            processedResponse = requestHandlingLayer.processPutRequest(request, reqMsgId, firstReceivedAtPrimaryTimestamp);
 
                             // Perform chain replication
                             replicateCount = replicateCount + 1;
@@ -172,7 +179,7 @@ public class NetworkListener implements Runnable {
                             continue;
                         } else {
                             // This is the last replication
-                            processedResponse = requestHandlingLayer.processRequest(request, reqMsgId);
+                            processedResponse = requestHandlingLayer.processPutRequest(request, reqMsgId, firstReceivedAtPrimaryTimestamp);
                         }
                     } 
                     // GET REQUESTS
@@ -200,7 +207,7 @@ public class NetworkListener implements Runnable {
                         }
                         
                         // Try to search the key here
-                        processedResponse = requestHandlingLayer.processRequest(request, reqMsgId);
+                        processedResponse = requestHandlingLayer.processRequestOtherThanPut(request, reqMsgId);
 
                         // If key not found, continue to redirect
                         if (processedResponse.getErrCode() != SUCCESS_CODE
@@ -228,7 +235,7 @@ public class NetworkListener implements Runnable {
                     // REMOVE REQUESTS
                     else if (reqCommand == 0x03 && redirectCount <= REMOVE_MAX_COUNT) {
                         // Try to search the key here
-                        processedResponse = requestHandlingLayer.processRequest(request, reqMsgId);
+                        processedResponse = requestHandlingLayer.processRequestOtherThanPut(request, reqMsgId);
 
                         if (processedResponse.getErrCode() != KEY_TOO_LONG_CODE
                             && processedResponse.getErrCode() != VALUE_TOO_LONG_CODE) {
@@ -268,7 +275,7 @@ public class NetworkListener implements Runnable {
                 }
 
                 if(processedResponse == null) {
-                    processedResponse = requestHandlingLayer.processRequest(request, reqMsgId);
+                    processedResponse = requestHandlingLayer.processRequestOtherThanPut(request, reqMsgId);
                 }
 
                 byte[] responseBytes = processedResponse.toByteArray();

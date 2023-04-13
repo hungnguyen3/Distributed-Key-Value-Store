@@ -1,6 +1,6 @@
 package com.g6.CPEN431.A7;
 
-import ca.NetSysLab.ProtocolBuffers.KeyValueRequest;
+import ca.NetSysLab.ProtocolBuffers.KeyValueRequestWithTimestamp.KVRequestWithTimestamp;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
@@ -30,8 +30,19 @@ public class StorageLayer {
                         }
                         byte[] incomingPacketData = Arrays.copyOf(packet.getData(), packet.getLength());
                         try {
-                            KeyValueRequest.KVRequest incomingRequest = KeyValueRequest.KVRequest.parseFrom(incomingPacketData);
-                            store.put(incomingRequest.getKey(), new ValueVersionPair(incomingRequest.getValue(), incomingRequest.getVersion()));
+                            KVRequestWithTimestamp incomingRequest = KVRequestWithTimestamp.parseFrom(incomingPacketData);
+
+                            StorageLayer.ValueVersionPair currentValueVersionPair = store.get(incomingRequest.getKey());
+                            if (currentValueVersionPair == null) {
+                                store.put(incomingRequest.getKey(), new ValueVersionPair(incomingRequest.getValue(), incomingRequest.getVersion(), incomingRequest.getFirstReceivedAtPrimaryTimestamp()));
+                            } else {
+                                if (currentValueVersionPair.firstReceivedAtPrimaryTimestamp > incomingRequest.getFirstReceivedAtPrimaryTimestamp()) {
+                                    // Do nothing
+                                    System.out.println("Request Transfer: Received a request with a lower timestamp than the one we already have");
+                                } else {
+                                    store.put(incomingRequest.getKey(), new ValueVersionPair(incomingRequest.getValue(), incomingRequest.getVersion(), incomingRequest.getFirstReceivedAtPrimaryTimestamp()));
+                                }
+                            }
                         } catch (InvalidProtocolBufferException e) {
                             throw new RuntimeException(e);
                         }
@@ -49,14 +60,17 @@ public class StorageLayer {
     public class ValueVersionPair {
         public ByteString value;
         public Integer version;
+        public long firstReceivedAtPrimaryTimestamp; // Timestamp at which the primary received the request
 
-        public ValueVersionPair(ByteString value, Integer version) {
+        public ValueVersionPair(ByteString value, Integer version, long firstReceivedAtPrimaryTimestamp) {
             this.value = value;
             this.version = version;
+            this.firstReceivedAtPrimaryTimestamp = firstReceivedAtPrimaryTimestamp;
         }
     }
 
-    private ConcurrentHashMap<ByteString, ValueVersionPair> store = new ConcurrentHashMap<>();;
+    private ConcurrentHashMap<ByteString, ValueVersionPair> store = new ConcurrentHashMap<>();
+
     public ValueVersionPair get(ByteString key) {
         if (!store.containsKey(key)) {
             return null;
@@ -65,8 +79,8 @@ public class StorageLayer {
         return store.get(key);
     }
 
-    public void put(ByteString key, ByteString value, Integer version) {
-        store.put(key, new ValueVersionPair(value, version));
+    public void put(ByteString key, ByteString value, Integer version, long firstReceivedAtPrimaryTimestamp) {
+        store.put(key, new ValueVersionPair(value, version, firstReceivedAtPrimaryTimestamp ));
     }
 
     public ValueVersionPair remove(ByteString key) {
@@ -88,10 +102,11 @@ public class StorageLayer {
             int hash = HashUtils.hash(key_byte_array);
             if(hash % destinationNode.getHashRingSize() == range){
                 ValueVersionPair pair = store.get(b);
-                KeyValueRequest.KVRequest outgoingReq = KeyValueRequest.KVRequest.newBuilder()
+                KVRequestWithTimestamp outgoingReq = KVRequestWithTimestamp.newBuilder()
                         .setKey(b)
                         .setValue(pair.value)
                         .setVersion(pair.version)
+                        .setFirstReceivedAtPrimaryTimestamp(pair.firstReceivedAtPrimaryTimestamp)
                         .build();
                 try {
                     DatagramPacket outgoingPacket = new DatagramPacket(outgoingReq.toByteArray(), outgoingReq.toByteArray().length, InetAddress.getByName(destinationNode.getHost()), destinationNode.getPort() + 20000);

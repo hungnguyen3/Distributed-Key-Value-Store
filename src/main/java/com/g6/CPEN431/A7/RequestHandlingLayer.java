@@ -29,7 +29,7 @@ public class RequestHandlingLayer {
         this.MAX_MEMORY_USAGE = maxMemUsage - 8;
     }
 
-    public KVResponse processRequest(KVRequest request, ByteString reqMsgId) {
+    public KVResponse processPutRequest(KVRequest request, ByteString reqMsgId, long firstReceivedAtPrimaryTimestamp) {
         KVResponse cachedRes = cache.get(reqMsgId);
         if (cachedRes != null) {
             return cachedRes;
@@ -45,13 +45,50 @@ public class RequestHandlingLayer {
         KVResponse response;
         switch (request.getCommand()) {
             case 0x01:
+                if(firstReceivedAtPrimaryTimestamp == 0) {
+                    System.out.println("firstReceivedAtPrimaryTimestamp is 0");
+                }
                 if (getMemoryUsage() >= MAX_MEMORY_USAGE) {
                     response = ERROR_OUT_OF_MEMORY;
                 } else {
-                    storageLayer.put(request.getKey(), request.getValue(), request.getVersion());
-                    response = ZERO_ERR_CODE;
+                    StorageLayer.ValueVersionPair currentValueVersionPair = storageLayer.get(request.getKey());
+                    if (currentValueVersionPair == null) {
+                        storageLayer.put(request.getKey(), request.getValue(), request.getVersion(), firstReceivedAtPrimaryTimestamp);
+                        response = ZERO_ERR_CODE;
+                    } else {
+                        if (currentValueVersionPair.firstReceivedAtPrimaryTimestamp > firstReceivedAtPrimaryTimestamp) {
+                            System.out.println("Proccess Put: Received a request with a lower timestamp than the one we already have");
+                            response = ZERO_ERR_CODE;
+                        } else {
+                            storageLayer.put(request.getKey(), request.getValue(), request.getVersion(), firstReceivedAtPrimaryTimestamp);
+                            response = ZERO_ERR_CODE;
+                        }
+                    }
                 }
                 break;
+            default:
+                System.out.println("Invalid command, this processRequest should not be called with anything other than a put request");
+                response = ERROR_INVALID_COMMAND;
+        }
+        cache.put(reqMsgId, response);
+        return response;
+    }
+
+    public KVResponse processRequestOtherThanPut(KVRequest request, ByteString reqMsgId) {
+        KVResponse cachedRes = cache.get(reqMsgId);
+        if (cachedRes != null) {
+            return cachedRes;
+        }
+
+        if (request.getKey().size() > MAX_KEY_LENGTH) {
+            return ERROR_KEY_TOO_LONG;
+        }
+        if (request.getValue().size() > MAX_VALUE_LENGTH) {
+            return ERROR_VALUE_TOO_LONG;
+        }
+
+        KVResponse response;
+        switch (request.getCommand()) {
             case 0x02:
                 StorageLayer.ValueVersionPair valueVersionPair = storageLayer.get(request.getKey());
                 if (valueVersionPair == null) {
