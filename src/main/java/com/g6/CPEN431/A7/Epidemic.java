@@ -120,12 +120,9 @@ class Epidemic {
                     }
 
                     if(!isAlive(myID)){
-                        System.out.println("Node " + myID + " is dead, broadcasting to all nodes");
+                        System.out.println("Node " + myID + " came back alive, broadcasting to all nodes");
                         broadcast(datagramSocket);
                     }
-                    
-                    // Print dead nodes
-                    // printDeadNodes();
                 }
             }
         });

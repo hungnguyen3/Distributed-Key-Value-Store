@@ -175,7 +175,7 @@ public class NetworkListener implements Runnable {
                         return null;
                     } else if (forwardNode.getPort() == port && forwardNode.getHost().equals(address)){ // If the forwardNode is the current node, process the request
                         // Put key-value pair into storage
-                        processedResponse = requestHandlingLayer.processPutRequest(request, reqMsgId, firstReceivedAtPrimaryTimestamp);
+                        processedResponse = requestHandlingLayer.processPutRequest(request, reqMsgId, firstReceivedAtPrimaryTimestamp, requestMessagePacket);
 
                         // Perform chain replication
                         replicateCount = replicateCount + 1;
@@ -201,7 +201,7 @@ public class NetworkListener implements Runnable {
                     }
                 } else if (replicateCount != 3) { // put into primary node, 1st replica, and 2nd replica
                     // Put key-value pair into storage
-                    processedResponse = requestHandlingLayer.processPutRequest(request, reqMsgId, firstReceivedAtPrimaryTimestamp);
+                    processedResponse = requestHandlingLayer.processPutRequest(request, reqMsgId, firstReceivedAtPrimaryTimestamp, requestMessagePacket);
 
                     // Perform chain replication
                     replicateCount = replicateCount + 1;
@@ -224,7 +224,7 @@ public class NetworkListener implements Runnable {
                     return null;
                 } else {
                     // This is the last replication
-                    processedResponse = requestHandlingLayer.processPutRequest(request, reqMsgId, firstReceivedAtPrimaryTimestamp);
+                    processedResponse = requestHandlingLayer.processPutRequest(request, reqMsgId, firstReceivedAtPrimaryTimestamp, requestMessagePacket);
                 }
             } 
             // GET REQUESTS

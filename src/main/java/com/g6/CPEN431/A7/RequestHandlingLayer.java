@@ -2,9 +2,12 @@ package com.g6.CPEN431.A7;
 
 import ca.NetSysLab.ProtocolBuffers.KeyValueRequest.KVRequest;
 import ca.NetSysLab.ProtocolBuffers.KeyValueResponse.KVResponse;
+import ca.NetSysLab.ProtocolBuffers.KeyValueRequestWithTimestamp.KVRequestWithTimestamp;
 import com.google.protobuf.ByteString;
 
 import java.lang.management.ManagementFactory;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
 
 public class RequestHandlingLayer {
     private StorageLayer storageLayer;
@@ -29,7 +32,7 @@ public class RequestHandlingLayer {
         this.MAX_MEMORY_USAGE = maxMemUsage - 8;
     }
 
-    public KVResponse processPutRequest(KVRequest request, ByteString reqMsgId, long firstReceivedAtPrimaryTimestamp) {
+    public KVResponse processPutRequest(KVRequest request, ByteString reqMsgId, long firstReceivedAtPrimaryTimestamp, DatagramPacket requestMsgPacket) {
         KVResponse cachedRes = cache.get(reqMsgId);
         if (cachedRes != null) {
             return cachedRes;
@@ -43,32 +46,44 @@ public class RequestHandlingLayer {
         }
 
         KVResponse response;
-        switch (request.getCommand()) {
-            case 0x01:
-                if(firstReceivedAtPrimaryTimestamp == 0) {
-                    System.out.println("firstReceivedAtPrimaryTimestamp is 0");
-                }
-                if (getMemoryUsage() >= MAX_MEMORY_USAGE) {
-                    response = ERROR_OUT_OF_MEMORY;
-                } else {
-                    StorageLayer.ValueVersionPair currentValueVersionPair = storageLayer.get(request.getKey());
-                    if (currentValueVersionPair == null) {
-                        storageLayer.put(request.getKey(), request.getValue(), request.getVersion(), firstReceivedAtPrimaryTimestamp);
-                        response = ZERO_ERR_CODE;
-                    } else {
-                        if (currentValueVersionPair.firstReceivedAtPrimaryTimestamp > firstReceivedAtPrimaryTimestamp) {
-                            System.out.println("Proccess Put: Received a request with a lower timestamp than the one we already have");
-                            response = ZERO_ERR_CODE;
-                        } else {
-                            storageLayer.put(request.getKey(), request.getValue(), request.getVersion(), firstReceivedAtPrimaryTimestamp);
-                            response = ZERO_ERR_CODE;
-                        }
+        if (request.getCommand() != 0x01) {
+            System.out.println("Invalid command, this processRequest should not be called with anything other than a put request");
+            return ERROR_INVALID_COMMAND;
+        }
+
+        if (firstReceivedAtPrimaryTimestamp == 0) {
+            System.out.println("firstReceivedAtPrimaryTimestamp is 0");
+        }
+        if (getMemoryUsage() >= MAX_MEMORY_USAGE) {
+            response = ERROR_OUT_OF_MEMORY;
+        } else {
+            StorageLayer.ValueVersionPair currentValueVersionPair = storageLayer.get(request.getKey());
+            if (currentValueVersionPair == null) {
+                storageLayer.put(request.getKey(), request.getValue(), request.getVersion(), firstReceivedAtPrimaryTimestamp);
+                response = ZERO_ERR_CODE;
+            } else {
+                if (currentValueVersionPair.firstReceivedAtPrimaryTimestamp > firstReceivedAtPrimaryTimestamp) {
+                    System.out.println("Proccess Put: Received a request with an older timestamp than the one we already have");
+                    // Send a transfer request to the node with outdated data to update with the newer data
+                    try (DatagramSocket transferSocket = new DatagramSocket()) { 
+                        KVRequestWithTimestamp updateDataReq = KVRequestWithTimestamp.newBuilder()
+                                .setKey(request.getKey())
+                                .setValue(currentValueVersionPair.value)
+                                .setVersion(currentValueVersionPair.version)
+                                .setFirstReceivedAtPrimaryTimestamp(currentValueVersionPair.firstReceivedAtPrimaryTimestamp)
+                                .build();
+                        DatagramPacket updateDataPacket = new DatagramPacket(updateDataReq.toByteArray(), updateDataReq.toByteArray().length, requestMsgPacket.getAddress(), requestMsgPacket.getPort() + 20000);
+                        transferSocket.send(updateDataPacket);
+                    } catch (Exception e) {
+                        System.out.println("ERROR ON SENDING INTERNAL KEY TRANSFER: " + e.getMessage());
+                        e.printStackTrace();
                     }
+                    response = ZERO_ERR_CODE;
+                } else {
+                    storageLayer.put(request.getKey(), request.getValue(), request.getVersion(), firstReceivedAtPrimaryTimestamp);
+                    response = ZERO_ERR_CODE;
                 }
-                break;
-            default:
-                System.out.println("Invalid command, this processRequest should not be called with anything other than a put request");
-                response = ERROR_INVALID_COMMAND;
+            }
         }
         cache.put(reqMsgId, response);
         return response;

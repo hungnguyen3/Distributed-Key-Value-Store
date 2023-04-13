@@ -10,6 +10,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class HashRing {
     private final CopyOnWriteArrayList<Node> nodes;
@@ -17,8 +18,12 @@ public class HashRing {
     private Epidemic epidemic;
     private int myID;
     private int initialNumNodes;
+    private StorageLayer kvStorage;
+    private Cache kvCache;
 
-    public HashRing(String configFilePath, String myAddress, int myPort) {
+    public HashRing(String configFilePath, String myAddress, int myPort, StorageLayer kvStorage, Cache kvCache) {
+        this.kvStorage = kvStorage;
+        this.kvCache = kvCache;
         this.nodes = new CopyOnWriteArrayList<>();
         this.nodeCache = new LinkedHashMap<Integer, Node>(200, 0.75f, true) {
             protected boolean removeEldestEntry(Map.Entry<Integer, Node> eldest) {
@@ -160,6 +165,8 @@ public class HashRing {
         return -1;
     }
 
+    private long lastDataClearedAt = 0;
+    private static final long DATA_CLEAR_INTERVAL = TimeUnit.SECONDS.toMillis(15);
     public ArrayList<TransferRequest> updateHashRingUponLatestEpidemicState() {
         ArrayList<TransferRequest> transferRequests = new ArrayList<>();
         HashSet<Node> aliveBeforeUpdate = new HashSet<>();
@@ -167,11 +174,31 @@ public class HashRing {
         HashSet<Node> rejoiningNodes = new HashSet<>();
         
         // Step 1: Clear all the range lists of the nodes
-        for (Node node : nodes) { 
+        int howManyDeadNodes = 0;
+        for (Node node : nodes) {
+            if(!epidemic.isAlive(node.getNodeID())){
+                howManyDeadNodes++;
+            }
             if(node.getRangeSet().size() > 0){
                 aliveBeforeUpdate.add(node);
             }
             node.clearRangeSet();
+        }
+
+        long currentTime = System.currentTimeMillis();
+        // If there are a lot of dead nodes, this proves that THIS NODE was dead and just came back alive
+        // We need to clear the outdated data
+        if (howManyDeadNodes > this.initialNumNodes - 3 && currentTime - lastDataClearedAt >= DATA_CLEAR_INTERVAL) {
+            System.out.println("I just came back alive.");
+            
+            // Clear the outdated data
+            System.out.println("Clearing outdated data...");
+            this.nodeCache.clear();
+            this.kvStorage.clear();
+            this.kvCache.clear();
+
+            // Update the last data cleared timestamp
+            lastDataClearedAt = currentTime;
         }
         
         // Step 2: Reinitialize the range lists based on the epidemic
@@ -233,7 +260,7 @@ public class HashRing {
         // Step 2: Find out dead nodes after update
         for(Node node : nodes) {
             if(!epidemic.isAlive(node.getNodeID())) {
-                deadBeforeUpdate.add(node.getNodeID());
+                deadAfterUpdate.add(node.getNodeID());
             }
         }
 
@@ -252,7 +279,6 @@ public class HashRing {
         for(int deadNodeIndex : deadSinceLastUpdateIndices) {
             Boolean shouldForwardReplica = (myID > thirdPredecessorID && deadNodeIndex < myID && deadNodeIndex > thirdPredecessorID) ||
                     (myID < thirdPredecessorID && (deadNodeIndex < myID || deadNodeIndex > thirdPredecessorID));
-            //send transfer request to self, networklistener will propagate it down to 3 replicas.
             if(shouldForwardReplica) {
                 for(int i : nodes.get(myID).getRangeSet()) {
                     TransferRequest transferRequest = new TransferRequest(nodes.get(firstPredecessorID), i);
