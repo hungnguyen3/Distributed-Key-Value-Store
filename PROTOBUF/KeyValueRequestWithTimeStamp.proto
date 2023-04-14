@@ -1,0 +1,11 @@
+syntax = "proto3";
+option java_package = "ca.NetSysLab.ProtocolBuffers";
+option java_outer_classname = "KeyValueRequestWithTimestamp";
+
+message KVRequestWithTimestamp {
+    uint32 command = 1;
+    optional bytes key = 2;
+    optional bytes value = 3;
+    optional int32 version = 4;
+    optional int64 firstReceivedAtPrimaryTimestamp = 5;
+}

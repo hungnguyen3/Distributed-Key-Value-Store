@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "ca.NetSysLab.ProtocolBuffers";
+option java_outer_classname = "Message";
+
+message Msg {
+    bytes messageID = 1;
+    bytes payload = 2;
+    fixed64 checkSum = 3;
+    string originalSenderHost = 4;
+    int32 originalSenderPort = 5;
+    int32 redirectCount = 6;
+    int32 replicateCount = 7;
+    int32 removeCount = 8;
+    int32 receivingNodeID = 9;
+    int64 firstReceivedAtPrimaryTimestamp = 10;
+}

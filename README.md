@@ -9,7 +9,7 @@
 - for 40 nodes (on EC2 Ubuntu):
 
   `for i in {1..40}; do
-    java -Xmx512m -jar A11.jar 512 34.212.38.229 $((10000+i)) 310 &
+    java -Xmx512m -jar A12.jar 512 54.244.43.4 $((10000+i)) 310 &
 done`
 
 ## Description:
