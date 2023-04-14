@@ -7,10 +7,12 @@ numberOfNodes=40
 
 truncate -s 0 pid_list.txt
 
+cd ../../..
+
 # Launch instances of the Java program with different port numbers
 for (( i=0; i<$numberOfNodes; i++ )); do
     port=$((10001+i))
-    java -Xmx512m -jar CPEN431_2023_PROJECT_G6-1.0-SNAPSHOT-jar-with-dependencies.jar ${max_mem_usage} ${ip_address} ${port} 310 &
+    java -Xmx512m -jar target/CPEN431_2023_PROJECT_G6-1.0-SNAPSHOT-jar-with-dependencies.jar ${max_mem_usage} ${ip_address} ${port} 310 &
     # Append the PID of the last backgrounded process to the pid list file
     echo $! >> pid_list.txt
 done

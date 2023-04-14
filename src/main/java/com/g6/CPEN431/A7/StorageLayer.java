@@ -10,9 +10,12 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class StorageLayer {
     DatagramSocket transferSocket;
+    private final Lock storageLock = new ReentrantLock();
     public StorageLayer(int port){
         try {
             this.transferSocket = new DatagramSocket(port);
@@ -30,11 +33,13 @@ public class StorageLayer {
                         }
                         byte[] incomingPacketData = Arrays.copyOf(packet.getData(), packet.getLength());
                         try {
+                            storageLock.lock();
                             KVRequestWithTimestamp incomingRequest = KVRequestWithTimestamp.parseFrom(incomingPacketData);
 
                             StorageLayer.ValueVersionPair currentValueVersionPair = store.get(incomingRequest.getKey());
                             if (currentValueVersionPair == null) {
                                 store.put(incomingRequest.getKey(), new ValueVersionPair(incomingRequest.getValue(), incomingRequest.getVersion(), incomingRequest.getFirstReceivedAtPrimaryTimestamp()));
+                                storageLock.unlock();
                             } else {
                                 if (currentValueVersionPair.firstReceivedAtPrimaryTimestamp > incomingRequest.getFirstReceivedAtPrimaryTimestamp()) {
                                     // Send a transfer request to the node with outdated data to update with the newer data
@@ -47,12 +52,15 @@ public class StorageLayer {
                                     try {
                                         DatagramPacket updateDataPacket = new DatagramPacket(updateDataReq.toByteArray(), updateDataReq.toByteArray().length, packet.getAddress(), packet.getPort());
                                         transferSocket.send(updateDataPacket);
+                                        storageLock.unlock();
                                     } catch (Exception e) {
                                         System.out.println("ERROR ON SENDING INTERNAL KEY TRANSFER: " + e.getMessage());
                                         e.printStackTrace();
+                                        storageLock.unlock();
                                     }
                                 } else {
                                     store.put(incomingRequest.getKey(), new ValueVersionPair(incomingRequest.getValue(), incomingRequest.getVersion(), incomingRequest.getFirstReceivedAtPrimaryTimestamp()));
+                                    storageLock.unlock();
                                 }
                             }
                         } catch (InvalidProtocolBufferException e) {
@@ -84,15 +92,33 @@ public class StorageLayer {
     private ConcurrentHashMap<ByteString, ValueVersionPair> store = new ConcurrentHashMap<>();
 
     public ValueVersionPair get(ByteString key) {
+        storageLock.lock();
         if (!store.containsKey(key)) {
+            storageLock.unlock();
             return null;
+            
         }
 
-        return store.get(key);
+        ValueVersionPair retval = store.get(key);
+        storageLock.unlock();
+        return retval;
     }
 
     public void put(ByteString key, ByteString value, Integer version, long firstReceivedAtPrimaryTimestamp) {
-        store.put(key, new ValueVersionPair(value, version, firstReceivedAtPrimaryTimestamp ));
+        ValueVersionPair currentValueVersionPair = get(key);
+        storageLock.lock();
+        if(currentValueVersionPair == null){
+            store.put(key, new ValueVersionPair(value, version, firstReceivedAtPrimaryTimestamp ));
+            storageLock.unlock();
+        } else {
+            if (currentValueVersionPair.firstReceivedAtPrimaryTimestamp > firstReceivedAtPrimaryTimestamp) {
+                System.out.println("IN STORAGE LAYER PUT, RECEIVED OLD TIMESTAMP");
+            } else {
+                store.put(key, new ValueVersionPair(value, version, firstReceivedAtPrimaryTimestamp ));
+                storageLock.unlock();
+            }
+        }
+        
     }
 
     public ValueVersionPair remove(ByteString key) {
