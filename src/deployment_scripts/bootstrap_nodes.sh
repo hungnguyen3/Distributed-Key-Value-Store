@@ -2,7 +2,7 @@
 
 # Set IP address and number of nodes
 max_mem_usage=512
-ip_address="127.0.0.1"
+ip_address="54.244.43.4"
 numberOfNodes=40
 
 # mvn clean compile assembly:single
